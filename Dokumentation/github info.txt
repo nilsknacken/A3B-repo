@@ -1,0 +1,9 @@
+github repo
+
+http:
+https://github.com/nilsknacken/A3B-repo.git
+
+
+
+ssh:
+git@github.com:nilsknacken/A3B-repo.git
