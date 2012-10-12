@@ -17,3 +17,6 @@
 
 # Thumbnail files
 Thumbs.db
+
+# for mac
+.DS_Store
