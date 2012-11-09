@@ -1,17 +1,16 @@
 #
-# FILENAMN:      Makefile
-# PROJECT:       A3B
-# PROGRAMMERARE: Conny Andersson    910124-2411 Y3a conan414@student.liu.se
-#                Andreas Bolin      820406-2098 Y3a andbo467@student.liu.se
-#                Martin Andersson   890929-0566 Y3a maran703@student.liu.se
-#                Adam Andersson                 Y3a adaan690@student.liu.se
-# DATE:          2012-11-09
+# FILENAMN:   Makefile
+# PROJECT:    A3B
+# PROGRAMMER: Conny Andersson    910124-2411 Y3a conan414@student.liu.se
+#             Andreas Bolin      820406-2098 Y3a andbo467@student.liu.se
+#             Martin Andersson   890929-0566 Y3a maran703@student.liu.se
+#             Adam Andersson                 Y3a adaan690@student.liu.se
+# DATE:       2012-11-09
 #
 # DESCRIPTION 
 # 
 # Compiling with "make"
 # Run with "run"
-#
 #
 
 BACKEND = ../backend
@@ -32,9 +31,9 @@ CPPFLAGS += -I$(BACKEND) -I$(DATABASE) -I$(GUI)
 LDFLAGS += -L/sw/gcc-$(GCC4_V)/lib -static-libstdc++
 
 # Objektkodsmoduler som ingår i den kompletta kalkylatorn.
-OBJECTS = bilpark.o Carpark.o GUI.o Database.o Reservation.o Search_reservation.o Vehicle.o Search_vehicle.o Settings.o
+OBJECTS = bilpark.o Carpark.o Gui.o Database.o Reservation.o Search_reservation.o Vehicle.o Search_vehicle.o Settings.o
 
-# Huvudmål - skapas med kommandot 'make' eller 'make kalkylator'.
+# Huvudmål - skapas med kommandot 'make' eller 'make main'.
 main: $(OBJECTS) Makefile
 	$(CXX) $(CPPFLAGS) $(CCFLAGS) $(LDFLAGS) -o run $(OBJECTS)
 
@@ -45,8 +44,8 @@ bilpark.o: bilpark.cc
 Carpark.o: Carpark.h Carpark.cc
 	$(CXX) $(CPPFLAGS) $(CCFLAGS) -c Carpark.cc
 
-GUI.o: $(GUI)/GUI.h $(GUI)/GUI.cc
-	$(CXX) $(CPPFLAGS) $(CCFLAGS) -c $(GUI)/GUI.cc
+Gui.o: $(GUI)/Gui.h $(GUI)/Gui.cc
+	$(CXX) $(CPPFLAGS) $(CCFLAGS) -c $(GUI)/Gui.cc
 
 Database.o: $(DATABASE)/Database.h $(DATABASE)/Database.cc
 	$(CXX) $(CPPFLAGS) $(CCFLAGS) -c $(DATABASE)/Database.cc
@@ -66,12 +65,12 @@ Vehicle.o: $(BACKEND)/Search_vehicle.h $(BACKEND)/Search_vehicle.cc
 Vehicle.o: $(BACKEND)/Settings.h $(BACKEND)/Settings.cc
 	$(CXX) $(CPPFLAGS) $(CCFLAGS) -c $(BACKEND)/Settings.cc
 
-sqlite3.o: sqlite.h sqlite.c
+sqlite3.o: $(DATABASE)/sqlite.h $(DATABASE)/sqlite.c
 	$(GCC) -c $(DATABASE)/sqlite.c
 
 # 'make clean' tar bort objektkodsfiler och 'core' (minnesdump).
 clean:
-	@ \rm -rf *.o run *~
+	@ \rm -rf *.o run *~ core
 
 clean-win:
 	@ rm -rf *.o *.gch run.exe *~
