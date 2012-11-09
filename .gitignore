@@ -11,6 +11,11 @@
 *.la
 *.a
 
+# Executables
+run
+run.exe
+a.out
+
 # Tmp files
 *.~*~
 *#
