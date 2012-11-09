@@ -30,7 +30,7 @@ CPPFLAGS += -I$(BACKEND) -I$(DATABASE) -I$(GUI)
 # Länkflaggor - Fix för att lösa lokala problem med C++ länkbibliotek.
 LDFLAGS += -L/sw/gcc-$(GCC4_V)/lib -static-libstdc++
 
-# Objektkodsmoduler som ingår i den kompletta kalkylatorn.
+# Objektkodsmoduler som ingår i den kompletta bilparken.
 OBJECTS = bilpark.o Carpark.o Gui.o Database.o Reservation.o Search_reservation.o Vehicle.o Search_vehicle.o Settings.o
 
 # Huvudmål - skapas med kommandot 'make' eller 'make main'.
