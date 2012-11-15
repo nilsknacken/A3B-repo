@@ -59,10 +59,10 @@ Search_reservation.o: $(BACKEND)/Search_reservation.h $(BACKEND)/Search_reservat
 Vehicle.o: $(BACKEND)/Vehicle.h $(BACKEND)/Vehicle.cc
 	$(CXX) $(CPPFLAGS) $(CCFLAGS) -c $(BACKEND)/Vehicle.cc
 
-Vehicle.o: $(BACKEND)/Search_vehicle.h $(BACKEND)/Search_vehicle.cc
+Search_Vehicle.o: $(BACKEND)/Search_vehicle.h $(BACKEND)/Search_vehicle.cc
 	$(CXX) $(CPPFLAGS) $(CCFLAGS) -c $(BACKEND)/Search_vehicle.cc
 
-Vehicle.o: $(BACKEND)/Settings.h $(BACKEND)/Settings.cc
+Settings.o: $(BACKEND)/Settings.h $(BACKEND)/Settings.cc
 	$(CXX) $(CPPFLAGS) $(CCFLAGS) -c $(BACKEND)/Settings.cc
 
 sqlite3.o: $(DATABASE)/sqlite.h $(DATABASE)/sqlite.c
