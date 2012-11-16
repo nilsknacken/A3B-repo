@@ -43,12 +43,26 @@ public:
    static bool open(const char*);
    static void close();
 
+   static void reservation_update(int, const std::string&);/*, std::string&,std::string&,
+                                  std::string&, std::string&, std::string&,
+                                  std::string&, std::string&, std::string&);
+                                                           */
+
+   static
+   std::vector<std::vector<std::string>>
+   reservation_search(std::string&, std::string&);
+
+   static void display(std::vector<std::vector<std::string>>); // used for testing
+  
+   
 private:
    static sqlite3* db;
 
    static void init_db();
 
-   std::vector<std::vector<std::string>> ask(sqlite3_stmt*);
+   static void check_for_error();
+
+   static std::vector<std::vector<std::string>> ask(sqlite3_stmt*);
    
 };
 

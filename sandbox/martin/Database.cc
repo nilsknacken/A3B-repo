@@ -14,6 +14,7 @@
 
 #include "Database.h"
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <cstring>
 
@@ -27,11 +28,6 @@ bool Database::open(const char* filename)
 {
    db = NULL;
 
-/*   // Converts string filename to char*
-   char* char_file = new char[filename.size()+1];
-   char_file[filename.size()]=0;
-   memcpy(char_file, filename.c_str(), filename.size());
-*/   
    if (sqlite3_open(filename, &db) == SQLITE_OK)
    {
       init_db();
@@ -45,10 +41,170 @@ bool Database::open(const char* filename)
 }
 
 
+// Closes the connection to the database
+void Database::close()
+{
+   sqlite3_close_v2(db);
+}
+
+
+// Updates/saves given reservation.
+void Database::reservation_update(int res_nr, const string& reg_nr)/*, string& start, string& end,
+                                  string& status, string& name, string& tel,
+                                  string& address, string& postal_nr, string& city)*/
+{
+   cerr << "res update start\n";
+   
+   sqlite3_stmt* statement;
+   const char* query = "INSERT or REPLACE INTO Reservations"
+      "(res_nr, reg_nr)"//, start, end, status, name, tel, address, postal_nr, city)"
+      "values (?1, ?2)";//, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)";
+
+   if (sqlite3_prepare_v2(db, query, -1, &statement, 0) == SQLITE_OK)
+   {
+      sqlite3_bind_int(statement, 1, res_nr);
+      sqlite3_bind_text(statement, 2, reg_nr.c_str(), reg_nr.size(), SQLITE_TRANSIENT);
+
+      sqlite3_step(statement);
+      sqlite3_finalize(statement);
+      // bind, step, finalize
+   }
+   else
+   {
+      throw database_error("Failed to prepare statement in reservation update!");
+   }
+
+   cerr << "res update end\n";
+}
+
+
+// Performs a search in the Reservations table
+vector<vector<string>>
+Database::reservation_search(string& what, string& value)
+{
+   cerr << "res search start\n";
+   
+   sqlite3_stmt* statement;
+   vector<vector<string>> result;
+   
+   if (what == "all")
+   {
+      const char* query = "SELECT * FROM Reservations";
+      if (sqlite3_prepare_v2(db, query, -1, &statement,0) == SQLITE_OK)
+      {
+         result = ask(statement);
+      }
+   }
+   else if (what == "res_nr")
+   {
+   }
+   else
+   {
+      if (what == "reg_nr")
+      {
+      }
+      else if (what == "status")
+      {
+      }
+
+      //allmän prepare
+   }
+
+   cerr << "res search end\n";
+   return result;
+      
+}
+
+
+// Displays results, only for testing
+void Database::display(vector<vector<string>> result)
+{
+   cout << endl;
+   
+   for(vector<vector<string> >::iterator it = result.begin(); it < result.end(); ++it)
+   {
+      vector<string> row = *it;
+
+     
+      for (unsigned int i = 0; i < row.size(); ++i)
+         cout << setw(10) << row[i];
+
+      cout << endl;
+      
+   }
+
+   cout << endl;
+}
+      
 // Initializes the database if not already done.
 void Database::init_db()
 {
    cerr <<"Init db\n";
+   
+   sqlite3_exec(db,
+                "CREATE TABLE IF NOT EXISTS Reservations ("
+                "res_nr INTEGER NOT NULL UNIQUE, reg_nr TEXT)"/*, start TEXT, end TEXT,"
+                "status TEXT, name TEXT, tel TEXT, address TEXT,"
+                "postal_nr TEXT, city TEXT)"*/, NULL, 0, NULL);
+   
+   check_for_error();
+      
+   // Skapa Vehicles, Settings             
+   cerr << "Init klar\n";
 }
 
-      
+
+// Asks the prepared statement to the database. Returns a vector with
+// the all the rows of the result, where each row consits of a vector with
+// each column as an element.
+vector<vector<string>> Database::ask(sqlite3_stmt* statement)
+{
+   cerr << "ask start\n";
+   
+   vector<vector<string>> results;
+   
+   int cols = sqlite3_column_count(statement);
+   int result = 0;
+
+   while(true)
+   {
+      result = sqlite3_step(statement);
+			
+      if(result == SQLITE_ROW)
+      {
+         vector<string> values;
+         string val;
+         
+         for(int col = 0; col < cols; col++)
+         {
+            char * ptr = (char*)sqlite3_column_text(statement, col);
+
+            if(ptr)
+               val = ptr;
+            
+            values.push_back(val);
+         }
+         results.push_back(values);
+      }
+      else
+      {
+         break;   
+      }
+   }
+	   
+   sqlite3_finalize(statement);
+   
+   check_for_error();
+
+   cerr << "ask end\n";
+   return results;
+}
+
+
+// Checks if the database has an error
+void Database::check_for_error()
+{
+   string error = sqlite3_errmsg(db);
+   if(error != "not an error")
+      throw database_error(error);
+}
