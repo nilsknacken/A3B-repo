@@ -43,14 +43,21 @@ public:
    static bool open(const char*);
    static void close();
 
-   static void reservation_update(int, const std::string&);/*, std::string&,std::string&,
-                                  std::string&, std::string&, std::string&,
-                                  std::string&, std::string&, std::string&);
-                                                           */
+   static void reservation_update(const int,
+                                  const std::string&,
+                                  const std::string&,
+                                  const std::string&,
+                                  const std::string&,
+                                  const std::string&,
+                                  const std::string&,
+                                  const std::string&,
+                                  const std::string&,
+                                  const std::string&);
+                                                          
 
    static
    std::vector<std::vector<std::string>>
-   reservation_search(std::string&, std::string&);
+   reservation_search(const std::string&, const std::string&);
 
    static void display(std::vector<std::vector<std::string>>); // used for testing
   

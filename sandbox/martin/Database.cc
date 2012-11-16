@@ -49,29 +49,44 @@ void Database::close()
 
 
 // Updates/saves given reservation.
-void Database::reservation_update(int res_nr, const string& reg_nr)/*, string& start, string& end,
-                                  string& status, string& name, string& tel,
-                                  string& address, string& postal_nr, string& city)*/
+void Database::reservation_update(const int res_nr,
+                                  const string& reg_nr,
+                                  const string& start,
+                                  const string& end,
+                                  const string& status,
+                                  const string& name,
+                                  const string& tel,
+                                  const string& address,
+                                  const string& postal_nr,
+                                  const string& city)
 {
    cerr << "res update start\n";
    
    sqlite3_stmt* statement;
    const char* query = "INSERT or REPLACE INTO Reservations"
-      "(res_nr, reg_nr)"//, start, end, status, name, tel, address, postal_nr, city)"
-      "values (?1, ?2)";//, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)";
+      "(res_nr, reg_nr, start, end, status, name, tel, address, postal_nr, city)"
+      "values (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)";
 
    if (sqlite3_prepare_v2(db, query, -1, &statement, 0) == SQLITE_OK)
    {
       sqlite3_bind_int(statement, 1, res_nr);
       sqlite3_bind_text(statement, 2, reg_nr.c_str(), reg_nr.size(), SQLITE_TRANSIENT);
+      sqlite3_bind_text(statement, 3, start.c_str(), start.size(), SQLITE_TRANSIENT);
+      sqlite3_bind_text(statement, 4, end.c_str(), end.size(), SQLITE_TRANSIENT);
+      sqlite3_bind_text(statement, 5, status.c_str(), status.size(), SQLITE_TRANSIENT);
+      sqlite3_bind_text(statement, 6, name.c_str(), name.size(), SQLITE_TRANSIENT);
+      sqlite3_bind_text(statement, 7, tel.c_str(), tel.size(), SQLITE_TRANSIENT);
+      sqlite3_bind_text(statement, 8, address.c_str(), address.size(), SQLITE_TRANSIENT);
+      sqlite3_bind_text(statement, 9, postal_nr.c_str(), postal_nr.size(), SQLITE_TRANSIENT);
+      sqlite3_bind_text(statement, 10, city.c_str(), city.size(), SQLITE_TRANSIENT);
 
       sqlite3_step(statement);
       sqlite3_finalize(statement);
-      // bind, step, finalize
    }
    else
    {
-      throw database_error("Failed to prepare statement in reservation update!");
+      check_for_error();
+      // throw database_error("Failed to prepare statement in reservation update!");
    }
 
    cerr << "res update end\n";
@@ -80,7 +95,7 @@ void Database::reservation_update(int res_nr, const string& reg_nr)/*, string& s
 
 // Performs a search in the Reservations table
 vector<vector<string>>
-Database::reservation_search(string& what, string& value)
+Database::reservation_search(const string& what, const string& value)
 {
    cerr << "res search start\n";
    
@@ -127,7 +142,7 @@ void Database::display(vector<vector<string>> result)
 
      
       for (unsigned int i = 0; i < row.size(); ++i)
-         cout << setw(10) << row[i];
+         cout << setw(18) << row[i];
 
       cout << endl;
       
@@ -143,9 +158,9 @@ void Database::init_db()
    
    sqlite3_exec(db,
                 "CREATE TABLE IF NOT EXISTS Reservations ("
-                "res_nr INTEGER NOT NULL UNIQUE, reg_nr TEXT)"/*, start TEXT, end TEXT,"
+                "res_nr INTEGER NOT NULL UNIQUE, reg_nr TEXT, start TEXT, end TEXT,"
                 "status TEXT, name TEXT, tel TEXT, address TEXT,"
-                "postal_nr TEXT, city TEXT)"*/, NULL, 0, NULL);
+                "postal_nr TEXT, city TEXT)", NULL, 0, NULL);
    
    check_for_error();
       

@@ -25,9 +25,37 @@ int main(int argc, char* argv[])
    else
       Database::open("default_db.sqlite");
 
-   Database::reservation_update(1234, "ABC123");
-   Database::reservation_update(5678, "ABC123");
-   Database::reservation_update(1234, "DEF456");
+   Database::reservation_update(1234,
+                                "ABC123",
+                                "2011-11-11 11:11",
+                                "2011-11-11 11:12",
+                                "kommande",
+                                "För Efternamn",
+                                "0707123456",
+                                "Storgatan 1",
+                                "58253",
+                                "Storstaden");
+   Database::reservation_update(5678,
+                                "ABC123",
+                                "2011-11-11 11:11",
+                                "2011-11-11 11:12",
+                                "kommande",
+                                "För Efternamn",
+                                "0707123456",
+                                "Storgatan 1",
+                                "58253",
+                                "Storstaden");
+   
+   Database::reservation_update(1234,
+                                "DEF456",
+                                "2011-11-11 11:11",
+                                "2011-11-11 11:12",
+                                "kommande",
+                                "För Efternamn",
+                                "0707123456",
+                                "Storgatan 1",
+                                "58253",
+                                "Storstaden");
 
    string what = "all";
    string value = "1";
@@ -35,6 +63,8 @@ int main(int argc, char* argv[])
 
 
    Database::display(result);
+
+   Database::close();
    
    return 0;
 }
