@@ -53,11 +53,22 @@ public:
                                   const std::string&,
                                   const std::string&,
                                   const std::string&);
-                                                          
 
+   static void vehicle_update(const std::string&,
+                              const std::string&,
+                              const std::string&,
+                              const std::string&,
+                              const std::string&,
+                              const int,
+                              const std::string&);
+      
    static
    std::vector<std::vector<std::string>>
    reservation_search(const std::string&, const std::string&);
+
+   static
+   std::vector<std::vector<std::string>>
+   vehicle_search(const std::string&, const std::string&);
 
    static void display(std::vector<std::vector<std::string>>); // used for testing
   
@@ -67,10 +78,12 @@ private:
 
    static void init_db();
 
+   static sqlite3_stmt* bind_string(const char*, const std::string&);
+   
+   static std::vector<std::vector<std::string>> ask(sqlite3_stmt*);
+
    static void check_for_error();
 
-   static std::vector<std::vector<std::string>> ask(sqlite3_stmt*);
-   
 };
 
 
