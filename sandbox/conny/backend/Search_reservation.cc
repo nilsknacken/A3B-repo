@@ -12,7 +12,6 @@
 * ///////////////Programbeskrivning
 */
 
-#include <iostream> //!!!!!!!!!!!!!!!
 #include <stdlib.h>
 #include <string>
 #include <vector>
@@ -137,7 +136,7 @@ create_result(vector<vector<string>>& str_vector)
             current[6], current[7], current[8], current[9]));
       }
       else
-         cout << "The lenght of the vector is not 10." << endl; //!!!!!!!!!!!!!
+         throw search_reservation_error("The lenght of the vector is not 10.");
    }
 }
 
