@@ -24,11 +24,11 @@
 class Vehicle
 {
 public:
-   Vehicle(int, std::string&, std::string&, std::string&, 
-           std::string&, std::string&, std::string&);
+   Vehicle(std::string&, std::string&, std::string&, 
+           std::string&, std::string&, int, std::string&);
    ~Vehicle() = default;
    
-   //void save();
+   void save();
    
    void set_mileage(const int);
    void set_reg_nr(const std::string&);
@@ -54,12 +54,13 @@ private:
    Vehicle& operator=(const Vehicle&) = delete;
    Vehicle& operator=(Vehicle&&)      = delete;   
    
-   int         mileage_;
+   
    std::string reg_nr_;
    std::string type_;
    std::string status_; 
    std::string brand_;
    std::string model_;
+   int         mileage_;
    std::string damage_; 
 };
 

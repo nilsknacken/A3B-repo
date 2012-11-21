@@ -27,14 +27,14 @@ class Search_reservation
 public:
    Search_reservation()  = default;
    ~Search_reservation() = default;
-/*
-   std::vector<Reservation*> res_nr(int)                   const;
-   std::vector<Reservation*> reg_nr(std::string&)          const;
-   std::vector<Reservation*> name(std::string&)            const;
-   std::vector<Reservation*> tel(std::string&)             const;
-   std::vector<Reservation*> status(std::string&)          const;
-   std::vector<Reservation*> start_end(int, int, int, int) const;*/
-   std::vector<Reservation*> get_current_result()          const;
+
+   std::vector<Reservation*> res_nr(int);
+   std::vector<Reservation*> reg_nr(std::string&);
+   std::vector<Reservation*> name(std::string&);
+   std::vector<Reservation*> tel(std::string&);
+   std::vector<Reservation*> status(std::string&);
+   std::vector<Reservation*> start_end(std::string&, std::string&);
+   std::vector<Reservation*> get_current_result() const;
 
    bool empty() const;
    void clear();

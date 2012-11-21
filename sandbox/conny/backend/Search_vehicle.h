@@ -27,15 +27,15 @@ class Search_vehicle
 public:
    Search_vehicle()  = default;
    ~Search_vehicle() = default;
-   /*
-   std::vector<Vehicle*> all()                                   const;
-   std::vector<Vehicle*> reg_nr(std::string&)                    const;
-   std::vector<Vehicle*> type(std::string&)                      const;
-   std::vector<Vehicle*> status(std::string&)                    const;
-   std::vector<Vehicle*> brand(std::string&)                     const;
-   std::vector<Vehicle*> brand_model(std::string&, std::string&) const;
-   std::vector<Vehicle*> type_date(std::string&, std::string&, 
-                                   std::string&)                 const;*/
+   
+   std::vector<Vehicle*> all();
+   std::vector<Vehicle*> reg_nr(std::string&);
+   std::vector<Vehicle*> type(std::string&);
+   std::vector<Vehicle*> status(std::string&);
+   std::vector<Vehicle*> brand(std::string&);
+   std::vector<Vehicle*> model(std::string&);
+   //std::vector<Vehicle*> type_date(std::string&, std::string&, 
+   //                                std::string&);
    std::vector<Vehicle*> get_current_result()                    const;
 
    bool empty() const;
