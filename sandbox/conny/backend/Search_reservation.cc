@@ -16,25 +16,23 @@
 #include <string>
 #include <vector>
 
-//#include "Database.h"
+#include "Database.h"
 #include "Reservation.h"
 #include "Search_reservation.h"
 
 using namespace std;
 
-//Static class Database
-
 /////////////////////////////////////////////////////////////////////
 // Search_reservation:
 /////////////////////////////////////////////////////////////////////
-/*
+
 // Search for a specific reservation by it's res_nr in the database.
 vector<Reservation*> 
 Search_reservation::
-res_nr(int res_nr) const
+res_nr(int res_nr)
 {
    vector<vector<string>> reservation_str_vector = 
-      Database::reservation_search("res_nr", res_nr);
+      Database::reservation_search(res_nr);
 
    create_result(reservation_str_vector);
    
@@ -44,7 +42,7 @@ res_nr(int res_nr) const
 // Search for a specific reservations by it's reg_nr in the database.
 vector<Reservation*> 
 Search_reservation::
-reg_nr(string& reg_nr) const
+reg_nr(string& reg_nr)
 {
    vector<vector<string>> reservation_str_vector = 
       Database::reservation_search("reg_nr", reg_nr);
@@ -57,7 +55,7 @@ reg_nr(string& reg_nr) const
 // Search for a specific reservations by it's name in the database.
 vector<Reservation*> 
 Search_reservation::
-name(string& name) const
+name(string& name)
 {
    vector<vector<string>> reservation_str_vector = 
       Database::reservation_search("name", name);
@@ -70,7 +68,7 @@ name(string& name) const
 // Search for a specific reservation by it's tel in the database.
 vector<Reservation*> 
 Search_reservation::
-tel(string& tel) const
+tel(string& tel)
 {
    vector<vector<string>> reservation_str_vector = 
       Database::reservation_search("tel", tel);
@@ -83,7 +81,7 @@ tel(string& tel) const
 // Search for a specific reservations by it's status in the database.
 vector<Reservation*> 
 Search_reservation::
-status(string& status) const
+status(string& status)
 {
    vector<vector<string>> reservation_str_vector = 
       Database::reservation_search("status", status);
@@ -97,7 +95,7 @@ status(string& status) const
 // endtime in the database.
 vector<Reservation*> 
 Search_reservation::
-start_end(string start, string end) const
+start_end(string& start, string& end)
 {
    vector<vector<string>> reservation_str_vector = 
       Database::reservation_search_date(start, end);
@@ -106,7 +104,7 @@ start_end(string start, string end) const
 
    return search_result;
 }
-*/
+
 // Return the result ny a list, from last search.
 vector<Reservation*> 
 Search_reservation::

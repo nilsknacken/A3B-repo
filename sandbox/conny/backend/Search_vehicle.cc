@@ -16,25 +16,23 @@
 #include <string>
 #include <vector>
 
-//#include "Database.h"
+#include "Database.h"
 #include "Vehicle.h"
 #include "Search_vehicle.h"
 
 using namespace std;
 
-//Static class Database
-
 /////////////////////////////////////////////////////////////////////
 // Search_vehicle:
 /////////////////////////////////////////////////////////////////////
-/*
+
 // Search for all vehicles in the database.
 vector<Vehicle*> 
 Search_vehicle::
-all() const
+all()
 {
    vector<vector<string>> vehicle_str_vector = 
-      Database::vehicle_search(); // Behöver en sådan!
+      Database::vehicle_search("all", "");
 
    create_result(vehicle_str_vector);
    
@@ -44,7 +42,7 @@ all() const
 // Search for a specific vehicle by it's reg_nr in the database.
 vector<Vehicle*> 
 Search_vehicle::
-reg_nr(string& reg_nr) const
+reg_nr(string& reg_nr)
 {
    vector<vector<string>> vehicle_str_vector = 
       Database::vehicle_search("reg_nr", reg_nr);
@@ -57,7 +55,7 @@ reg_nr(string& reg_nr) const
 // Search for specific type of vehicles in the database.
 vector<Vehicle*> 
 Search_vehicle::
-type(string& type) const
+type(string& type)
 {
    vector<vector<string>> vehicle_str_vector = 
       Database::vehicle_search("type", type);
@@ -70,7 +68,7 @@ type(string& type) const
 // Search for specific status of vehicles in the database.
 vector<Vehicle*> 
 Search_vehicle::
-status(string& status) const
+status(string& status)
 {
    vector<vector<string>> vehicle_str_vector = 
       Database::vehicle_search("status", status);
@@ -83,7 +81,7 @@ status(string& status) const
 // Search for specific brand of vehicles in the database.
 vector<Vehicle*> 
 Search_vehicle::
-brand(string& brand) const
+brand(string& brand)
 {
    vector<vector<string>> vehicle_str_vector = 
       Database::vehicle_search("brand", brand);
@@ -96,20 +94,20 @@ brand(string& brand) const
 // Search for specific brand and model of vehicles in the database.
 vector<Vehicle*> 
 Search_vehicle::
-brand_model(string& brand, string& model) const
+model(string& model)
 {
    vector<vector<string>> vehicle_str_vector = 
-      Database::vehicle_search("brand_model", brand, model); // Behöver en sådan!
+      Database::vehicle_search("model", model);
 
    create_result(vehicle_str_vector);
    
    return search_result;
 }
-
+/*
 // Search for specific type and date of vehicles in the database.
 vector<Vehicle*> 
 Search_vehicle::
-type_date(string& type, string& start, string& end) const
+type_date(string& type, string& start, string& end)
 {
    vector<vector<string>> vehicle_str_vector = 
       Database::vehicle_search_date(type, start, end);
@@ -139,12 +137,12 @@ create_result(vector<vector<string>>& str_vector)
    for(it = str_vector.begin(); it < str_vector.end(); it++)
    {
       vector<string> current = *it;
-      int mileage = atoi(current[0].c_str());
+      int mileage = atoi(current[5].c_str());
       
       if(current.size() == 7)
       {
-         search_result.push_back(new Vehicle(mileage, current[1], 
-            current[2], current[3], current[4], current[5], 
+         search_result.push_back(new Vehicle(current[0], current[1], 
+            current[2], current[3], current[4], mileage, 
             current[6]));
       }
       else

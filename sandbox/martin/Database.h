@@ -68,15 +68,20 @@ public:
 
    static
    std::vector<std::vector<std::string>>
-   reservation_search(int);
+   reservation_search(const int);
+
+   static
+   std::vector<std::vector<std::string>>
+   reservation_search_date(const std::string&, const std::string&);
 
    static
    std::vector<std::vector<std::string>>
    vehicle_search(const std::string&, const std::string&);
 
    static bool exists_reservation(int);
-   
    static bool exists_vehicle(std::string&);
+   static void remove_reservation(int);
+   static void remove_vehicle(std::string& reg_nr);
    
    static void display(std::vector<std::vector<std::string>>); // used for testing
   

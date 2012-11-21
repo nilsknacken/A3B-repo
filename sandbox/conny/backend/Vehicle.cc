@@ -14,6 +14,7 @@
 
 #include <string>
 
+#include "Database.h"
 #include "Vehicle.h"
 
 using namespace std;
@@ -23,24 +24,24 @@ using namespace std;
 /////////////////////////////////////////////////////////////////////
 // parameterized constructor
 Vehicle::
-Vehicle(int mileage, std::string& reg_nr, std::string& type, 
+Vehicle(std::string& reg_nr, std::string& type, 
         std::string& status, std::string& brand, std::string& model, 
-        std::string& damage)
-         : mileage_(mileage), reg_nr_(reg_nr), type_(type),
+        int mileage, std::string& damage)
+         : reg_nr_(reg_nr), type_(type),
          status_(status), brand_(brand), model_(model),
-         damage_(damage)
+         mileage_(mileage), damage_(damage)
 {}
          
-/*
+
 // Store the current object in the database.
 void
 Vehicle::
 save()
 {
-   Database::vehicle_update(mileage_, reg_nr_, type_, status_, 
-                                brand_, model_, damage_);
+   Database::vehicle_update(reg_nr_, type_, status_, 
+                            brand_, model_, mileage_, damage_);
 }
-*/
+
 
 // Apply changes of the parameters.
 void 

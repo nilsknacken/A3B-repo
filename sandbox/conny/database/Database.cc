@@ -17,6 +17,7 @@
 #include <iomanip>
 #include <string>
 #include <cstring>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -60,8 +61,6 @@ void Database::reservation_update(const int res_nr,
                                   const string& postal_nr,
                                   const string& city)
 {
-   cerr << "res update start\n";
-   
    sqlite3_stmt* statement;
    const char* query = "INSERT or REPLACE INTO Reservations"
       "(res_nr, reg_nr, start, end, status, name, tel, address, postal_nr, city)"
@@ -83,13 +82,40 @@ void Database::reservation_update(const int res_nr,
       sqlite3_step(statement);
       sqlite3_finalize(statement);
    }
-   else
-   {
-      check_for_error();
-      // throw database_error("Failed to prepare statement in reservation update!");
-   }
+   
+   check_for_error();
+}
 
-   cerr << "res update end\n";
+
+// Updates/saves given reservation.
+void Database::vehicle_update(const string& reg_nr,
+                              const string& type,
+                              const string& status,
+                              const string& brand,
+                              const string& model,
+                              const int mileage,
+                              const string& damage)
+{
+   sqlite3_stmt* statement;
+   const char* query = "INSERT or REPLACE INTO Vehicles"
+      "(reg_nr, type, status, brand, model, mileage, damage)"
+      "values (?1, ?2, ?3, ?4, ?5, ?6, ?7)";
+
+   if (sqlite3_prepare_v2(db, query, -1, &statement, 0) == SQLITE_OK)
+   {
+      sqlite3_bind_text(statement, 1, reg_nr.c_str(), reg_nr.size(), SQLITE_TRANSIENT);
+      sqlite3_bind_text(statement, 2, type.c_str(), type.size(), SQLITE_TRANSIENT);
+      sqlite3_bind_text(statement, 3, status.c_str(), status.size(), SQLITE_TRANSIENT);
+      sqlite3_bind_text(statement, 4, brand.c_str(), brand.size(), SQLITE_TRANSIENT);
+      sqlite3_bind_text(statement, 5, model.c_str(), model.size(), SQLITE_TRANSIENT);
+      sqlite3_bind_int(statement, 6, mileage);
+      sqlite3_bind_text(statement, 7, damage.c_str(), damage.size(), SQLITE_TRANSIENT);
+     
+      sqlite3_step(statement);
+      sqlite3_finalize(statement);
+   }
+   
+   check_for_error();
 }
 
 
@@ -97,37 +123,189 @@ void Database::reservation_update(const int res_nr,
 vector<vector<string>>
 Database::reservation_search(const string& what, const string& value)
 {
-   cerr << "res search start\n";
-   
    sqlite3_stmt* statement;
    vector<vector<string>> result;
    
    if (what == "all")
    {
       const char* query = "SELECT * FROM Reservations";
-      if (sqlite3_prepare_v2(db, query, -1, &statement,0) == SQLITE_OK)
-      {
-         result = ask(statement);
-      }
+      sqlite3_prepare_v2(db, query, -1, &statement,0);
    }
-   else if (what == "res_nr")
+   else if (what == "reg_nr")
    {
+      const char* query = "SELECT * FROM Reservations WHERE reg_nr = ?1";
+      statement = bind_string(query, value);
+   }
+   else if (what == "status")
+   {
+      const char* query = "SELECT * FROM Reservations WHERE status = ?1";
+      statement = bind_string(query, value);
+   }
+   else if (what == "name")
+   {
+      const char* query = "SELECT * FROM Reservations WHERE name = ?1";
+      statement = bind_string(query, value);
    }
    else
    {
-      if (what == "reg_nr")
-      {
-      }
-      else if (what == "status")
-      {
-      }
-
-      //allmän prepare
+      throw database_error("Invalid what argument to reservations_search in db!");
    }
 
-   cerr << "res search end\n";
+   result = ask(statement);
+   check_for_error();
+   return result;
+}
+
+
+// Performs a search in the Reservations table for res_nr
+vector<vector<string>>
+Database::reservation_search(const int res_nr)
+{
+   sqlite3_stmt* statement;
+   vector<vector<string>> result;
+   
+   const char* query = "SELECT * FROM Reservations WHERE res_nr = ?1";
+   if (sqlite3_prepare_v2(db, query, -1, &statement,0) == SQLITE_OK)
+   {    
+      sqlite3_bind_int(statement, 1, res_nr);
+   }  
+  
+   result = ask(statement);
+   check_for_error();
+   return result;
+}
+
+
+// Performs a search in the Reservations table for res between given dates
+vector<vector<string>>
+Database::reservation_search_date(const string& start, const string& end)
+{
+   sqlite3_stmt* statement;
+   vector<vector<string>> result;
+   
+   const char* query = "SELECT * FROM Reservations WHERE"
+      "(start >= ?1 AND start <= ?2) OR (end >= ?1 AND end <= ?2)";
+
+   if (sqlite3_prepare_v2(db, query, -1, &statement,0) == SQLITE_OK)
+   {    
+      sqlite3_bind_text(statement, 1, start.c_str(), start.size(), SQLITE_TRANSIENT);
+      sqlite3_bind_text(statement, 2, end.c_str(), end.size(), SQLITE_TRANSIENT);
+      result = ask(statement);
+   }  
+   
+   check_for_error();
+   return result;
+}
+
+
+// Performs a search in the Vehicles table
+vector<vector<string>>
+Database::vehicle_search(const string& what, const string& value)
+{
+   sqlite3_stmt* statement;
+   vector<vector<string>> result;
+   
+   if (what == "all")
+   {
+      const char* query = "SELECT * FROM Vehicles";
+      sqlite3_prepare_v2(db, query, -1, &statement,0);
+   }
+   else if (what == "reg_nr")
+   {
+      const char* query = "SELECT * FROM Vehicles WHERE reg_nr = ?1";
+      statement = bind_string(query, value);
+   }
+   else if (what == "type")
+   {
+      const char* query = "SELECT * FROM Vehicles WHERE type = ?1";
+      statement = bind_string(query, value);
+   }
+   else if (what == "status")
+   {
+      const char* query = "SELECT * FROM Vehicles WHERE status = ?1";
+      statement = bind_string(query, value);
+   }
+   else if (what == "brand")
+   {
+      const char* query = "SELECT * FROM Vehicles WHERE brand = ?1";
+      statement = bind_string(query, value);
+   }
+   else if (what == "model")
+   {
+      const char* query = "SELECT * FROM Vehicles WHERE model = ?1";
+      statement = bind_string(query, value);
+   }
+   else
+   {
+      throw database_error("Invalid what argument to vehicle_search in db!");
+   }
+
+   result = ask(statement);
+   check_for_error();
    return result;
       
+}
+
+
+// Returns true if reservations already is in database
+bool Database::exists_reservation(int res_nr)
+{
+   vector<vector<string> > search_vector;
+   search_vector = reservation_search(res_nr);
+   
+   if(search_vector.empty())
+      return false;
+   else
+      return true;
+   
+}
+
+
+// Returns true if reservations already is in database
+bool Database::exists_vehicle(string& reg_nr)
+{
+   vector<vector<string> > search_vector;
+   search_vector = vehicle_search("reg_nr", reg_nr);
+      
+   if(search_vector.empty())
+      return false;
+   else
+      return true;
+      
+}
+
+
+// Removes given reservation
+void Database::remove_reservation(int res_nr)
+{
+   sqlite3_stmt* statement;
+   const char* query = "DELETE FROM Reservations WHERE res_nr = ?1";
+   
+   if (sqlite3_prepare_v2(db, query, -1, &statement, 0) == SQLITE_OK)
+   {
+      sqlite3_bind_int(statement, 1, res_nr);
+      sqlite3_step(statement);
+   }
+   
+   sqlite3_finalize(statement);
+   check_for_error();
+}
+
+
+// Removes given vehicle
+void Database::remove_vehicle(string& reg_nr)
+{
+   sqlite3_stmt* statement;
+   const char* query = "DELETE FROM Vehicles WHERE reg_nr = ?1";
+   
+   if (sqlite3_prepare_v2(db, query, -1, &statement, 0) == SQLITE_OK)
+   {
+      sqlite3_bind_text(statement, 1, reg_nr.c_str(), reg_nr.size(), SQLITE_TRANSIENT);
+      sqlite3_step(statement);
+   }
+   
+   sqlite3_finalize(statement);
+   check_for_error();
 }
 
 
@@ -154,28 +332,50 @@ void Database::display(vector<vector<string>> result)
 // Initializes the database if not already done.
 void Database::init_db()
 {
-   cerr <<"Init db\n";
-   
    sqlite3_exec(db,
                 "CREATE TABLE IF NOT EXISTS Reservations ("
-                "res_nr INTEGER NOT NULL UNIQUE, reg_nr TEXT, start TEXT, end TEXT,"
-                "status TEXT, name TEXT, tel TEXT, address TEXT,"
-                "postal_nr TEXT, city TEXT)", NULL, 0, NULL);
-   
+                "res_nr INTEGER NOT NULL UNIQUE, reg_nr TEXT COLLATE NOCASE,"
+                "start TEXT, end TEXT, status TEXT, name TEXT COLLATE NOCASE,"
+                "tel TEXT, address TEXT COLLATE NOCASE, postal_nr TEXT,"
+                "city TEXT COLLATE NOCASE)", NULL, 0, NULL);
    check_for_error();
-      
-   // Skapa Vehicles, Settings             
-   cerr << "Init klar\n";
+
+   sqlite3_exec(db,
+                "CREATE TABLE IF NOT EXISTS Vehicles ("
+                "reg_nr TEXT NOT NULL UNIQUE, type TEXT, status TEXT,"
+                "brand TEXT COLLATE NOCASE, model TEXT COLLATE NOCASE,"
+                "mileage INTEGER, damage TEXT)", NULL, 0, NULL);
+   check_for_error();
+   
+   sqlite3_exec(db,
+                "CREATE TABLE IF NOT EXISTS Settings ("
+                "open_hour INTEGER, close_hour INTEGER, min_rental INTEGER)",
+                NULL, 0, NULL);
+    check_for_error();
 }
 
+
+// Prepares and binds given string to ?1 in the query
+sqlite3_stmt* Database::bind_string(const char* query, const string& value)
+{
+   sqlite3_stmt* statement;
+   if (sqlite3_prepare_v2(db, query, -1, &statement,0) == SQLITE_OK)
+   {    
+      sqlite3_bind_text(statement, 1, value.c_str(), value.size(), SQLITE_TRANSIENT);
+   }
+   else
+   {
+      check_for_error();
+   }
+
+   return statement;
+}
 
 // Asks the prepared statement to the database. Returns a vector with
 // the all the rows of the result, where each row consits of a vector with
 // each column as an element.
 vector<vector<string>> Database::ask(sqlite3_stmt* statement)
 {
-   cerr << "ask start\n";
-   
    vector<vector<string>> results;
    
    int cols = sqlite3_column_count(statement);
@@ -196,6 +396,8 @@ vector<vector<string>> Database::ask(sqlite3_stmt* statement)
 
             if(ptr)
                val = ptr;
+            else
+               val = "NULL";
             
             values.push_back(val);
          }
@@ -208,10 +410,6 @@ vector<vector<string>> Database::ask(sqlite3_stmt* statement)
    }
 	   
    sqlite3_finalize(statement);
-   
-   check_for_error();
-
-   cerr << "ask end\n";
    return results;
 }
 

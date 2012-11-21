@@ -60,19 +60,35 @@ public:
    std::string get_end()       const;
 
 private:
-   Reservation() = delete;   
+   Reservation() = delete;
+   
+   void correct_reg_nr(const std::string&);
+   void correct_name(const std::string&);
+   void correct_tel(const std::string&);
+   void correct_adress(const std::string&);
+   void correct_postal_nr(const std::string&);
+   void correct_city(const std::string&);
+   void correct_time(const std::string&, const std::string&);
+
    
    int         res_nr_;
    std::string reg_nr_;
+   std::string start_;
+   std::string end_;
+   std::string status_;
    std::string name_;
    std::string tel_;
    std::string adress_;
    std::string postal_nr_;
-   std::string city_;
-   std::string status_;
-   std::string start_;
-   std::string end_;
+   std::string city_; 
 };
+
+// Help functions
+Reservation* 
+make_reservation(std::string&, std::string&, std::string&, 
+                 std::string&, std::string&, std::string&,
+                 std::string&, std::string&);
+
 
 // Reservation's error class
 class reservation_error : public std::logic_error
