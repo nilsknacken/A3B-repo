@@ -48,8 +48,8 @@ int main(int argc, char* argv[])
    
    Database::reservation_update(32474,
                                 "DEF456",
-                                "2011-11-10 11:11",
-                                "2011-11-14 11:12",
+                                "2011-08-10 11:11",
+                                "2011-08-11 12:12",
                                 "kommande",
                                 "För Efternamn",
                                 "0707123456",
@@ -94,9 +94,15 @@ int main(int argc, char* argv[])
    result = Database::vehicle_search(what, value);
    Database::display(result);
 
- 
-   
 
+   string start = "2011-11-10 11:12";
+   string end = "2011-12-11 10:12";
+
+   cout << "Search 2011-11-10 11:12 -> 2011-11-11 10:12 ----------\n\n";
+
+   result = Database::reservation_search_date(start,end);
+   Database::display(result);
+                                
    Database::close();
    
    return 0;
