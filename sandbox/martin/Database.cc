@@ -17,6 +17,7 @@
 #include <iomanip>
 #include <string>
 #include <cstring>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -130,14 +131,6 @@ Database::reservation_search(const string& what, const string& value)
       const char* query = "SELECT * FROM Reservations";
       sqlite3_prepare_v2(db, query, -1, &statement,0);
    }
-   else if (what == "res_nr")
-   {
-      const char* query = "SELECT * FROM Reservations WHERE res_nr = ?1";
-      if (sqlite3_prepare_v2(db, query, -1, &statement,0) == SQLITE_OK)
-      {    
-         sqlite3_bind_int(statement, 1, stoi(value));
-      }  
-   }
    else if (what == "reg_nr")
    {
       const char* query = "SELECT * FROM Reservations WHERE reg_nr = ?1";
@@ -153,6 +146,25 @@ Database::reservation_search(const string& what, const string& value)
       throw database_error("Invalid what argument to reservations_search in db!");
    }
 
+   result = ask(statement);
+   check_for_error();
+   return result;
+}
+
+
+// Performs a search in the Reservations table for res_nr
+vector<vector<string>>
+Database::reservation_search(int res_nr)
+{
+   sqlite3_stmt* statement;
+   vector<vector<string>> result;
+   
+   const char* query = "SELECT * FROM Reservations WHERE res_nr = ?1";
+   if (sqlite3_prepare_v2(db, query, -1, &statement,0) == SQLITE_OK)
+   {    
+      sqlite3_bind_int(statement, 1, res_nr);
+   }  
+  
    result = ask(statement);
    check_for_error();
    return result;
@@ -208,7 +220,35 @@ Database::vehicle_search(const string& what, const string& value)
 }
 
 
-// Displays results, only for testing
+// Returns true if reservations already is in database
+bool Database::exists_reservation(int res_nr)
+{
+   vector<vector<string>> search_vector;
+   search_vector = reservation_search(res_nr);
+   
+   if(search_vector.empty())
+      return false;
+   else
+      return true;
+   
+}
+
+
+// Returns true if reservations already is in database
+bool Database::exists_vehicle(string& reg_nr)
+{
+   vector<vector<string>> search_vector;
+   search_vector = vehicle_search("reg_nr", reg_nr);
+      
+   if(search_vector.empty())
+      return false;
+   else
+      return true;
+      
+}
+
+      
+          // Displays results, only for testing
 void Database::display(vector<vector<string>> result)
 {
    cout << endl;
@@ -295,6 +335,8 @@ vector<vector<string>> Database::ask(sqlite3_stmt* statement)
 
             if(ptr)
                val = ptr;
+            else
+               val = "NULL";
             
             values.push_back(val);
          }

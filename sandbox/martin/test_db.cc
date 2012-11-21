@@ -94,6 +94,9 @@ int main(int argc, char* argv[])
    result = Database::vehicle_search(what, value);
    Database::display(result);
 
+ 
+   
+
    Database::close();
    
    return 0;
