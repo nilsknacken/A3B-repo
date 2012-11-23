@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "Dialog_About.h"
+#include <QMessageBox>
 #include "Dialog_Settings.h"
 
 namespace Ui {
@@ -24,10 +24,8 @@ private slots:
     
 private:
     Ui::MainWindow *ui;
-    Dialog_About* about;
+    QMessageBox* about;
     Dialog_Settings* settings;
-
-
 };
 
 #endif // MAINWINDOW_H
