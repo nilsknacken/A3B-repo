@@ -21,6 +21,19 @@ private slots:
     void on_actionAbout_triggered();
     void on_actionSettings_triggered();
     void on_actionQuit_triggered();
+
+    void on_pushButtonP1Next_clicked();
+    void on_pushButtonP1Back_clicked();
+    void on_pushButtonP1SmallCar_clicked();
+    void on_pushButtonP1MiddleCar_clicked();
+    void on_pushButtonP1BigCar_clicked();
+    void on_pushButtonP1SmallTruck_clicked();
+    void on_pushButtonP1BigTruck_clicked();
+    void on_pushButtonP1Search_clicked();
+
+public slots:
+    //void on_pushButtonP1Next_clicked();
+    //void on_pushButtonP1Back_clicked();
     
 private:
     Ui::MainWindow *ui;
