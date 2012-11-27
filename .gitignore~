@@ -17,7 +17,7 @@ run.exe
 a.out
 
 # Tmp files
-*.~ *~
+*.~*~
 *#
 
 # Thumbnail files
