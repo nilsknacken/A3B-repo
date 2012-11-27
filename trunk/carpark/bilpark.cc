@@ -26,7 +26,7 @@ int main
    }
    catch (...)
    {
-      cout << "Ett okänt fel har inträffat.\n";
+      cerr << "Ett okänt fel har inträffat.\n";
    }
    
    return 0;
