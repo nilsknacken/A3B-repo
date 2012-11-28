@@ -50,6 +50,20 @@ int main(int argc, char* argv[])
                                 "DEF456",
                                 "2011-08-10 11:11",
                                 "2011-08-11 12:12",
+<<<<<<< HEAD
+=======
+                                "kommande",
+                                "För Efternamn",
+                                "0707123456",
+                                "Storgatan 1",
+                                "58253",
+                                "Storstaden");
+
+   Database::reservation_update(54321,
+                                "HFT643",
+                                "2011-09-10 11:11",
+                                "2011-10-11 12:12",
+>>>>>>> db
                                 "kommande",
                                 "För Efternamn",
                                 "0707123456",
@@ -80,20 +94,51 @@ int main(int argc, char* argv[])
                             "Ka",
                             4711,
                             "hö backspegel repad");
+
+   Database::settings_update(8, 22, 4);
+
+   cout << "Settings table\nopen_hour: " << Database::settings_search("open_hour") << endl;
+   cout << "close_hour: " << Database::settings_search("close_hour") << endl;
+   cout << "min_rental: " << Database::settings_search("min_rental") << endl << endl; 
+
    string what;
    string value;
+   string type;
+   
    vector<vector<string>> result; 
    
+   cout << "All reservations\n";
    what = "all";
    value = "5678";
    result = Database::reservation_search(what, value);
    Database::display(result);
 
+   cout << "All vehicles\n";
    what = "all";
    value = "ABC123";
    result = Database::vehicle_search(what, value);
    Database::display(result);
 
+<<<<<<< HEAD
+=======
+
+   string start = "2011-11-10 11:12";
+   string end = "2011-12-11 10:12";
+
+/*   cout << "Search 2011-11-10 11:12 -> 2011-11-11 10:12 ----------\n\n";
+
+   result = Database::reservation_search_date(start,end);
+   Database::display(result);
+   */
+   
+   type = "small_car";
+   start = "2010-10-11 11:11";
+   end = "2012-11-10 11:11";
+
+cout << "Search type: " << type << " free from: " << start << " to: " << end << endl;
+   result = Database::vehicle_search(type, start, end);
+   Database::display(result);
+>>>>>>> db
 
    string start = "2011-11-10 11:12";
    string end = "2011-12-11 10:12";
