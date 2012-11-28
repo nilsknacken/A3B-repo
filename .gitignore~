@@ -29,4 +29,5 @@ Thumbs.db
 
 # QT ignore
 *.pro.user
+qrc_resource.cpp
 
