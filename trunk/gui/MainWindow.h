@@ -47,12 +47,22 @@ private slots:
 
 
 private:
+    //int p1_sidemenu_index = NULL;
+    //int p2_sidemenu_index = NULL;
+
     Ui::MainWindow *ui;
     QMessageBox* about;
     Dialog_Settings* settings;
 
-    void set_focus_pushbutton(int, QPushButton*&) const;
+    void set_focus_pushbutton(const QString&, QPushButton*&) const;
     void custom_setup();
+
+    // StyleSheet
+    const QString SS_SIDEMENU_ENABLE;
+    const QString SS_SIDEMENU_DISABLE;
+    const QString SS_BUTTON_ENABLE;
+    const QString SS_BUTTON_DISABLE;
+
 };
 
 #endif // MAINWINDOW_H

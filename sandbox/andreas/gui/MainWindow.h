@@ -47,26 +47,22 @@ private slots:
 
 
 private:
-    // StyleSheet
-    const QString SS_SIDEMENU_ENABLE  = "QPushButton {font: bold; color: white;}";
-    const QString SS_SIDEMENU_DISABLE = "QPushButton {font: bold; color: grey;}";
-    const QString SS_BUTTON_ENABLE    = "QPushButton {background-color: rgb(0, 170, 255);"
-                                        "QPushButton:pressed {border-color: rgb(0, 170, 255);"
-                                        "background-color: rgb(255, 255, 255);"
-                                        "QPushButton:default {border-color: lightblue;}";
-    const QString SS_BUTTON_DISABLE   = "QPushButton {background-color: light grey;}"
-                                        "QPushButton:pressed {border-color: none;"
-                                        "background-color: grey;}"
-                                        "QPushButton:default {border-color: none;}";
-
-
+    //int p1_sidemenu_index = NULL;
+    //int p2_sidemenu_index = NULL;
 
     Ui::MainWindow *ui;
     QMessageBox* about;
     Dialog_Settings* settings;
 
-    void set_focus_pushbutton(int, QPushButton*&) const;
+    void set_focus_pushbutton(const QString&, QPushButton*&) const;
     void custom_setup();
+
+    // StyleSheet
+    const QString SS_SIDEMENU_ENABLE;
+    const QString SS_SIDEMENU_DISABLE;
+    const QString SS_BUTTON_ENABLE;
+    const QString SS_BUTTON_DISABLE;
+
 };
 
 #endif // MAINWINDOW_H
