@@ -17,7 +17,8 @@ run.exe
 a.out
 
 # Tmp files
-*.~*~
+*.~
+*~
 *#
 
 # Thumbnail files
@@ -25,3 +26,9 @@ Thumbs.db
 
 # for mac
 .DS_Store
+
+# QT ignore
+*.pro.user
+qrc_resource.cpp
+*.autosave
+
