@@ -119,6 +119,29 @@ void Database::vehicle_update(const string& reg_nr,
 }
 
 
+// Updates/saves settings table.
+void Database::settings_update(
+   const int open_hour,
+   const int close_hour,
+   const int min_rental)
+{
+   sqlite3_stmt* statement;
+   const char* query = "UPDATE Settings SET open_hour=?1, close_hour=?2, min_rental=?3";
+
+   if (sqlite3_prepare_v2(db, query, -1, &statement, 0) == SQLITE_OK)
+   {
+      sqlite3_bind_int(statement, 1, open_hour);
+      sqlite3_bind_int(statement, 2, close_hour);
+      sqlite3_bind_int(statement, 3, min_rental);
+     
+      sqlite3_step(statement);
+      sqlite3_finalize(statement);
+   }
+   
+   check_for_error();
+}
+
+
 // Performs a search in the Reservations table
 vector<vector<string>>
 Database::reservation_search(const string& what, const string& value)
@@ -272,6 +295,44 @@ Database::vehicle_search(const string& type, const string& start, const string& 
 }
 
 
+// Returns the given value what from the settings-table
+string Database::settings_search(const string& what)
+{
+
+   sqlite3_stmt* statement;
+   vector<vector<string>> result;
+   const char* query;
+   
+   if (what == "open_hour")
+   {
+      query = "SELECT open_hour FROM Settings";
+   }
+   else if (what == "close_hour")
+   {
+      query = "SELECT close_hour FROM Settings";
+   }
+   else if (what == "min_rental")
+   {
+      query = "SELECT min_rental FROM Settings";
+   }
+   else
+   {
+      throw database_error("Invalid what argument to vehicle_search in db!");
+   }
+
+if (sqlite3_prepare_v2(db, query, -1, &statement,0) == SQLITE_OK)
+{
+   result = ask(statement);
+}
+
+   check_for_error();
+   if (result.empty())
+      return "";
+   else
+      return result[0][0];
+
+}
+
 // Returns true if reservations already is in database
 bool Database::exists_reservation(int res_nr)
 {
@@ -376,6 +437,10 @@ void Database::init_db()
      "CREATE TABLE IF NOT EXISTS Settings ("
         "open_hour INTEGER, close_hour INTEGER, min_rental INTEGER)",
    NULL, 0, NULL);
+
+   sqlite3_exec(db, "INSERT INTO Settings"
+      "(open_hour, close_hour, min_rental) values(0, 0, 0)", NULL, 0, NULL);
+
    check_for_error();
 }
 

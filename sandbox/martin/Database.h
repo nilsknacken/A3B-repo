@@ -62,6 +62,8 @@ public:
                               const int,
                               const std::string&);
       
+  static void settings_update(const int, const int, const int);
+
    static
    std::vector<std::vector<std::string>>
    reservation_search(const std::string&, const std::string&);
@@ -81,6 +83,10 @@ public:
    static
    std::vector<std::vector<std::string>>
    vehicle_search(const std::string&, const std::string&, const std::string&);
+
+   static 
+   std::string
+   settings_search(const std::string&);
 
    static bool exists_reservation(int);
    static bool exists_vehicle(std::string&);

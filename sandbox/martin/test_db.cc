@@ -91,6 +91,13 @@ int main(int argc, char* argv[])
                             "Ka",
                             4711,
                             "hö backspegel repad");
+
+   Database::settings_update(8, 22, 4);
+
+   cout << "Settings table\nopen_hour: " << Database::settings_search("open_hour") << endl;
+   cout << "close_hour: " << Database::settings_search("close_hour") << endl;
+   cout << "min_rental: " << Database::settings_search("min_rental") << endl << endl; 
+
    string what;
    string value;
    string type;
