@@ -3,5 +3,9 @@
         <file>images/test.png</file>
         <file>images/test2.png</file>
         <file>images/test3.png</file>
+        <file>images/Linen_Patterns_1.jpg</file>
+        <file>images/Linen_Patterns_2.jpg</file>
+        <file>images/Linen_Patterns_3.jpg</file>
+        <file>images/Linen_Patterns_4.jpg</file>
     </qresource>
 </RCC>

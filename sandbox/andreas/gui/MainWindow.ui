@@ -436,16 +436,38 @@
    <string>A3B Bilpark</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QTabWidget::tab-bar {
+   <string notr="true">QMainWindow{
+background-image: url(:/images/Linen_Patterns_4.jpg); }
+/*background: solid white; } */
+QStatusBar{
+background: solid rgba(0, 0, 0, 0); }
+
+QFrame {
+background: solid white; }
+/*
+QWidget{
+background-color: rgba(0, 0, 0, 0); 
+}
+*/
+
+QTabWidget::tab-bar {
 	left: 20px;}
 QTabWidget::pane {
 /*	border-top: 4px solid rgb(0, 170, 255);*/
-border-top: 20px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(0, 0, 0, 0), stop:0.199052 rgba(0, 0, 0, 22), stop:0.459716 rgba(0, 0, 0, 52), stop:0.7109 rgba(0, 0, 0, 164), stop:0.799 rgba(0, 0, 0, 255), stop:0.8 rgba(0, 170, 255, 255));
+
+border-top: 20px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(0, 0, 0, 0), stop:0.199052 rgba(0, 0, 0, 8), stop:0.459716 rgba(0, 0, 0, 38), stop:0.7109 rgba(0, 0, 0, 135), stop:0.799 rgba(0, 0, 0, 209), stop:0.8 rgba(0, 170, 255, 255));
+
+/*border-bottom: 10px solid qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:0.578199 rgba(0, 0, 0, 37), stop:0.810427 rgba(0, 0, 0, 58), stop:1 rgba(0, 0, 0, 226)); */
+
+border-bottom: 10px solid qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:0.578199 rgba(0, 0, 0, 37), stop:0.810427 rgba(0, 0, 0, 120), stop:1 rgba(0, 0, 0, 235));
+
+
+background: solid rgba(0, 0, 0, 0);
+
          /*position: absolute;*/
-         top: -18px;
-	background-color: white;}
+         top: -18px;}
 QTabBar::tab {
-	height: 60px; width: 110px;
+	height: 60px; width: 120px;
 	border: 2px;
 	border-top-left-radius: 2px;
 	border-top-right-radius: 2px;}
@@ -455,7 +477,7 @@ QTabBar::tab:selected {
 	border-color: rgb(0, 170, 255);
 	font:;color: white;}
 QTabBar::tab:!selected {
-	font:;color: dark grey;}
+	font:;color: grey;}
 
 
 QPushButton {
@@ -524,7 +546,10 @@ QMenuBar::item:pressed {
    <property name="styleSheet">
     <string notr="true"/>
    </property>
-   <layout class="QGridLayout" name="gridLayout">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
     <property name="leftMargin">
      <number>0</number>
     </property>
@@ -537,11 +562,8 @@ QMenuBar::item:pressed {
     <property name="bottomMargin">
      <number>0</number>
     </property>
-    <property name="horizontalSpacing">
-     <number>6</number>
-    </property>
-    <item row="0" column="0">
-     <widget class="QTabWidget" name="tabWidgetMain">
+    <item>
+     <widget class="QTabWidget" name="tabWidgetMainTab">
       <property name="font">
        <font>
         <pointsize>14</pointsize>
@@ -553,54 +575,51 @@ QMenuBar::item:pressed {
       <property name="focusPolicy">
        <enum>Qt::NoFocus</enum>
       </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <property name="currentIndex">
        <number>0</number>
       </property>
       <widget class="QWidget" name="tabReservate">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <attribute name="title">
         <string>Bokning</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_3">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="margin">
+         <number>0</number>
+        </property>
         <item>
-         <widget class="QTabWidget" name="tabWidget1_2">
+         <widget class="QStackedWidget" name="stackedWidgetP1Main">
           <property name="focusPolicy">
            <enum>Qt::NoFocus</enum>
           </property>
           <property name="styleSheet">
-           <string notr="true">QTabWidget::tab-bar {
-	left: 0px;}
-QTabWidget::pane {
-	border: 0px solid transparent;
-	background-color: transparent;
-	padding: 0px 0px 0px 0px; }
-QTabBar::tab {
-	height: 0px; width: 0px;
-	border: 0px solid transparent;
-	border-top-left-radius: 0px;
-	border-top-right-radius: 0px;}
-QTabBar::tab:selected {
-	background: transparent;
-	border-bottom-color: transparent;
-	border-color: transparent;
-	font:;color: transparent;
-	margin-left: 0px; margin-right: 0px; margin-top: 0px; }
-QTabBar::tab:!selected {
-	margin-left: 0px; margin-right: 0px; margin-top: 0px; }</string>
+           <string notr="true"/>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
-          <widget class="QWidget" name="tabBooking">
-           <attribute name="title">
-            <string/>
-           </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout">
-            <property name="topMargin">
-             <number>19</number>
+          <widget class="QWidget" name="stackedWidgetP1Page1">
+           <layout class="QGridLayout" name="gridLayout_9">
+            <property name="margin">
+             <number>0</number>
             </property>
-            <item>
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <item row="0" column="0" colspan="2">
              <layout class="QGridLayout" name="gridLayoutTop">
-              <item row="0" column="0">
+              <property name="topMargin">
+               <number>9</number>
+              </property>
+              <item row="0" column="0" rowspan="2">
                <spacer name="horizontalSpacer_3">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -612,6 +631,13 @@ QTabBar::tab:!selected {
                  </size>
                 </property>
                </spacer>
+              </item>
+              <item row="0" column="6" rowspan="2">
+               <widget class="QPushButton" name="pushButtonP1Search">
+                <property name="text">
+                 <string>Sök</string>
+                </property>
+               </widget>
               </item>
               <item row="0" column="2" rowspan="2">
                <spacer name="horizontalSpacer_2">
@@ -632,32 +658,12 @@ QTabBar::tab:!selected {
               <item row="0" column="4">
                <widget class="QTimeEdit" name="timeEditFrom"/>
               </item>
-              <item row="0" column="6">
-               <widget class="QPushButton" name="pushButtonP1Search">
-                <property name="text">
-                 <string>Sök</string>
-                </property>
-               </widget>
-              </item>
               <item row="0" column="3">
                <widget class="QDateEdit" name="dateEditFrom">
                 <property name="calendarPopup">
                  <bool>true</bool>
                 </property>
                </widget>
-              </item>
-              <item row="0" column="7">
-               <spacer name="horizontalSpacer_7">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
               </item>
               <item row="1" column="1">
                <widget class="QLabel" name="labelTo">
@@ -711,17 +717,20 @@ QTabBar::tab:!selected {
                 </property>
                </spacer>
               </item>
-              <item row="2" column="0" colspan="8">
-               <widget class="Line" name="line_7">
-                <property name="lineWidth">
-                 <number>2</number>
-                </property>
+              <item row="0" column="7" rowspan="2">
+               <spacer name="horizontalSpacer_7">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
-               </widget>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
               </item>
-              <item row="0" column="8" rowspan="3">
+              <item row="0" column="8" rowspan="2">
                <spacer name="verticalSpacer_2">
                 <property name="orientation">
                  <enum>Qt::Vertical</enum>
@@ -732,258 +741,379 @@ QTabBar::tab:!selected {
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>0</width>
-                  <height>100</height>
+                  <height>80</height>
                  </size>
                 </property>
                </spacer>
               </item>
+              <item row="2" column="0" colspan="9">
+               <widget class="Line" name="line_7">
+                <property name="lineWidth">
+                 <number>2</number>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
              </layout>
             </item>
-            <item>
-             <layout class="QGridLayout" name="gridLayoutMiddle">
-              <property name="verticalSpacing">
-               <number>6</number>
+            <item row="1" column="0">
+             <widget class="QFrame" name="frameP1Middle">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
               </property>
-              <item row="0" column="0">
-               <widget class="QFrame" name="frameSideMenu">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>150</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <widget class="QPushButton" name="pushButtonP1SmallCar">
-                 <property name="geometry">
-                  <rect>
-                   <x>30</x>
-                   <y>0</y>
-                   <width>98</width>
-                   <height>40</height>
-                  </rect>
+              <property name="styleSheet">
+               <string notr="true">QFrame{
+background: solid transparent;
+background-image: url(:/images/Linen_Patterns_4.jpg); }
+
+QPushButton {
+text-align: left;
+border: none;
+border-radius: none;
+background-color: transparent;
+font: bold; color: grey;
+padding: 0px 0px; }
+QPushButton:pressed {
+border-color: rgb(0, 170, 255);
+background-color: transparent;
+font:; color: white; }
+/*QPushButton:flat {
+border: none; }*/
+/*
+QPushButton:default {
+border-color: lightblue; }
+*/
+
+QStackedWidget {
+background: solid white; }</string>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::NoFrame</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <property name="lineWidth">
+               <number>0</number>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_2">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <property name="margin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QFrame" name="frameP1Buttonbox">
+                 <property name="minimumSize">
+                  <size>
+                   <width>180</width>
+                   <height>0</height>
+                  </size>
                  </property>
-                 <property name="text">
-                  <string>Liten Bil</string>
+                 <property name="styleSheet">
+                  <string notr="true">QFrame {
+border-top: 10px solid qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:0.402844 rgba(0, 0, 0, 31), stop:0.635071 rgba(0, 0, 0, 80), stop:0.763033 rgba(0, 0, 0, 107), stop:0.890995 rgba(0, 0, 0, 125), stop:1 rgba(0, 0, 0, 226));
+border-right: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:0.402844 rgba(0, 0, 0, 31), stop:0.635071 rgba(0, 0, 0, 80), stop:0.763033 rgba(0, 0, 0, 107), stop:0.890995 rgba(0, 0, 0, 125), stop:1 rgba(0, 0, 0, 226));
+border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(0, 0, 0, 0), stop:0.402844 rgba(0, 0, 0, 31), stop:0.635071 rgba(0, 0, 0, 80), stop:0.763033 rgba(0, 0, 0, 107), stop:0.890995 rgba(0, 0, 0, 125), stop:1 rgba(0, 0, 0, 226));
+ }</string>
                  </property>
-                </widget>
-                <widget class="QPushButton" name="pushButtonP1MiddleCar">
-                 <property name="geometry">
-                  <rect>
-                   <x>30</x>
-                   <y>40</y>
-                   <width>98</width>
-                   <height>40</height>
-                  </rect>
+                 <property name="frameShape">
+                  <enum>QFrame::NoFrame</enum>
                  </property>
-                 <property name="text">
-                  <string>Mellanbil</string>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
                  </property>
-                </widget>
-                <widget class="QPushButton" name="pushButtonP1BigCar">
-                 <property name="geometry">
-                  <rect>
-                   <x>30</x>
-                   <y>80</y>
-                   <width>98</width>
-                   <height>40</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>Stor Bil</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="pushButtonP1SmallTruck">
-                 <property name="geometry">
-                  <rect>
-                   <x>30</x>
-                   <y>120</y>
-                   <width>98</width>
-                   <height>40</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>Liten Lasbil</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="pushButtonP1BigTruck">
-                 <property name="geometry">
-                  <rect>
-                   <x>30</x>
-                   <y>160</y>
-                   <width>98</width>
-                   <height>40</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>Stor Lastbil</string>
-                 </property>
-                </widget>
-               </widget>
-              </item>
-              <item row="0" column="2">
-               <widget class="QFrame" name="frameInfo">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>200</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="baseSize">
-                 <size>
-                  <width>0</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QTabWidget" name="tabWidget1_3">
-                <property name="focusPolicy">
-                 <enum>Qt::NoFocus</enum>
-                </property>
-                <property name="tabPosition">
-                 <enum>QTabWidget::North</enum>
-                </property>
-                <property name="currentIndex">
-                 <number>4</number>
-                </property>
-                <widget class="QWidget" name="tabSmallCar">
-                 <attribute name="title">
-                  <string/>
-                 </attribute>
-                 <widget class="QLabel" name="label">
-                  <property name="geometry">
-                   <rect>
-                    <x>110</x>
-                    <y>60</y>
-                    <width>66</width>
-                    <height>17</height>
-                   </rect>
+                 <layout class="QVBoxLayout" name="verticalLayout_11">
+                  <property name="spacing">
+                   <number>10</number>
                   </property>
-                  <property name="text">
-                   <string>Liten bil</string>
+                  <property name="leftMargin">
+                   <number>15</number>
                   </property>
+                  <property name="topMargin">
+                   <number>10</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QPushButton" name="pushButtonP1S_Car">
+                    <property name="minimumSize">
+                     <size>
+                      <width>80</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <pointsize>12</pointsize>
+                      <weight>75</weight>
+                      <italic>false</italic>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="text">
+                     <string>Liten Bil</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButtonP1M_Car">
+                    <property name="minimumSize">
+                     <size>
+                      <width>80</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <pointsize>12</pointsize>
+                      <weight>75</weight>
+                      <italic>false</italic>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="text">
+                     <string>Mellanbil</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButtonP1L_Car">
+                    <property name="minimumSize">
+                     <size>
+                      <width>80</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <pointsize>12</pointsize>
+                      <weight>75</weight>
+                      <italic>false</italic>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="text">
+                     <string>Stor Bil</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButtonP1S_Truck">
+                    <property name="minimumSize">
+                     <size>
+                      <width>80</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <pointsize>12</pointsize>
+                      <weight>75</weight>
+                      <italic>false</italic>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="text">
+                     <string>Liten Lastbil</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButtonP1L_Truck">
+                    <property name="minimumSize">
+                     <size>
+                      <width>80</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <pointsize>12</pointsize>
+                      <weight>75</weight>
+                      <italic>false</italic>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="text">
+                     <string>Stor Lastbil</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="verticalSpacer_9">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>20</width>
+                      <height>112</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QStackedWidget" name="stackedWidgetP1">
+                 <property name="frameShape">
+                  <enum>QFrame::Box</enum>
+                 </property>
+                 <property name="currentIndex">
+                  <number>4</number>
+                 </property>
+                 <widget class="QWidget" name="pageP1S_Car">
+                  <widget class="QLabel" name="label_12">
+                   <property name="geometry">
+                    <rect>
+                     <x>70</x>
+                     <y>60</y>
+                     <width>131</width>
+                     <height>71</height>
+                    </rect>
+                   </property>
+                   <property name="text">
+                    <string>Liten bil</string>
+                   </property>
+                  </widget>
+                 </widget>
+                 <widget class="QWidget" name="pageP1M_Car">
+                  <widget class="QLabel" name="label_13">
+                   <property name="geometry">
+                    <rect>
+                     <x>100</x>
+                     <y>60</y>
+                     <width>151</width>
+                     <height>81</height>
+                    </rect>
+                   </property>
+                   <property name="text">
+                    <string>Mellanbil</string>
+                   </property>
+                  </widget>
+                 </widget>
+                 <widget class="QWidget" name="pageP1L_Car">
+                  <widget class="QLabel" name="label_14">
+                   <property name="geometry">
+                    <rect>
+                     <x>120</x>
+                     <y>100</y>
+                     <width>111</width>
+                     <height>51</height>
+                    </rect>
+                   </property>
+                   <property name="text">
+                    <string>Stor Bil</string>
+                   </property>
+                  </widget>
+                 </widget>
+                 <widget class="QWidget" name="pageP1S_Truck">
+                  <widget class="QLabel" name="label_15">
+                   <property name="geometry">
+                    <rect>
+                     <x>100</x>
+                     <y>70</y>
+                     <width>121</width>
+                     <height>51</height>
+                    </rect>
+                   </property>
+                   <property name="text">
+                    <string>Liten Lastbil</string>
+                   </property>
+                  </widget>
+                 </widget>
+                 <widget class="QWidget" name="pageP1L_Truck">
+                  <widget class="QLabel" name="label_16">
+                   <property name="geometry">
+                    <rect>
+                     <x>100</x>
+                     <y>110</y>
+                     <width>131</width>
+                     <height>61</height>
+                    </rect>
+                   </property>
+                   <property name="autoFillBackground">
+                    <bool>false</bool>
+                   </property>
+                   <property name="text">
+                    <string>Stor Lastbil</string>
+                   </property>
+                  </widget>
                  </widget>
                 </widget>
-                <widget class="QWidget" name="tabMiddleCar">
-                 <attribute name="title">
-                  <string/>
-                 </attribute>
-                 <widget class="QLabel" name="label_2">
-                  <property name="geometry">
-                   <rect>
-                    <x>140</x>
-                    <y>60</y>
-                    <width>66</width>
-                    <height>17</height>
-                   </rect>
-                  </property>
-                  <property name="text">
-                   <string>Mellanbil</string>
-                  </property>
-                 </widget>
-                </widget>
-                <widget class="QWidget" name="tabBigCar">
-                 <attribute name="title">
-                  <string/>
-                 </attribute>
-                 <widget class="QLabel" name="label_3">
-                  <property name="geometry">
-                   <rect>
-                    <x>150</x>
-                    <y>80</y>
-                    <width>66</width>
-                    <height>17</height>
-                   </rect>
-                  </property>
-                  <property name="text">
-                   <string>Stor Bil</string>
-                  </property>
-                 </widget>
-                </widget>
-                <widget class="QWidget" name="tabSmallTruck">
-                 <attribute name="title">
-                  <string/>
-                 </attribute>
-                 <widget class="QLabel" name="label_4">
-                  <property name="geometry">
-                   <rect>
-                    <x>120</x>
-                    <y>70</y>
-                    <width>101</width>
-                    <height>17</height>
-                   </rect>
-                  </property>
-                  <property name="text">
-                   <string>Liten Lasbil</string>
-                  </property>
-                 </widget>
-                </widget>
-                <widget class="QWidget" name="tabBigTruck">
-                 <attribute name="title">
-                  <string/>
-                 </attribute>
-                 <widget class="QLabel" name="label_5">
-                  <property name="geometry">
-                   <rect>
-                    <x>150</x>
-                    <y>90</y>
-                    <width>81</width>
-                    <height>17</height>
-                   </rect>
-                  </property>
-                  <property name="text">
-                   <string>Stor Lasbil</string>
-                  </property>
-                 </widget>
-                </widget>
-               </widget>
-              </item>
-             </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QFrame" name="frame_2">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>200</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="tabPerson">
-           <attribute name="title">
-            <string/>
-           </attribute>
+          <widget class="QWidget" name="stackedWidgetP1Page2">
            <layout class="QVBoxLayout" name="verticalLayout_8">
-            <property name="topMargin">
-             <number>19</number>
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="margin">
+             <number>0</number>
             </property>
             <item>
              <layout class="QGridLayout" name="gridLayout_2">
               <property name="leftMargin">
-               <number>9</number>
+               <number>0</number>
               </property>
               <property name="topMargin">
                <number>9</number>
               </property>
               <property name="rightMargin">
-               <number>9</number>
+               <number>0</number>
               </property>
               <item row="0" column="3">
                <spacer name="verticalSpacer_3">
@@ -1061,193 +1191,15 @@ QTabBar::tab:!selected {
             </item>
             <item>
              <layout class="QGridLayout" name="gridLayout_6">
-              <item row="1" column="1">
-               <layout class="QGridLayout" name="gridLayout_20">
-                <item row="0" column="3">
-                 <widget class="QLabel" name="labelSelectedRegnr_var_2">
-                  <property name="font">
-                   <font>
-                    <pointsize>12</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="7">
-                 <widget class="QLabel" name="labelSelectedDate_var_2">
-                  <property name="font">
-                   <font>
-                    <pointsize>12</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="6">
-                 <spacer name="horizontalSpacer_16">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeType">
-                   <enum>QSizePolicy::Fixed</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>20</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item row="0" column="9">
-                 <spacer name="horizontalSpacer_41">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeType">
-                   <enum>QSizePolicy::Fixed</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>20</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item row="0" column="10">
-                 <widget class="QLabel" name="labelTime_var_2">
-                  <property name="font">
-                   <font>
-                    <pointsize>12</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="1">
-                 <widget class="QLabel" name="labelSelectedRegnr_2">
-                  <property name="font">
-                   <font>
-                    <pointsize>12</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Bil:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="2">
-                 <spacer name="horizontalSpacer_18">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeType">
-                   <enum>QSizePolicy::Fixed</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>20</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item row="0" column="8">
-                 <widget class="QLabel" name="labelTime_2">
-                  <property name="font">
-                   <font>
-                    <pointsize>12</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Tid:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="5">
-                 <widget class="QLabel" name="labelSelectedDate_2">
-                  <property name="font">
-                   <font>
-                    <pointsize>12</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Datum:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="4">
-                 <spacer name="horizontalSpacer_15">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeType">
-                   <enum>QSizePolicy::Fixed</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item row="0" column="0">
-                 <spacer name="horizontalSpacer_23">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item row="0" column="11">
-                 <spacer name="horizontalSpacer_45">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-              <item row="1" column="0" rowspan="3">
-               <spacer name="horizontalSpacer_4">
+              <item row="4" column="0" colspan="3">
+               <spacer name="verticalSpacer_7">
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
-                  <width>40</width>
-                  <height>20</height>
+                  <width>20</width>
+                  <height>40</height>
                  </size>
                 </property>
                </spacer>
@@ -1338,32 +1290,6 @@ QTabBar::tab:!selected {
                 </property>
                </spacer>
               </item>
-              <item row="1" column="2" rowspan="3">
-               <spacer name="horizontalSpacer_6">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item row="4" column="0" colspan="3">
-               <spacer name="verticalSpacer_7">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
               <item row="0" column="0" colspan="3">
                <spacer name="verticalSpacer_4">
                 <property name="orientation">
@@ -1377,37 +1303,225 @@ QTabBar::tab:!selected {
                 </property>
                </spacer>
               </item>
+              <item row="2" column="2" rowspan="2">
+               <spacer name="horizontalSpacer_6">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="1" column="1">
+               <layout class="QGridLayout" name="gridLayout_20">
+                <item row="0" column="2">
+                 <widget class="QLabel" name="labelSelectedRegnr_var_2">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <weight>50</weight>
+                    <italic>true</italic>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>BRB199</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="5">
+                 <spacer name="horizontalSpacer_16">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeType">
+                   <enum>QSizePolicy::Fixed</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item row="0" column="6">
+                 <widget class="QLabel" name="labelSelectedDate_var_2">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <weight>50</weight>
+                    <italic>true</italic>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>2012-12-12</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="9">
+                 <spacer name="horizontalSpacer_41">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeType">
+                   <enum>QSizePolicy::Fixed</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item row="0" column="10">
+                 <widget class="QLabel" name="labelTime_var_2">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <weight>50</weight>
+                    <italic>true</italic>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>19:30</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="labelSelectedRegnr_2">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Bil:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <spacer name="horizontalSpacer_18">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeType">
+                   <enum>QSizePolicy::Fixed</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item row="0" column="8">
+                 <widget class="QLabel" name="labelTime_2">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Tid:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="4">
+                 <widget class="QLabel" name="labelSelectedDate_2">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Datum:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="3">
+                 <spacer name="horizontalSpacer_15">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeType">
+                   <enum>QSizePolicy::Fixed</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item row="0" column="7">
+                 <spacer name="horizontalSpacer_22">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeType">
+                   <enum>QSizePolicy::Fixed</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+              <item row="2" column="0" rowspan="2">
+               <spacer name="horizontalSpacer_4">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
              </layout>
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="tabConfirm">
-           <attribute name="title">
-            <string/>
-           </attribute>
+          <widget class="QWidget" name="stackedWidgetP1Page3">
            <layout class="QVBoxLayout" name="verticalLayout_7">
-            <property name="leftMargin">
+            <property name="spacing">
              <number>0</number>
             </property>
-            <property name="topMargin">
-             <number>19</number>
-            </property>
-            <property name="rightMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
+            <property name="margin">
              <number>0</number>
             </property>
             <item>
              <layout class="QGridLayout" name="gridLayout_16">
               <property name="leftMargin">
-               <number>9</number>
+               <number>0</number>
               </property>
               <property name="topMargin">
                <number>9</number>
               </property>
               <property name="rightMargin">
-               <number>9</number>
+               <number>0</number>
               </property>
               <item row="0" column="1">
                <widget class="QLabel" name="labelConfirmHeadline">
@@ -1512,10 +1626,7 @@ QTabBar::tab:!selected {
          </widget>
         </item>
         <item>
-         <layout class="QGridLayout" name="gridLayoutBottom">
-          <property name="horizontalSpacing">
-           <number>6</number>
-          </property>
+         <layout class="QGridLayout" name="gridLayoutBottomP1">
           <item row="0" column="1">
            <widget class="QPushButton" name="pushButtonP1Back">
             <property name="text">
@@ -1567,17 +1678,23 @@ QTabBar::tab:!selected {
        <attribute name="title">
         <string>Sök</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <item>
-         <layout class="QGridLayout" name="gridLayout_14">
+       <layout class="QGridLayout" name="gridLayout_4">
+        <property name="margin">
+         <number>0</number>
+        </property>
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <item row="0" column="0" colspan="2">
+         <layout class="QGridLayout" name="gridLayoutP2Top">
           <property name="leftMargin">
-           <number>9</number>
+           <number>0</number>
           </property>
           <property name="topMargin">
            <number>9</number>
           </property>
           <property name="rightMargin">
-           <number>9</number>
+           <number>0</number>
           </property>
           <item row="0" column="4">
            <widget class="QPushButton" name="pushButtonSearch_2">
@@ -1585,19 +1702,6 @@ QTabBar::tab:!selected {
              <string>Sök</string>
             </property>
            </widget>
-          </item>
-          <item row="0" column="0">
-           <spacer name="horizontalSpacer_40">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
           </item>
           <item row="1" column="1">
            <widget class="QCheckBox" name="checkBoxClosed">
@@ -1632,19 +1736,6 @@ QTabBar::tab:!selected {
             </property>
            </widget>
           </item>
-          <item row="0" column="5">
-           <spacer name="horizontalSpacer_39">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
           <item row="0" column="6" rowspan="2">
            <spacer name="verticalSpacer_17">
             <property name="orientation">
@@ -1678,53 +1769,372 @@ QTabBar::tab:!selected {
             </property>
            </widget>
           </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QGridLayout" name="gridLayoutMiddle_2">
-          <property name="leftMargin">
-           <number>9</number>
-          </property>
-          <property name="rightMargin">
-           <number>9</number>
-          </property>
-          <item row="0" column="1">
-           <widget class="QScrollArea" name="scrollArea_2">
-            <property name="widgetResizable">
-             <bool>true</bool>
+          <item row="0" column="0" rowspan="2">
+           <spacer name="horizontalSpacer_40">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
-            <widget class="QWidget" name="scrollAreaWidgetContents_2">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>0</y>
-               <width>606</width>
-               <height>291</height>
-              </rect>
-             </property>
-            </widget>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QFrame" name="frameSideMenu_2">
-            <property name="minimumSize">
+            <property name="sizeHint" stdset="0">
              <size>
-              <width>150</width>
-              <height>0</height>
+              <width>40</width>
+              <height>20</height>
              </size>
             </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
+           </spacer>
+          </item>
+          <item row="0" column="5" rowspan="2">
+           <spacer name="horizontalSpacer_39">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
             </property>
-           </widget>
+           </spacer>
           </item>
          </layout>
         </item>
-        <item>
-         <layout class="QGridLayout" name="gridLayoutBottom_2">
+        <item row="1" column="0">
+         <widget class="QFrame" name="frameP2Middle">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QFrame{
+background: solid transparent;
+background-image: url(:/images/Linen_Patterns_4.jpg); }
+
+QPushButton {
+text-align: left;
+border: none;
+border-radius: none;
+background-color: transparent;
+font: bold; color: grey;
+padding: 0px 0px; }
+QPushButton:pressed {
+border-color: rgb(0, 170, 255);
+background-color: transparent;
+font:; color: white; }
+/*QPushButton:flat {
+border: none; }*/
+/*
+QPushButton:default {
+border-color: lightblue; }
+*/
+
+QStackedWidget {
+background: solid white; }</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <property name="lineWidth">
+           <number>0</number>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="margin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QFrame" name="frameP2Buttonbox">
+             <property name="minimumSize">
+              <size>
+               <width>180</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QFrame {
+border-top: 10px solid qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:0.402844 rgba(0, 0, 0, 31), stop:0.635071 rgba(0, 0, 0, 80), stop:0.763033 rgba(0, 0, 0, 107), stop:0.890995 rgba(0, 0, 0, 125), stop:1 rgba(0, 0, 0, 226));
+border-right: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:0.402844 rgba(0, 0, 0, 31), stop:0.635071 rgba(0, 0, 0, 80), stop:0.763033 rgba(0, 0, 0, 107), stop:0.890995 rgba(0, 0, 0, 125), stop:1 rgba(0, 0, 0, 226));
+border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(0, 0, 0, 0), stop:0.402844 rgba(0, 0, 0, 31), stop:0.635071 rgba(0, 0, 0, 80), stop:0.763033 rgba(0, 0, 0, 107), stop:0.890995 rgba(0, 0, 0, 125), stop:1 rgba(0, 0, 0, 226));
+ }</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_10">
+              <property name="spacing">
+               <number>10</number>
+              </property>
+              <property name="leftMargin">
+               <number>15</number>
+              </property>
+              <property name="topMargin">
+               <number>10</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="pushButtonP2S_Car">
+                <property name="minimumSize">
+                 <size>
+                  <width>80</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <weight>75</weight>
+                  <italic>false</italic>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
+                <property name="text">
+                 <string>Liten Bil</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButtonP2M_Car">
+                <property name="minimumSize">
+                 <size>
+                  <width>80</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <weight>75</weight>
+                  <italic>false</italic>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
+                <property name="text">
+                 <string>Mellanbil</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButtonP2L_Car">
+                <property name="minimumSize">
+                 <size>
+                  <width>80</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <weight>75</weight>
+                  <italic>false</italic>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
+                <property name="text">
+                 <string>Stor Bil</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButtonP2S_Truck">
+                <property name="minimumSize">
+                 <size>
+                  <width>80</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <weight>75</weight>
+                  <italic>false</italic>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
+                <property name="text">
+                 <string>Liten Lastbil</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButtonP2L_Truck">
+                <property name="minimumSize">
+                 <size>
+                  <width>80</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <weight>75</weight>
+                  <italic>false</italic>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
+                <property name="text">
+                 <string>Stor Lastbil</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_8">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>112</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QStackedWidget" name="stackedWidgetP2">
+             <property name="frameShape">
+              <enum>QFrame::Box</enum>
+             </property>
+             <property name="currentIndex">
+              <number>1</number>
+             </property>
+             <widget class="QWidget" name="pageP2S_Car">
+              <widget class="QLabel" name="label_6">
+               <property name="geometry">
+                <rect>
+                 <x>70</x>
+                 <y>60</y>
+                 <width>131</width>
+                 <height>71</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Liten bil</string>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QWidget" name="pageP2M_Car">
+              <widget class="QLabel" name="label_8">
+               <property name="geometry">
+                <rect>
+                 <x>100</x>
+                 <y>60</y>
+                 <width>151</width>
+                 <height>81</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Mellanbil</string>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QWidget" name="pageP2L_Car">
+              <widget class="QLabel" name="label_9">
+               <property name="geometry">
+                <rect>
+                 <x>120</x>
+                 <y>100</y>
+                 <width>111</width>
+                 <height>51</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Stor Bil</string>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QWidget" name="pageP2S_Truck">
+              <widget class="QLabel" name="label_10">
+               <property name="geometry">
+                <rect>
+                 <x>100</x>
+                 <y>70</y>
+                 <width>121</width>
+                 <height>51</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Liten Lastbil</string>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QWidget" name="pageP2L_Truck">
+              <widget class="QLabel" name="label_11">
+               <property name="geometry">
+                <rect>
+                 <x>100</x>
+                 <y>110</y>
+                 <width>131</width>
+                 <height>61</height>
+                </rect>
+               </property>
+               <property name="autoFillBackground">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string>Stor Lastbil</string>
+               </property>
+              </widget>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QFrame" name="frame_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="2">
+         <layout class="QGridLayout" name="gridLayoutP2Bottom">
           <item row="0" column="1">
            <widget class="QPushButton" name="pushButtonDelete">
             <property name="text">
@@ -1783,17 +2193,23 @@ QTabBar::tab:!selected {
        <attribute name="title">
         <string>Lämna ut</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
-        <item>
+       <layout class="QGridLayout" name="gridLayout">
+        <property name="margin">
+         <number>0</number>
+        </property>
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <item row="0" column="0" colspan="3">
          <layout class="QGridLayout" name="gridLayout_7">
           <property name="leftMargin">
-           <number>9</number>
+           <number>0</number>
           </property>
           <property name="topMargin">
            <number>9</number>
           </property>
           <property name="rightMargin">
-           <number>9</number>
+           <number>0</number>
           </property>
           <item row="0" column="1">
            <widget class="QLabel" name="labelCheckoutHeadline">
@@ -1835,16 +2251,6 @@ QTabBar::tab:!selected {
             </property>
            </spacer>
           </item>
-          <item row="1" column="0" colspan="3">
-           <widget class="Line" name="line_2">
-            <property name="lineWidth">
-             <number>2</number>
-            </property>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="3">
            <spacer name="verticalSpacer_10">
             <property name="orientation">
@@ -1861,32 +2267,68 @@ QTabBar::tab:!selected {
             </property>
            </spacer>
           </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QGridLayout" name="gridLayout_9">
-          <property name="horizontalSpacing">
-           <number>6</number>
-          </property>
-          <property name="verticalSpacing">
-           <number>0</number>
-          </property>
-          <item row="0" column="0">
-           <spacer name="verticalSpacer_9">
+          <item row="1" column="0" colspan="4">
+           <widget class="Line" name="line_2">
+            <property name="lineWidth">
+             <number>2</number>
+            </property>
             <property name="orientation">
-             <enum>Qt::Vertical</enum>
+             <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>0</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
+           </widget>
           </item>
          </layout>
         </item>
-        <item>
+        <item row="1" column="0">
+         <spacer name="horizontalSpacer_13">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>200</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="1">
+         <widget class="QScrollArea" name="scrollArea">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>398</width>
+             <height>313</height>
+            </rect>
+           </property>
+          </widget>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <spacer name="horizontalSpacer_12">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>200</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="2" column="0" colspan="3">
          <layout class="QGridLayout" name="gridLayout_8">
           <item row="0" column="4">
            <spacer name="verticalSpacer_11">
@@ -1955,17 +2397,23 @@ QTabBar::tab:!selected {
        <attribute name="title">
         <string>Återlämna</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_5">
-        <item>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <property name="margin">
+         <number>0</number>
+        </property>
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <item row="0" column="0" colspan="3">
          <layout class="QGridLayout" name="gridLayout_12">
           <property name="leftMargin">
-           <number>9</number>
+           <number>0</number>
           </property>
           <property name="topMargin">
            <number>9</number>
           </property>
           <property name="rightMargin">
-           <number>9</number>
+           <number>0</number>
           </property>
           <item row="0" column="1">
            <widget class="QLabel" name="labelCheckoutHeadline_2">
@@ -2035,30 +2483,56 @@ QTabBar::tab:!selected {
           </item>
          </layout>
         </item>
-        <item>
-         <layout class="QGridLayout" name="gridLayout_11">
-          <property name="horizontalSpacing">
-           <number>6</number>
+        <item row="1" column="0">
+         <spacer name="horizontalSpacer_14">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
-          <property name="verticalSpacing">
-           <number>0</number>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
           </property>
-          <item row="0" column="0">
-           <spacer name="verticalSpacer_13">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>0</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>200</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
-        <item>
+        <item row="1" column="1">
+         <widget class="QScrollArea" name="scrollArea_2">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents_2">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>398</width>
+             <height>313</height>
+            </rect>
+           </property>
+          </widget>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <spacer name="horizontalSpacer_17">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>200</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="2" column="0" colspan="3">
          <layout class="QGridLayout" name="gridLayout_10">
           <item row="0" column="2">
            <widget class="QPushButton" name="pushButtonCheckin">
@@ -2111,17 +2585,23 @@ QTabBar::tab:!selected {
        <attribute name="title">
         <string>Fordon</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_6">
-        <item>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <property name="margin">
+         <number>0</number>
+        </property>
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <item row="0" column="0" colspan="3">
          <layout class="QGridLayout" name="gridLayout_18">
           <property name="leftMargin">
-           <number>9</number>
+           <number>0</number>
           </property>
           <property name="topMargin">
            <number>9</number>
           </property>
           <property name="rightMargin">
-           <number>9</number>
+           <number>0</number>
           </property>
           <property name="bottomMargin">
            <number>0</number>
@@ -2240,24 +2720,56 @@ QTabBar::tab:!selected {
           </item>
          </layout>
         </item>
-        <item>
-         <layout class="QGridLayout" name="gridLayout_15">
-          <item row="0" column="0">
-           <spacer name="verticalSpacer_18">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
+        <item row="1" column="0">
+         <spacer name="horizontalSpacer_20">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>200</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
-        <item>
+        <item row="1" column="1">
+         <widget class="QScrollArea" name="scrollArea_3">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents_3">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>398</width>
+             <height>313</height>
+            </rect>
+           </property>
+          </widget>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <spacer name="horizontalSpacer_21">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>200</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="2" column="0" colspan="3">
          <layout class="QGridLayout" name="gridLayout_13">
           <item row="0" column="2">
            <widget class="QPushButton" name="pushButtonNext">
@@ -2310,105 +2822,14 @@ QTabBar::tab:!selected {
        <attribute name="title">
         <string>Dev</string>
        </attribute>
-       <widget class="QFrame" name="frame">
-        <property name="geometry">
-         <rect>
-          <x>9</x>
-          <y>9</y>
-          <width>621</width>
-          <height>331</height>
-         </rect>
+       <layout class="QVBoxLayout" name="verticalLayout_9">
+        <property name="spacing">
+         <number>0</number>
         </property>
-        <property name="styleSheet">
-         <string notr="true">QFrame {
-background-image: url(:/images/test3.png); }</string>
+        <property name="margin">
+         <number>0</number>
         </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_9">
-         <property name="margin">
-          <number>0</number>
-         </property>
-         <item>
-          <widget class="QTabWidget" name="tabWidget">
-           <property name="focusPolicy">
-            <enum>Qt::NoFocus</enum>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QTabWidget::tab-bar {
-left: 0px;}
-QTabWidget::pane {
-border: 0px;
-border-left: 15px solid qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:0.663507 rgba(0, 0, 0, 46), stop:1 rgba(0, 0, 0, 226));
-background-color: transparent;
-         /*position: absolute;*/
-         left: -15px;
-}
-QTabBar::tab {
-/*rotate-text: left;*/
-height: 50px; width: 130px;
-/*border: 1px solid grey;*/
-border-top-left-radius: 0px;
-border-top-right-radius: 0px;
-border: 0px 0px; }
-QTabBar::tab:selected {
-background-color: transparent;
-/*border-bottom-color: rgb(0, 170, 255);*/
-/*border-color: rgb(0, 170, 255);*/
-font: bold;color: white; }
-QTabBar::tab:!selected {
-font:;color: grey;
- }
-QTabBar::tab:first {
-border-top: 15px solid qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:0.663507 rgba(0, 0, 0, 46), stop:1 rgba(0, 0, 0, 226));
-}
-
-QTabBar::tab:last {
-border-bottom: 15px solid qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 0), stop:0.663507 rgba(0, 0, 0, 46), stop:1 rgba(0, 0, 0, 226))
-}</string>
-           </property>
-           <property name="tabPosition">
-            <enum>QTabWidget::West</enum>
-           </property>
-           <property name="currentIndex">
-            <number>0</number>
-           </property>
-           <widget class="QWidget" name="tab">
-            <attribute name="title">
-             <string>Tab 1</string>
-            </attribute>
-            <layout class="QGridLayout" name="gridLayout_3">
-             <property name="margin">
-              <number>0</number>
-             </property>
-             <property name="spacing">
-              <number>0</number>
-             </property>
-             <item row="0" column="0">
-              <widget class="QFrame" name="frame_2">
-               <property name="styleSheet">
-                <string notr="true">QFrame{
-background: white; }</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-           <widget class="QWidget" name="tab_2">
-            <attribute name="title">
-             <string>Tab 2</string>
-            </attribute>
-           </widget>
-           <widget class="QWidget" name="tab_3">
-            <attribute name="title">
-             <string>Tab 3</string>
-            </attribute>
-           </widget>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+       </layout>
       </widget>
      </widget>
     </item>

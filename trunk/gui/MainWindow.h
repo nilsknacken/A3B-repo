@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QPushButton>
 #include "Dialog_Settings.h"
 
 namespace Ui {
@@ -17,28 +18,41 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+public slots:
+    //void on_pushButtonP1Next_clicked();
+    //void on_pushButtonP1Back_clicked();
+
 private slots:
+    // Menu-Bar
     void on_actionAbout_triggered();
     void on_actionSettings_triggered();
     void on_actionQuit_triggered();
 
+    // Tab 1 - Reservate
     void on_pushButtonP1Next_clicked();
     void on_pushButtonP1Back_clicked();
-    void on_pushButtonP1SmallCar_clicked();
-    void on_pushButtonP1MiddleCar_clicked();
-    void on_pushButtonP1BigCar_clicked();
-    void on_pushButtonP1SmallTruck_clicked();
-    void on_pushButtonP1BigTruck_clicked();
     void on_pushButtonP1Search_clicked();
+    void on_pushButtonP1S_Car_clicked();
+    void on_pushButtonP1M_Car_clicked();
+    void on_pushButtonP1L_Car_clicked();
+    void on_pushButtonP1S_Truck_clicked();
+    void on_pushButtonP1L_Truck_clicked();
 
-public slots:
-    //void on_pushButtonP1Next_clicked();
-    //void on_pushButtonP1Back_clicked();
-    
+    // Tab 2 - Search
+    void on_pushButtonP2S_Car_clicked();
+    void on_pushButtonP2M_Car_clicked();
+    void on_pushButtonP2L_Car_clicked();
+    void on_pushButtonP2S_Truck_clicked();
+    void on_pushButtonP2L_Truck_clicked();
+
+
 private:
     Ui::MainWindow *ui;
     QMessageBox* about;
     Dialog_Settings* settings;
+
+    void set_focus_pushbutton(int, QPushButton*&) const;
+    void custom_setup();
 };
 
 #endif // MAINWINDOW_H
