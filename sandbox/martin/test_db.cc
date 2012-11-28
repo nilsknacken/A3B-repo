@@ -57,6 +57,17 @@ int main(int argc, char* argv[])
                                 "58253",
                                 "Storstaden");
 
+   Database::reservation_update(54321,
+                                "HFT643",
+                                "2011-09-10 11:11",
+                                "2011-10-11 12:12",
+                                "kommande",
+                                "För Efternamn",
+                                "0707123456",
+                                "Storgatan 1",
+                                "58253",
+                                "Storstaden");
+
    Database::vehicle_update("ABC123",
                             "small_car",
                             "tillgänglig",
@@ -82,13 +93,17 @@ int main(int argc, char* argv[])
                             "hö backspegel repad");
    string what;
    string value;
+   string type;
+   
    vector<vector<string>> result; 
    
+   cout << "All reservations\n";
    what = "all";
    value = "5678";
    result = Database::reservation_search(what, value);
    Database::display(result);
 
+   cout << "All vehicles\n";
    what = "all";
    value = "ABC123";
    result = Database::vehicle_search(what, value);
@@ -98,11 +113,20 @@ int main(int argc, char* argv[])
    string start = "2011-11-10 11:12";
    string end = "2011-12-11 10:12";
 
-   cout << "Search 2011-11-10 11:12 -> 2011-11-11 10:12 ----------\n\n";
+/*   cout << "Search 2011-11-10 11:12 -> 2011-11-11 10:12 ----------\n\n";
 
    result = Database::reservation_search_date(start,end);
    Database::display(result);
-                                
+   */
+   
+   type = "small_car";
+   start = "2010-10-11 11:11";
+   end = "2012-11-10 11:11";
+
+cout << "Search type: " << type << " free from: " << start << " to: " << end << endl;
+   result = Database::vehicle_search(type, start, end);
+   Database::display(result);
+
    Database::close();
    
    return 0;

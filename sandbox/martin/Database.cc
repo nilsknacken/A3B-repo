@@ -51,20 +51,20 @@ void Database::close()
 
 // Updates/saves given reservation.
 void Database::reservation_update(const int res_nr,
-                                  const string& reg_nr,
-                                  const string& start,
-                                  const string& end,
-                                  const string& status,
-                                  const string& name,
-                                  const string& tel,
-                                  const string& address,
-                                  const string& postal_nr,
-                                  const string& city)
+  const string& reg_nr,
+  const string& start,
+  const string& end,
+  const string& status,
+  const string& name,
+  const string& tel,
+  const string& address,
+  const string& postal_nr,
+  const string& city)
 {
    sqlite3_stmt* statement;
    const char* query = "INSERT or REPLACE INTO Reservations"
-      "(res_nr, reg_nr, start, end, status, name, tel, address, postal_nr, city)"
-      "values (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)";
+   "(res_nr, reg_nr, start, end, status, name, tel, address, postal_nr, city)"
+   "values (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)";
 
    if (sqlite3_prepare_v2(db, query, -1, &statement, 0) == SQLITE_OK)
    {
@@ -89,17 +89,17 @@ void Database::reservation_update(const int res_nr,
 
 // Updates/saves given reservation.
 void Database::vehicle_update(const string& reg_nr,
-                              const string& type,
-                              const string& status,
-                              const string& brand,
-                              const string& model,
-                              const int mileage,
-                              const string& damage)
+   const string& type,
+   const string& status,
+   const string& brand,
+   const string& model,
+   const int mileage,
+   const string& damage)
 {
    sqlite3_stmt* statement;
    const char* query = "INSERT or REPLACE INTO Vehicles"
-      "(reg_nr, type, status, brand, model, mileage, damage)"
-      "values (?1, ?2, ?3, ?4, ?5, ?6, ?7)";
+   "(reg_nr, type, status, brand, model, mileage, damage)"
+   "values (?1, ?2, ?3, ?4, ?5, ?6, ?7)";
 
    if (sqlite3_prepare_v2(db, query, -1, &statement, 0) == SQLITE_OK)
    {
@@ -110,7 +110,7 @@ void Database::vehicle_update(const string& reg_nr,
       sqlite3_bind_text(statement, 5, model.c_str(), model.size(), SQLITE_TRANSIENT);
       sqlite3_bind_int(statement, 6, mileage);
       sqlite3_bind_text(statement, 7, damage.c_str(), damage.size(), SQLITE_TRANSIENT);
-     
+
       sqlite3_step(statement);
       sqlite3_finalize(statement);
    }
@@ -169,7 +169,7 @@ Database::reservation_search(const int res_nr)
    {    
       sqlite3_bind_int(statement, 1, res_nr);
    }  
-  
+
    result = ask(statement);
    check_for_error();
    return result;
@@ -184,7 +184,7 @@ Database::reservation_search_date(const string& start, const string& end)
    vector<vector<string>> result;
    
    const char* query = "SELECT * FROM Reservations WHERE"
-      "(start >= ?1 AND start <= ?2) OR (end >= ?1 AND end <= ?2)";
+   "(start >= ?1 AND start <= ?2) OR (end >= ?1 AND end <= ?2)";
 
    if (sqlite3_prepare_v2(db, query, -1, &statement,0) == SQLITE_OK)
    {    
@@ -243,7 +243,32 @@ Database::vehicle_search(const string& what, const string& value)
    result = ask(statement);
    check_for_error();
    return result;
-      
+
+}
+
+
+// Returns the available vehicles of given type during start->end
+vector<vector<string>>
+Database::vehicle_search(const string& type, const string& start, const string& end)
+{
+   sqlite3_stmt* statement;
+   vector<vector<string>> result;
+   
+   const char* query = "SELECT * FROM Vehicles WHERE type = ?1 AND Vehicles.reg_nr NOT IN "
+   "(SELECT Reservations.reg_nr FROM Reservations WHERE "
+      "(Reservations.start >= ?2 AND Reservations.start <= ?3) OR (Reservations.end >= ?2 AND Reservations.end <= ?3) )";
+
+   if (sqlite3_prepare_v2(db, query, -1, &statement,0) == SQLITE_OK)
+   {    
+     sqlite3_bind_text(statement, 1, type.c_str(), type.size(), SQLITE_TRANSIENT);
+     sqlite3_bind_text(statement, 2, start.c_str(), start.size(), SQLITE_TRANSIENT);
+     sqlite3_bind_text(statement, 3, end.c_str(), end.size(), SQLITE_TRANSIENT);
+     result = ask(statement);
+  }  
+
+  check_for_error();
+
+  return result;
 }
 
 
@@ -266,12 +291,12 @@ bool Database::exists_vehicle(string& reg_nr)
 {
    vector<vector<string> > search_vector;
    search_vector = vehicle_search("reg_nr", reg_nr);
-      
+
    if(search_vector.empty())
       return false;
    else
       return true;
-      
+
 }
 
 
@@ -318,7 +343,7 @@ void Database::display(vector<vector<string>> result)
    {
       vector<string> row = *it;
 
-     
+
       for (unsigned int i = 0; i < row.size(); ++i)
          cout << setw(18) << row[i];
 
@@ -328,30 +353,30 @@ void Database::display(vector<vector<string>> result)
 
    cout << endl;
 }
-      
+
 // Initializes the database if not already done.
 void Database::init_db()
 {
    sqlite3_exec(db,
-                "CREATE TABLE IF NOT EXISTS Reservations ("
-                "res_nr INTEGER NOT NULL UNIQUE, reg_nr TEXT COLLATE NOCASE,"
-                "start TEXT, end TEXT, status TEXT, name TEXT COLLATE NOCASE,"
-                "tel TEXT, address TEXT COLLATE NOCASE, postal_nr TEXT,"
-                "city TEXT COLLATE NOCASE)", NULL, 0, NULL);
+     "CREATE TABLE IF NOT EXISTS Reservations ("
+        "res_nr INTEGER NOT NULL UNIQUE, reg_nr TEXT COLLATE NOCASE,"
+        "start TEXT, end TEXT, status TEXT, name TEXT COLLATE NOCASE,"
+        "tel TEXT, address TEXT COLLATE NOCASE, postal_nr TEXT,"
+        "city TEXT COLLATE NOCASE)", NULL, 0, NULL);
    check_for_error();
 
    sqlite3_exec(db,
-                "CREATE TABLE IF NOT EXISTS Vehicles ("
-                "reg_nr TEXT NOT NULL UNIQUE, type TEXT, status TEXT,"
-                "brand TEXT COLLATE NOCASE, model TEXT COLLATE NOCASE,"
-                "mileage INTEGER, damage TEXT)", NULL, 0, NULL);
+     "CREATE TABLE IF NOT EXISTS Vehicles ("
+        "reg_nr TEXT NOT NULL UNIQUE, type TEXT, status TEXT,"
+        "brand TEXT COLLATE NOCASE, model TEXT COLLATE NOCASE,"
+        "mileage INTEGER, damage TEXT)", NULL, 0, NULL);
    check_for_error();
    
    sqlite3_exec(db,
-                "CREATE TABLE IF NOT EXISTS Settings ("
-                "open_hour INTEGER, close_hour INTEGER, min_rental INTEGER)",
-                NULL, 0, NULL);
-    check_for_error();
+     "CREATE TABLE IF NOT EXISTS Settings ("
+        "open_hour INTEGER, close_hour INTEGER, min_rental INTEGER)",
+   NULL, 0, NULL);
+   check_for_error();
 }
 
 
@@ -384,7 +409,7 @@ vector<vector<string>> Database::ask(sqlite3_stmt* statement)
    while(true)
    {
       result = sqlite3_step(statement);
-			
+
       if(result == SQLITE_ROW)
       {
          vector<string> values;
@@ -408,7 +433,7 @@ vector<vector<string>> Database::ask(sqlite3_stmt* statement)
          break;   
       }
    }
-	   
+
    sqlite3_finalize(statement);
    return results;
 }
