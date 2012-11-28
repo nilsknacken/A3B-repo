@@ -241,60 +241,14 @@ void MainWindow::set_focus_pushbutton(int enable, QPushButton*& p) const
 {
     if(enable)
     {
-        p->setStyleSheet("QPushButton {font: bold; color: white;}");
+        p->setStyleSheet(SS_SIDEMENU_ENABLE);
     }
     else
     {
-        p->setStyleSheet("QPushButton {font: bold; color: grey;}");
+        p->setStyleSheet(SS_SIDEMENU_DISABLE);
     }
-
-    /*
-    if(index == 0)
-    {
-        p->setStyleSheet("QPushButton {font: bold; color: white;}");
-        //ui->pushButtonP2S_Car->setStyleSheet("QPushButton {font: bold; color: white;}");
-        ui->pushButtonP2M_Car->setStyleSheet("QPushButton {font: bold; color: grey;}");
-        ui->pushButtonP2L_Car->setStyleSheet("QPushButton {font: bold; color: grey;}");
-        ui->pushButtonP2S_Truck->setStyleSheet("QPushButton {font: bold; color: grey;}");
-        ui->pushButtonP2L_Truck->setStyleSheet("QPushButton {font: bold; color: grey;}");
-    }
-
-    else if(index == 1)
-    {
-        ui->pushButtonP2S_Car->setStyleSheet("QPushButton {font: bold; color: grey;}");
-        ui->pushButtonP2M_Car->setStyleSheet("QPushButton {font: bold; color: white;}");
-        ui->pushButtonP2L_Car->setStyleSheet("QPushButton {font: bold; color: grey;}");
-        ui->pushButtonP2S_Truck->setStyleSheet("QPushButton {font: bold; color: grey;}");
-        ui->pushButtonP2L_Truck->setStyleSheet("QPushButton {font: bold; color: grey;}");
-    }
-
-    else if(index == 2)
-    {
-        ui->pushButtonP2S_Car->setStyleSheet("QPushButton {font: bold; color: grey;}");
-        ui->pushButtonP2M_Car->setStyleSheet("QPushButton {font: bold; color: grey;}");
-        ui->pushButtonP2L_Car->setStyleSheet("QPushButton {font: bold; color: white;}");
-        ui->pushButtonP2S_Truck->setStyleSheet("QPushButton {font: bold; color: grey;}");
-        ui->pushButtonP2L_Truck->setStyleSheet("QPushButton {font: bold; color: grey;}");
-    }
-
-    else if(index == 3)
-    {
-        ui->pushButtonP2S_Car->setStyleSheet("QPushButton {font: bold; color: grey;}");
-        ui->pushButtonP2M_Car->setStyleSheet("QPushButton {font: bold; color: grey;}");
-        ui->pushButtonP2L_Car->setStyleSheet("QPushButton {font: bold; color: grey;}");
-        ui->pushButtonP2S_Truck->setStyleSheet("QPushButton {font: bold; color: white;}");
-        ui->pushButtonP2L_Truck->setStyleSheet("QPushButton {font: bold; color: grey;}");
-    }
-
-    else if(index == 4)
-    {
-        ui->pushButtonP2S_Car->setStyleSheet("QPushButton {font: bold; color: grey;}");
-        ui->pushButtonP2M_Car->setStyleSheet("QPushButton {font: bold; color: grey;}");
-        ui->pushButtonP2L_Car->setStyleSheet("QPushButton {font: bold; color: grey;}");
-        ui->pushButtonP2S_Truck->setStyleSheet("QPushButton {font: bold; color: grey;}");
-        ui->pushButtonP2L_Truck->setStyleSheet("QPushButton {font: bold; color: white;}");
-    }*/
 }
+
 
 void MainWindow::custom_setup()
 {
