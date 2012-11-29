@@ -3,7 +3,7 @@
 
 #include <QDialog>
 
-#include "SettingsQ.h"
+#include "../backend/SettingsQ.h"
 
 namespace Ui
 {
@@ -15,7 +15,7 @@ class Dialog_Settings : public QDialog
     Q_OBJECT
     
 public:
-    explicit Dialog_Settings(QWidget *parent = 0, Settings*&);
+    explicit Dialog_Settings(QWidget *parent = 0, Settings* = nullptr);
     ~Dialog_Settings();
     
 private slots:

@@ -25,7 +25,7 @@
 class Settings
 {
 public:
-    Settings(int, int, int);
+    Settings() = default;
     ~Settings() = default;
 
     void save();
@@ -39,7 +39,6 @@ public:
     int get_min_rental() const;
 
 private:
-    Settings()                           = delete;
     Settings(const Settings&)            = delete;
     Settings(Settings&&)                 = delete;
 
