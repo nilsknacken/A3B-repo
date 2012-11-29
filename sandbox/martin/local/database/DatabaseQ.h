@@ -62,7 +62,11 @@ public:
                               const int,
                               const QString&);
       
-  static void settings_update(const int, const int, const int);
+  static void settings_update(const int,
+                              const int,
+                              const int,
+                              const int,
+                              const int);
 
    static
    std::vector<std::vector<QString> >
