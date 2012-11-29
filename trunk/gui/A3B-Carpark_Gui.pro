@@ -14,10 +14,14 @@ TEMPLATE = app
 
 SOURCES += gui.cc\
         MainWindow.cc \
-    Dialog_Settings.cc
+    Dialog_Settings.cc \
+    database/DatabaseQ.cc \
+    database/sqlite3.c
 
 HEADERS  += MainWindow.h \
-    Dialog_Settings.h
+    Dialog_Settings.h \
+    database/sqlite3.h \
+    database/DatabaseQ.h
 
 FORMS    += MainWindow.ui \
     Dialog_Settings.ui
