@@ -10,6 +10,11 @@ void MainWindow::on_pushButtonSearchP5search_clicked()
 }
 
 
+void MainWindow::on_tableWidgetP5_cellClicked(int row, int column)
+{
+
+}
+
 void MainWindow::setup_tableWidgetP5()
 {
     ui->tableWidgetP5->setColumnCount(3);
@@ -21,10 +26,5 @@ void MainWindow::setup_tableWidgetP5()
     ui->tableWidgetP5->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     ui->tableWidgetP5->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidgetP5->setSortingEnabled(true);
-
-}
-
-void MainWindow::on_tableWidgetP5_cellClicked(int row, int column)
-{
 
 }

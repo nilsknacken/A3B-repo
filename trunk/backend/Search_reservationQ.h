@@ -20,6 +20,7 @@
 #include <stdexcept>
 
 #include "../database/DatabaseQ.h"
+#include "ReservationQ.h"
 
 /////////////////////////////////////////////////////////////////////
 // Search_reservation:

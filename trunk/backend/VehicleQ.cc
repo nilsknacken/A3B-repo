@@ -190,9 +190,9 @@ void
 Vehicle::
 correct_status(const QString& status)
 {
-    if((status != "uthyrd") &&
-            (status != "utlånad"))
-        throw vehicle_error("Status får ändast vara: uthyrd, utlånad.");
+    if((status != "rented") &&
+            (status != "available"))
+        throw vehicle_error("Status får ändast vara: rented, available.");
 }
 
 void

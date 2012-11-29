@@ -25,11 +25,7 @@
 class Settings
 {
 public:
-<<<<<<< HEAD
     Settings()  = default;
-=======
-    Settings() = default;
->>>>>>> b4941a08f2ad933bc1639827470dd6b2b7f678ed
     ~Settings() = default;
 
     void save();

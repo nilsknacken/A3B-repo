@@ -20,6 +20,7 @@
 #include <stdexcept>
 
 #include "../database/DatabaseQ.h"
+#include "VehicleQ.h"
 
 /////////////////////////////////////////////////////////////////////
 // Search_vehicle:

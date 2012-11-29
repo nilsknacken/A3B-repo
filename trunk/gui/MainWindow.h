@@ -9,6 +9,8 @@
 #include "../backend/Search_reservationQ.h"
 #include "../backend/Search_vehicleQ.h"
 #include "../backend/VehicleQ.h"
+#include "../backend/ReservationQ.h"
+
 
 namespace Ui
 {
@@ -19,7 +21,7 @@ class MainWindow
         : public QMainWindow
 {
     Q_OBJECT
-
+    
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -61,6 +63,8 @@ private slots:
     // Tab 5 - Search car
     void on_pushButtonSearchP5search_clicked();
 
+    void on_tableWidgetP5_cellClicked(int row, int column);
+
 private:
 
     Ui::MainWindow *ui;
@@ -75,6 +79,7 @@ private:
     void set_stylesheet(const QString&, QPushButton*&) const;
     void custom_setup();
     void setup_tableWidgetP5();
+
 
     // StyleSheet
     const QString SS_SIDEMENU_ENABLE = "QPushButton {font: bold;color: white;}";

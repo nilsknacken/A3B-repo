@@ -1,7 +1,8 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
+#include "../backend/SettingsQ.h"
 
-#include <iostream>  //cou, cerr osv                                               //REMOVE
+#include <iostream>  //cout, cerr osv                                               //REMOVE
 
 using namespace std;
 
@@ -21,8 +22,11 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    cerr << "~MainWindow()" << endl;                                                 //REMOVE
+
     delete ui;
 }
+
 
 /////////////////////////////////////////////////////////////////////
 // Private Slots:
@@ -65,9 +69,6 @@ void MainWindow::on_actionQuit_triggered()
     delete gui_settings;
     exit(0);
 }
-
-
-
 
 
 
@@ -117,4 +118,5 @@ void MainWindow::generate_vehicle_list(vector<Vehicle*> input, QTableWidget* tab
 
     }
 }
+
 
