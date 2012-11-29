@@ -87,8 +87,10 @@ void MainWindow::custom_setup()
     on_pushButtonP2bok_nr_clicked();
     ui->stackedWidgetP1Main->setCurrentIndex(0);
     ui->tabWidgetMainTab->setCurrentIndex(0);
-    ui->pushButtonP1back->setDisabled(true);
-    ui->pushButtonP1back->setDisabled(true);
+    ui->stackedWidgetP2toggle_date_string->setCurrentIndex(0);
+    ui->stackedWidgetP4->setCurrentIndex(0);
+    //ui->pushButtonP1back->setDisabled(true);
+    //ui->pushButtonP1back->setDisabled(true);
 
     setup_tableWidgetP5();
 }
@@ -118,5 +120,4 @@ void MainWindow::generate_vehicle_list(vector<Vehicle*> input, QTableWidget* tab
 
     }
 }
-
 

@@ -56,14 +56,19 @@ private slots:
     void on_pushButtonP2phone_nr_clicked();
     void on_pushButtonP2date_clicked();
 
+    // Tab 3 - Checkout
+    void on_pushButtonP3remove_reservation_clicked();
+    void on_pushButtonP3checkout_clicked();
+
     // Tab 4 - Checkin
     void on_pushButtonP4next_clicked();
     void on_pushButtonP4back_clicked();
+    void on_checkBoxP4damages_yes_toggled(bool checked);
 
     // Tab 5 - Search car
-    void on_pushButtonSearchP5search_clicked();
-
+    void on_pushButtonP5search_clicked();
     void on_tableWidgetP5_cellClicked(int row, int column);
+
 
 private:
 
@@ -78,7 +83,7 @@ private:
 
     void set_stylesheet(const QString&, QPushButton*&) const;
     void custom_setup();
-    void setup_tableWidgetP5();
+    void setup_tableWidgetP5() const;
 
 
     // StyleSheet

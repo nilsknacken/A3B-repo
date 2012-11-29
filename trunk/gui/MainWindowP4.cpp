@@ -1,5 +1,6 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
+#include <QDialog>
 
 
 
@@ -17,6 +18,16 @@ void MainWindow::on_pushButtonP4next_clicked()
 
     else if(index == 1)
     {
+        ui->stackedWidgetP4->setCurrentIndex(++index);
+        ui->pushButtonP4next->setText(QString::fromUtf8("Bekräfta"));
+    }
+
+    else if(index == 2)
+    {
+        // Poppupp eller ny sida med bekräftelse
+        about->about(this, QString::fromUtf8("Bekräftelse"), QString::fromUtf8("Poppupp eller ny sida med en bekräftelse"));
+
+        ui->pushButtonP4next->setText(QString::fromUtf8("Nästa >"));
         ui->stackedWidgetP4->setCurrentIndex(0);
         ui->pushButtonP4back->setDisabled(true);
     }
@@ -32,4 +43,14 @@ void MainWindow::on_pushButtonP4back_clicked()
         ui->stackedWidgetP4->setCurrentIndex(--index);
         ui->pushButtonP4back->setDisabled(true);
     }
+
+    if(index == 2)
+    {
+        ui->stackedWidgetP4->setCurrentIndex(--index);
+    }
+}
+
+void MainWindow::on_checkBoxP4damages_yes_toggled(bool checked)
+{
+    ui->plainTextEditP4damages->setDisabled(! checked);
 }
