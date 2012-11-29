@@ -23,6 +23,3 @@ FORMS    += MainWindow.ui \
     Dialog_Settings.ui
 
 RESOURCES += resource.qrc
-
-QMAKE_CXXFLAGS += -std=c++11 -pedantic -Wextra
-QMAKE_LFLAGS += -static-libstdc++
