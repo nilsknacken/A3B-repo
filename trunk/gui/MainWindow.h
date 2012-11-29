@@ -6,11 +6,13 @@
 #include <QPushButton>
 #include "Dialog_Settings.h"
 
-namespace Ui {
-class MainWindow;
+namespace Ui
+{
+    class MainWindow;
 }
 
-class MainWindow : public QMainWindow
+class MainWindow
+        : public QMainWindow
 {
     Q_OBJECT
     
@@ -59,7 +61,8 @@ private:
 
     Ui::MainWindow *ui;
     QMessageBox* about;
-    Dialog_Settings* settings;
+    Settings* settings;
+    Dialog_Settings* gui_settings;
 
     void set_stylesheet(const QString&, QPushButton*&) const;
     void custom_setup();
