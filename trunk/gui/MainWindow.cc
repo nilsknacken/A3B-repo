@@ -69,58 +69,51 @@ void MainWindow::on_actionQuit_triggered()
 }
 
 
-void MainWindow::on_pushButtonP1Next_clicked()
+void MainWindow::on_pushButtonP1next_clicked()
 {
     int tab_index = ui->stackedWidgetP1Main->currentIndex();
 
     if(tab_index == 0)
     {
         ui->stackedWidgetP1Main->setCurrentIndex(++tab_index);
-        //set_stylesheet(SS_BUTTON_ENABLE, ui->pushButtonP1Back);
-        ui->pushButtonP1Back->setDisabled(false);
+        ui->pushButtonP1back->setDisabled(false);
     }
 
     else if(tab_index == 1)
     {
         ui->stackedWidgetP1Main->setCurrentIndex(++tab_index);
-        ui->pushButtonP1Next->setText(QString::fromUtf8("Bekräfta"));
+        ui->pushButtonP1next->setText(QString::fromUtf8("Bekräfta"));
     }
 
     else if(tab_index == 2)
     {
         about->information(this, QString::fromUtf8("Info"), QString::fromUtf8("Nu ska någonting hända!\nTyp en bekräftelse"));
         ui->stackedWidgetP1Main->setCurrentIndex(0);
-        ui->pushButtonP1Next->setText(QString::fromUtf8("Nästa >"));
-        //set_stylesheet(SS_BUTTON_DISABLE, ui->pushButtonP1Back);
-        ui->pushButtonP1Back->setDisabled(true);
+        ui->pushButtonP1next->setText(QString::fromUtf8("Nästa >"));
+        ui->pushButtonP1back->setDisabled(true);
     }
 }
 
-void MainWindow::on_pushButtonP1Back_clicked()
+void MainWindow::on_pushButtonP1back_clicked()
 {
     int index = ui->stackedWidgetP1Main->currentIndex();
 
     if(index == 1)
     {
         ui->stackedWidgetP1Main->setCurrentIndex(--index);
-        //set_stylesheet(SS_BUTTON_DISABLE, ui->pushButtonP1Back);
-        ui->pushButtonP1Back->setDisabled(true);
+        ui->pushButtonP1back->setDisabled(true);
     }
 
     else if(index == 2)
     {
         ui->stackedWidgetP1Main->setCurrentIndex(--index);
-        ui->pushButtonP1Next->setText(QString::fromUtf8("Nästa >"));
+        ui->pushButtonP1next->setText(QString::fromUtf8("Nästa >"));
     }
 }
 
 
 
-
-
-
-
-
+///// Tab 1 - Reservate
 void MainWindow::on_pushButtonP1S_Car_clicked()
 {
     ui->stackedWidgetP1->setCurrentIndex(0);
@@ -171,62 +164,130 @@ void MainWindow::on_pushButtonP1L_Truck_clicked()
     set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP1L_Truck);
 }
 
-void MainWindow::on_pushButtonP1Search_clicked()
+void MainWindow::on_pushButtonP1search_clicked()
 {
-
+    //Uppdatera sökresultat
 }
 
 
-void MainWindow::on_pushButtonP2S_Car_clicked()
+
+////// Tab 2 - Search
+void MainWindow::on_pushButtonP2search_clicked()
+{}
+
+void MainWindow::on_pushButtonP2delete_clicked()
+{}
+
+void MainWindow::on_pushButtonP2change_clicked()
+{}
+
+void MainWindow::on_pushButtonP2show_clicked()
+{}
+
+void MainWindow::on_pushButtonP2bok_nr_clicked()
 {
     ui->stackedWidgetP2->setCurrentIndex(0);
-    set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2S_Car);
-    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2M_Car);
-    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2L_Car);
-    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2S_Truck);
-    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2L_Truck);
+    set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2bok_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2reg_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2name);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2per_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2phone_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2date);
 }
 
-void MainWindow::on_pushButtonP2M_Car_clicked()
+void MainWindow::on_pushButtonP2reg_nr_clicked()
 {
     ui->stackedWidgetP2->setCurrentIndex(1);
-    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2S_Car);
-    set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2M_Car);
-    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2L_Car);
-    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2S_Truck);
-    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2L_Truck);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2bok_nr);
+    set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2reg_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2name);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2per_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2phone_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2date);
 }
 
-void MainWindow::on_pushButtonP2L_Car_clicked()
+void MainWindow::on_pushButtonP2name_clicked()
 {
     ui->stackedWidgetP2->setCurrentIndex(2);
-    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2S_Car);
-    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2M_Car);
-    set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2L_Car);
-    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2S_Truck);
-    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2L_Truck);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2bok_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2reg_nr);
+    set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2name);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2per_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2phone_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2date);
 }
 
-void MainWindow::on_pushButtonP2S_Truck_clicked()
+void MainWindow::on_pushButtonP2per_nr_clicked()
 {
     ui->stackedWidgetP2->setCurrentIndex(3);
-    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2S_Car);
-    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2M_Car);
-    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2L_Car);
-    set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2S_Truck);
-    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2L_Truck);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2bok_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2reg_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2name);
+    set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2per_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2phone_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2date);
 }
 
-void MainWindow::on_pushButtonP2L_Truck_clicked()
+void MainWindow::on_pushButtonP2phone_nr_clicked()
 {
     ui->stackedWidgetP2->setCurrentIndex(4);
-    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2S_Car);
-    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2M_Car);
-    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2L_Car);
-    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2S_Truck);
-    set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2L_Truck);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2bok_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2reg_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2name);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2per_nr);
+    set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2phone_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2date);
 }
 
+
+void MainWindow::on_pushButtonP2date_clicked()
+{
+    ui->stackedWidgetP2->setCurrentIndex(5);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2bok_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2reg_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2name);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2per_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2phone_nr);
+    set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2date);
+}
+
+
+////// Tab 4 - Checkin
+void MainWindow::on_pushButtonP4next_clicked()
+{
+    int index = ui->stackedWidgetP4->currentIndex();
+
+    if(index == 0)
+    {
+        ui->stackedWidgetP4->setCurrentIndex(++index);
+        ui->pushButtonP4back->setDisabled(false);
+    }
+
+    else if(index == 1)
+    {
+        ui->stackedWidgetP4->setCurrentIndex(0);
+        ui->pushButtonP4back->setDisabled(true);
+    }
+}
+
+void MainWindow::on_pushButtonP4back_clicked()
+{
+    int index = ui->stackedWidgetP4->currentIndex();
+
+
+    if(index == 1)
+    {
+        ui->stackedWidgetP4->setCurrentIndex(--index);
+        ui->pushButtonP4back->setDisabled(true);
+    }
+}
+
+
+////// Tab 5 - Search car
+void MainWindow::on_pushButtonSearchP5search_clicked()
+{
+
+}
 
 
 /////////////////////////////////////////////////////////////////////
@@ -241,18 +302,9 @@ void MainWindow::set_stylesheet(const QString& stylesheet, QPushButton*& p) cons
 void MainWindow::custom_setup()
 {
     on_pushButtonP1S_Car_clicked();
-    on_pushButtonP2S_Car_clicked();
-    //ui->stackedWidgetP1->setCurrentIndex(0);
-    //ui->stackedWidgetP2->setCurrentIndex(0);
+    on_pushButtonP2bok_nr_clicked();
     ui->stackedWidgetP1Main->setCurrentIndex(0);
     ui->tabWidgetMainTab->setCurrentIndex(0);
-    //set_stylesheet(SS_BUTTON_DISABLE, ui->pushButtonP1Back);
-    ui->pushButtonP1Back->setDisabled(true);
-
-
-
-    // Stylesheet setup
-    //this->setStyleSheet("QPushButton:disabled {background-color: lightgrey;}");
-
+    ui->pushButtonP1back->setDisabled(true);
+    ui->pushButtonP1back->setDisabled(true);
 }
-

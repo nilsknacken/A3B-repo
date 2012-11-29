@@ -19,8 +19,6 @@ public:
     ~MainWindow();
 
 public slots:
-    //void on_pushButtonP1Next_clicked();
-    //void on_pushButtonP1Back_clicked();
 
 private slots:
     // Menu-Bar
@@ -29,9 +27,9 @@ private slots:
     void on_actionQuit_triggered();
 
     // Tab 1 - Reservate
-    void on_pushButtonP1Next_clicked();
-    void on_pushButtonP1Back_clicked();
-    void on_pushButtonP1Search_clicked();
+    void on_pushButtonP1next_clicked();
+    void on_pushButtonP1back_clicked();
+    void on_pushButtonP1search_clicked();
     void on_pushButtonP1S_Car_clicked();
     void on_pushButtonP1M_Car_clicked();
     void on_pushButtonP1L_Car_clicked();
@@ -39,18 +37,25 @@ private slots:
     void on_pushButtonP1L_Truck_clicked();
 
     // Tab 2 - Search
-    void on_pushButtonP2S_Car_clicked();
-    void on_pushButtonP2M_Car_clicked();
-    void on_pushButtonP2L_Car_clicked();
-    void on_pushButtonP2S_Truck_clicked();
-    void on_pushButtonP2L_Truck_clicked();
+    void on_pushButtonP2search_clicked();
+    void on_pushButtonP2delete_clicked();
+    void on_pushButtonP2change_clicked();
+    void on_pushButtonP2show_clicked();
+    void on_pushButtonP2bok_nr_clicked();
+    void on_pushButtonP2reg_nr_clicked();
+    void on_pushButtonP2name_clicked();
+    void on_pushButtonP2per_nr_clicked();
+    void on_pushButtonP2phone_nr_clicked();
+    void on_pushButtonP2date_clicked();
 
+    // Tab 4 - Checkin
+    void on_pushButtonP4next_clicked();
+    void on_pushButtonP4back_clicked();
 
-    //void on_stackedWidgetP1Main_currentChanged(int arg1);
+    // Tab 5 - Search car
+    void on_pushButtonSearchP5search_clicked();
 
 private:
-    //int p1_sidemenu_index = NULL;
-    //int p2_sidemenu_index = NULL;
 
     Ui::MainWindow *ui;
     QMessageBox* about;
@@ -60,19 +65,8 @@ private:
     void custom_setup();
 
     // StyleSheet
-    const QString SS_SIDEMENU_ENABLE = "QPushButton {font: bold; color: white;}";
-    const QString SS_SIDEMENU_DISABLE = "QPushButton {font: bold; color: grey;}";
-    const QString SS_BUTTON_ENABLE = "QPushButton {background-color: rgb(0, 170, 255);}"
-                                     "QPushButton:pressed {border-color: rgb(0, 170, 255);"
-                                                          "background-color: rgb(255, 255, 255);"
-                                                          "font:;color: black;}"
-                                     "QPushButton:default {border-color: lightblue;}"
-                                     "QPushButton:disabled {background-color: lightgrey;}";
-    const QString SS_BUTTON_DISABLE = "QPushButton {background-color: lightgrey;}"
-                                      "QPushButton:pressed {border-color: transparent;"
-                                                           "background-color: lightgrey;"
-                                                           "font:;color: white;}"
-                                      "QPushButton:default {border-color: transparent;}";
+    const QString SS_SIDEMENU_ENABLE = "QPushButton {font: bold;color: white;}";
+    const QString SS_SIDEMENU_DISABLE = "QPushButton {font: bold;color: grey;}";
 };
 
 #endif // MAINWINDOW_H

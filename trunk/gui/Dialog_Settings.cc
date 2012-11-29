@@ -23,7 +23,7 @@ void Dialog_Settings::on_buttonBox_accepted()
     //Spara inställningarna
 }
 
-void Dialog_Settings::on_pushButton_clicked()
+void Dialog_Settings::on_pushButtonCleanDB_clicked()
 {
     //Rensa databas
 }

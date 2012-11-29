@@ -17,8 +17,7 @@ public:
     
 private slots:
     void on_buttonBox_accepted();
-
-    void on_pushButton_clicked();
+    void on_pushButtonCleanDB_clicked();
 
 private:
     Ui::Dialog_Settings *ui;

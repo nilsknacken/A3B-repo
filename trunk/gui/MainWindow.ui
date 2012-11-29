@@ -438,34 +438,22 @@
   <property name="styleSheet">
    <string notr="true">QMainWindow{
 background-image: url(:/images/Linen_Patterns_4.jpg); }
-/*background: solid white; } */
+
 QStatusBar{
 background: solid rgba(0, 0, 0, 0); }
 
 QFrame {
 background: solid white; }
-/*
-QWidget{
-background-color: rgba(0, 0, 0, 0); 
-}
-*/
 
 QTabWidget::tab-bar {
-	left: 20px;}
+left: 20px;}
 QTabWidget::pane {
-/*	border-top: 4px solid rgb(0, 170, 255);*/
-
 border-top: 20px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(0, 0, 0, 0), stop:0.199052 rgba(0, 0, 0, 8), stop:0.459716 rgba(0, 0, 0, 38), stop:0.7109 rgba(0, 0, 0, 135), stop:0.799 rgba(0, 0, 0, 209), stop:0.8 rgba(0, 170, 255, 255));
-
-/*border-bottom: 10px solid qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:0.578199 rgba(0, 0, 0, 37), stop:0.810427 rgba(0, 0, 0, 58), stop:1 rgba(0, 0, 0, 226)); */
-
 border-bottom: 10px solid qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:0.578199 rgba(0, 0, 0, 37), stop:0.810427 rgba(0, 0, 0, 120), stop:1 rgba(0, 0, 0, 235));
-
-
 background: solid rgba(0, 0, 0, 0);
 
-         /*position: absolute;*/
-         top: -18px;}
+position: absolute;
+top: -18px;}
 QTabBar::tab {
 	height: 60px; width: 120px;
 	border: 2px;
@@ -580,7 +568,7 @@ QMenuBar::item:pressed {
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="tabReservate">
        <property name="styleSheet">
@@ -634,7 +622,7 @@ QMenuBar::item:pressed {
                </spacer>
               </item>
               <item row="0" column="6" rowspan="2">
-               <widget class="QPushButton" name="pushButtonP1Search">
+               <widget class="QPushButton" name="pushButtonP1search">
                 <property name="text">
                  <string>Sök</string>
                 </property>
@@ -822,7 +810,8 @@ background: solid white; }</string>
 border-top: 10px solid qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:0.402844 rgba(0, 0, 0, 31), stop:0.635071 rgba(0, 0, 0, 80), stop:0.763033 rgba(0, 0, 0, 107), stop:0.890995 rgba(0, 0, 0, 125), stop:1 rgba(0, 0, 0, 226));
 border-right: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:0.402844 rgba(0, 0, 0, 31), stop:0.635071 rgba(0, 0, 0, 80), stop:0.763033 rgba(0, 0, 0, 107), stop:0.890995 rgba(0, 0, 0, 125), stop:1 rgba(0, 0, 0, 226));
 border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(0, 0, 0, 0), stop:0.402844 rgba(0, 0, 0, 31), stop:0.635071 rgba(0, 0, 0, 80), stop:0.763033 rgba(0, 0, 0, 107), stop:0.890995 rgba(0, 0, 0, 125), stop:1 rgba(0, 0, 0, 226));
- }</string>
+ }
+</string>
                  </property>
                  <property name="frameShape">
                   <enum>QFrame::NoFrame</enum>
@@ -1629,7 +1618,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
         <item>
          <layout class="QGridLayout" name="gridLayoutBottomP1">
           <item row="0" column="1">
-           <widget class="QPushButton" name="pushButtonP1Back">
+           <widget class="QPushButton" name="pushButtonP1back">
             <property name="text">
              <string>&lt; Bakåt</string>
             </property>
@@ -1652,7 +1641,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
            </spacer>
           </item>
           <item row="0" column="2">
-           <widget class="QPushButton" name="pushButtonP1Next">
+           <widget class="QPushButton" name="pushButtonP1next">
             <property name="text">
              <string>Nästa &gt;</string>
             </property>
@@ -1698,7 +1687,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
            <number>0</number>
           </property>
           <item row="0" column="4">
-           <widget class="QPushButton" name="pushButtonSearch_2">
+           <widget class="QPushButton" name="pushButtonP2search">
             <property name="text">
              <string>Sök</string>
             </property>
@@ -1822,12 +1811,6 @@ QPushButton:pressed {
 border-color: rgb(0, 170, 255);
 background-color: transparent;
 font:; color: white; }
-/*QPushButton:flat {
-border: none; }*/
-/*
-QPushButton:default {
-border-color: lightblue; }
-*/
 
 QStackedWidget {
 background: solid white; }</string>
@@ -1886,7 +1869,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                <number>0</number>
               </property>
               <item>
-               <widget class="QPushButton" name="pushButtonP2S_Car">
+               <widget class="QPushButton" name="pushButtonP2bok_nr">
                 <property name="minimumSize">
                  <size>
                   <width>80</width>
@@ -1905,12 +1888,12 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                  <enum>Qt::NoFocus</enum>
                 </property>
                 <property name="text">
-                 <string>Bokn nr</string>
+                 <string>Bokningsnummer</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButtonP2M_Car">
+               <widget class="QPushButton" name="pushButtonP2reg_nr">
                 <property name="minimumSize">
                  <size>
                   <width>80</width>
@@ -1929,12 +1912,12 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                  <enum>Qt::NoFocus</enum>
                 </property>
                 <property name="text">
-                 <string>Reg nr</string>
+                 <string>Registreringsnummer</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButtonP2L_Car">
+               <widget class="QPushButton" name="pushButtonP2name">
                 <property name="minimumSize">
                  <size>
                   <width>80</width>
@@ -1958,7 +1941,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButtonP2S_Truck">
+               <widget class="QPushButton" name="pushButtonP2per_nr">
                 <property name="minimumSize">
                  <size>
                   <width>80</width>
@@ -1977,12 +1960,12 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                  <enum>Qt::NoFocus</enum>
                 </property>
                 <property name="text">
-                 <string>Pers nr</string>
+                 <string>Personnummer</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButtonP2L_Truck">
+               <widget class="QPushButton" name="pushButtonP2phone_nr">
                 <property name="minimumSize">
                  <size>
                   <width>80</width>
@@ -2001,12 +1984,12 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                  <enum>Qt::NoFocus</enum>
                 </property>
                 <property name="text">
-                 <string>Tlfn</string>
+                 <string>Telefonnummer</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButtonP2_date">
+               <widget class="QPushButton" name="pushButtonP2date">
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
@@ -2014,6 +1997,9 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                   <italic>false</italic>
                   <bold>true</bold>
                  </font>
+                </property>
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
                 </property>
                 <property name="text">
                  <string>Datum</string>
@@ -2042,9 +2028,9 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
               <enum>QFrame::Box</enum>
              </property>
              <property name="currentIndex">
-              <number>5</number>
+              <number>0</number>
              </property>
-             <widget class="QWidget" name="pageP2S_Car">
+             <widget class="QWidget" name="pageP2page1">
               <widget class="QLabel" name="label_6">
                <property name="geometry">
                 <rect>
@@ -2059,7 +2045,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                </property>
               </widget>
              </widget>
-             <widget class="QWidget" name="pageP2M_Car">
+             <widget class="QWidget" name="pageP2page2">
               <widget class="QLabel" name="label_8">
                <property name="geometry">
                 <rect>
@@ -2074,7 +2060,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                </property>
               </widget>
              </widget>
-             <widget class="QWidget" name="pageP2L_Car">
+             <widget class="QWidget" name="pageP2page3">
               <widget class="QLabel" name="label_9">
                <property name="geometry">
                 <rect>
@@ -2089,7 +2075,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                </property>
               </widget>
              </widget>
-             <widget class="QWidget" name="pageP2S_Truck">
+             <widget class="QWidget" name="pageP2page4">
               <widget class="QLabel" name="label_10">
                <property name="geometry">
                 <rect>
@@ -2104,7 +2090,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                </property>
               </widget>
              </widget>
-             <widget class="QWidget" name="pageP2L_Truck">
+             <widget class="QWidget" name="pageP2page5">
               <widget class="QLabel" name="label_11">
                <property name="geometry">
                 <rect>
@@ -2122,7 +2108,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                </property>
               </widget>
              </widget>
-             <widget class="QWidget" name="page">
+             <widget class="QWidget" name="pageP2page6">
               <widget class="QLabel" name="label">
                <property name="geometry">
                 <rect>
@@ -2167,21 +2153,21 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
         <item row="2" column="0" colspan="2">
          <layout class="QGridLayout" name="gridLayoutP2Bottom">
           <item row="0" column="1">
-           <widget class="QPushButton" name="pushButtonDelete">
+           <widget class="QPushButton" name="pushButtonP2delete">
             <property name="text">
              <string>Ta Bort</string>
             </property>
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="QPushButton" name="pushButtonChange">
+           <widget class="QPushButton" name="pushButtonP2change">
             <property name="text">
              <string>Ändra</string>
             </property>
            </widget>
           </item>
           <item row="0" column="3">
-           <widget class="QPushButton" name="pushButtonShow">
+           <widget class="QPushButton" name="pushButtonP2show">
             <property name="text">
              <string>Visa</string>
             </property>
@@ -2231,6 +2217,25 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
         <property name="spacing">
          <number>0</number>
         </property>
+        <item row="1" column="2">
+         <spacer name="horizontalSpacer_12">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>200</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="1">
+         <widget class="QTableWidget" name="tableWidget"/>
+        </item>
         <item row="2" column="0" colspan="3">
          <layout class="QGridLayout" name="gridLayout_8">
           <item row="0" column="4">
@@ -2372,69 +2377,6 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
            </widget>
           </item>
          </layout>
-        </item>
-        <item row="1" column="1">
-         <widget class="QScrollArea" name="scrollArea">
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>398</width>
-             <height>313</height>
-            </rect>
-           </property>
-           <widget class="QLabel" name="label_2">
-            <property name="geometry">
-             <rect>
-              <x>0</x>
-              <y>0</y>
-              <width>141</width>
-              <height>17</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>Dagens utlämningar:</string>
-            </property>
-           </widget>
-           <widget class="QTextEdit" name="textEdit">
-            <property name="geometry">
-             <rect>
-              <x>110</x>
-              <y>110</y>
-              <width>181</width>
-              <height>111</height>
-             </rect>
-            </property>
-            <property name="html">
-             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Här listas de utlämningar som har samma datum som dagens datum.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-           </widget>
-          </widget>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <spacer name="horizontalSpacer_12">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Fixed</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>200</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
         </item>
         <item row="1" column="0">
          <spacer name="horizontalSpacer_13">
@@ -2579,7 +2521,7 @@ p, li { white-space: pre-wrap; }
         <item row="2" column="0" colspan="3">
          <layout class="QGridLayout" name="gridLayout_10">
           <item row="0" column="2">
-           <widget class="QPushButton" name="pushButtonCheckin">
+           <widget class="QPushButton" name="pushButtonP4next">
             <property name="text">
              <string>Nästa &gt;</string>
             </property>
@@ -2615,7 +2557,7 @@ p, li { white-space: pre-wrap; }
            </spacer>
           </item>
           <item row="0" column="1">
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="pushButtonP4back">
             <property name="text">
              <string>&lt; Bakåt</string>
             </property>
@@ -2624,32 +2566,52 @@ p, li { white-space: pre-wrap; }
          </layout>
         </item>
         <item row="1" column="1">
-         <widget class="QStackedWidget" name="stackedWidget">
+         <widget class="QStackedWidget" name="stackedWidgetP4">
           <property name="currentIndex">
            <number>0</number>
           </property>
-          <widget class="QWidget" name="page_2">
-           <widget class="QLabel" name="label_3">
-            <property name="geometry">
-             <rect>
-              <x>70</x>
-              <y>140</y>
-              <width>271</width>
-              <height>71</height>
-             </rect>
+          <widget class="QWidget" name="page_1">
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <property name="spacing">
+             <number>0</number>
             </property>
-            <property name="text">
-             <string>Listar utlämnade fordon</string>
+            <property name="margin">
+             <number>0</number>
             </property>
-           </widget>
+            <item>
+             <widget class="QScrollArea" name="scrollArea_2">
+              <property name="widgetResizable">
+               <bool>true</bool>
+              </property>
+              <widget class="QWidget" name="scrollAreaWidgetContents_2">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>398</width>
+                 <height>313</height>
+                </rect>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_4">
+                <property name="margin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QTableWidget" name="tableWidgetP4"/>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
           </widget>
-          <widget class="QWidget" name="page_3">
+          <widget class="QWidget" name="page_2">
            <widget class="QWidget" name="gridLayoutWidget_2">
             <property name="geometry">
              <rect>
               <x>30</x>
               <y>20</y>
-              <width>355</width>
+              <width>361</width>
               <height>240</height>
              </rect>
             </property>
@@ -2672,13 +2634,6 @@ p, li { white-space: pre-wrap; }
               <widget class="QLabel" name="labeldatefrom">
                <property name="text">
                 <string>Datum/Tid från:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="1">
-              <widget class="QRadioButton" name="radioButtondamageyes">
-               <property name="text">
-                <string>Ja</string>
                </property>
               </widget>
              </item>
@@ -2722,13 +2677,6 @@ p, li { white-space: pre-wrap; }
              <item row="1" column="1">
               <widget class="QDateEdit" name="dateEditfrom"/>
              </item>
-             <item row="5" column="2">
-              <widget class="QRadioButton" name="radioButtondamageno">
-               <property name="text">
-                <string>Nej</string>
-               </property>
-              </widget>
-             </item>
              <item row="6" column="1">
               <widget class="QTextEdit" name="textEditdamagereport"/>
              </item>
@@ -2736,6 +2684,13 @@ p, li { white-space: pre-wrap; }
               <widget class="QLabel" name="labelRegnr_2">
                <property name="text">
                 <string>Vald bils reg nr</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QCheckBox" name="checkBoxdamageyes">
+               <property name="text">
+                <string>Ja</string>
                </property>
               </widget>
              </item>
@@ -2757,6 +2712,25 @@ p, li { white-space: pre-wrap; }
         <property name="spacing">
          <number>0</number>
         </property>
+        <item row="1" column="1">
+         <widget class="QTableWidget" name="tableWidgetP5"/>
+        </item>
+        <item row="1" column="2">
+         <spacer name="horizontalSpacer_21">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>200</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
         <item row="0" column="0" colspan="3">
          <layout class="QGridLayout" name="gridLayout_18">
           <property name="leftMargin">
@@ -2785,7 +2759,7 @@ p, li { white-space: pre-wrap; }
            </spacer>
           </item>
           <item row="0" column="3">
-           <widget class="QLineEdit" name="lineEditSearch_2">
+           <widget class="QLineEdit" name="lineEditSearchP5search">
             <property name="maxLength">
              <number>6</number>
             </property>
@@ -2808,7 +2782,7 @@ p, li { white-space: pre-wrap; }
            </spacer>
           </item>
           <item row="0" column="5">
-           <widget class="QPushButton" name="pushButtonSearch_3">
+           <widget class="QPushButton" name="pushButtonSearchP5search">
             <property name="text">
              <string>Sök</string>
             </property>
@@ -2887,39 +2861,6 @@ p, li { white-space: pre-wrap; }
         </item>
         <item row="1" column="0">
          <spacer name="horizontalSpacer_20">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Fixed</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>200</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="1" column="1">
-         <widget class="QScrollArea" name="scrollArea_3">
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents_3">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>398</width>
-             <height>313</height>
-            </rect>
-           </property>
-          </widget>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <spacer name="horizontalSpacer_21">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
