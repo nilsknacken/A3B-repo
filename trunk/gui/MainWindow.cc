@@ -310,3 +310,8 @@ void MainWindow::custom_setup()
     ui->pushButtonP1back->setDisabled(true);
     ui->pushButtonP1back->setDisabled(true);
 }
+
+void MainWindow::on_tableWidgetP5_cellClicked(int row, int column)
+{
+
+}

@@ -50,12 +50,6 @@ int main(int argc, char* argv[])
                                 "DEF456",
                                 "2011-08-10 11:11",
                                 "2011-08-11 12:12",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-
->>>>>>> db
                                 "kommande",
                                 "För Efternamn",
                                 "0707123456",
@@ -67,11 +61,6 @@ int main(int argc, char* argv[])
                                 "HFT643",
                                 "2011-09-10 11:11",
                                 "2011-10-11 12:12",
-<<<<<<< HEAD
->>>>>>> db
-=======
-
->>>>>>> db
                                 "kommande",
                                 "För Efternamn",
                                 "0707123456",
@@ -80,24 +69,24 @@ int main(int argc, char* argv[])
                                 "Storstaden");
 
    Database::vehicle_update("ABC123",
-                            "small_car",
-                            "tillgänglig",
+                            "liten_bil",
+                            "available",
                             "Ford",
                             "Ka",
                             67457,
                             "hö backspegel, växelspak saknas");
 
    Database::vehicle_update("REV666",
-                            "medium_car",
-                            "uthyrd",
+                            "mellan_bil",
+                            "rented",
                             "Hyundai",
                             "i30",
                             234621,
                             "lätt rökskadad");
                             
    Database::vehicle_update("HFT643",
-                            "small_car",
-                            "tillgänglig",
+                            "liten_bil",
+                            "available",
                             "Ford",
                             "Ka",
                             4711,
@@ -128,12 +117,6 @@ int main(int argc, char* argv[])
    value = "ABC123";
    result = Database::vehicle_search(what, value);
    Database::display(result);
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-=======
-
-=======
 /*
 >>>>>>> db
    string start = "2011-11-10 11:12";
@@ -152,11 +135,7 @@ int main(int argc, char* argv[])
 cout << "Search type: " << type << " free from: " << start << " to: " << end << endl;
    result = Database::vehicle_search(type, start, end);
    Database::display(result);
->>>>>>> db
-
-<<<<<<< HEAD
-   string start = "2011-11-10 11:12";
-=======
+   start = "2011-11-10 11:12";
    /*string start = "2011-11-10 11:12";
 >>>>>>> db
    string end = "2011-12-11 10:12";
@@ -169,7 +148,6 @@ cout << "Search type: " << type << " free from: " << start << " to: " << end << 
                                 
 =======
      */                           
->>>>>>> db
    Database::close();
    
    return 0;

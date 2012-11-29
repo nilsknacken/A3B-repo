@@ -57,6 +57,8 @@ private slots:
     // Tab 5 - Search car
     void on_pushButtonSearchP5search_clicked();
 
+    void on_tableWidgetP5_cellClicked(int row, int column);
+
 private:
 
     Ui::MainWindow *ui;
