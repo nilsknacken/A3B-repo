@@ -396,28 +396,6 @@ void Database::remove_vehicle(QString& reg_nr)
     check_for_error();
 }
 
-/*
-// Displays results, only for testing
-void Database::display(vector<vector<QString> > result)
-{
-    cout << endl;
-
-    for(vector<vector<QString> >::iterator it = result.begin(); it < result.end(); ++it)
-    {
-        vector<QString> row = *it;
-
-
-        for (unsigned int i = 0; i < row.size(); ++i)
-            cout << setw(18) << row[i];
-
-        cout << endl;
-
-    }
-
-    cout << endl;
-}
-*/
-
 // Initializes the database if not already done.
 void Database::init_db()
 {
