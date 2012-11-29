@@ -1,8 +1,12 @@
 #include <QApplication>
 #include "MainWindow.h"
 
+#include <QtDebug>
+
+
 #include <QResource>
 int i = QResource::registerResource("./resource.rcc");
+
 
 int main(int argc, char *argv[])
 {
