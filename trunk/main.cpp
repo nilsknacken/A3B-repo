@@ -1,6 +1,7 @@
+
 #include <QApplication>
-#include "MainWindow.h"
-#include "../database/DatabaseQ.h"
+#include "gui/MainWindow.h"
+#include "database/DatabaseQ.h"
 
 #include <iostream>
 #include <exception>
@@ -8,7 +9,7 @@
 #include <QResource>
 int i = QResource::registerResource("./resource.rcc");
 
-/*int main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     try
     {
@@ -26,4 +27,4 @@ int i = QResource::registerResource("./resource.rcc");
     }
 
 
-}*/
+}

@@ -122,19 +122,23 @@ void Database::vehicle_update(const QString& reg_nr,
 // Updates/saves settings table.
 void Database::settings_update(
         const int open_hour,
+        const int open_min,
         const int close_hour,
+        const int close_min,
         const int min_rental)
 {
     sqlite3_stmt* statement;
     const char* query = "INSERT or REPLACE INTO Settings"
-            "(open_hour, close_hour, min_rental, id)"
-            "values (?1, ?2, ?3, 1)";
+            "(open_hour, open_min, close_hour, close_min, min_rental, id)"
+            "values (?1, ?2, ?3, ?4, ?5, 1)";
 
     if (sqlite3_prepare_v2(db, query, -1, &statement, 0) == SQLITE_OK)
     {
         sqlite3_bind_int(statement, 1, open_hour);
-        sqlite3_bind_int(statement, 2, close_hour);
-        sqlite3_bind_int(statement, 3, min_rental);
+        sqlite3_bind_int(statement, 2, open_min);
+        sqlite3_bind_int(statement, 3, close_hour);
+        sqlite3_bind_int(statement, 4, close_min);
+        sqlite3_bind_int(statement, 5, min_rental);
 
         sqlite3_step(statement);
         sqlite3_finalize(statement);
@@ -307,15 +311,23 @@ QString Database::settings_search(const QString& what)
 
     if (what == "open_hour")
     {
-        query = "SELECT open_hour FROM Settings";
+        query = "SELECT open_hour FROM Settings WHERE id = 1";
     }
     else if (what == "close_hour")
     {
-        query = "SELECT close_hour FROM Settings";
+        query = "SELECT close_hour FROM Settings WHERE id = 1";
+    }
+    else if (what == "open_min")
+    {
+        query = "SELECT open_min FROM Settings WHERE id = 1";
+    }
+    else if (what == "close_min")
+    {
+        query = "SELECT close_min FROM Settings WHERE id = 1";
     }
     else if (what == "min_rental")
     {
-        query = "SELECT min_rental FROM Settings";
+        query = "SELECT min_rental FROM Settings WHERE id = 1";
     }
     else
     {
@@ -416,7 +428,7 @@ void Database::init_db()
 
     sqlite3_exec(db,
                  "CREATE TABLE IF NOT EXISTS Settings ("
-                 "open_hour INTEGER, close_hour INTEGER,"
+                 "open_hour INTEGER, open_min INTEGER, close_hour INTEGER, close_min INTEGER,"
                  "min_rental INTEGER, id INTEGER NOT NULL UNIQUE)",
                  NULL, 0, NULL);
 

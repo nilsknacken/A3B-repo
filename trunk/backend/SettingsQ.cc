@@ -21,13 +21,21 @@ using namespace std;
 /////////////////////////////////////////////////////////////////////
 // Settings:
 /////////////////////////////////////////////////////////////////////
+// parameterized constructor
+Settings::
+Settings(int open_hour, int close_hour, int min_rental)
+    : open_hour_(open_hour), close_hour_(close_hour),
+      min_rental_(min_rental)
+{}
+
 // Store the current object in the database.
 void 
 Settings::
 save()
 {
-   Database::settings_update(open_hour_, open_min_, close_hour_, close_min_, min_rental_);
+   Database::settings_update(open_hour_, close_hour_, min_rental_);
 }
+
 
 // Apply changes of the parameters.
 void
@@ -37,25 +45,11 @@ set_open_hour(const int open_hour)
     open_hour_ = open_hour;
 }
 
-void
-Settings::
-set_open_min(const int open_min)
-{
-    open_min_ = open_min;
-}
-
 void 
 Settings::
 set_close_hour(const int close_hour)
 {
     close_hour_ = close_hour;
-}
-
-void
-Settings::
-set_close_min(const int close_min)
-{
-    close_min_ = close_min;
 }
 
 void 
@@ -73,25 +67,11 @@ get_open_hour() const
     return open_hour_;
 }
 
-int
-Settings::
-get_open_min() const
-{
-    return open_min_;
-}
-
 int 
 Settings::
 get_close_hour() const
 {
     return close_hour_;
-}
-
-int
-Settings::
-get_close_min() const
-{
-    return close_min_;
 }
 
 int 

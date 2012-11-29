@@ -2760,6 +2760,9 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
           </item>
           <item row="0" column="3">
            <widget class="QLineEdit" name="lineEditSearchP5search">
+            <property name="text">
+             <string/>
+            </property>
             <property name="maxLength">
              <number>6</number>
             </property>
@@ -2827,7 +2830,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
              </font>
             </property>
             <property name="text">
-             <string>Registreringsnumer</string>
+             <string>Registreringsnummer</string>
             </property>
            </widget>
           </item>
