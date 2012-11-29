@@ -317,13 +317,13 @@ QString Database::settings_search(const QString& what)
     {
         query = "SELECT close_hour FROM Settings WHERE id = 1";
     }
-    else if (what == "close_min")
-    {
-        query = "SELECT close_min FROM Settings WHERE id = 1";
-    }
     else if (what == "open_min")
     {
         query = "SELECT open_min FROM Settings WHERE id = 1";
+    }
+    else if (what == "close_min")
+    {
+        query = "SELECT close_min FROM Settings WHERE id = 1";
     }
     else if (what == "min_rental")
     {
@@ -428,7 +428,7 @@ void Database::init_db()
 
     sqlite3_exec(db,
                  "CREATE TABLE IF NOT EXISTS Settings ("
-                 "open_hour INTEGER, open_min INTEGER, close_hour INTEGER, close_min INTEGER"
+                 "open_hour INTEGER, open_min INTEGER, close_hour INTEGER, close_min INTEGER,"
                  "min_rental INTEGER, id INTEGER NOT NULL UNIQUE)",
                  NULL, 0, NULL);
 
