@@ -25,30 +25,35 @@
 class Settings
 {
 public:
-    Settings(int, int, int);
+    Settings()  = default;
     ~Settings() = default;
 
     void save();
 
     void set_open_hour(const int);
+    void set_open_min(const int);
     void set_close_hour(const int);
+    void set_close_min(const int);
     void set_min_rental(const int);
 
     int get_open_hour()  const;
+    int get_open_min()  const;
     int get_close_hour() const;
+    int get_close_min() const;
     int get_min_rental() const;
 
 private:
-    Settings()                           = delete;
     Settings(const Settings&)            = delete;
     Settings(Settings&&)                 = delete;
 
     Settings& operator=(const Settings&) = delete;
     Settings& operator=(Settings&&)      = delete;
 
-    int open_hour_;
-    int close_hour_;
-    int min_rental_;
+    int open_hour_  = 0;
+    int open_min_   = 0;
+    int close_hour_ = 0;
+    int close_min_  = 0;
+    int min_rental_ = 0;
 };
 
 // Error to be thrown in Settings
