@@ -50,6 +50,7 @@ int main(int argc, char* argv[])
                                 "DEF456",
                                 "2011-08-10 11:11",
                                 "2011-08-11 12:12",
+
                                 "kommande",
                                 "För Efternamn",
                                 "0707123456",
@@ -61,6 +62,7 @@ int main(int argc, char* argv[])
                                 "HFT643",
                                 "2011-09-10 11:11",
                                 "2011-10-11 12:12",
+
                                 "kommande",
                                 "För Efternamn",
                                 "0707123456",
@@ -92,7 +94,7 @@ int main(int argc, char* argv[])
                             4711,
                             "hö backspegel repad");
 
-   Database::settings_update(8, 22, 4);
+   Database::settings_update(10, 20, 6);
 
    cout << "Settings table\nopen_hour: " << Database::settings_search("open_hour") << endl;
    cout << "close_hour: " << Database::settings_search("close_hour") << endl;
@@ -101,7 +103,9 @@ int main(int argc, char* argv[])
    string what;
    string value;
    string type;
-   
+   string start;
+   string end;
+
    vector<vector<string>> result; 
    
    cout << "All reservations\n";
@@ -115,12 +119,11 @@ int main(int argc, char* argv[])
    value = "ABC123";
    result = Database::vehicle_search(what, value);
    Database::display(result);
-
-
+/*
    string start = "2011-11-10 11:12";
    string end = "2011-12-11 10:12";
 
-/*   cout << "Search 2011-11-10 11:12 -> 2011-11-11 10:12 ----------\n\n";
+   cout << "Search 2011-11-10 11:12 -> 2011-11-11 10:12 ----------\n\n";
 
    result = Database::reservation_search_date(start,end);
    Database::display(result);
@@ -134,6 +137,14 @@ cout << "Search type: " << type << " free from: " << start << " to: " << end << 
    result = Database::vehicle_search(type, start, end);
    Database::display(result);
 
+   /*string start = "2011-11-10 11:12";
+   string end = "2011-12-11 10:12";
+
+   cout << "Search 2011-11-10 11:12 -> 2011-11-11 10:12 ----------\n\n";
+
+   result = Database::reservation_search_date(start,end);
+   Database::display(result);
+     */                           
    Database::close();
    
    return 0;

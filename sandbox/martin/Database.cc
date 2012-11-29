@@ -126,7 +126,9 @@ void Database::settings_update(
    const int min_rental)
 {
    sqlite3_stmt* statement;
-   const char* query = "UPDATE Settings SET open_hour=?1, close_hour=?2, min_rental=?3";
+   const char* query = "INSERT or REPLACE INTO Settings"
+   "(open_hour, close_hour, min_rental, id)"
+   "values (?1, ?2, ?3, 1)";
 
    if (sqlite3_prepare_v2(db, query, -1, &statement, 0) == SQLITE_OK)
    {
@@ -207,7 +209,7 @@ Database::reservation_search_date(const string& start, const string& end)
    vector<vector<string>> result;
    
    const char* query = "SELECT * FROM Reservations WHERE"
-   "(start >= ?1 AND start <= ?2) OR (end >= ?1 AND end <= ?2)";
+      "(start >= ?1 AND start <= ?2) OR (end >= ?1 AND end <= ?2)";
 
    if (sqlite3_prepare_v2(db, query, -1, &statement,0) == SQLITE_OK)
    {    
@@ -431,15 +433,14 @@ void Database::init_db()
         "reg_nr TEXT NOT NULL UNIQUE, type TEXT, status TEXT,"
         "brand TEXT COLLATE NOCASE, model TEXT COLLATE NOCASE,"
         "mileage INTEGER, damage TEXT)", NULL, 0, NULL);
+
    check_for_error();
    
    sqlite3_exec(db,
      "CREATE TABLE IF NOT EXISTS Settings ("
-        "open_hour INTEGER, close_hour INTEGER, min_rental INTEGER)",
+      "open_hour INTEGER, close_hour INTEGER,"
+      "min_rental INTEGER, id INTEGER NOT NULL UNIQUE)",
    NULL, 0, NULL);
-
-   sqlite3_exec(db, "INSERT INTO Settings"
-      "(open_hour, close_hour, min_rental) values(0, 0, 0)", NULL, 0, NULL);
 
    check_for_error();
 }
