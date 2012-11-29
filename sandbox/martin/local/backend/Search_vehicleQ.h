@@ -18,9 +18,9 @@
 #include <QString>
 #include <vector>
 #include <stdexcept>
-#include "VehicleQ.h"
 
 #include "../database/DatabaseQ.h"
+#include "VehicleQ.h"
 
 /////////////////////////////////////////////////////////////////////
 // Search_vehicle:

@@ -9,12 +9,16 @@
 #include "../backend/Search_reservationQ.h"
 #include "../backend/Search_vehicleQ.h"
 #include "../backend/VehicleQ.h"
+#include "../backend/ReservationQ.h"
 
-namespace Ui {
-class MainWindow;
+
+namespace Ui
+{
+    class MainWindow;
 }
 
-class MainWindow : public QMainWindow
+class MainWindow
+        : public QMainWindow
 {
     Q_OBJECT
     
@@ -65,7 +69,8 @@ private:
 
     Ui::MainWindow *ui;
     QMessageBox* about;
-    Dialog_Settings* settings;
+    Settings* settings;
+    Dialog_Settings* gui_settings;
     Search_vehicle search_vehicleP5;
 
     void generate_vehicle_list(std::vector<Vehicle*>, QTableWidget*);
@@ -74,6 +79,7 @@ private:
     void set_stylesheet(const QString&, QPushButton*&) const;
     void custom_setup();
     void setup_tableWidgetP5();
+
 
     // StyleSheet
     const QString SS_SIDEMENU_ENABLE = "QPushButton {font: bold;color: white;}";

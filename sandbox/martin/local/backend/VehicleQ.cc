@@ -15,7 +15,6 @@
 #include <QString>
 
 #include "VehicleQ.h"
-#include <iostream> //testning
 
 using namespace std;
 
@@ -193,9 +192,7 @@ correct_status(const QString& status)
 {
     if((status != "rented") &&
             (status != "available"))
-    {
         throw vehicle_error("Status får ändast vara: rented, available.");
-    }
 }
 
 void

@@ -83,3 +83,4 @@ void MainWindow::on_pushButtonP2date_clicked()
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2phone_nr);
     set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2date);
 }
+

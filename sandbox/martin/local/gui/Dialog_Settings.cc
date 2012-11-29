@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Dialog_Settings::Dialog_Settings(QWidget *parent, Settings*& settings)
+Dialog_Settings::Dialog_Settings(QWidget *parent, Settings* settings)
     : QDialog(parent),
       ui(new Ui::Dialog_Settings),
       settings_(settings)
@@ -13,7 +13,7 @@ Dialog_Settings::Dialog_Settings(QWidget *parent, Settings*& settings)
     ui->setupUi(this);
     ui->timeEditOpen->setTime(QTime(settings->get_open_hour(),settings->get_open_min()));
     ui->timeEditClose->setTime(QTime(settings->get_close_hour(),settings->get_close_min()));
-    ui->timeEditRental->setTime(Qtime(settings->get_min_rental(),0);
+    ui->timeEditRental->setTime(QTime(settings->get_min_rental(),0));
 }
 
 Dialog_Settings::~Dialog_Settings()

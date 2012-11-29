@@ -1,18 +1,20 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
+#include "../backend/SettingsQ.h"
 
-#include <iostream>  //cou, cerr osv                                               //REMOVE
+#include <iostream>  //cout, cerr osv                                               //REMOVE
 
 using namespace std;
 
 /////////////////////////////////////////////////////////////////////
 // Constructor, Destructor:
 /////////////////////////////////////////////////////////////////////
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    about(new QMessageBox(this)),
-    settings(new Dialog_Settings(this))
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent),
+      ui(new Ui::MainWindow),
+      about(new QMessageBox(this)),
+      settings(new Settings()),
+      gui_settings(new Dialog_Settings(this, settings))
 {
     ui->setupUi(this);
     custom_setup();
@@ -48,7 +50,7 @@ void MainWindow::on_actionSettings_triggered()
     //settings = new Dialog_Settings(this);
     //settings->show();
 
-    int i = settings->exec();
+    int i = gui_settings->exec();
 
     (void)i;
 
@@ -64,13 +66,9 @@ void MainWindow::on_actionQuit_triggered()
 {
     delete ui;
     delete about;
-    delete settings;
+    delete gui_settings;
     exit(0);
 }
-
-
-
-
 
 
 
@@ -120,4 +118,5 @@ void MainWindow::generate_vehicle_list(vector<Vehicle*> input, QTableWidget* tab
 
     }
 }
+
 
