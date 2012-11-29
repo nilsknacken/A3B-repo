@@ -14,24 +14,10 @@ TEMPLATE = app
 
 SOURCES += gui.cc\
         MainWindow.cc \
-    Dialog_Settings.cc \
-    database/DatabaseQ.cc \
-    database/sqlite3.c \
-    backend/VehicleQ.cc \
-    backend/SettingsQ.cc \
-    backend/Search_vehicleQ.cc \
-    backend/Search_reservationQ.cc \
-    backend/ReservationQ.cc
+    Dialog_Settings.cc
 
 HEADERS  += MainWindow.h \
-    Dialog_Settings.h \
-    database/sqlite3.h \
-    database/DatabaseQ.h \
-    backend/VehicleQ.h \
-    backend/SettingsQ.h \
-    backend/Search_vehicleQ.h \
-    backend/Search_reservationQ.h \
-    backend/ReservationQ.h
+    Dialog_Settings.h
 
 FORMS    += MainWindow.ui \
     Dialog_Settings.ui
