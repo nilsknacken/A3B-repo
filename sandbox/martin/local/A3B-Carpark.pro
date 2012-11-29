@@ -21,7 +21,12 @@ SOURCES += gui/gui.cc\
     backend/SettingsQ.cc \
     backend/Search_vehicleQ.cc \
     backend/Search_reservationQ.cc \
-    backend/ReservationQ.cc
+    backend/ReservationQ.cc \
+    gui/MainWindowP5.cpp \
+    gui/MainWindowP1.cpp \
+    gui/MainWindowP2.cpp \
+    gui/MainWindowP3.cpp \
+    gui/MainWindowP4.cpp
 
 HEADERS  += gui/MainWindow.h \
     gui/Dialog_Settings.h \
