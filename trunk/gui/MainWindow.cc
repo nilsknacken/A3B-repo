@@ -8,11 +8,12 @@ using namespace std;
 /////////////////////////////////////////////////////////////////////
 // Constructor, Destructor:
 /////////////////////////////////////////////////////////////////////
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    about(new QMessageBox(this)),
-    settings(new Dialog_Settings(this))
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent),
+      ui(new Ui::MainWindow),
+      about(new QMessageBox(this)),
+      settings(new Settings()),
+      gui_settings(new Dialog_Settings(this, settings))
 {
     ui->setupUi(this);
     custom_setup();
@@ -20,11 +21,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    cerr << "~MainWindow()" << endl;                                                 //REMOVE
-
     delete ui;
 }
-
 
 /////////////////////////////////////////////////////////////////////
 // Private Slots:
@@ -48,7 +46,7 @@ void MainWindow::on_actionSettings_triggered()
     //settings = new Dialog_Settings(this);
     //settings->show();
 
-    int i = settings->exec();
+    int i = gui_settings->exec();
 
     (void)i;
 
@@ -64,10 +62,9 @@ void MainWindow::on_actionQuit_triggered()
 {
     delete ui;
     delete about;
-    delete settings;
+    delete gui_settings;
     exit(0);
 }
-
 
 
 

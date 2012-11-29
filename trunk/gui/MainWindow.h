@@ -10,14 +10,16 @@
 #include "../backend/Search_vehicleQ.h"
 #include "../backend/VehicleQ.h"
 
-namespace Ui {
-class MainWindow;
+namespace Ui
+{
+    class MainWindow;
 }
 
-class MainWindow : public QMainWindow
+class MainWindow
+        : public QMainWindow
 {
     Q_OBJECT
-    
+
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -59,13 +61,12 @@ private slots:
     // Tab 5 - Search car
     void on_pushButtonSearchP5search_clicked();
 
-    void on_tableWidgetP5_cellClicked(int row, int column);
-
 private:
 
     Ui::MainWindow *ui;
     QMessageBox* about;
-    Dialog_Settings* settings;
+    Settings* settings;
+    Dialog_Settings* gui_settings;
     Search_vehicle search_vehicleP5;
 
     void generate_vehicle_list(std::vector<Vehicle*>, QTableWidget*);
