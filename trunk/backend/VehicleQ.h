@@ -26,55 +26,59 @@
 class Vehicle
 {
 public:
-   Vehicle(QString&, QString&, QString&, 
-           QString&, QString&, int, QString&);
-   ~Vehicle() = default;
-   
-   void save();
-   
-   void set_mileage(const int);
-   void set_reg_nr(const QString&);
-   void set_type(const QString&);
-   void set_status(const QString&);
-   void set_brand(const QString&);
-   void set_model(const QString&);
-   void set_damage(const QString&);
+    Vehicle(QString&, QString&, QString&,
+            QString&, QString&, int, QString&);
+    ~Vehicle() = default;
 
-   int         get_mileage() const;
-   QString get_reg_nr()  const;
-   QString get_type()    const;
-   QString get_status()  const;
-   QString get_brand()   const;
-   QString get_model()   const;
-   QString get_damage()  const;
+    void save();
+
+    void set_mileage(const int);
+    void set_reg_nr(const QString&);
+    void set_type(const QString&);
+    void set_status(const QString&);
+    void set_brand(const QString&);
+    void set_model(const QString&);
+    void set_damage(const QString&);
+
+    int     get_mileage() const;
+    QString get_reg_nr()  const;
+    QString get_type()    const;
+    QString get_status()  const;
+    QString get_brand()   const;
+    QString get_model()   const;
+    QString get_damage()  const;
 
 private:
-   Vehicle()                          = delete;
-   Vehicle(const Vehicle&)            = delete;
-   Vehicle(Vehicle&&)                 = delete;
+    Vehicle()                          = delete;
+    Vehicle(const Vehicle&)            = delete;
+    Vehicle(Vehicle&&)                 = delete;
 
-   Vehicle& operator=(const Vehicle&) = delete;
-   Vehicle& operator=(Vehicle&&)      = delete;   
-   
-   
-   QString reg_nr_;
-   QString type_;
-   QString status_; 
-   QString brand_;
-   QString model_;
-   int         mileage_;
-   QString damage_; 
+    Vehicle& operator=(const Vehicle&) = delete;
+    Vehicle& operator=(Vehicle&&)      = delete;
+
+    void correct_reg_nr(const QString&);
+    void correct_type(const QString&);
+    void correct_status(const QString&);
+    void correct_mileage(const int);
+
+    QString reg_nr_;
+    QString type_;
+    QString status_;
+    QString brand_;
+    QString model_;
+    int     mileage_;
+    QString damage_;
 };
 
 // Error to be thrown in Search_vehicleehicle
 class vehicle_error : public std::logic_error
 {
 public:
-   explicit vehicle_error(const std::string& what_arg) noexcept
-      : logic_error(what_arg) {}
+    explicit vehicle_error(const std::string& what_arg) noexcept
+        : logic_error(what_arg) {}
 
-   explicit vehicle_error(const char* what_arg) noexcept
-      : logic_error(what_arg) {}
+    explicit vehicle_error(const char* what_arg) noexcept
+        : logic_error(what_arg) {}
 };
 
 #endif

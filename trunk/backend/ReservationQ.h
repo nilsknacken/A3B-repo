@@ -26,63 +26,64 @@
 class Reservation
 {
 public:
-   Reservation(int, QString&, QString&,
-               QString&, QString&, QString&,
-               QString&, QString&, QString&,
-               QString&);
-   Reservation(const Reservation&)            = default;
-   Reservation(Reservation&&)                 = default;
-   ~Reservation()                             = default;
-   
-   Reservation& operator=(const Reservation&) = default;
-   Reservation& operator=(Reservation&&)      = default;
-   
-   void        save();
-   
-   void        set_res_nr(const int);
-   void        set_reg_nr(const QString&);
-   void        set_name(const QString&);
-   void        set_tel(const QString&);
-   void        set_adress(const QString&);
-   void        set_postal_nr(const QString&);
-   void        set_city(const QString&);
-   void        set_status(const QString&);
-   void        set_start(const QString&);
-   void        set_end(const QString&);
-   
-   int         get_res_nr()    const;
-   QString get_reg_nr()    const;
-   QString get_name()      const;
-   QString get_tel()       const;
-   QString get_adress()    const;
-   QString get_postal_nr() const;
-   QString get_city()      const;
-   QString get_status()    const;
-   QString get_start()     const;
-   QString get_end()       const;
+    Reservation(int, QString&, QString&,
+                QString&, QString&, QString&,
+                QString&, QString&, QString&,
+                QString&);
+    Reservation(const Reservation&)            = default;
+    Reservation(Reservation&&)                 = default;
+    ~Reservation()                             = default;
+
+    Reservation& operator=(const Reservation&) = default;
+    Reservation& operator=(Reservation&&)      = default;
+
+    void        save();
+
+    void        set_res_nr(const int);
+    void        set_reg_nr(const QString&);
+    void        set_name(const QString&);
+    void        set_tel(const QString&);
+    void        set_adress(const QString&);
+    void        set_postal_nr(const QString&);
+    void        set_city(const QString&);
+    void        set_status(const QString&);
+    void        set_start(const QString&);
+    void        set_end(const QString&);
+
+    int     get_res_nr()    const;
+    QString get_reg_nr()    const;
+    QString get_name()      const;
+    QString get_tel()       const;
+    QString get_adress()    const;
+    QString get_postal_nr() const;
+    QString get_city()      const;
+    QString get_status()    const;
+    QString get_start()     const;
+    QString get_end()       const;
 
 private:
-   Reservation() = delete;
-   
-   void correct_reg_nr(const QString&);
-   void correct_name(const QString&);
-   void correct_tel(const QString&);
-   void correct_adress(const QString&);
-   void correct_postal_nr(const QString&);
-   void correct_city(const QString&);
-   void correct_time(const QString&, const QString&);
+    Reservation() = delete;
 
-   
-   int         res_nr_;
-   QString reg_nr_;
-   QString start_;
-   QString end_;
-   QString status_;
-   QString name_;
-   QString tel_;
-   QString adress_;
-   QString postal_nr_;
-   QString city_;
+    void correct_reg_nr(const QString&);
+    void correct_status(const QString&);
+    void correct_name(const QString&);
+    void correct_tel(const QString&);
+    void correct_adress(const QString&);
+    void correct_postal_nr(const QString&);
+    void correct_city(const QString&);
+    void correct_time(const QString&, const QString&);
+
+
+    int     res_nr_;
+    QString reg_nr_;
+    QString start_;
+    QString end_;
+    QString status_;
+    QString name_;
+    QString tel_;
+    QString adress_;
+    QString postal_nr_;
+    QString city_;
 };
 
 // Help functions
@@ -96,11 +97,11 @@ make_reservation(QString&, QString&, QString&,
 class reservation_error : public std::logic_error
 {
 public:
-   explicit reservation_error(const std::string& what_arg) noexcept
-      : logic_error(what_arg) {}
+    explicit reservation_error(const std::string& what_arg) noexcept
+        : logic_error(what_arg) {}
 
-   explicit reservation_error(const char* what_arg) noexcept
-      : logic_error(what_arg) {}
+    explicit reservation_error(const char* what_arg) noexcept
+        : logic_error(what_arg) {}
 };
 
 #endif

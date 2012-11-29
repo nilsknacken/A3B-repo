@@ -26,19 +26,24 @@ Vehicle::
 Vehicle(QString& reg_nr, QString& type,
         QString& status, QString& brand, QString& model,
         int mileage, QString& damage)
-         : reg_nr_(reg_nr), type_(type),
-         status_(status), brand_(brand), model_(model),
-         mileage_(mileage), damage_(damage)
-{}
-         
+    : reg_nr_(reg_nr), type_(type),
+      status_(status), brand_(brand), model_(model),
+      mileage_(mileage), damage_(damage)
+{
+    correct_reg_nr(reg_nr);
+    correct_type(type);
+    correct_status(status);
+    correct_mileage(mileage);
+}
+
 
 // Store the current object in the database.
 void
 Vehicle::
 save()
 {
-   Database::vehicle_update(reg_nr_, type_, status_, 
-                            brand_, model_, mileage_, damage_);
+    Database::vehicle_update(reg_nr_, type_, status_,
+                             brand_, model_, mileage_, damage_);
 }
 
 
@@ -47,49 +52,49 @@ void
 Vehicle::
 set_mileage(const int mileage)
 {
-   mileage_ = mileage;
+    mileage_ = mileage;
 }
 
 void 
 Vehicle::
 set_reg_nr(const QString& reg_nr)
 {
-   reg_nr_ = reg_nr;
+    reg_nr_ = reg_nr;
 }
 
 void 
 Vehicle::
 set_type(const QString& type)
 {
-   type_ = type;
+    type_ = type;
 }
 
 void 
 Vehicle::
 set_status(const QString& status)
 {
-   status_ = status;
+    status_ = status;
 }
 
 void 
 Vehicle::
 set_brand(const QString& brand)
 {
-   brand_ = brand;
+    brand_ = brand;
 }
 
 void 
 Vehicle::
 set_model(const QString& model)
 {
-   model_ = model;
+    model_ = model;
 }
 
 void 
 Vehicle::
 set_damage(const QString& damage)
 {
-   damage_ = damage;
+    damage_ = damage;
 }
 
 // Return a specific parameter.
@@ -97,48 +102,104 @@ int
 Vehicle::
 get_mileage() const
 {
-   return mileage_;
+    return mileage_;
 }
 
 QString 
 Vehicle::
 get_reg_nr() const
 {
-   return reg_nr_;
+    return reg_nr_;
 }
 
 QString 
 Vehicle::
 get_type() const
 {
-   return type_;
+    return type_;
 }
 
 QString 
 Vehicle::
 get_status() const
 {
-   return status_;
+    return status_;
 }
 
 QString 
 Vehicle::
 get_brand() const
 {
-   return brand_;
+    return brand_;
 }
 
 QString 
 Vehicle::
 get_model() const
 {
-   return model_;
+    return model_;
 }
 
 QString 
 Vehicle::
 get_damage() const
 {
-   return damage_;
+    return damage_;
+}
+
+// Correct indata?
+void
+Vehicle::
+correct_reg_nr(const QString& reg_nr)
+{
+    if(reg_nr.size() != 6)
+        throw vehicle_error("Reg nr. får ändast innehålla tre bokstäver "
+                                "följt av tre siffror");
+
+    for(int i = 0; i < reg_nr.size(); i++)
+    {
+        char c = reg_nr.toStdString()[i];
+
+        if(i < 3)
+        {
+            if(! isalpha(c))
+                throw vehicle_error("Reg nr. får ändast innehålla tre bokstäver"
+                                        " följt av tre siffror");
+        }
+        if(i >= 3)
+        {
+            if(! isdigit(c))
+                throw vehicle_error("Reg nr. får ändast innehålla tre bokstäver "
+                                        "följt av tre siffror");
+        }
+    }
+}
+
+void
+Vehicle::
+correct_type(const QString& type)
+{
+    if((type != "liten_bil")       &&
+            (type != "mellan_bil") &&
+            (type != "stor_bil"))
+        throw vehicle_error("Typ får ändast vara: liten_bil, mellan_bil, "
+                            "stor_bil.");
+}
+
+void
+Vehicle::
+correct_status(const QString& status)
+{
+    if((status != "uthyrd") &&
+            (status != "utlånad"))
+        throw vehicle_error("Status får ändast vara: uthyrd, utlånad.");
+}
+
+void
+Vehicle::
+correct_mileage(const int mileage)
+{
+    if(mileage < 0)
+        throw vehicle_error("Trippmätaren får endast ha positiva värden");
 }
 
