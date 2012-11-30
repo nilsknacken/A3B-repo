@@ -13,9 +13,7 @@ int main(int argc, char *argv[])
 {
     try
     {
-        Database::open("default_db.sqlite");
-
-        QApplication a(argc, argv);
+       QApplication a(argc, argv);
         MainWindow w;
         w.show();
 

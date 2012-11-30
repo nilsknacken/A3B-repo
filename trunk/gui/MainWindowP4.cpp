@@ -54,3 +54,21 @@ void MainWindow::on_checkBoxP4damages_yes_toggled(bool checked)
 {
     ui->plainTextEditP4damages->setDisabled(! checked);
 }
+
+void MainWindow::setup_tableWidgetP4() const
+{
+    ui->tableWidgetP5->setColumnCount(6);
+    ui->tableWidgetP5->setHorizontalHeaderLabels(QStringList()
+                                                 << QString::fromUtf8("Res. nr")
+                                                 << QString::fromUtf8("Reg. nr")
+                                                 << QString::fromUtf8("Namn")
+                                                 << QString::fromUtf8("Status")
+                                                 << QString::fromUtf8("Starttid")
+                                                 << QString::fromUtf8("Slutttid")); ui->tableWidgetP5->setShowGrid(false);
+    ui->tableWidgetP5->verticalHeader()->hide();
+    ui->tableWidgetP5->setAlternatingRowColors(true);
+    ui->tableWidgetP5->setEditTriggers(0);
+    ui->tableWidgetP5->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->tableWidgetP5->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidgetP5->setSortingEnabled(true);
+}

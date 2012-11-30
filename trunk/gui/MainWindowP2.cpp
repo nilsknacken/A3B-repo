@@ -91,3 +91,113 @@ void MainWindow::on_pushButtonP2date_clicked()
     set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2date);
 }
 
+void MainWindow::setup_tableWidgetP2bok_nr() const
+{
+    ui->tableWidgetP5->setColumnCount(6);
+    ui->tableWidgetP5->setHorizontalHeaderLabels(QStringList()
+                                                 << QString::fromUtf8("Res. nr")
+                                                 << QString::fromUtf8("Reg. nr")
+                                                 << QString::fromUtf8("Namn")
+                                                 << QString::fromUtf8("Status")
+                                                 << QString::fromUtf8("Starttid")
+                                                 << QString::fromUtf8("Slutttid"));
+    ui->tableWidgetP5->setShowGrid(false);
+    ui->tableWidgetP5->verticalHeader()->hide();
+    ui->tableWidgetP5->setAlternatingRowColors(true);
+    ui->tableWidgetP5->setEditTriggers(0);
+    ui->tableWidgetP5->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->tableWidgetP5->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidgetP5->setSortingEnabled(true);
+}
+
+void MainWindow::setup_tableWidgetP2date() const
+{
+    ui->tableWidgetP5->setColumnCount(6);
+    ui->tableWidgetP5->setHorizontalHeaderLabels(QStringList()
+                                                 << QString::fromUtf8("Res. nr")
+                                                 << QString::fromUtf8("Reg. nr")
+                                                 << QString::fromUtf8("Namn")
+                                                 << QString::fromUtf8("Status")
+                                                 << QString::fromUtf8("Starttid")
+                                                 << QString::fromUtf8("Slutttid"));  ui->tableWidgetP5->setShowGrid(false);
+    ui->tableWidgetP5->verticalHeader()->hide();
+    ui->tableWidgetP5->setAlternatingRowColors(true);
+    ui->tableWidgetP5->setEditTriggers(0);
+    ui->tableWidgetP5->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->tableWidgetP5->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidgetP5->setSortingEnabled(true);
+}
+
+void MainWindow::setup_tableWidgetP2name() const
+{
+    ui->tableWidgetP5->setColumnCount(6);
+    ui->tableWidgetP5->setHorizontalHeaderLabels(QStringList()
+                                                 << QString::fromUtf8("Res. nr")
+                                                 << QString::fromUtf8("Reg. nr")
+                                                 << QString::fromUtf8("Namn")
+                                                 << QString::fromUtf8("Status")
+                                                 << QString::fromUtf8("Starttid")
+                                                 << QString::fromUtf8("Slutttid")); ui->tableWidgetP5->setShowGrid(false);
+    ui->tableWidgetP5->verticalHeader()->hide();
+    ui->tableWidgetP5->setAlternatingRowColors(true);
+    ui->tableWidgetP5->setEditTriggers(0);
+    ui->tableWidgetP5->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->tableWidgetP5->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidgetP5->setSortingEnabled(true);
+}
+
+void MainWindow::setup_tableWidgetP2per_nr() const
+{
+    ui->tableWidgetP5->setColumnCount(6);
+    ui->tableWidgetP5->setHorizontalHeaderLabels(QStringList()
+                                                 << QString::fromUtf8("Res. nr")
+                                                 << QString::fromUtf8("Reg. nr")
+                                                 << QString::fromUtf8("Namn")
+                                                 << QString::fromUtf8("Status")
+                                                 << QString::fromUtf8("Starttid")
+                                                 << QString::fromUtf8("Slutttid")); ui->tableWidgetP5->setShowGrid(false);
+    ui->tableWidgetP5->verticalHeader()->hide();
+    ui->tableWidgetP5->setAlternatingRowColors(true);
+    ui->tableWidgetP5->setEditTriggers(0);
+    ui->tableWidgetP5->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->tableWidgetP5->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidgetP5->setSortingEnabled(true);
+}
+
+void MainWindow::setup_tableWidgetP2phone_nr() const
+{
+    ui->tableWidgetP5->setColumnCount(6);
+    ui->tableWidgetP5->setHorizontalHeaderLabels(QStringList()
+                                                 << QString::fromUtf8("Res. nr")
+                                                 << QString::fromUtf8("Reg. nr")
+                                                 << QString::fromUtf8("Namn")
+                                                 << QString::fromUtf8("Status")
+                                                 << QString::fromUtf8("Starttid")
+                                                 << QString::fromUtf8("Slutttid")); ui->tableWidgetP5->setShowGrid(false);
+    ui->tableWidgetP5->verticalHeader()->hide();
+    ui->tableWidgetP5->setAlternatingRowColors(true);
+    ui->tableWidgetP5->setEditTriggers(0);
+    ui->tableWidgetP5->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->tableWidgetP5->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidgetP5->setSortingEnabled(true);
+}
+
+void MainWindow::setup_tableWidgetP2reg_nr() const
+{
+    ui->tableWidgetP5->setColumnCount(6);
+    ui->tableWidgetP5->setHorizontalHeaderLabels(QStringList()
+                                                 << QString::fromUtf8("Res. nr")
+                                                 << QString::fromUtf8("Reg. nr")
+                                                 << QString::fromUtf8("Namn")
+                                                 << QString::fromUtf8("Status")
+                                                 << QString::fromUtf8("Starttid")
+                                                 << QString::fromUtf8("Slutttid"));ui->tableWidgetP5->setShowGrid(false);
+    ui->tableWidgetP5->verticalHeader()->hide();
+    ui->tableWidgetP5->setAlternatingRowColors(true);
+    ui->tableWidgetP5->setEditTriggers(0);
+    ui->tableWidgetP5->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->tableWidgetP5->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidgetP5->setSortingEnabled(true);
+}
+
+

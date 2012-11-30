@@ -102,4 +102,86 @@ void MainWindow::on_pushButtonP1search_clicked()
     //Uppdatera sökresultat
 }
 
+void MainWindow::setup_tableWidgetP1S_Car() const
+{
+    ui->tableWidgetP5->setColumnCount(4);
+    ui->tableWidgetP5->setHorizontalHeaderLabels(QStringList()
+                                                 << QString::fromUtf8("Reg. nr")
+                                                 << QString::fromUtf8("Typ")
+                                                 << QString::fromUtf8("Fabrikat")
+                                                 << QString::fromUtf8("Modell")); ui->tableWidgetP5->setShowGrid(false);
+    ui->tableWidgetP5->verticalHeader()->hide();
+    ui->tableWidgetP5->setAlternatingRowColors(true);
+    ui->tableWidgetP5->setEditTriggers(0);
+    ui->tableWidgetP5->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->tableWidgetP5->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidgetP5->setSortingEnabled(true);
+}
+
+void MainWindow::setup_tableWidgetP1M_Car() const
+{
+    ui->tableWidgetP5->setColumnCount(4);
+    ui->tableWidgetP5->setHorizontalHeaderLabels(QStringList()
+                                                 << QString::fromUtf8("Reg. nr")
+                                                 << QString::fromUtf8("Typ")
+                                                 << QString::fromUtf8("Fabrikat")
+                                                 << QString::fromUtf8("Modell"));  ui->tableWidgetP5->setShowGrid(false);
+    ui->tableWidgetP5->verticalHeader()->hide();
+    ui->tableWidgetP5->setAlternatingRowColors(true);
+    ui->tableWidgetP5->setEditTriggers(0);
+    ui->tableWidgetP5->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->tableWidgetP5->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidgetP5->setSortingEnabled(true);
+}
+
+void MainWindow::setup_tableWidgetP1L_Car() const
+{
+    ui->tableWidgetP5->setColumnCount(4);
+    ui->tableWidgetP5->setHorizontalHeaderLabels(QStringList()
+                                                 << QString::fromUtf8("Reg. nr")
+                                                 << QString::fromUtf8("Typ")
+                                                 << QString::fromUtf8("Fabrikat")
+                                                 << QString::fromUtf8("Modell")); ui->tableWidgetP5->setShowGrid(false);
+    ui->tableWidgetP5->verticalHeader()->hide();
+    ui->tableWidgetP5->setAlternatingRowColors(true);
+    ui->tableWidgetP5->setEditTriggers(0);
+    ui->tableWidgetP5->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->tableWidgetP5->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidgetP5->setSortingEnabled(true);
+}
+
+void MainWindow::setup_tableWidgetP1S_Truck() const
+{
+    ui->tableWidgetP5->setColumnCount(4);
+    ui->tableWidgetP5->setHorizontalHeaderLabels(QStringList()
+                                                 << QString::fromUtf8("Reg. nr")
+                                                 << QString::fromUtf8("Typ")
+                                                 << QString::fromUtf8("Fabrikat")
+                                                 << QString::fromUtf8("Modell")); ui->tableWidgetP5->setShowGrid(false);
+    ui->tableWidgetP5->verticalHeader()->hide();
+    ui->tableWidgetP5->setAlternatingRowColors(true);
+    ui->tableWidgetP5->setEditTriggers(0);
+    ui->tableWidgetP5->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->tableWidgetP5->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidgetP5->setSortingEnabled(true);
+}
+
+void MainWindow::setup_tableWidgetP1L_Truck() const
+{
+    ui->tableWidgetP5->setColumnCount(4);
+    ui->tableWidgetP5->setHorizontalHeaderLabels(QStringList()
+                                                 << QString::fromUtf8("Reg. nr")
+                                                 << QString::fromUtf8("Typ")
+                                                 << QString::fromUtf8("Fabrikat")
+                                                 << QString::fromUtf8("Modell")); ui->tableWidgetP5->setShowGrid(false);
+    ui->tableWidgetP5->verticalHeader()->hide();
+    ui->tableWidgetP5->setAlternatingRowColors(true);
+    ui->tableWidgetP5->setEditTriggers(0);
+    ui->tableWidgetP5->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->tableWidgetP5->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidgetP5->setSortingEnabled(true);
+}
+
+
+
 
