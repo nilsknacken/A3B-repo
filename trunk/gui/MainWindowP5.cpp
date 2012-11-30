@@ -16,6 +16,15 @@ void MainWindow::on_tableWidgetP5_cellClicked(int row, int column)
 
 }
 
+void MainWindow::on_pushButtonP5add_clicked()
+{}
+
+void MainWindow::on_pushButtonP5change_clicked()
+{}
+
+void MainWindow::on_pushButtonP5remove_clicked()
+{}
+
 void MainWindow::setup_tableWidgetP5() const
 {
     ui->tableWidgetP5->setColumnCount(4);

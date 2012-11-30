@@ -29,6 +29,8 @@ public:
 public slots:
 
 private slots:
+    void on_tabWidgetMainTab_currentChanged(int index);
+
     // Menu-Bar
     void on_actionAbout_triggered();
     void on_actionSettings_triggered();
@@ -69,6 +71,12 @@ private slots:
     void on_pushButtonP5search_clicked();
     void on_tableWidgetP5_cellClicked(int row, int column);
 
+
+    void on_pushButtonP5add_clicked();
+
+    void on_pushButtonP5change_clicked();
+
+    void on_pushButtonP5remove_clicked();
 
 private:
 

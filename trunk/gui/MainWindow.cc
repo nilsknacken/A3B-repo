@@ -166,3 +166,8 @@ void MainWindow::generate_reservation_list(vector<Reservation*> input, QTableWid
 
     }
 }
+
+
+void MainWindow::on_tabWidgetMainTab_currentChanged(int index)
+{}
+
