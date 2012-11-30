@@ -12,7 +12,7 @@ TARGET = A3B-Carpark
 TEMPLATE = app
 
 
-SOURCES +=\
+SOURCES += main.cc \
         gui/MainWindow.cc \
     gui/Dialog_Settings.cc \
     database/DatabaseQ.cc \
@@ -27,7 +27,6 @@ SOURCES +=\
     gui/MainWindowP3.cpp \
     gui/MainWindowP2.cpp \
     gui/MainWindowP1.cpp \
-    main.cpp
 
 HEADERS  += gui/MainWindow.h \
     gui/Dialog_Settings.h \
