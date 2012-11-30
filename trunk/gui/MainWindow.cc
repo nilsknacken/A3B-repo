@@ -1,7 +1,6 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
-#include "../backend/SettingsQ.h"
-
+#include "SettingsQ.h"
 #include <iostream>  //cout, cerr osv                                               //REMOVE
 
 using namespace std;
@@ -23,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    cerr << "~MainWindow()" << endl;                                                //REMOVE
     Database::close();
     delete ui;
 }

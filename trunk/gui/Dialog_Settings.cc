@@ -12,8 +12,8 @@ Dialog_Settings::Dialog_Settings(QWidget *parent, Settings* settings)
       settings_(settings)
 {
     ui->setupUi(this);
-    settings->uppdate();
-    uppdate_qtimeedit(settings);
+    //settings->uppdate();
+    //uppdate_qtimeedit(settings);
 }
 
 Dialog_Settings::~Dialog_Settings()

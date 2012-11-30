@@ -13,7 +13,6 @@
 */
 
 #include <QString>
-
 #include "VehicleQ.h"
 
 using namespace std;

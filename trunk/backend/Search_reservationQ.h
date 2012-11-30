@@ -18,8 +18,7 @@
 #include <QString>
 #include <vector>
 #include <stdexcept>
-
-#include "../database/DatabaseQ.h"
+#include "DatabaseQ.h"
 #include "ReservationQ.h"
 
 /////////////////////////////////////////////////////////////////////

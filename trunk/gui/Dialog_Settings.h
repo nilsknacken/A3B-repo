@@ -2,8 +2,7 @@
 #define DIALOG_SETTINGS_H
 
 #include <QMessageBox>
-
-#include "../backend/SettingsQ.h"
+#include "SettingsQ.h"
 
 namespace Ui
 {

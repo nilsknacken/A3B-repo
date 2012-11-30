@@ -6,10 +6,10 @@
 #include <QPushButton>
 #include <QTableWidget>
 #include "Dialog_Settings.h"
-#include "../backend/Search_reservationQ.h"
-#include "../backend/Search_vehicleQ.h"
-#include "../backend/VehicleQ.h"
-#include "../backend/ReservationQ.h"
+#include "Search_reservationQ.h"
+#include "Search_vehicleQ.h"
+#include "VehicleQ.h"
+#include "ReservationQ.h"
 
 
 namespace Ui
