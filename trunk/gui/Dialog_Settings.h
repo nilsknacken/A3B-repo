@@ -1,7 +1,7 @@
 #ifndef DIALOG_SETTINGS_H
 #define DIALOG_SETTINGS_H
 
-#include <QDialog>
+#include <QMessageBox>
 
 #include "../backend/SettingsQ.h"
 
@@ -22,7 +22,11 @@ private slots:
     void on_buttonBox_accepted();
     void on_pushButtonCleanDB_clicked();
 
+    void on_buttonBox_rejected();
+
 private:
+    void uppdate_qtimeedit(Settings*);
+
     Ui::Dialog_Settings *ui;
     Settings* settings_;
 };

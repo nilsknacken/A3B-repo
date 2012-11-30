@@ -10,8 +10,10 @@ void MainWindow::on_pushButtonP4next_clicked()
 {
     int index = ui->stackedWidgetP4->currentIndex();
 
+    // Första sidan
     if(index == 0)
     {
+        if (ui->tableWidget_2->)
         ui->stackedWidgetP4->setCurrentIndex(++index);
         ui->pushButtonP4back->setDisabled(false);
     }
@@ -55,20 +57,22 @@ void MainWindow::on_checkBoxP4damages_yes_toggled(bool checked)
     ui->plainTextEditP4damages->setDisabled(! checked);
 }
 
+
+// Initiate tableWidet
 void MainWindow::setup_tableWidgetP4() const
 {
-    ui->tableWidgetP5->setColumnCount(6);
-    ui->tableWidgetP5->setHorizontalHeaderLabels(QStringList()
+    ui->tableWidget_2->setColumnCount(6);
+    ui->tableWidget_2->setHorizontalHeaderLabels(QStringList()
                                                  << QString::fromUtf8("Res. nr")
                                                  << QString::fromUtf8("Reg. nr")
                                                  << QString::fromUtf8("Namn")
                                                  << QString::fromUtf8("Status")
                                                  << QString::fromUtf8("Starttid")
-                                                 << QString::fromUtf8("Slutttid")); ui->tableWidgetP5->setShowGrid(false);
-    ui->tableWidgetP5->verticalHeader()->hide();
-    ui->tableWidgetP5->setAlternatingRowColors(true);
-    ui->tableWidgetP5->setEditTriggers(0);
-    ui->tableWidgetP5->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-    ui->tableWidgetP5->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableWidgetP5->setSortingEnabled(true);
+                                                 << QString::fromUtf8("Slutttid")); ui->tableWidget_2->setShowGrid(false);
+    ui->tableWidget_2->verticalHeader()->hide();
+    ui->tableWidget_2->setAlternatingRowColors(true);
+    ui->tableWidget_2->setEditTriggers(0);
+    ui->tableWidget_2->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->tableWidget_2->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_2->setSortingEnabled(true);
 }
