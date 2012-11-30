@@ -153,7 +153,7 @@ Vehicle::
 correct_reg_nr(const QString& reg_nr)
 {
     if(reg_nr.size() != 6)
-        throw vehicle_error("Reg nr. får ändast innehålla tre bokstäver "
+        throw vehicle_error("Reg nr. får endast innehålla tre bokstäver "
                                 "följt av tre siffror");
 
     for(int i = 0; i < reg_nr.size(); i++)
@@ -163,13 +163,13 @@ correct_reg_nr(const QString& reg_nr)
         if(i < 3)
         {
             if(! isalpha(c))
-                throw vehicle_error("Reg nr. får ändast innehålla tre bokstäver"
+                throw vehicle_error("Reg nr. får endast innehålla tre bokstäver"
                                         " följt av tre siffror");
         }
         if(i >= 3)
         {
             if(! isdigit(c))
-                throw vehicle_error("Reg nr. får ändast innehålla tre bokstäver "
+                throw vehicle_error("Reg nr. får endast innehålla tre bokstäver "
                                         "följt av tre siffror");
         }
     }
@@ -179,20 +179,22 @@ void
 Vehicle::
 correct_type(const QString& type)
 {
-    if((type != "liten_bil")       &&
-            (type != "mellan_bil") &&
-            (type != "stor_bil"))
-        throw vehicle_error("Typ får ändast vara: liten_bil, mellan_bil, "
-                            "stor_bil.");
+    if((type != "Liten bil")       &&
+            (type != "Mellanbil") &&
+            (type != "Stor bil") &&
+            (type != "Liten lastbil") &&
+            (type != "Stor lastbil"))
+        throw vehicle_error("Typ får endast vara: Liten bil, Mellanbil, "
+                            "Stor_bil, Liten lastbil, Stor lastbil.");
 }
 
 void
 Vehicle::
 correct_status(const QString& status)
 {
-    if((status != "rented") &&
-            (status != "available"))
-        throw vehicle_error("Status får ändast vara: rented, available.");
+    if((status != "uthyrd") &&
+            (status != "ledig"))
+        throw vehicle_error("Status får endast vara: uthyrd, ledig.");
 }
 
 void

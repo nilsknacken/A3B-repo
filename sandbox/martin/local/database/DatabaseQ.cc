@@ -32,6 +32,7 @@ bool Database::open(const char* filename)
     if (sqlite3_open(filename, &db) == SQLITE_OK)
     {
         init_db();
+        fill_db();  // only for testing to init some entries to the value
         return true;
     }
     else
