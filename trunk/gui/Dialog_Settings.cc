@@ -5,19 +5,14 @@
 
 using namespace std;
 
-Dialog_Settings::Dialog_Settings(QWidget *parent, Settings* settings)
+Dialog_Settings::Dialog_Settings(QWidget* parent, Settings* settings)
     : QDialog(parent),
       ui(new Ui::Dialog_Settings),
       settings_(settings)
 {
     ui->setupUi(this);
-<<<<<<< HEAD
-    //settings->uppdate();
-    //uppdate_qtimeedit(settings);
-=======
-  //  settings->update();
- //   uppdate_qtimeedit(settings);
->>>>>>> martin_branch
+    //settings_->update();
+    update_qtimeedit(settings);
 }
 
 Dialog_Settings::~Dialog_Settings()
@@ -52,21 +47,27 @@ void Dialog_Settings::on_pushButtonCleanDB_clicked()
     if(i == 16384)
     {
         cerr << "Databasen är inte rensad egentligen, detta ska implementeras!" << endl; //!!!!!!!!
-        QMessageBox::information(this,
-                                 QString::fromUtf8("Bekräftelse"),
-                                 QString::fromUtf8("Nu är databasen rensad."),
-                                 QMessageBox::Ok);
+        ui->pushButtonCleanDB->setDisabled(true);
+        ui->pushButtonCleanDB->setText(QString::fromUtf8("Databas rensad"));
+        //QMessageBox::information(this,
+        //                         QString::fromUtf8("Bekräftelse"),
+        //                         QString::fromUtf8("Nu är databasen rensad."),
+        //                         QMessageBox::Ok);
     }
 }
 
 void Dialog_Settings::on_buttonBox_rejected()
 {
-    uppdate_qtimeedit(settings_);
+    update_qtimeedit(settings_);
 }
 
-void Dialog_Settings::uppdate_qtimeedit(Settings* settings)
+void Dialog_Settings::update_qtimeedit(Settings* settings)
 {
     ui->timeEditOpen  ->setTime(QTime(settings->get_open_hour(), settings->get_open_min()));
     ui->timeEditClose ->setTime(QTime(settings->get_close_hour(),settings->get_close_min()));
     ui->timeEditRental->setTime(QTime(settings->get_min_rental(),0));
+    ////
+    ui->pushButtonCleanDB->setDisabled(false);
+    ui->pushButtonCleanDB->setText(QString::fromUtf8("Rensa databas"));
+    ////
 }

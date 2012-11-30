@@ -8,7 +8,7 @@ using namespace std;
 /////////////////////////////////////////////////////////////////////
 // Constructor, Destructor:
 /////////////////////////////////////////////////////////////////////
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow),
       about(new QMessageBox(this)),
@@ -25,6 +25,7 @@ MainWindow::~MainWindow()
     cerr << "~MainWindow()" << endl;                                                //REMOVE
     Database::close();
     delete ui;
+    delete settings;
 }
 
 
@@ -50,9 +51,11 @@ void MainWindow::on_actionSettings_triggered()
     //settings = new Dialog_Settings(this);
     //settings->show();
 
-    int i = gui_settings->exec();
+    //int i = gui_settings->exec();
+    //gui_settings->
+    gui_settings->show();
 
-    (void)i;
+    //(void)i;
 
     //if (settings->exec())
     //{
@@ -67,6 +70,7 @@ void MainWindow::on_actionQuit_triggered()
     delete ui;
     delete about;
     delete gui_settings;
+    delete settings;
     exit(0);
 }
 
