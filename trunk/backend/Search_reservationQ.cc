@@ -15,7 +15,6 @@
 #include <stdlib.h>
 #include <QString>
 #include <vector>
-
 #include "ReservationQ.h"
 #include "Search_reservationQ.h"
 

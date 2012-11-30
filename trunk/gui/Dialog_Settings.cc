@@ -1,8 +1,7 @@
 #include "Dialog_Settings.h"
 #include "ui_Dialog_Settings.h"
-
-#include <iostream>                                                      //// REMOVE
 #include <QDialog>
+#include <iostream>                                                      //// REMOVE
 
 using namespace std;
 
