@@ -12,9 +12,8 @@ Dialog_Settings::Dialog_Settings(QWidget *parent, Settings* settings)
       settings_(settings)
 {
     ui->setupUi(this);
-    ui->timeEditOpen->setTime(QTime(settings->get_open_hour(),settings->get_open_min()));
-    ui->timeEditClose->setTime(QTime(settings->get_close_hour(),settings->get_close_min()));
-    ui->timeEditRental->setTime(QTime(settings->get_min_rental(),0));
+    settings->uppdate();
+    uppdate_qtimeedit(settings);
 }
 
 Dialog_Settings::~Dialog_Settings()
@@ -42,18 +41,28 @@ void Dialog_Settings::on_buttonBox_accepted()
 void Dialog_Settings::on_pushButtonCleanDB_clicked()
 {
     //Rensa databas
-
-
     int i = QMessageBox::warning(this,
                                  QString::fromUtf8("Rensa databas"),
                                  QString::fromUtf8("Du är påväg att rensa databasen.\nVill du verkligen göra det?"),
                                  QMessageBox::Cancel, QMessageBox::Yes);
-    cerr << "i = " <<  i << endl;
     if(i == 16384)
     {
+        cerr << "Databasen är inte rensad egentligen, detta ska implementeras!" << endl; //!!!!!!!!
         QMessageBox::information(this,
                                  QString::fromUtf8("Bekräftelse"),
                                  QString::fromUtf8("Nu är databasen rensad."),
                                  QMessageBox::Ok);
     }
+}
+
+void Dialog_Settings::on_buttonBox_rejected()
+{
+    uppdate_qtimeedit(settings_);
+}
+
+void Dialog_Settings::uppdate_qtimeedit(Settings* settings)
+{
+    ui->timeEditOpen  ->setTime(QTime(settings->get_open_hour(), settings->get_open_min()));
+    ui->timeEditClose ->setTime(QTime(settings->get_close_hour(),settings->get_close_min()));
+    ui->timeEditRental->setTime(QTime(settings->get_min_rental(),0));
 }
