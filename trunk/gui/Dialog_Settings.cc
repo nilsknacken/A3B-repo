@@ -1,8 +1,7 @@
 #include "Dialog_Settings.h"
 #include "ui_Dialog_Settings.h"
-
-#include <iostream>                                                      //// REMOVE
 #include <QDialog>
+#include <iostream>                                                      //// REMOVE
 
 using namespace std;
 
@@ -12,8 +11,13 @@ Dialog_Settings::Dialog_Settings(QWidget *parent, Settings* settings)
       settings_(settings)
 {
     ui->setupUi(this);
+<<<<<<< HEAD
     //settings->uppdate();
     //uppdate_qtimeedit(settings);
+=======
+  //  settings->update();
+ //   uppdate_qtimeedit(settings);
+>>>>>>> martin_branch
 }
 
 Dialog_Settings::~Dialog_Settings()
