@@ -5,9 +5,11 @@
 ////// Tab 5 - Search car
 void MainWindow::on_pushButtonP5search_clicked()
 {
-    //om tomt visa alla ska implementeras här
     QString given_reg_nr = ui->lineEditP5search->text();
-    generate_vehicle_list(search_vehicleP5.reg_nr(given_reg_nr), ui->tableWidgetP5);
+    if (given_reg_nr.isEmpty())
+        generate_vehicle_list(search_vehicleP5.all(), ui->tableWidgetP5);
+    else
+        generate_vehicle_list(search_vehicleP5.reg_nr(given_reg_nr), ui->tableWidgetP5);
 }
 
 
