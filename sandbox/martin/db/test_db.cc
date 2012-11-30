@@ -86,7 +86,7 @@ int main(int argc, char* argv[])
                             
    Database::vehicle_update("HFT643",
                             "liten_bil",
-                            "available",
+                            "ledig",
                             "Ford",
                             "Ka",
                             4711,
