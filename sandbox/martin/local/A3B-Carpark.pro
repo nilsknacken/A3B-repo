@@ -27,6 +27,7 @@ SOURCES += main.cc \
     gui/MainWindowP3.cpp \
     gui/MainWindowP2.cpp \
     gui/MainWindowP1.cpp \
+    database/fill_db.cpp
 
 HEADERS  += gui/MainWindow.h \
     gui/Dialog_Settings.h \

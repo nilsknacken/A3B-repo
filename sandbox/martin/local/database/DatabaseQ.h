@@ -111,6 +111,7 @@ private:
 
    static void check_for_error();
 
+   static void fill_db();
 };
 
 
