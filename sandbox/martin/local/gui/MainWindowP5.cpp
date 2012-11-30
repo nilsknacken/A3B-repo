@@ -10,6 +10,7 @@ void MainWindow::on_pushButtonP5search_clicked()
         generate_vehicle_list(search_vehicleP5.all(), ui->tableWidgetP5);
     else
         generate_vehicle_list(search_vehicleP5.reg_nr(given_reg_nr), ui->tableWidgetP5);
+
 }
 
 
