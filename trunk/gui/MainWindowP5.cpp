@@ -5,6 +5,7 @@
 ////// Tab 5 - Search car
 void MainWindow::on_pushButtonP5search_clicked()
 {
+    //om tomt visa alla ska implementeras här
     QString given_reg_nr = ui->lineEditP5search->text();
     generate_vehicle_list(search_vehicleP5.reg_nr(given_reg_nr), ui->tableWidgetP5);
 }
@@ -17,8 +18,12 @@ void MainWindow::on_tableWidgetP5_cellClicked(int row, int column)
 
 void MainWindow::setup_tableWidgetP5() const
 {
-    ui->tableWidgetP5->setColumnCount(3);
-    ui->tableWidgetP5->setHorizontalHeaderLabels(QStringList() << QString::fromUtf8("Reg. nr") << QString::fromUtf8("Märke") << QString::fromUtf8("Modell"));
+    ui->tableWidgetP5->setColumnCount(4);
+    ui->tableWidgetP5->setHorizontalHeaderLabels(QStringList()
+                                                 << QString::fromUtf8("Reg. nr")
+                                                 << QString::fromUtf8("Typ")
+                                                 << QString::fromUtf8("Fabrikat")
+                                                 << QString::fromUtf8("Modell"));
     ui->tableWidgetP5->setShowGrid(false);
     ui->tableWidgetP5->verticalHeader()->hide();
     ui->tableWidgetP5->setAlternatingRowColors(true);

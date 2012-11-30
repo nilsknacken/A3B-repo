@@ -76,13 +76,47 @@ private:
     QMessageBox* about;
     Settings* settings;
     Dialog_Settings* gui_settings;
+
+    Search_vehicle search_vehicleP1S_Car;
+    Search_vehicle search_vehicleP1M_Car;
+    Search_vehicle search_vehicleP1L_Car;
+    Search_vehicle search_vehicleP1S_Truck;
+    Search_vehicle search_vehicleP1L_Truck;
+
+    Search_reservation search_resP2bok_nr;
+    Search_reservation search_resP2reg_nr;
+    Search_reservation search_resP2name;
+    Search_reservation search_resP2per_nr;
+    Search_reservation search_resP2phone_nr;
+    Search_reservation search_resP2date;
+
+
+    Search_reservation search_resP3;
+    Search_reservation search_resP4;
     Search_vehicle search_vehicleP5;
 
     void generate_vehicle_list(std::vector<Vehicle*>, QTableWidget*);
+    void generate_reservation_list(std::vector<Reservation*>, QTableWidget*);
 
 
     void set_stylesheet(const QString&, QPushButton*&) const;
     void custom_setup();
+
+    void setup_tableWidgetP1S_Car() const;
+    void setup_tableWidgetP1M_Car() const;
+    void setup_tableWidgetP1L_Car() const;
+    void setup_tableWidgetP1S_Truck() const;
+    void setup_tableWidgetP1L_Truck() const;
+
+    void setup_tableWidgetP2bok_nr() const;
+    void setup_tableWidgetP2reg_nr() const;
+    void setup_tableWidgetP2name() const;
+    void setup_tableWidgetP2per_nr() const;
+    void setup_tableWidgetP2phone_nr() const;
+    void setup_tableWidgetP2date() const;
+
+    void setup_tableWidgetP3() const;
+    void setup_tableWidgetP4() const;
     void setup_tableWidgetP5() const;
 
 
