@@ -67,18 +67,15 @@ private slots:
     void on_pushButtonP4back_clicked();
     void on_checkBoxP4damages_yes_toggled(bool checked);
 
-    // Tab 5 - Search car
+    // Tab 5 - Vehicle Search
     void on_pushButtonP5search_clicked();
     void on_tableWidgetP5_cellClicked(int row, int column);
-
-
     void on_pushButtonP5add_clicked();
-
     void on_pushButtonP5change_clicked();
-
     void on_pushButtonP5remove_clicked();
 
 private:
+    bool pushbuttonP5change_clicked = false;
 
     Ui::MainWindow *ui;
     QMessageBox* about;
@@ -106,8 +103,6 @@ private:
     void generate_vehicle_list(std::vector<Vehicle*>, QTableWidget*);
     void generate_reservation_list(std::vector<Reservation*>, QTableWidget*);
 
-
-    void set_stylesheet(const QString&, QPushButton*&) const;
     void custom_setup();
 
     void setup_tableWidgetP1S_Car() const;
@@ -129,6 +124,7 @@ private:
 
 
     // StyleSheet
+    void set_stylesheet(const QString&, QPushButton*&) const;
     const QString SS_SIDEMENU_ENABLE = "QPushButton {font: bold;color: white;}";
     const QString SS_SIDEMENU_DISABLE = "QPushButton {font: bold;color: grey;}";
 };

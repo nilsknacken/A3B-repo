@@ -47,6 +47,7 @@ void MainWindow::on_pushButtonP4back_clicked()
     if(index == 2)
     {
         ui->stackedWidgetP4->setCurrentIndex(--index);
+        ui->pushButtonP4next->setText(QString::fromUtf8("Nästa >"));
     }
 }
 

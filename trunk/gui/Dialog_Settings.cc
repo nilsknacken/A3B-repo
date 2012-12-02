@@ -1,7 +1,7 @@
 #include "Dialog_Settings.h"
 #include "ui_Dialog_Settings.h"
 #include <QDialog>
-#include <iostream>                                                      //// REMOVE
+#include <iostream>                                                             //// REMOVE
 
 using namespace std;
 
@@ -12,12 +12,12 @@ Dialog_Settings::Dialog_Settings(QWidget* parent, Settings* settings)
 {
     ui->setupUi(this);
     //settings_->update();
-    update_qtimeedit(settings);
+    update_qtimeedit(settings_);
 }
 
 Dialog_Settings::~Dialog_Settings()
 {
-    cerr << "~Dialog_Settings()" << endl;                      //REMOVE
+    cerr << "~Dialog_Settings()" << endl;                                        //REMOVE
     delete ui;
 }
 
@@ -35,6 +35,13 @@ void Dialog_Settings::on_buttonBox_accepted()
     settings_->set_min_rental(min_rental.hour());
 
     settings_->save();
+    restore_appearance();
+}
+
+void Dialog_Settings::on_buttonBox_rejected()
+{
+    update_qtimeedit(settings_);
+    restore_appearance();
 }
 
 void Dialog_Settings::on_pushButtonCleanDB_clicked()
@@ -56,18 +63,16 @@ void Dialog_Settings::on_pushButtonCleanDB_clicked()
     }
 }
 
-void Dialog_Settings::on_buttonBox_rejected()
-{
-    update_qtimeedit(settings_);
-}
 
 void Dialog_Settings::update_qtimeedit(Settings* settings)
 {
     ui->timeEditOpen  ->setTime(QTime(settings->get_open_hour(), settings->get_open_min()));
     ui->timeEditClose ->setTime(QTime(settings->get_close_hour(),settings->get_close_min()));
     ui->timeEditRental->setTime(QTime(settings->get_min_rental(),0));
-    ////
+}
+
+void Dialog_Settings::restore_appearance()
+{
     ui->pushButtonCleanDB->setDisabled(false);
     ui->pushButtonCleanDB->setText(QString::fromUtf8("Rensa databas"));
-    ////
 }
