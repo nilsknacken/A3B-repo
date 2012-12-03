@@ -1,7 +1,7 @@
 #ifndef DIALOG_SETTINGS_H
 #define DIALOG_SETTINGS_H
 
-#include <QDialog>
+#include <QMessageBox>
 
 #include "../backend/SettingsQ.h"
 

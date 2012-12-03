@@ -24,14 +24,14 @@ void Database::fill_db()
                                  "0703423456",
                                  "Lugna gatan 3B",
                                  "58253",
-                                 "Hålan");
+                                 "Halan");
 
     Database::reservation_update(32474,
                                  "DEF456",
                                  "2013-02-10 11:00",
                                  "2013-02-11 12:00",
                                  "kommande",
-                                 "Peter Bláha",
+                                 "Peter Blaha",
                                  "0707147975",
                                  "Bredvidgatan 13",
                                  "58653",
@@ -64,7 +64,7 @@ void Database::fill_db()
                                  "2010-01-10 08:00",
                                  "2010-01-11 09:00",
                                  "avslutad",
-                                 "Björn Borg",
+                                 "Bjorn Borg",
                                  "0707324233",
                                  "Mastergatan 1",
                                  "08253",

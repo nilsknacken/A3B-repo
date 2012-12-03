@@ -1,21 +1,23 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
-#include "../backend/SettingsQ.h"
+#include "SettingsQ.h"
 
 #include <iostream>  //cout, cerr osv                                               //REMOVE
+#include <QPlastiqueStyle>
 
 using namespace std;
 
 /////////////////////////////////////////////////////////////////////
 // Constructor, Destructor:
 /////////////////////////////////////////////////////////////////////
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow),
       about(new QMessageBox(this)),
       settings(new Settings()),
       gui_settings(new Dialog_Settings(this, settings))
 {
+    //QApplication::setStyle(new QPlastiqueStyle);
     ui->setupUi(this);
     custom_setup();
     Database::open("default_db.sqlite");
@@ -23,8 +25,10 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    cerr << "~MainWindow()" << endl;                                                //REMOVE
     Database::close();
     delete ui;
+    delete settings;
 }
 
 
@@ -47,19 +51,7 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::on_actionSettings_triggered()
 {
-    //settings = new Dialog_Settings(this);
-    //settings->show();
-
     int i = gui_settings->exec();
-
-    (void)i;
-
-    //if (settings->exec())
-    //{
-        // Ok knappen är tryckt här, spara inställningarna...
-    //}
-
-    //delete settings;
 }
 
 void MainWindow::on_actionQuit_triggered()
@@ -67,6 +59,7 @@ void MainWindow::on_actionQuit_triggered()
     delete ui;
     delete about;
     delete gui_settings;
+    delete settings;
     exit(0);
 }
 
@@ -89,8 +82,6 @@ void MainWindow::custom_setup()
     ui->tabWidgetMainTab->setCurrentIndex(0);
     ui->stackedWidgetP2toggle_date_string->setCurrentIndex(0);
     ui->stackedWidgetP4->setCurrentIndex(0);
-    //ui->pushButtonP1back->setDisabled(true);
-    //ui->pushButtonP1back->setDisabled(true);
 
     setup_tableWidgetP1S_Car();
     setup_tableWidgetP1M_Car();
@@ -166,3 +157,13 @@ void MainWindow::generate_reservation_list(vector<Reservation*> input, QTableWid
 
     }
 }
+
+
+void MainWindow::on_tabWidgetMainTab_currentChanged(int index)
+{
+    cerr << "Tab nr: " << index << endl;                                                                               // REMOVE
+
+    if(index == 4)
+        on_pushButtonP5search_clicked();
+}
+

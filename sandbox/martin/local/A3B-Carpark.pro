@@ -13,36 +13,40 @@ TEMPLATE = app
 
 
 SOURCES += main.cc \
-        gui/MainWindow.cc \
-    gui/Dialog_Settings.cc \
-    database/DatabaseQ.cc \
-    database/sqlite3.c \
-    backend/VehicleQ.cc \
-    backend/SettingsQ.cc \
-    backend/Search_vehicleQ.cc \
-    backend/Search_reservationQ.cc \
-    backend/ReservationQ.cc \
-    gui/MainWindowP5.cpp \
-    gui/MainWindowP4.cpp \
-    gui/MainWindowP3.cpp \
-    gui/MainWindowP2.cpp \
-    gui/MainWindowP1.cpp \
-    database/fill_db.cpp
+           gui/MainWindow.cc \
+           gui/Dialog_Settings.cc \
+           database/DatabaseQ.cc \
+           database/sqlite3.c \
+           backend/VehicleQ.cc \
+           backend/SettingsQ.cc \
+           backend/Search_vehicleQ.cc \
+           backend/Search_reservationQ.cc \
+           backend/ReservationQ.cc \
+           gui/MainWindowP5.cpp \
+           gui/MainWindowP4.cpp \
+           gui/MainWindowP3.cpp \
+           gui/MainWindowP2.cpp \
+           gui/MainWindowP1.cpp \
+           database/fill_db.cpp
 
 HEADERS  += gui/MainWindow.h \
-    gui/Dialog_Settings.h \
-    database/sqlite3.h \
-    database/DatabaseQ.h \
-    backend/VehicleQ.h \
-    backend/SettingsQ.h \
-    backend/Search_vehicleQ.h \
-    backend/Search_reservationQ.h \
-    backend/ReservationQ.h
+            gui/Dialog_Settings.h \
+            database/sqlite3.h \
+            database/DatabaseQ.h \
+            backend/VehicleQ.h \
+            backend/SettingsQ.h \
+            backend/Search_vehicleQ.h \
+            backend/Search_reservationQ.h \
+            backend/ReservationQ.h
 
 FORMS    += gui/MainWindow.ui \
             gui/Dialog_Settings.ui
 
 RESOURCES += gui/resource.qrc
+
+INCLUDEPATH += ./gui/ \
+               ./backend/ \
+               ./database
 
 QMAKE_CXXFLAGS += -std=c++11 -pedantic -Wextra
 QMAKE_LFLAGS += -static-libstdc++

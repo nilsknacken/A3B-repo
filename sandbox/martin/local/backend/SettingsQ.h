@@ -16,8 +16,7 @@
 #define SETTINGS
 
 #include <stdexcept>
-
-#include "../database/DatabaseQ.h"
+#include "DatabaseQ.h"
 
 /////////////////////////////////////////////////////////////////////
 // Settings:

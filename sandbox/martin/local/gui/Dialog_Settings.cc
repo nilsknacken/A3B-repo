@@ -1,25 +1,23 @@
 #include "Dialog_Settings.h"
 #include "ui_Dialog_Settings.h"
-
-#include <iostream>                                                      //// REMOVE
 #include <QDialog>
+#include <iostream>                                                             //// REMOVE
 
 using namespace std;
 
-Dialog_Settings::Dialog_Settings(QWidget *parent, Settings* settings)
+Dialog_Settings::Dialog_Settings(QWidget* parent, Settings* settings)
     : QDialog(parent),
       ui(new Ui::Dialog_Settings),
       settings_(settings)
 {
     ui->setupUi(this);
-    ui->timeEditOpen->setTime(QTime(settings->get_open_hour(),settings->get_open_min()));
-    ui->timeEditClose->setTime(QTime(settings->get_close_hour(),settings->get_close_min()));
-    ui->timeEditRental->setTime(QTime(settings->get_min_rental(),0));
+    //settings_->update();
+    update_qtimeedit(settings_);
 }
 
 Dialog_Settings::~Dialog_Settings()
 {
-    cerr << "~Dialog_Settings()" << endl;                      //REMOVE
+    cerr << "~Dialog_Settings()" << endl;                                        //REMOVE
     delete ui;
 }
 
@@ -37,23 +35,44 @@ void Dialog_Settings::on_buttonBox_accepted()
     settings_->set_min_rental(min_rental.hour());
 
     settings_->save();
+    restore_appearance();
+}
+
+void Dialog_Settings::on_buttonBox_rejected()
+{
+    update_qtimeedit(settings_);
+    restore_appearance();
 }
 
 void Dialog_Settings::on_pushButtonCleanDB_clicked()
 {
     //Rensa databas
-
-
     int i = QMessageBox::warning(this,
                                  QString::fromUtf8("Rensa databas"),
                                  QString::fromUtf8("Du är påväg att rensa databasen.\nVill du verkligen göra det?"),
                                  QMessageBox::Cancel, QMessageBox::Yes);
-    cerr << "i = " <<  i << endl;
     if(i == 16384)
     {
-        QMessageBox::information(this,
-                                 QString::fromUtf8("Bekräftelse"),
-                                 QString::fromUtf8("Nu är databasen rensad."),
-                                 QMessageBox::Ok);
+        cerr << "Databasen är inte rensad egentligen, detta ska implementeras!" << endl; //!!!!!!!!
+        ui->pushButtonCleanDB->setDisabled(true);
+        ui->pushButtonCleanDB->setText(QString::fromUtf8("Databas rensad"));
+        //QMessageBox::information(this,
+        //                         QString::fromUtf8("Bekräftelse"),
+        //                         QString::fromUtf8("Nu är databasen rensad."),
+        //                         QMessageBox::Ok);
     }
+}
+
+
+void Dialog_Settings::update_qtimeedit(Settings* settings)
+{
+    ui->timeEditOpen  ->setTime(QTime(settings->get_open_hour(), settings->get_open_min()));
+    ui->timeEditClose ->setTime(QTime(settings->get_close_hour(),settings->get_close_min()));
+    ui->timeEditRental->setTime(QTime(settings->get_min_rental(),0));
+}
+
+void Dialog_Settings::restore_appearance()
+{
+    ui->pushButtonCleanDB->setDisabled(false);
+    ui->pushButtonCleanDB->setText(QString::fromUtf8("Rensa databas"));
 }

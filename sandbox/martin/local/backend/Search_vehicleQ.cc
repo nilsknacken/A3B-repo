@@ -15,7 +15,6 @@
 #include <stdlib.h>
 #include <QString>
 #include <vector>
-
 #include "VehicleQ.h"
 #include "Search_vehicleQ.h"
 

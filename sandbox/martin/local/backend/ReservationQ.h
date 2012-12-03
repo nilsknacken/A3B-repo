@@ -17,8 +17,7 @@
 
 #include <QString>
 #include <stdexcept>
-
-#include "../database/DatabaseQ.h"
+#include "DatabaseQ.h"
 
 /////////////////////////////////////////////////////////////////////
 // Reservation:
