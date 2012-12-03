@@ -38,6 +38,21 @@ res_nr(int res_nr)
     return search_result;
 }
 
+
+// Search for allreservations vector<Reservation*>
+vector<Reservation*>
+Search_reservation::
+all()
+{
+    vector<vector<QString>> reservation_str_vector =
+            Database::reservation_search("all", "value");
+
+    create_result(reservation_str_vector);
+
+    return search_result;
+}
+
+
 // Search for a specific reservations by it's reg_nr in the database.
 vector<Reservation*> 
 Search_reservation::

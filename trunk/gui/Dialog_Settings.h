@@ -27,6 +27,7 @@ private:
     Settings* settings_;
 
     void update_qtimeedit(Settings*);
+    void restore_appearance();
 };
 
 #endif // DIALOG_SETTINGS_H

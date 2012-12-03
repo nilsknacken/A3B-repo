@@ -67,23 +67,28 @@ private slots:
     void on_pushButtonP4back_clicked();
     void on_checkBoxP4damages_yes_toggled(bool checked);
 
-    // Tab 5 - Search car
+    // Tab 5 - Vehicle Search
     void on_pushButtonP5search_clicked();
     void on_tableWidgetP5_cellClicked(int row, int column);
-
-
     void on_pushButtonP5add_clicked();
-
     void on_pushButtonP5change_clicked();
-
     void on_pushButtonP5remove_clicked();
 
 private:
+    bool pushbuttonP5change_clicked = false;
 
     Ui::MainWindow *ui;
     QMessageBox* about;
     Settings* settings;
     Dialog_Settings* gui_settings;
+
+    Reservation* current_resP1 = new Reservation();
+    Reservation* current_resP2 = new Reservation();
+    Reservation* current_resP3 = new Reservation();
+    Reservation* current_resP4 = new Reservation();
+
+    Vehicle* current_vehicleP1 = new Vehicle();
+    Vehicle* current_vehicleP5 = new Vehicle();
 
     Search_vehicle search_vehicleP1S_Car;
     Search_vehicle search_vehicleP1M_Car;
@@ -106,8 +111,6 @@ private:
     void generate_vehicle_list(std::vector<Vehicle*>, QTableWidget*);
     void generate_reservation_list(std::vector<Reservation*>, QTableWidget*);
 
-
-    void set_stylesheet(const QString&, QPushButton*&) const;
     void custom_setup();
 
     void setup_tableWidgetP1S_Car() const;
@@ -129,6 +132,7 @@ private:
 
 
     // StyleSheet
+    void set_stylesheet(const QString&, QPushButton*&) const;
     const QString SS_SIDEMENU_ENABLE = "QPushButton {font: bold;color: white;}";
     const QString SS_SIDEMENU_DISABLE = "QPushButton {font: bold;color: grey;}";
 };

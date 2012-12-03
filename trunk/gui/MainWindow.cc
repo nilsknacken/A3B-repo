@@ -1,7 +1,9 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include "SettingsQ.h"
+
 #include <iostream>  //cout, cerr osv                                               //REMOVE
+#include <QPlastiqueStyle>
 
 using namespace std;
 
@@ -15,6 +17,7 @@ MainWindow::MainWindow(QWidget* parent)
       settings(new Settings()),
       gui_settings(new Dialog_Settings(this, settings))
 {
+    //QApplication::setStyle(new QPlastiqueStyle);
     ui->setupUi(this);
     custom_setup();
     Database::open("default_db.sqlite");
@@ -26,6 +29,13 @@ MainWindow::~MainWindow()
     Database::close();
     delete ui;
     delete settings;
+    delete current_resP1;
+    delete current_resP2;
+    delete current_resP3;
+    delete current_resP4;
+    delete current_vehicleP1;
+    delete current_vehicleP5;
+
 }
 
 
@@ -48,21 +58,7 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::on_actionSettings_triggered()
 {
-    //settings = new Dialog_Settings(this);
-    //settings->show();
-
-    //int i = gui_settings->exec();
-    //gui_settings->
-    gui_settings->show();
-
-    //(void)i;
-
-    //if (settings->exec())
-    //{
-        // Ok knappen är tryckt här, spara inställningarna...
-    //}
-
-    //delete settings;
+    int i = gui_settings->exec();
 }
 
 void MainWindow::on_actionQuit_triggered()
@@ -93,8 +89,6 @@ void MainWindow::custom_setup()
     ui->tabWidgetMainTab->setCurrentIndex(0);
     ui->stackedWidgetP2toggle_date_string->setCurrentIndex(0);
     ui->stackedWidgetP4->setCurrentIndex(0);
-    //ui->pushButtonP1back->setDisabled(true);
-    //ui->pushButtonP1back->setDisabled(true);
 
     setup_tableWidgetP1S_Car();
     setup_tableWidgetP1M_Car();
@@ -128,8 +122,9 @@ void MainWindow::generate_vehicle_list(vector<Vehicle*> input, QTableWidget* tab
             cerr << "i = " << i << endl;
             current = input[i];
             tableWidget->setItem(i,0,new QTableWidgetItem(current->get_reg_nr(),0));
-            tableWidget->setItem(i,1,new QTableWidgetItem(current->get_brand(),0));
-            tableWidget->setItem(i,2,new QTableWidgetItem(current->get_model(),0));
+            tableWidget->setItem(i,1,new QTableWidgetItem(current->get_type(),0));
+            tableWidget->setItem(i,2,new QTableWidgetItem(current->get_brand(),0));
+            tableWidget->setItem(i,3,new QTableWidgetItem(current->get_model(),0));
         }
         tableWidget->sortItems(0);
     }
@@ -161,7 +156,7 @@ void MainWindow::generate_reservation_list(vector<Reservation*> input, QTableWid
             tableWidget->setItem(i,5,new QTableWidgetItem(current->get_end(),0));
 
         }
-        tableWidget->sortItems(0);
+        tableWidget->sortItems(4);
     }
     else
     {
@@ -173,5 +168,20 @@ void MainWindow::generate_reservation_list(vector<Reservation*> input, QTableWid
 
 
 void MainWindow::on_tabWidgetMainTab_currentChanged(int index)
-{}
+{
+    cerr << "Tab nr: " << index << endl;                                                                               // REMOVE
+
+    if (index == 2)
+    {
+        QString kommande = "kommande";
+        generate_reservation_list(search_resP3.status(kommande), ui->tableWidgetP3);
+    }
+    else if (index == 3)
+    {
+        QString aktiv = "aktiv";
+        generate_reservation_list(search_resP4.status(aktiv), ui->tableWidgetP4);
+    }
+    else if(index == 4)
+        on_pushButtonP5search_clicked();
+}
 

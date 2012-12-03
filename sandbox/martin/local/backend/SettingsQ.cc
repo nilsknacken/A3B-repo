@@ -13,7 +13,6 @@
 */
 
 #include <iostream>
-
 #include "SettingsQ.h"
 
 using namespace std;

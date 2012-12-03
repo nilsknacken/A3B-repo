@@ -17,8 +17,7 @@
 
 #include <QString>
 #include <stdexcept>
-
-#include "../database/DatabaseQ.h"
+#include "DatabaseQ.h"
 
 /////////////////////////////////////////////////////////////////////
 // Vehicle:
@@ -28,6 +27,8 @@ class Vehicle
 public:
     Vehicle(QString&, QString&, QString&,
             QString&, QString&, int, QString&);
+    Vehicle() = default;
+
     ~Vehicle() = default;
 
     void save();
@@ -49,7 +50,6 @@ public:
     QString get_damage()  const;
 
 private:
-    Vehicle()                          = delete;
     Vehicle(const Vehicle&)            = delete;
     Vehicle(Vehicle&&)                 = delete;
 

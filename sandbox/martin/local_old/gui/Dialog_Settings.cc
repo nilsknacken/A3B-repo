@@ -2,6 +2,7 @@
 #include "ui_Dialog_Settings.h"
 
 #include <iostream>                                                      //// REMOVE
+#include <QDialog>
 
 using namespace std;
 
@@ -25,9 +26,34 @@ Dialog_Settings::~Dialog_Settings()
 void Dialog_Settings::on_buttonBox_accepted()
 {
     //Spara inställningarna
+    QTime open       = ui->timeEditOpen  ->time();
+    QTime close      = ui->timeEditClose ->time();
+    QTime min_rental = ui->timeEditRental->time();
+
+    settings_->set_open_hour(open.hour());
+    settings_->set_open_min(open.minute());
+    settings_->set_close_hour(close.hour());
+    settings_->set_close_min(close.minute());
+    settings_->set_min_rental(min_rental.hour());
+
+    settings_->save();
 }
 
 void Dialog_Settings::on_pushButtonCleanDB_clicked()
 {
     //Rensa databas
+
+
+    int i = QMessageBox::warning(this,
+                                 QString::fromUtf8("Rensa databas"),
+                                 QString::fromUtf8("Du är påväg att rensa databasen.\nVill du verkligen göra det?"),
+                                 QMessageBox::Cancel, QMessageBox::Yes);
+    cerr << "i = " <<  i << endl;
+    if(i == 16384)
+    {
+        QMessageBox::information(this,
+                                 QString::fromUtf8("Bekräftelse"),
+                                 QString::fromUtf8("Nu är databasen rensad."),
+                                 QMessageBox::Ok);
+    }
 }
