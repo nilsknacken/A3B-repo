@@ -88,6 +88,7 @@ private:
     Reservation* current_resP4 = new Reservation();
 
     Vehicle* current_vehicleP1 = new Vehicle();
+    Vehicle* current_vehicleP4 = new Vehicle();
     Vehicle* current_vehicleP5 = new Vehicle();
 
     Search_vehicle search_vehicleP1S_Car;
@@ -106,6 +107,7 @@ private:
 
     Search_reservation search_resP3;
     Search_reservation search_resP4;
+    Search_vehicle search_vehicleP4;
     Search_vehicle search_vehicleP5;
 
     void generate_vehicle_list(std::vector<Vehicle*>, QTableWidget*);
@@ -136,5 +138,17 @@ private:
     const QString SS_SIDEMENU_ENABLE = "QPushButton {font: bold;color: white;}";
     const QString SS_SIDEMENU_DISABLE = "QPushButton {font: bold;color: grey;}";
 };
+
+// GUI error class
+class GUI_error : public std::logic_error
+{
+public:
+    explicit GUI_error(const std::string& what_arg) noexcept
+        : logic_error(what_arg) {}
+
+    explicit GUI_error(const char* what_arg) noexcept
+        : logic_error(what_arg) {}
+};
+
 
 #endif // MAINWINDOW_H

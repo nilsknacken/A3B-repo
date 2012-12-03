@@ -34,6 +34,7 @@ MainWindow::~MainWindow()
     delete current_resP3;
     delete current_resP4;
     delete current_vehicleP1;
+    delete current_vehicleP4;
     delete current_vehicleP5;
 
 }
@@ -114,6 +115,11 @@ void MainWindow::generate_vehicle_list(vector<Vehicle*> input, QTableWidget* tab
 {
     if(! input.empty())
     {
+        for (int i = tableWidget->rowCount()-1; i >= 0; --i)
+        {
+            tableWidget->removeRow(i);
+        }
+
         tableWidget->setRowCount(input.size());
 
         Vehicle* current = nullptr;
@@ -141,6 +147,11 @@ void MainWindow::generate_reservation_list(vector<Reservation*> input, QTableWid
 {
     if(! input.empty())
     {
+        for (int i = tableWidget->rowCount()-1; i >= 0; --i)
+        {
+            tableWidget->removeRow(i);
+        }
+
         tableWidget->setRowCount(input.size());
 
         Reservation* current = nullptr;

@@ -579,7 +579,7 @@ background: solid white; }</string>
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tabReservate">
        <property name="styleSheet">
@@ -2737,7 +2737,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
            </font>
           </property>
           <property name="currentIndex">
-           <number>2</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="pageP4page1">
            <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -2774,6 +2774,9 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                 <height>16777215</height>
                </size>
               </property>
+              <attribute name="horizontalHeaderMinimumSectionSize">
+               <number>14</number>
+              </attribute>
              </widget>
             </item>
             <item>
