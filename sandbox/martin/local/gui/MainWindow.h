@@ -82,6 +82,14 @@ private:
     Settings* settings;
     Dialog_Settings* gui_settings;
 
+    Reservation* current_resP1 = new Reservation();
+    Reservation* current_resP2 = new Reservation();
+    Reservation* current_resP3 = new Reservation();
+    Reservation* current_resP4 = new Reservation();
+
+    Vehicle* current_vehicleP1 = new Vehicle();
+    Vehicle* current_vehicleP5 = new Vehicle();
+
     Search_vehicle search_vehicleP1S_Car;
     Search_vehicle search_vehicleP1M_Car;
     Search_vehicle search_vehicleP1L_Car;

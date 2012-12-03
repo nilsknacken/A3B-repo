@@ -29,6 +29,7 @@ public:
                 QString&, QString&, QString&,
                 QString&, QString&, QString&,
                 QString&);
+    Reservation() = default;
     Reservation(const Reservation&)            = default;
     Reservation(Reservation&&)                 = default;
     ~Reservation()                             = default;
@@ -61,7 +62,6 @@ public:
     QString get_end()       const;
 
 private:
-    Reservation() = delete;
 
     void correct_reg_nr(const QString&);
     void correct_status(const QString&);

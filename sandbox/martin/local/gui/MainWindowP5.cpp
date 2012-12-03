@@ -24,8 +24,8 @@ void MainWindow::on_pushButtonP5add_clicked()
 
 void MainWindow::on_pushButtonP5change_clicked()
 {
-    // Detta ska bara vara möjligt om någonting är iklickat, att fixa
-    if(! pushbuttonP5change_clicked)
+    int currentRow = ui->tableWidgetP5->currentRow();
+    if (currentRow >= 0)
     {
         ui->tabWidgetMainTab->setTabEnabled(0, false);
         ui->tabWidgetMainTab->setTabEnabled(1, false);
