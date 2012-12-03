@@ -28,6 +28,7 @@ public:
     ~Settings() = default;
 
     void save();
+    void update();
 
     void set_open_hour(const int);
     void set_open_min(const int);
