@@ -20,15 +20,15 @@ MainWindow::MainWindow(QWidget* parent)
     //QApplication::setStyle(new QPlastiqueStyle);
     ui->setupUi(this);
     custom_setup();
-    Database::open("default_db.sqlite");
+
 }
 
 MainWindow::~MainWindow()
 {
     cerr << "~MainWindow()" << endl;                                                //REMOVE
-    Database::close();
     delete ui;
     delete settings;
+    delete gui_settings;
     delete current_resP1;
     delete current_resP2;
     delete current_resP3;
@@ -68,6 +68,14 @@ void MainWindow::on_actionQuit_triggered()
     delete about;
     delete gui_settings;
     delete settings;
+    delete current_resP1;
+    delete current_resP2;
+    delete current_resP3;
+    delete current_resP4;
+    delete current_vehicleP1;
+    delete current_vehicleP4;
+    delete current_vehicleP5;
+
     exit(0);
 }
 

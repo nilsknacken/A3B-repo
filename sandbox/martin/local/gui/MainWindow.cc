@@ -113,13 +113,13 @@ void MainWindow::custom_setup()
 
 void MainWindow::generate_vehicle_list(vector<Vehicle*> input, QTableWidget* tableWidget)
 {
+    for (int i = tableWidget->rowCount()-1; i >= 0; --i)
+    {
+        tableWidget->removeRow(i);
+    }
+
     if(! input.empty())
     {
-        for (int i = tableWidget->rowCount()-1; i >= 0; --i)
-        {
-            tableWidget->removeRow(i);
-        }
-
         tableWidget->setRowCount(input.size());
 
         Vehicle* current = nullptr;
@@ -145,13 +145,13 @@ void MainWindow::generate_vehicle_list(vector<Vehicle*> input, QTableWidget* tab
 
 void MainWindow::generate_reservation_list(vector<Reservation*> input, QTableWidget* tableWidget)
 {
-    if(! input.empty())
+    for (int i = tableWidget->rowCount()-1; i >= 0; --i)
     {
-        for (int i = tableWidget->rowCount()-1; i >= 0; --i)
-        {
-            tableWidget->removeRow(i);
-        }
+        tableWidget->removeRow(i);
+    }
 
+    if(! input.empty())
+    {        
         tableWidget->setRowCount(input.size());
 
         Reservation* current = nullptr;

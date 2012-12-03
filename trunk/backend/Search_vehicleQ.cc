@@ -175,11 +175,19 @@ void
 Search_vehicle::
 clear()
 {
-    vector<Vehicle*>::iterator i;
+    /*vector<Vehicle*>::iterator i;
 
     for(i = search_result.begin(); i < search_result.end(); i++)
     {
         delete *i;
     }
     search_result.clear();
+
+
+    for (int i = 0; i < search_result.size(); ++i)
+    {
+        delete search_result[i];
+        search_result[i] = nullptr;
+    }
+*/
 }
