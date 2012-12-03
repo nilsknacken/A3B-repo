@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <QString>
 #include <vector>
+#include <iostream> //!!!!!!!!!!!!!!!!!
 #include "ReservationQ.h"
 #include "Search_reservationQ.h"
 
@@ -163,18 +164,10 @@ void
 Search_reservation::
 clear()
 {
-   /*vector<Reservation*>::iterator i;
+   while(! search_result.empty())
+   {
+       delete search_result.back();
 
-    for( i = search_result.begin(); i < search_result.end(); i++)
-    {
-        delete *i;
-    }
-    search_result.clear();
-    */
-
-   for (int i = 0; i < search_result.size(); ++i)
-    {
-        delete search_result[i];
-       search_result[i] = nullptr;
+       search_result.pop_back();
     }
 }
