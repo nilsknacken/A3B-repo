@@ -6,7 +6,49 @@
 
 ////// Tab 2 - Search
 void MainWindow::on_pushButtonP2search_clicked()
-{}
+{
+/*
+    if(search_index == "res_nr")
+    {
+        QString res_nr;
+        search_resP2bok_nr.res_nr(res_nr);
+    }
+
+    else if(search_index == "reg_nr")
+    {
+        QString reg_nr;
+        search_resP2reg_nr.reg_nr(reg_nr);
+    }
+
+    else if(search_index == "name")
+    {
+        QString name;
+        search_resP2name.name(name);
+    }
+
+    else if(search_index == "per_nr")
+    {
+        QString per_nr;
+        search_resP2per_nr.per_nr(per_nr);
+    }
+
+    else if(search_index == "phone_nr")
+    {
+        QString phone_nr;
+        search_resP2phone_nr.phone_nr(phone_nr);
+    }
+
+    else if(search_index == "date")
+    {
+        QString start;
+        QString end;
+        search_resP2date.start_end(start, end);
+    }
+
+    else
+        throw GUI_error("Detta ska inte hända!")
+*/
+}
 
 void MainWindow::on_pushButtonP2delete_clicked()
 {}
@@ -28,6 +70,7 @@ void MainWindow::on_pushButtonP2bok_nr_clicked()
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2phone_nr);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2date);
 
+    //search_index = "res_nr";
 }
 
 void MainWindow::on_pushButtonP2reg_nr_clicked()
@@ -40,6 +83,8 @@ void MainWindow::on_pushButtonP2reg_nr_clicked()
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2per_nr);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2phone_nr);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2date);
+
+    //search_index = "reg_nr";
 }
 
 void MainWindow::on_pushButtonP2name_clicked()
@@ -52,6 +97,8 @@ void MainWindow::on_pushButtonP2name_clicked()
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2per_nr);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2phone_nr);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2date);
+
+    //search_index = "name";
 }
 
 void MainWindow::on_pushButtonP2per_nr_clicked()
@@ -64,6 +111,8 @@ void MainWindow::on_pushButtonP2per_nr_clicked()
     set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2per_nr);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2phone_nr);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2date);
+
+    //search_index = "per_nr";
 }
 
 void MainWindow::on_pushButtonP2phone_nr_clicked()
@@ -76,6 +125,8 @@ void MainWindow::on_pushButtonP2phone_nr_clicked()
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2per_nr);
     set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2phone_nr);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2date);
+
+    //search_index = "phone_nr";
 }
 
 
@@ -89,6 +140,8 @@ void MainWindow::on_pushButtonP2date_clicked()
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2per_nr);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2phone_nr);
     set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2date);
+
+    //search_index = "date";
 }
 
 void MainWindow::setup_tableWidgetP2bok_nr() const
