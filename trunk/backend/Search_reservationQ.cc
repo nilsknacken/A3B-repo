@@ -23,6 +23,13 @@ using namespace std;
 /////////////////////////////////////////////////////////////////////
 // Search_reservation:
 /////////////////////////////////////////////////////////////////////
+// First off, do delete on every pointer in the vector.
+// Then clear the vector.
+Search_reservation::
+~Search_reservation()
+{
+    clear();
+}
 
 // Search for a specific reservation by it's res_nr in the database.
 vector<Reservation*> 
@@ -117,22 +124,29 @@ void
 Search_reservation::
 create_result(vector<vector<QString>>& str_vector)
 {
-    clear();
-    vector<vector<QString>>::iterator it;
-
-    for(it = str_vector.begin(); it < str_vector.end(); it++)
+    try
     {
-        vector<QString> current = *it;
-        int res_nr = current[0].toInt();
+        clear();
+        vector<vector<QString>>::iterator it;
 
-        if(current.size() == 10)
+        for(it = str_vector.begin(); it < str_vector.end(); it++)
         {
-            search_result.push_back(new Reservation(res_nr, current[1],
-                                                    current[2], current[3], current[4], current[5],
-                                                    current[6], current[7], current[8], current[9]));
+            vector<QString> current = *it;
+            int res_nr = current[0].toInt();
+
+            if(current.size() == 10)
+            {
+                search_result.push_back(new Reservation(res_nr, current[1],
+                                                        current[2], current[3], current[4], current[5],
+                                                        current[6], current[7], current[8], current[9]));
+            }
+            else
+                throw search_reservation_error("The lenght of the vector is not 10.");
         }
-        else
-            throw search_reservation_error("The lenght of the vector is not 10.");
+    }
+    catch(const bad_alloc& ba)
+    {
+        clear();
     }
 }
 
@@ -149,5 +163,11 @@ void
 Search_reservation::
 clear()
 {
+    vector<Reservation*>::iterator i;
+
+    for(i = search_result.begin(); i < search_result.end(); i++)
+    {
+        delete *i;
+    }
     search_result.clear();
 }

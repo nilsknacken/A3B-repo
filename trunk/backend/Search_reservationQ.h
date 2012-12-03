@@ -28,7 +28,7 @@ class Search_reservation
 {
 public:
     Search_reservation()  = default;
-    ~Search_reservation() = default;
+    ~Search_reservation();
 
     std::vector<Reservation*> res_nr(int);
     std::vector<Reservation*> reg_nr(QString&);
