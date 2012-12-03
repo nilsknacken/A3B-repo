@@ -113,24 +113,40 @@ void MainWindow::custom_setup()
 
 void MainWindow::generate_vehicle_list(vector<Vehicle*> input, QTableWidget* tableWidget)
 {
-    for (int i = tableWidget->rowCount()-1; i >= 0; --i)
+   /* for (int i = tableWidget->rowCount()-1; i >= 0; --i)
     {
-        tableWidget->removeRow(i);
-    }
+        QTableWidgetItem*  item = tableWidget->item(0,0);
+        QString reg = item->text();
+        QMessageBox::information(this,
+                                 "huvud",
+                                 reg,
+                                 QMessageBox::Ok);
+        tableWidget->removeRow(0);
+    }*/
+    tableWidget->clearContents();
 
     if(! input.empty())
     {
+        cerr <<"not empty\n";
         tableWidget->setRowCount(input.size());
+
 
         Vehicle* current = nullptr;
         for(unsigned long i = 0; i < input.size(); i++)
         {
-            cerr << "i = " << i << endl;
             current = input[i];
+            QTableWidgetItem* item = new QTableWidgetItem(current->get_type(),0);
             tableWidget->setItem(i,0,new QTableWidgetItem(current->get_reg_nr(),0));
-            tableWidget->setItem(i,1,new QTableWidgetItem(current->get_type(),0));
+            tableWidget->setItem(i,1,item);
             tableWidget->setItem(i,2,new QTableWidgetItem(current->get_brand(),0));
             tableWidget->setItem(i,3,new QTableWidgetItem(current->get_model(),0));
+            QString reg = current->get_model();
+            QMessageBox::information(this,
+                                     "huvud",
+                                     reg,
+                                     QMessageBox::Ok);
+
+
         }
         tableWidget->sortItems(0);
     }
