@@ -90,6 +90,17 @@ void MainWindow::on_pushButtonP4next_clicked()
     else if(index == 2)
     {
         //Bekräftelse
+
+        QString avslutad = "avslutad";
+        QString ledig = "ledig";
+        current_resP4->set_status(avslutad);
+        current_vehicleP4->set_status(ledig);
+        QDateTime* date_time = new QDateTime();
+        QString now = date_time->currentDateTime().toString(date_time_format);
+        current_resP4->set_end(now);
+        current_resP4->save();
+        current_vehicleP4->save();
+
         QString check_in_done = QString::fromUtf8("Följande bokning har återlämnats\n\n"
                                        "Reservations nummer: %1\n"
                                        "Namn: %2\n"
@@ -104,16 +115,11 @@ void MainWindow::on_pushButtonP4next_clicked()
                                                            current_vehicleP4->get_reg_nr(),
                                                            current_vehicleP4->get_brand(),
                                                            current_vehicleP4->get_model());
-        QString avslutad = "avslutad";
-        QString ledig = "ledig";
-        current_resP4->set_status(avslutad);
-        current_vehicleP4->set_status(ledig);
-        current_resP4->save();
-        current_vehicleP4->save();
         QMessageBox::information(this,
                                  QString::fromUtf8("Återlämning genomförd!"),
                                  check_in_done,
                                  QMessageBox::Ok);
+
 
         ui->pushButtonP4next->setText(QString::fromUtf8("Nästa >"));
         QString aktiv = "aktiv";
