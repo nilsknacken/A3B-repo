@@ -579,7 +579,7 @@ background: solid white; }</string>
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="tabReservate">
        <property name="styleSheet">
@@ -3235,7 +3235,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
            </spacer>
           </item>
           <item row="0" column="1">
-           <widget class="QLabel" name="labelP5regnr">
+           <widget class="QLabel" name="labelP5regnr_topic">
             <property name="font">
              <font>
               <pointsize>12</pointsize>
@@ -3277,7 +3277,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <layout class="QHBoxLayout" name="horizontalLayoutP5middle">
           <property name="spacing">
            <number>0</number>
           </property>
@@ -3306,7 +3306,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
              <number>9</number>
             </property>
             <item row="4" column="0" colspan="2">
-             <widget class="QLabel" name="label_18">
+             <widget class="QLabel" name="labelP5mileage">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -3332,7 +3332,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
              </widget>
             </item>
             <item row="1" column="0" colspan="2">
-             <widget class="QLabel" name="label_4">
+             <widget class="QLabel" name="labelP5fabric">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -3358,7 +3358,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
              </widget>
             </item>
             <item row="0" column="0" colspan="2">
-             <widget class="QLabel" name="label_3">
+             <widget class="QLabel" name="labelP5regnr">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -3384,7 +3384,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
              </widget>
             </item>
             <item row="5" column="1" rowspan="2" colspan="2">
-             <widget class="QPlainTextEdit" name="plainTextEditP5damages">
+             <widget class="QPlainTextEdit" name="plainTextEditP5damages_var">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
                 <horstretch>0</horstretch>
@@ -3412,7 +3412,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
              </widget>
             </item>
             <item row="5" column="0">
-             <widget class="QLabel" name="label_19">
+             <widget class="QLabel" name="labelP5damages">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -3438,7 +3438,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
              </widget>
             </item>
             <item row="4" column="2">
-             <widget class="QLineEdit" name="lineEditP5mileage">
+             <widget class="QLineEdit" name="lineEditP5mileage_var">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -3463,7 +3463,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
              </widget>
             </item>
             <item row="3" column="2">
-             <widget class="QLabel" name="label_20">
+             <widget class="QLabel" name="labelP5type_var">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -3488,7 +3488,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
              </widget>
             </item>
             <item row="0" column="2">
-             <widget class="QLabel" name="label_21">
+             <widget class="QLabel" name="labelP5regnr_var">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -3513,7 +3513,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
              </widget>
             </item>
             <item row="1" column="2">
-             <widget class="QLabel" name="label_22">
+             <widget class="QLabel" name="labelP5fabric_var">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -3538,7 +3538,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
              </widget>
             </item>
             <item row="2" column="2">
-             <widget class="QLabel" name="label_23">
+             <widget class="QLabel" name="labelP5model_var">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -3563,7 +3563,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
              </widget>
             </item>
             <item row="3" column="0" colspan="2">
-             <widget class="QLabel" name="label_17">
+             <widget class="QLabel" name="labelP5type">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -3589,7 +3589,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
              </widget>
             </item>
             <item row="2" column="0" colspan="2">
-             <widget class="QLabel" name="label_5">
+             <widget class="QLabel" name="labelP5model">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -3620,14 +3620,14 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
         </item>
         <item>
          <layout class="QGridLayout" name="gridLayoutP5bottom">
-          <item row="0" column="3">
+          <item row="0" column="4">
            <widget class="QPushButton" name="pushButtonP5add">
             <property name="text">
              <string>Lägg till &gt;</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="4">
+          <item row="0" column="5">
            <spacer name="verticalSpacer_16">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
@@ -3656,20 +3656,33 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
             </property>
            </spacer>
           </item>
-          <item row="0" column="2">
-           <widget class="QPushButton" name="pushButtonP5change">
+          <item row="0" column="3">
+           <widget class="QPushButton" name="pushButtonP5change_and_save">
             <property name="enabled">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
             <property name="text">
              <string>Ändra</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QPushButton" name="pushButtonP5remove">
+          <item row="0" column="2">
+           <widget class="QPushButton" name="pushButtonP5remove_and_undo">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Ta Bort</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="pushButtonP5back">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>&lt; Bakåt</string>
             </property>
            </widget>
           </item>
@@ -3716,7 +3729,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
