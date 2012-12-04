@@ -3,7 +3,7 @@
 #include "SettingsQ.h"
 
 #include <iostream>  //cout, cerr osv                                               //REMOVE
-#include <QPlastiqueStyle>
+//#include <QPlastiqueStyle>
 
 using namespace std;
 

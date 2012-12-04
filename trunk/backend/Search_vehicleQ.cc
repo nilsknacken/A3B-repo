@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <QString>
 #include <vector>
+#include <iostream> // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 #include "VehicleQ.h"
 #include "Search_vehicleQ.h"
 
@@ -138,7 +139,6 @@ create_result(vector<vector<QString>>& str_vector)
 {
     try
     {
-        clear();
         vector<vector<QString>>::iterator it;
 
         for(it = str_vector.begin(); it < str_vector.end(); it++)
@@ -175,19 +175,10 @@ void
 Search_vehicle::
 clear()
 {
-    /*vector<Vehicle*>::iterator i;
-
-    for(i = search_result.begin(); i < search_result.end(); i++)
+    while(! search_result.empty())
     {
-        delete *i;
-    }
-    search_result.clear();
+        delete search_result.back();
 
-
-    for (int i = 0; i < search_result.size(); ++i)
-    {
-        delete search_result[i];
-        search_result[i] = nullptr;
-    }
-*/
+        search_result.pop_back();
+     }
 }
