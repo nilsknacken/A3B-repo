@@ -3,7 +3,7 @@
 #include "SettingsQ.h"
 
 #include <iostream>  //cout, cerr osv                                               //REMOVE
-#include <QPlastiqueStyle>
+//#include <QPlastiqueStyle>
 
 using namespace std;
 
@@ -20,15 +20,15 @@ MainWindow::MainWindow(QWidget* parent)
     //QApplication::setStyle(new QPlastiqueStyle);
     ui->setupUi(this);
     custom_setup();
-    Database::open("default_db.sqlite");
+
 }
 
 MainWindow::~MainWindow()
 {
     cerr << "~MainWindow()" << endl;                                                //REMOVE
-    Database::close();
     delete ui;
     delete settings;
+    delete gui_settings;
     delete current_resP1;
     delete current_resP2;
     delete current_resP3;
@@ -68,6 +68,14 @@ void MainWindow::on_actionQuit_triggered()
     delete about;
     delete gui_settings;
     delete settings;
+    delete current_resP1;
+    delete current_resP2;
+    delete current_resP3;
+    delete current_resP4;
+    delete current_vehicleP1;
+    delete current_vehicleP4;
+    delete current_vehicleP5;
+
     exit(0);
 }
 
@@ -113,47 +121,41 @@ void MainWindow::custom_setup()
 
 void MainWindow::generate_vehicle_list(vector<Vehicle*> input, QTableWidget* tableWidget)
 {
-   /* for (int i = tableWidget->rowCount()-1; i >= 0; --i)
-    {
-        QTableWidgetItem*  item = tableWidget->item(0,0);
-        QString reg = item->text();
-        QMessageBox::information(this,
-                                 "huvud",
-                                 reg,
-                                 QMessageBox::Ok);
-        tableWidget->removeRow(0);
-    }*/
     tableWidget->clearContents();
 
     if(! input.empty())
     {
-        cerr <<"not empty\n";
         tableWidget->setRowCount(input.size());
-
-
         Vehicle* current = nullptr;
+
+        tableWidget->setSortingEnabled(false);
         for(unsigned long i = 0; i < input.size(); i++)
         {
             current = input[i];
-            QTableWidgetItem* item = new QTableWidgetItem(current->get_type(),0);
+
             tableWidget->setItem(i,0,new QTableWidgetItem(current->get_reg_nr(),0));
-            tableWidget->setItem(i,1,item);
+            tableWidget->setItem(i,1,new QTableWidgetItem(current->get_type(),0));
             tableWidget->setItem(i,2,new QTableWidgetItem(current->get_brand(),0));
             tableWidget->setItem(i,3,new QTableWidgetItem(current->get_model(),0));
-            QString reg = current->get_model();
-            QMessageBox::information(this,
-                                     "huvud",
-                                     reg,
-                                     QMessageBox::Ok);
-
-
         }
+        tableWidget->setSortingEnabled(true);
         tableWidget->sortItems(0);
     }
     else
     {
         tableWidget->setRowCount(1);
-        tableWidget->setItem(0,0,new QTableWidgetItem("Ingen post funnen!",0));
+
+        QTableWidgetItem* reg = new QTableWidgetItem();
+        QTableWidgetItem* type = new QTableWidgetItem();
+        QTableWidgetItem* brand = new QTableWidgetItem();
+
+        reg->setText("Ingen");
+        type->setText("post");
+        brand->setText("funnen!");
+
+        tableWidget->setItem(0, 0, reg);
+        tableWidget->setItem(0, 1, type);
+        tableWidget->setItem(0, 2, brand);
 
     }
 }
@@ -161,19 +163,21 @@ void MainWindow::generate_vehicle_list(vector<Vehicle*> input, QTableWidget* tab
 
 void MainWindow::generate_reservation_list(vector<Reservation*> input, QTableWidget* tableWidget)
 {
-    for (int i = tableWidget->rowCount()-1; i >= 0; --i)
-    {
-        tableWidget->removeRow(i);
-    }
+    tableWidget->clearContents();
 
     if(! input.empty())
-    {        
+    {
+        tableWidget->setSortingEnabled(false);
+        for (int i = tableWidget->rowCount()-1; i >= 0; --i)
+        {
+            tableWidget->removeRow(i);
+        }
+
         tableWidget->setRowCount(input.size());
 
         Reservation* current = nullptr;
         for(unsigned long i = 0; i < input.size(); i++)
         {
-            cerr << "i = " << i << endl;
             current = input[i];
             tableWidget->setItem(i,0,new QTableWidgetItem(QString::number(current->get_res_nr()),0));
             tableWidget->setItem(i,1,new QTableWidgetItem(current->get_reg_nr(),0));
@@ -183,12 +187,24 @@ void MainWindow::generate_reservation_list(vector<Reservation*> input, QTableWid
             tableWidget->setItem(i,5,new QTableWidgetItem(current->get_end(),0));
 
         }
-        tableWidget->sortItems(4);
+        tableWidget->setSortingEnabled(true);
+      //  tableWidget->sortItems(4);
     }
     else
     {
         tableWidget->setRowCount(1);
-        tableWidget->setItem(0,0,new QTableWidgetItem("Ingen post funnen!",0));
+
+        QTableWidgetItem* reg = new QTableWidgetItem();
+        QTableWidgetItem* name = new QTableWidgetItem();
+        QTableWidgetItem* status = new QTableWidgetItem();
+
+        reg->setText("Ingen");
+        name->setText("post");
+        status->setText("funnen!");
+
+        tableWidget->setItem(0, 0, reg);
+        tableWidget->setItem(0, 1, name);
+        tableWidget->setItem(0, 2, status);
 
     }
 }
@@ -196,19 +212,26 @@ void MainWindow::generate_reservation_list(vector<Reservation*> input, QTableWid
 
 void MainWindow::on_tabWidgetMainTab_currentChanged(int index)
 {
-    cerr << "Tab nr: " << index << endl;                                                                               // REMOVE
+    if(index == 0) // bokning
+    {
 
-    if (index == 2)
+    }
+    else if (index == 1) //sök
+    {
+
+    }
+    else if (index == 2) // lämna ut
     {
         QString kommande = "kommande";
         generate_reservation_list(search_resP3.status(kommande), ui->tableWidgetP3);
     }
-    else if (index == 3)
+    else if (index == 3) // återlämna
     {
         QString aktiv = "aktiv";
         generate_reservation_list(search_resP4.status(aktiv), ui->tableWidgetP4);
     }
-    else if(index == 4)
+    else if(index == 4) // fordon
         on_pushButtonP5search_clicked();
 }
+
 

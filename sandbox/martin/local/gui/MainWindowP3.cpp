@@ -57,6 +57,9 @@ void MainWindow::setup_tableWidgetP3() const
     ui->tableWidgetP3->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     ui->tableWidgetP3->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidgetP3->setSortingEnabled(true);
-    ui->tableWidgetP4->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+
+    ui->tableWidgetP3->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+
+    ui->tableWidgetP3->sortItems(4); //sortera på starttid
 
 }

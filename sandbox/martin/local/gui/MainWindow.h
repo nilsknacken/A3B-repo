@@ -71,8 +71,9 @@ private slots:
     void on_pushButtonP5search_clicked();
     void on_tableWidgetP5_cellClicked(int row, int column);
     void on_pushButtonP5add_clicked();
-    void on_pushButtonP5change_clicked();
-    void on_pushButtonP5remove_clicked();
+    void on_pushButtonP5change_and_save_clicked();
+    void on_pushButtonP5remove_and_undo_clicked();
+    void on_pushButtonP5back_clicked();
 
 private:
     bool pushbuttonP5change_clicked = false;
@@ -115,22 +116,24 @@ private:
 
     void custom_setup();
 
-    void setup_tableWidgetP1S_Car() const;
-    void setup_tableWidgetP1M_Car() const;
-    void setup_tableWidgetP1L_Car() const;
-    void setup_tableWidgetP1S_Truck() const;
-    void setup_tableWidgetP1L_Truck() const;
+    void setup_tableWidgetP1S_Car()     const;
+    void setup_tableWidgetP1M_Car()     const;
+    void setup_tableWidgetP1L_Car()     const;
+    void setup_tableWidgetP1S_Truck()   const;
+    void setup_tableWidgetP1L_Truck()   const;
 
-    void setup_tableWidgetP2bok_nr() const;
-    void setup_tableWidgetP2reg_nr() const;
-    void setup_tableWidgetP2name() const;
-    void setup_tableWidgetP2per_nr() const;
-    void setup_tableWidgetP2phone_nr() const;
-    void setup_tableWidgetP2date() const;
+    void setup_tableWidgetP2bok_nr()    const;
+    void setup_tableWidgetP2reg_nr()    const;
+    void setup_tableWidgetP2name()      const;
+    void setup_tableWidgetP2per_nr()    const;
+    void setup_tableWidgetP2phone_nr()  const;
+    void setup_tableWidgetP2date()      const;
 
-    void setup_tableWidgetP3() const;
-    void setup_tableWidgetP4() const;
-    void setup_tableWidgetP5() const;
+    void setup_tableWidgetP3()          const;
+    void setup_tableWidgetP4()          const;
+    void setup_tableWidgetP5()          const;
+
+    void P5_change_appearance(bool)     const;
 
 
     // StyleSheet

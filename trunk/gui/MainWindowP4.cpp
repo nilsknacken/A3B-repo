@@ -163,6 +163,7 @@ void MainWindow::setup_tableWidgetP4() const
     ui->tableWidgetP4->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidgetP4->setSortingEnabled(true);
     ui->tableWidgetP4->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    ui->tableWidgetP4->sortItems(5); //sortera på sluttid
 
     ui->textEditP4_conf->setDisabled(true); // tillåt ej edit av bekräftnings rutan
 }

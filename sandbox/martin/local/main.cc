@@ -10,18 +10,23 @@
 
 int main(int argc, char *argv[])
 {
+    int i;
+
     try
     {
+        Database::open("default_db.sqlite");
+
         QApplication a(argc, argv);
         MainWindow w;
         w.show();
-
-        return a.exec();
+        i =  a.exec();
     }
     catch(std::exception& e)
     {
         std::cerr << e.what() << std::endl;
     }
 
+    Database::close();
+    return i;
 
 }

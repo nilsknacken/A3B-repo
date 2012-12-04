@@ -121,31 +121,41 @@ void MainWindow::custom_setup()
 
 void MainWindow::generate_vehicle_list(vector<Vehicle*> input, QTableWidget* tableWidget)
 {
+    tableWidget->clearContents();
+
     if(! input.empty())
     {
-        for (int i = tableWidget->rowCount()-1; i >= 0; --i)
-        {
-            tableWidget->removeRow(i);
-        }
-
         tableWidget->setRowCount(input.size());
-
         Vehicle* current = nullptr;
+
+        tableWidget->setSortingEnabled(false);
         for(unsigned long i = 0; i < input.size(); i++)
         {
-            cerr << "i = " << i << endl;
             current = input[i];
+
             tableWidget->setItem(i,0,new QTableWidgetItem(current->get_reg_nr(),0));
             tableWidget->setItem(i,1,new QTableWidgetItem(current->get_type(),0));
             tableWidget->setItem(i,2,new QTableWidgetItem(current->get_brand(),0));
             tableWidget->setItem(i,3,new QTableWidgetItem(current->get_model(),0));
         }
+        tableWidget->setSortingEnabled(true);
         tableWidget->sortItems(0);
     }
     else
     {
         tableWidget->setRowCount(1);
-        tableWidget->setItem(0,0,new QTableWidgetItem("Ingen post funnen!",0));
+
+        QTableWidgetItem* reg = new QTableWidgetItem();
+        QTableWidgetItem* type = new QTableWidgetItem();
+        QTableWidgetItem* brand = new QTableWidgetItem();
+
+        reg->setText("Ingen");
+        type->setText("post");
+        brand->setText("funnen!");
+
+        tableWidget->setItem(0, 0, reg);
+        tableWidget->setItem(0, 1, type);
+        tableWidget->setItem(0, 2, brand);
 
     }
 }
@@ -153,8 +163,11 @@ void MainWindow::generate_vehicle_list(vector<Vehicle*> input, QTableWidget* tab
 
 void MainWindow::generate_reservation_list(vector<Reservation*> input, QTableWidget* tableWidget)
 {
+    tableWidget->clearContents();
+
     if(! input.empty())
     {
+        tableWidget->setSortingEnabled(false);
         for (int i = tableWidget->rowCount()-1; i >= 0; --i)
         {
             tableWidget->removeRow(i);
@@ -165,7 +178,6 @@ void MainWindow::generate_reservation_list(vector<Reservation*> input, QTableWid
         Reservation* current = nullptr;
         for(unsigned long i = 0; i < input.size(); i++)
         {
-            cerr << "i = " << i << endl;
             current = input[i];
             tableWidget->setItem(i,0,new QTableWidgetItem(QString::number(current->get_res_nr()),0));
             tableWidget->setItem(i,1,new QTableWidgetItem(current->get_reg_nr(),0));
@@ -175,12 +187,24 @@ void MainWindow::generate_reservation_list(vector<Reservation*> input, QTableWid
             tableWidget->setItem(i,5,new QTableWidgetItem(current->get_end(),0));
 
         }
-        tableWidget->sortItems(4);
+        tableWidget->setSortingEnabled(true);
+      //  tableWidget->sortItems(4);
     }
     else
     {
         tableWidget->setRowCount(1);
-        tableWidget->setItem(0,0,new QTableWidgetItem("Ingen post funnen!",0));
+
+        QTableWidgetItem* reg = new QTableWidgetItem();
+        QTableWidgetItem* name = new QTableWidgetItem();
+        QTableWidgetItem* status = new QTableWidgetItem();
+
+        reg->setText("Ingen");
+        name->setText("post");
+        status->setText("funnen!");
+
+        tableWidget->setItem(0, 0, reg);
+        tableWidget->setItem(0, 1, name);
+        tableWidget->setItem(0, 2, status);
 
     }
 }
@@ -188,19 +212,26 @@ void MainWindow::generate_reservation_list(vector<Reservation*> input, QTableWid
 
 void MainWindow::on_tabWidgetMainTab_currentChanged(int index)
 {
-    cerr << "Tab nr: " << index << endl;                                                                               // REMOVE
+    if(index == 0) // bokning
+    {
 
-    if (index == 2)
+    }
+    else if (index == 1) //sök
+    {
+
+    }
+    else if (index == 2) // lämna ut
     {
         QString kommande = "kommande";
         generate_reservation_list(search_resP3.status(kommande), ui->tableWidgetP3);
     }
-    else if (index == 3)
+    else if (index == 3) // återlämna
     {
         QString aktiv = "aktiv";
         generate_reservation_list(search_resP4.status(aktiv), ui->tableWidgetP4);
     }
-    else if(index == 4)
+    else if(index == 4) // fordon
         on_pushButtonP5search_clicked();
 }
+
 
