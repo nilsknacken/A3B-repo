@@ -51,6 +51,7 @@ private slots:
     void on_pushButtonP2delete_clicked();
     void on_pushButtonP2change_clicked();
     void on_pushButtonP2show_clicked();
+    void on_dateEditP2from_dateChanged(const QDate &date);
     void on_pushButtonP2bok_nr_clicked();
     void on_pushButtonP2reg_nr_clicked();
     void on_pushButtonP2name_clicked();
@@ -74,6 +75,7 @@ private slots:
     void on_pushButtonP5change_and_save_clicked();
     void on_pushButtonP5remove_and_undo_clicked();
     void on_pushButtonP5back_clicked();
+
 
 private:
     bool pushbuttonP5change_clicked = false;
@@ -140,6 +142,9 @@ private:
     void set_stylesheet(const QString&, QPushButton*&) const;
     const QString SS_SIDEMENU_ENABLE = "QPushButton {font: bold;color: white;}";
     const QString SS_SIDEMENU_DISABLE = "QPushButton {font: bold;color: grey;}";
+
+    const QString date_format = "yyyy-MM-dd";
+    const QString date_time_format = "yyyy-mm-dd hh:mm";
 };
 
 // GUI error class

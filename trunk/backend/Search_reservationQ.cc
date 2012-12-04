@@ -15,7 +15,6 @@
 #include <stdlib.h>
 #include <QString>
 #include <vector>
-#include <iostream> //!!!!!!!!!!!!!!!!!
 #include "ReservationQ.h"
 #include "Search_reservationQ.h"
 
@@ -24,12 +23,18 @@ using namespace std;
 /////////////////////////////////////////////////////////////////////
 // Search_reservation:
 /////////////////////////////////////////////////////////////////////
-// First off, do delete on every pointer in the vector.
-// Then clear the vector.
+
+// Search for all  reservations in the database.
+vector<Reservation*>
 Search_reservation::
-~Search_reservation()
+all()
 {
-    clear();
+    vector<vector<QString>> reservation_str_vector =
+            Database::reservation_search("all", "value");
+
+    create_result(reservation_str_vector);
+
+    return search_result;
 }
 
 // Search for a specific reservation by it's res_nr in the database.
@@ -125,29 +130,22 @@ void
 Search_reservation::
 create_result(vector<vector<QString>>& str_vector)
 {
-    try
-    {
-        clear();
-        vector<vector<QString>>::iterator it;
+    clear();
+    vector<vector<QString>>::iterator it;
 
-        for(it = str_vector.begin(); it < str_vector.end(); it++)
+    for(it = str_vector.begin(); it < str_vector.end(); it++)
+    {
+        vector<QString> current = *it;
+        int res_nr = current[0].toInt();
+
+        if(current.size() == 10)
         {
-            vector<QString> current = *it;
-            int res_nr = current[0].toInt();
-
-            if(current.size() == 10)
-            {
-                search_result.push_back(new Reservation(res_nr, current[1],
-                                                        current[2], current[3], current[4], current[5],
-                                                        current[6], current[7], current[8], current[9]));
-            }
-            else
-                throw search_reservation_error("The lenght of the vector is not 10.");
+            search_result.push_back(new Reservation(res_nr, current[1],
+                                                    current[2], current[3], current[4], current[5],
+                                                    current[6], current[7], current[8], current[9]));
         }
-    }
-    catch(const bad_alloc& ba)
-    {
-        clear();
+        else
+            throw search_reservation_error("The lenght of the vector is not 10.");
     }
 }
 
@@ -164,10 +162,5 @@ void
 Search_reservation::
 clear()
 {
-   while(! search_result.empty())
-   {
-       delete search_result.back();
-
-       search_result.pop_back();
-    }
+    search_result.clear();
 }

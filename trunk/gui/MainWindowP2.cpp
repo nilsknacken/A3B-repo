@@ -2,52 +2,64 @@
 #include "ui_MainWindow.h"
 
 
-
-
 ////// Tab 2 - Search
 void MainWindow::on_pushButtonP2search_clicked()
 {
-/*
-    if(search_index == "res_nr")
+    int search_index = ui->stackedWidgetP2->currentIndex();
+
+    if(search_index == 0) // bok nr
     {
-        QString res_nr;
-        search_resP2bok_nr.res_nr(res_nr);
+        QString res_nr = ui->lineEditSearch->text();
+        if (res_nr.isEmpty())
+            generate_reservation_list(search_resP2bok_nr.all(), ui->tableWidgetP2bok_nr);
+        else
+            generate_reservation_list(search_resP2bok_nr.res_nr(res_nr.toInt()), ui->tableWidgetP2bok_nr);
     }
 
-    else if(search_index == "reg_nr")
+    else if(search_index == 1) // reg nr
     {
-        QString reg_nr;
-        search_resP2reg_nr.reg_nr(reg_nr);
+        QString reg_nr = ui->lineEditSearch->text();
+        if (reg_nr.isEmpty())
+            generate_reservation_list(search_resP2reg_nr.all(), ui->tableWidgetP2reg_nr);
+        else
+            generate_reservation_list(search_resP2reg_nr.reg_nr(reg_nr), ui->tableWidgetP2reg_nr);
     }
 
-    else if(search_index == "name")
+    else if(search_index == 2) //namn
     {
-        QString name;
-        search_resP2name.name(name);
+        QString name = ui->lineEditSearch->text();
+        if (name.isEmpty())
+            generate_reservation_list(search_resP2name.all(), ui->tableWidgetP2name);
+        else
+            generate_reservation_list(search_resP2name.name(name), ui->tableWidgetP2name);
     }
 
-    else if(search_index == "per_nr")
+    else if(search_index == 4) //tel
     {
-        QString per_nr;
-        search_resP2per_nr.per_nr(per_nr);
+        QString phone_nr = ui->lineEditSearch->text();
+        if (phone_nr.isEmpty())
+            generate_reservation_list(search_resP2phone_nr.all(), ui->tableWidgetP2phone_nr);
+        else
+            generate_reservation_list(search_resP2phone_nr.tel(phone_nr), ui->tableWidgetP2phone_nr);
     }
 
-    else if(search_index == "phone_nr")
+    else if(search_index == 5) //datum
     {
-        QString phone_nr;
-        search_resP2phone_nr.phone_nr(phone_nr);
-    }
+        QString start = ui->dateEditP2from->date().toString(date_format);
+        QString end = ui->dateEditP2to->date().toString(date_format);
+        start.append(" 00:01");
+        end.append(" 23:59");
+        QMessageBox::information(this,
+                                 QString::fromUtf8("Återlämning genomförd!"),
+                                 QString::fromUtf8("söker mellan %1 och %2").arg(start, end),
+                                 QMessageBox::Ok);
 
-    else if(search_index == "date")
-    {
-        QString start;
-        QString end;
-        search_resP2date.start_end(start, end);
+        generate_reservation_list(search_resP2date.start_end(start, end), ui->tableWidgetP2date);
     }
 
     else
-        throw GUI_error("Detta ska inte hända!")
-*/
+        throw GUI_error("Ogiltligt index för sök widget!");
+
 }
 
 void MainWindow::on_pushButtonP2delete_clicked()
@@ -58,6 +70,13 @@ void MainWindow::on_pushButtonP2change_clicked()
 
 void MainWindow::on_pushButtonP2show_clicked()
 {}
+
+
+void MainWindow::on_dateEditP2from_dateChanged(const QDate &date)
+{
+    ui->dateEditP2to->setMinimumDate(date);
+}
+
 
 void MainWindow::on_pushButtonP2bok_nr_clicked()
 {
@@ -146,111 +165,127 @@ void MainWindow::on_pushButtonP2date_clicked()
 
 void MainWindow::setup_tableWidgetP2bok_nr() const
 {
-    ui->tableWidgetP5->setColumnCount(6);
-    ui->tableWidgetP5->setHorizontalHeaderLabels(QStringList()
+    ui->tableWidgetP2bok_nr->setColumnCount(6);
+    ui->tableWidgetP2bok_nr->setHorizontalHeaderLabels(QStringList()
                                                  << QString::fromUtf8("Res. nr")
                                                  << QString::fromUtf8("Reg. nr")
                                                  << QString::fromUtf8("Namn")
                                                  << QString::fromUtf8("Status")
                                                  << QString::fromUtf8("Starttid")
                                                  << QString::fromUtf8("Slutttid"));
-    ui->tableWidgetP5->setShowGrid(false);
-    ui->tableWidgetP5->verticalHeader()->hide();
-    ui->tableWidgetP5->setAlternatingRowColors(true);
-    ui->tableWidgetP5->setEditTriggers(0);
-    ui->tableWidgetP5->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-    ui->tableWidgetP5->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableWidgetP5->setSortingEnabled(true);
+    ui->tableWidgetP2bok_nr->setShowGrid(false);
+    ui->tableWidgetP2bok_nr->verticalHeader()->hide();
+    ui->tableWidgetP2bok_nr->setAlternatingRowColors(true);
+    ui->tableWidgetP2bok_nr->setEditTriggers(0);
+    ui->tableWidgetP2bok_nr->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->tableWidgetP2bok_nr->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidgetP2bok_nr->sortItems(0); // sortera på res nr
+    ui->tableWidgetP2bok_nr->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    ui->tableWidgetP2bok_nr->setSortingEnabled(true);
 }
 
 void MainWindow::setup_tableWidgetP2date() const
 {
-    ui->tableWidgetP5->setColumnCount(6);
-    ui->tableWidgetP5->setHorizontalHeaderLabels(QStringList()
+    ui->tableWidgetP2date->setColumnCount(6);
+    ui->tableWidgetP2date->setHorizontalHeaderLabels(QStringList()
                                                  << QString::fromUtf8("Res. nr")
                                                  << QString::fromUtf8("Reg. nr")
                                                  << QString::fromUtf8("Namn")
                                                  << QString::fromUtf8("Status")
                                                  << QString::fromUtf8("Starttid")
-                                                 << QString::fromUtf8("Slutttid"));  ui->tableWidgetP5->setShowGrid(false);
-    ui->tableWidgetP5->verticalHeader()->hide();
-    ui->tableWidgetP5->setAlternatingRowColors(true);
-    ui->tableWidgetP5->setEditTriggers(0);
-    ui->tableWidgetP5->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-    ui->tableWidgetP5->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableWidgetP5->setSortingEnabled(true);
+                                                 << QString::fromUtf8("Slutttid"));
+    ui->tableWidgetP2date->setShowGrid(false);
+    ui->tableWidgetP2date->verticalHeader()->hide();
+    ui->tableWidgetP2date->setAlternatingRowColors(true);
+    ui->tableWidgetP2date->setEditTriggers(0);
+    ui->tableWidgetP2date->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->tableWidgetP2date->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidgetP2date->sortItems(4); //sort starttid
+    ui->tableWidgetP2date->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    ui->tableWidgetP2date->setSortingEnabled(true);
 }
 
 void MainWindow::setup_tableWidgetP2name() const
 {
-    ui->tableWidgetP5->setColumnCount(6);
-    ui->tableWidgetP5->setHorizontalHeaderLabels(QStringList()
+    ui->tableWidgetP2name->setColumnCount(6);
+    ui->tableWidgetP2name->setHorizontalHeaderLabels(QStringList()
                                                  << QString::fromUtf8("Res. nr")
                                                  << QString::fromUtf8("Reg. nr")
                                                  << QString::fromUtf8("Namn")
                                                  << QString::fromUtf8("Status")
                                                  << QString::fromUtf8("Starttid")
-                                                 << QString::fromUtf8("Slutttid")); ui->tableWidgetP5->setShowGrid(false);
-    ui->tableWidgetP5->verticalHeader()->hide();
-    ui->tableWidgetP5->setAlternatingRowColors(true);
-    ui->tableWidgetP5->setEditTriggers(0);
-    ui->tableWidgetP5->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-    ui->tableWidgetP5->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableWidgetP5->setSortingEnabled(true);
+                                                 << QString::fromUtf8("Slutttid"));
+    ui->tableWidgetP2name->setShowGrid(false);
+    ui->tableWidgetP2name->verticalHeader()->hide();
+    ui->tableWidgetP2name->setAlternatingRowColors(true);
+    ui->tableWidgetP2name->setEditTriggers(0);
+    ui->tableWidgetP2name->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->tableWidgetP2name->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidgetP2name->sortItems(2);  //sort name
+    ui->tableWidgetP2name->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    ui->tableWidgetP2name->setSortingEnabled(true);
 }
 
 void MainWindow::setup_tableWidgetP2per_nr() const
 {
-    ui->tableWidgetP5->setColumnCount(6);
-    ui->tableWidgetP5->setHorizontalHeaderLabels(QStringList()
+    ui->tableWidgetP2per_nr->setColumnCount(6);
+    ui->tableWidgetP2per_nr->setHorizontalHeaderLabels(QStringList()
                                                  << QString::fromUtf8("Res. nr")
                                                  << QString::fromUtf8("Reg. nr")
                                                  << QString::fromUtf8("Namn")
                                                  << QString::fromUtf8("Status")
                                                  << QString::fromUtf8("Starttid")
-                                                 << QString::fromUtf8("Slutttid")); ui->tableWidgetP5->setShowGrid(false);
-    ui->tableWidgetP5->verticalHeader()->hide();
-    ui->tableWidgetP5->setAlternatingRowColors(true);
-    ui->tableWidgetP5->setEditTriggers(0);
-    ui->tableWidgetP5->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-    ui->tableWidgetP5->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableWidgetP5->setSortingEnabled(true);
+                                                 << QString::fromUtf8("Slutttid"));
+    ui->tableWidgetP2per_nr->setShowGrid(false);
+    ui->tableWidgetP2per_nr->verticalHeader()->hide();
+    ui->tableWidgetP2per_nr->setAlternatingRowColors(true);
+    ui->tableWidgetP2per_nr->setEditTriggers(0);
+    ui->tableWidgetP2per_nr->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->tableWidgetP2per_nr->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidgetP2per_nr->sortItems(2); // sort name
+    ui->tableWidgetP2per_nr->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    ui->tableWidgetP2per_nr->setSortingEnabled(true);
 }
 
 void MainWindow::setup_tableWidgetP2phone_nr() const
 {
-    ui->tableWidgetP5->setColumnCount(6);
-    ui->tableWidgetP5->setHorizontalHeaderLabels(QStringList()
+    ui->tableWidgetP2phone_nr->setColumnCount(6);
+    ui->tableWidgetP2phone_nr->setHorizontalHeaderLabels(QStringList()
                                                  << QString::fromUtf8("Res. nr")
                                                  << QString::fromUtf8("Reg. nr")
                                                  << QString::fromUtf8("Namn")
                                                  << QString::fromUtf8("Status")
                                                  << QString::fromUtf8("Starttid")
-                                                 << QString::fromUtf8("Slutttid")); ui->tableWidgetP5->setShowGrid(false);
-    ui->tableWidgetP5->verticalHeader()->hide();
-    ui->tableWidgetP5->setAlternatingRowColors(true);
-    ui->tableWidgetP5->setEditTriggers(0);
-    ui->tableWidgetP5->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-    ui->tableWidgetP5->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableWidgetP5->setSortingEnabled(true);
+                                                 << QString::fromUtf8("Slutttid"));
+    ui->tableWidgetP2phone_nr->setShowGrid(false);
+    ui->tableWidgetP2phone_nr->verticalHeader()->hide();
+    ui->tableWidgetP2phone_nr->setAlternatingRowColors(true);
+    ui->tableWidgetP2phone_nr->setEditTriggers(0);
+    ui->tableWidgetP2phone_nr->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->tableWidgetP2phone_nr->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidgetP2phone_nr->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    ui->tableWidgetP2phone_nr->setSortingEnabled(true);
 }
 
 void MainWindow::setup_tableWidgetP2reg_nr() const
 {
-    ui->tableWidgetP5->setColumnCount(6);
-    ui->tableWidgetP5->setHorizontalHeaderLabels(QStringList()
+    ui->tableWidgetP2reg_nr->setColumnCount(6);
+    ui->tableWidgetP2reg_nr->setHorizontalHeaderLabels(QStringList()
                                                  << QString::fromUtf8("Res. nr")
                                                  << QString::fromUtf8("Reg. nr")
                                                  << QString::fromUtf8("Namn")
                                                  << QString::fromUtf8("Status")
                                                  << QString::fromUtf8("Starttid")
-                                                 << QString::fromUtf8("Slutttid"));ui->tableWidgetP5->setShowGrid(false);
-    ui->tableWidgetP5->verticalHeader()->hide();
-    ui->tableWidgetP5->setAlternatingRowColors(true);
-    ui->tableWidgetP5->setEditTriggers(0);
-    ui->tableWidgetP5->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-    ui->tableWidgetP5->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableWidgetP5->setSortingEnabled(true);
+                                                 << QString::fromUtf8("Slutttid"));
+    ui->tableWidgetP2reg_nr->setShowGrid(false);
+    ui->tableWidgetP2reg_nr->verticalHeader()->hide();
+    ui->tableWidgetP2reg_nr->setAlternatingRowColors(true);
+    ui->tableWidgetP2reg_nr->setEditTriggers(0);
+    ui->tableWidgetP2reg_nr->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->tableWidgetP2reg_nr->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidgetP2reg_nr->sortItems(1); //sort reg nr
+    ui->tableWidgetP2reg_nr->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    ui->tableWidgetP2reg_nr->setSortingEnabled(true);
 }
 
 

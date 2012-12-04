@@ -176,6 +176,11 @@ Database::reservation_search(const QString& what, const QString& value)
         const char* query = "SELECT * FROM Reservations WHERE name = ?1";
         statement = bind_QString(query, value);
     }
+    else if (what == "tel")
+    {
+        const char* query = "SELECT * FROM Reservations WHERE tel = ?1";
+        statement = bind_QString(query, value);
+    }
     else
     {
         throw database_error("Invalid what argument to reservations_search in db!");
@@ -214,7 +219,8 @@ Database::reservation_search_date(const QString& start, const QString& end)
     vector<vector<QString> > result;
 
     const char* query = "SELECT * FROM Reservations WHERE"
-            "(start >= ?1 AND start <= ?2) OR (end >= ?1 AND end <= ?2)";
+            "(start >= ?1 AND start <= ?2) OR (end >= ?1 AND end <= ?2)"
+            " OR (start < ?1 and end > ?2)";
 
     if (sqlite3_prepare_v2(db, query, -1, &statement,0) == SQLITE_OK)
     {

@@ -24,6 +24,19 @@ using namespace std;
 // Search_reservation:
 /////////////////////////////////////////////////////////////////////
 
+// Search for all  reservations in the database.
+vector<Reservation*>
+Search_reservation::
+all()
+{
+    vector<vector<QString>> reservation_str_vector =
+            Database::reservation_search("all", "value");
+
+    create_result(reservation_str_vector);
+
+    return search_result;
+}
+
 // Search for a specific reservation by it's res_nr in the database.
 vector<Reservation*> 
 Search_reservation::
