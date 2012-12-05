@@ -21,17 +21,32 @@ void MainWindow::on_pushButtonP3remove_reservation_clicked()
                                                     current_resP3->get_end(),
                                                     current_resP3->get_reg_nr());
 
-        QMessageBox::warning(this,
-                             QString::fromUtf8("Bekräfta borttagning"),
-                             confirm_removal,
-                             QMessageBox::Ok);
+        switch(QMessageBox::warning(this,
+                                    QString::fromUtf8("Bekräfta borttagning"),
+                                    confirm_removal,
+                                    QMessageBox::Cancel,
+                                    QMessageBox::Yes))
+        {
+        case QMessageBox::Yes:
+        {
+            current_resP3->remove();
+            QString kommande = "kommande";
+            generate_reservation_list(search_resP3.status(kommande), ui->tableWidgetP3);
+            break;
+        }
+
+        default:
+            break;
+        }
     }
+
     else
     {
         QMessageBox::information(this,
                                  QString::fromUtf8("Välj post"),
                                  QString::fromUtf8("Vänligen välj en post innan du klickar på nästa."),
                                  QMessageBox::Ok);
+        //please_select_entry();
     }
 
 }

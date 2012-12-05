@@ -1,6 +1,8 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
+#include <QDebug>//!!!!!!!!!!!!!!!!!
+
 
 ////// Tab 2 - Search
 void MainWindow::on_pushButtonP2search_clicked()
@@ -69,6 +71,7 @@ void MainWindow::on_pushButtonP2delete_clicked()
     if(search_index == 0) // bok nr
     {
         int currentRow = ui->tableWidgetP2bok_nr->currentRow();
+        // delete_function(search_resP2bok_nr, currentRow);
         if (currentRow >= 0)
         {
             current_resP2 = search_resP2bok_nr.get_current_result()[currentRow];
@@ -80,16 +83,28 @@ void MainWindow::on_pushButtonP2delete_clicked()
                         "Från: %4\n"
                         "Till: %5\n"
                         "Registreringsnummer: %6\n").arg(QString::number(current_resP2->get_res_nr()),
-                                                        current_resP2->get_name(),
-                                                        current_resP2->get_tel(),
-                                                        current_resP2->get_start(),
-                                                        current_resP2->get_end(),
-                                                        current_resP2->get_reg_nr());
+                                                         current_resP2->get_name(),
+                                                         current_resP2->get_tel(),
+                                                         current_resP2->get_start(),
+                                                         current_resP2->get_end(),
+                                                         current_resP2->get_reg_nr());
 
-            QMessageBox::warning(this,
-                                 QString::fromUtf8("Bekräfta borttagning"),
-                                 confirm_removal,
-                                 QMessageBox::Ok);
+            switch(QMessageBox::warning(this,
+                                        QString::fromUtf8("Bekräfta borttagning"),
+                                        confirm_removal,
+                                        QMessageBox::Cancel,
+                                        QMessageBox::Yes))
+            {
+            case QMessageBox::Yes:
+            {
+                current_resP2->remove();
+                on_pushButtonP2search_clicked();
+                break;
+            }
+
+            default:
+                break;
+            }
         }
         else
         {
@@ -120,10 +135,22 @@ void MainWindow::on_pushButtonP2delete_clicked()
                                                         current_resP2->get_end(),
                                                         current_resP2->get_reg_nr());
 
-            QMessageBox::warning(this,
-                                 QString::fromUtf8("Bekräfta borttagning"),
-                                 confirm_removal,
-                                 QMessageBox::Ok);
+            switch(QMessageBox::warning(this,
+                                        QString::fromUtf8("Bekräfta borttagning"),
+                                        confirm_removal,
+                                        QMessageBox::Cancel,
+                                        QMessageBox::Yes))
+            {
+            case QMessageBox::Yes:
+            {
+                current_resP2->remove();
+                on_pushButtonP2search_clicked();
+                break;
+            }
+
+            default:
+                break;
+            }
         }
         else
         {
@@ -154,10 +181,22 @@ void MainWindow::on_pushButtonP2delete_clicked()
                                                         current_resP2->get_end(),
                                                         current_resP2->get_reg_nr());
 
-            QMessageBox::warning(this,
-                                 QString::fromUtf8("Bekräfta borttagning"),
-                                 confirm_removal,
-                                 QMessageBox::Ok);
+            switch(QMessageBox::warning(this,
+                                        QString::fromUtf8("Bekräfta borttagning"),
+                                        confirm_removal,
+                                        QMessageBox::Cancel,
+                                        QMessageBox::Yes))
+            {
+            case QMessageBox::Yes:
+            {
+                current_resP2->remove();
+                on_pushButtonP2search_clicked();
+                break;
+            }
+
+            default:
+                break;
+            }
         }
         else
         {
@@ -188,10 +227,22 @@ void MainWindow::on_pushButtonP2delete_clicked()
                                                         current_resP2->get_end(),
                                                         current_resP2->get_reg_nr());
 
-            QMessageBox::warning(this,
-                                 QString::fromUtf8("Bekräfta borttagning"),
-                                 confirm_removal,
-                                 QMessageBox::Ok);
+            switch(QMessageBox::warning(this,
+                                        QString::fromUtf8("Bekräfta borttagning"),
+                                        confirm_removal,
+                                        QMessageBox::Cancel,
+                                        QMessageBox::Yes))
+            {
+            case QMessageBox::Yes:
+            {
+                current_resP2->remove();
+                on_pushButtonP2search_clicked();
+                break;
+            }
+
+            default:
+                break;
+            }
         }
         else
         {
@@ -222,10 +273,22 @@ void MainWindow::on_pushButtonP2delete_clicked()
                                                         current_resP2->get_end(),
                                                         current_resP2->get_reg_nr());
 
-            QMessageBox::warning(this,
-                                 QString::fromUtf8("Bekräfta borttagning"),
-                                 confirm_removal,
-                                 QMessageBox::Ok);
+            switch(QMessageBox::warning(this,
+                                        QString::fromUtf8("Bekräfta borttagning"),
+                                        confirm_removal,
+                                        QMessageBox::Cancel,
+                                        QMessageBox::Yes))
+            {
+            case QMessageBox::Yes:
+            {
+                current_resP2->remove();
+                on_pushButtonP2search_clicked();
+                break;
+            }
+
+            default:
+                break;
+            }
         }
         else
         {
@@ -451,4 +514,50 @@ void MainWindow::setup_tableWidgetP2reg_nr() const
     ui->tableWidgetP2reg_nr->setSortingEnabled(true);
 }
 
+/*
+void MainWindow::deleting_function(Search_reservation& search_current_res, int current_row)
+{
+    if (current_row >= 0)
+    {
+        current_resP2 = search_current_res.get_current_result()[currentRow];
+        QString confirm_removal = QString::fromUtf8(
+                    "Är du säker på att du vill radera nedanstående bokning?\n\n"
+                    "Reservations nummer: %1\n"
+                    "Namn: %2\n"
+                    "Telefon: %3\n"
+                    "Från: %4\n"
+                    "Till: %5\n"
+                    "Registreringsnummer: %6\n").arg(QString::number(current_resP2->get_res_nr()),
+                                                     current_resP2->get_name(),
+                                                     current_resP2->get_tel(),
+                                                     current_resP2->get_start(),
+                                                     current_resP2->get_end(),
+                                                     current_resP2->get_reg_nr());
 
+        switch(QMessageBox::warning(this,
+                                    QString::fromUtf8("Bekräfta borttagning"),
+                                    confirm_removal,
+                                    QMessageBox::Cancel,
+                                    QMessageBox::Yes))
+        {
+        case QMessageBox::Yes:
+        {
+            current_resP2->remove();
+            on_pushButtonP2search_clicked();
+            break;
+        }
+
+        default:
+            break;
+        }
+    }
+    else
+    {
+        QMessageBox::information(this,
+                                 QString::fromUtf8("Välj post"),
+                                 QString::fromUtf8("Vänligen välj en post innan du klickar på nästa."),
+                                 QMessageBox::Ok);
+        //please_select_entry();
+    }
+}
+*/

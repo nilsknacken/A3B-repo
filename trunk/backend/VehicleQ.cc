@@ -45,6 +45,14 @@ save()
                              brand_, model_, mileage_, damage_);
 }
 
+// Remove the current object from the database.
+void
+Vehicle::
+remove()
+{
+    Database::remove_vehicle(reg_nr_);
+}
+
 
 // Apply changes of the parameters.
 void 

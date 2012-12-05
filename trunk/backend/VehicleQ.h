@@ -27,11 +27,11 @@ class Vehicle
 public:
     Vehicle(QString&, QString&, QString&,
             QString&, QString&, int, QString&);
-    Vehicle() = default;
-
+    Vehicle()  = default;
     ~Vehicle() = default;
 
     void save();
+    void remove();
 
     void set_mileage(const int);
     void set_reg_nr(const QString&);
