@@ -37,18 +37,19 @@ public:
     Reservation& operator=(const Reservation&) = default;
     Reservation& operator=(Reservation&&)      = default;
 
-    void        save();
+    void save();
+    void remove();
 
-    void        set_res_nr(const int);
-    void        set_reg_nr(const QString&);
-    void        set_name(const QString&);
-    void        set_tel(const QString&);
-    void        set_adress(const QString&);
-    void        set_postal_nr(const QString&);
-    void        set_city(const QString&);
-    void        set_status(const QString&);
-    void        set_start(const QString&);
-    void        set_end(const QString&);
+    void set_res_nr(const int);
+    void set_reg_nr(const QString&);
+    void set_name(const QString&);
+    void set_tel(const QString&);
+    void set_adress(const QString&);
+    void set_postal_nr(const QString&);
+    void set_city(const QString&);
+    void set_status(const QString&);
+    void set_start(const QString&);
+    void set_end(const QString&);
 
     int     get_res_nr()    const;
     QString get_reg_nr()    const;
