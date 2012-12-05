@@ -29,6 +29,10 @@ void MainWindow::on_pushButtonP1next_clicked()
         {
             when_next_clicked(search_vehicleP1L_Truck, ui->tableWidgetP1L_Truck, tab_index);
         }
+        else
+        {
+            throw GUI_error("Ogiltligt stack_index i P1");
+        }
 
         QDateTime* from = new QDateTime();
         QDateTime* to = new QDateTime();
@@ -42,8 +46,13 @@ void MainWindow::on_pushButtonP1next_clicked()
         //ui->  datum från ->setText(from->toString(date_time_format));
         //ui->  datum till ->setText(to->toString(date_time_format));
 
-
-    }
+        //nollställ kunduppgifter
+        ui->lineEditName_2->clear();
+        ui->lineEdit_2->clear(); // tel
+        ui->lineEditAddress_2->clear();
+        ui->lineEditPostalnr_2->clear();
+        ui->lineEditCity_2->clear();
+}
 
     else if(tab_index == 1) // från kund till bekräftelse
     {
@@ -59,16 +68,105 @@ void MainWindow::on_pushButtonP1next_clicked()
                                          QString::fromUtf8("Felaktig inmatning"),
                                          QString::fromUtf8("Felaktig inmatning:\n%1").arg(e.what()),
                                          QMessageBox::Ok);
+                return;
             }
         }
+        else if (stacked_index == 1)
+        {
+            try
+            {
+                new_reservation(search_vehicleP1M_Car, ui->tableWidgetP1M_Car);
+            }
+            catch (reservation_error& e)
+            {
+                QMessageBox::information(this,
+                                         QString::fromUtf8("Felaktig inmatning"),
+                                         QString::fromUtf8("Felaktig inmatning:\n%1").arg(e.what()),
+                                         QMessageBox::Ok);
+                return;
+            }
+        }
+        else if (stacked_index == 2)
+        {
+            try
+            {
+                new_reservation(search_vehicleP1L_Car, ui->tableWidgetP1L_Car);
+            }
+            catch (reservation_error& e)
+            {
+                QMessageBox::information(this,
+                                         QString::fromUtf8("Felaktig inmatning"),
+                                         QString::fromUtf8("Felaktig inmatning:\n%1").arg(e.what()),
+                                         QMessageBox::Ok);
+                return;
+            }
+        }
+        else if(stacked_index == 3)
+        {
+            try
+            {
+                new_reservation(search_vehicleP1S_Truck, ui->tableWidgetP1S_Truck);
+            }
+            catch (reservation_error& e)
+            {
+                QMessageBox::information(this,
+                                         QString::fromUtf8("Felaktig inmatning"),
+                                         QString::fromUtf8("Felaktig inmatning:\n%1").arg(e.what()),
+                                         QMessageBox::Ok);
+                return;
+            }
+        }
+        else if(stacked_index == 4)
+        {
+            try
+            {
+                new_reservation(search_vehicleP1L_Truck, ui->tableWidgetP1L_Truck);
+            }
+            catch (reservation_error& e)
+            {
+                QMessageBox::information(this,
+                                         QString::fromUtf8("Felaktig inmatning"),
+                                         QString::fromUtf8("Felaktig inmatning:\n%1").arg(e.what()),
+                                         QMessageBox::Ok);
+                return;
+            }
+        }
+        else
+        {
+            throw GUI_error("Ogiltligt stack_index i P1");
+        }
 
+        QString confirm_reservation = QString::fromUtf8(
+                    "Vänligen bekfräfta att du vill genomföra nedanstående bokning\n\n"
+                    "Reservationsnummer: %1\n\n"
+                    "Namn: %2\n"
+                    "Telefonnummer: %3\n"
+                    "Adress: %4\n"
+                    "Postnummer: %5\n"
+                    "Stad: %6\n\n"
+                    "Från: %7\n"
+                    "Till: %8\n"
+                    "Registreringsnummer: %9\n").arg(QString::number(current_resP1->get_res_nr()),
+                                                     current_resP1->get_name(),
+                                                     current_resP1->get_tel(),
+                                                     current_resP1->get_adress(),
+                                                     current_resP1->get_postal_nr(),
+                                                     current_resP1->get_city(),
+                                                     current_resP1->get_start(),
+                                                     current_resP1->get_end(),
+                                                     current_resP1->get_reg_nr());
+        ui->label_7->setText(confirm_reservation); // label_7 är texten på konf sidan
         ui->stackedWidgetP1Main->setCurrentIndex(++tab_index);
         ui->pushButtonP1next->setText(QString::fromUtf8("Bekräfta"));
     }
 
     else if(tab_index == 2) // bekfräfta
     {
-        about->information(this, QString::fromUtf8("Info"), QString::fromUtf8("Nu ska någonting hända!\nTyp en bekräftelse"));
+        current_resP1->save();
+        QMessageBox::information(this,
+                                 QString::fromUtf8("Bokning genomförd"),
+                                 QString::fromUtf8("Din bokning är nu genomförd."),
+                                 QMessageBox::Ok);
         ui->stackedWidgetP1Main->setCurrentIndex(0);
         ui->pushButtonP1next->setText(QString::fromUtf8("Nästa >"));
         ui->pushButtonP1back->setDisabled(true);
