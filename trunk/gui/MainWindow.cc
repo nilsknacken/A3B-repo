@@ -1,3 +1,26 @@
+/*
+* FILENAMN:    MainWindowP2.cpp
+* PROJECT:     A3B
+* PROGRAMMER:  Conny Andersson  Y3a conan414@student.liu.se
+*              Andreas Bolin    Y3a andbo467@student.liu.se
+*              Martin Andersson Y3a maran703@student.liu.se
+*              Adam Andersson   Y3a adaan690@student.liu.se
+* DATE:        2012-12-05
+*
+* DESCRIPTION
+*
+* Här defineras huvudfönstrets funktioner.
+*
+* Created by:
+* Martin:
+*  please_select_entry
+*  generate_vehicle_list
+*  generate_reservation_list
+*  setup_tableWidget_vehicle
+*  setup_tableWidget_reservation
+*
+*/
+
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include "SettingsQ.h"
@@ -5,9 +28,6 @@
 
 
 #include <iostream>  //cout, cerr osv                                               //REMOVE
-//#include <QPlastiqueStyle>
-
-//using namespace std;
 
 /////////////////////////////////////////////////////////////////////
 // Constructor, Destructor:
@@ -123,7 +143,7 @@ void MainWindow::please_select_entry()
 {
     QMessageBox::information(this,
                              QString::fromUtf8("Välj post"),
-                             QString::fromUtf8("Vänligen välj en post innan du klickar på nästa."),
+                             QString::fromUtf8("Vänligen välj en post innan du går vidare."),
                              QMessageBox::Ok);
 
 }

@@ -1,3 +1,21 @@
+/*
+* FILENAMN:   MainWindow.h
+* PROJECT:     A3B
+* PROGRAMMER:  Conny Andersson  Y3a conan414@student.liu.se
+*              Andreas Bolin    Y3a andbo467@student.liu.se
+*              Martin Andersson Y3a maran703@student.liu.se
+*              Adam Andersson   Y3a adaan690@student.liu.se
+* DATE:        2012-12-05
+*
+* DESCRIPTION
+*
+* Deklaration av huvudfönstret i programmet.
+*
+* Created by:
+* Andreas:
+*
+*/
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -92,6 +110,7 @@ private:
     Reservation* current_resP4 = new Reservation();
 
     Vehicle* current_vehicleP1 = new Vehicle();
+    Vehicle* current_vehicleP3 = new Vehicle();
     Vehicle* current_vehicleP4 = new Vehicle();
     Vehicle* current_vehicleP5 = new Vehicle();
 
@@ -111,13 +130,22 @@ private:
 
     Search_reservation search_resP3;
     Search_reservation search_resP4;
+    Search_vehicle search_vehicleP3;
     Search_vehicle search_vehicleP4;
     Search_vehicle search_vehicleP5;
 
-//Tab1 bokning
+// Tab1 bokning
     void when_next_clicked(Search_vehicle&, QTableWidget*, int);
     void new_reservation(Search_vehicle&, QTableWidget*);
 
+// Tab2 sök
+    void show_function(Search_reservation&, int);
+    void remove_function(Search_reservation&, int);
+
+// Tab3 utlämning
+    void checkout_function();
+
+    // Generella
     void generate_vehicle_list(std::vector<Vehicle*>, QTableWidget*);
     void generate_reservation_list(std::vector<Reservation*>, QTableWidget*);
 
@@ -166,7 +194,7 @@ private:
     const QString SS_SIDEMENU_DISABLE = "QPushButton {font: bold;color: grey;}";
 
     const QString date_format = "yyyy-MM-dd";
-    const QString date_time_format = "yyyy-mm-dd hh:mm";
+    const QString date_time_format = "yyyy-MM-dd hh:mm";
 };
 
 // GUI error class

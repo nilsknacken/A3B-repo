@@ -1,3 +1,31 @@
+/*
+* FILENAMN:    Dialog_Settings.cpp
+* PROJECT:     A3B
+* PROGRAMMER:  Conny Andersson  Y3a conan414@student.liu.se
+*              Andreas Bolin    Y3a andbo467@student.liu.se
+*              Martin Andersson Y3a maran703@student.liu.se
+*              Adam Andersson   Y3a adaan690@student.liu.se
+* DATE:        2012-12-05
+*
+* DESCRIPTION
+*
+* Hämtar inställningar från databasen. Gör det möjligt att ändra dessa, "OK" bekräftar.
+* Dessutom raderar man databasen från inställningar.
+*
+* Created by:
+* Conny:
+*  on_buttonBox_accepted
+*  on_buttonBox_rejected
+*  on_pushButtonCleanDB_clicked
+*  update_qtimeedit
+*
+* Andreas:
+*  Dialog_Settings
+*  ~Dialog_Settings
+*  restore_appearance
+*
+*/
+
 #include "Dialog_Settings.h"
 #include "ui_Dialog_Settings.h"
 #include <QDialog>
