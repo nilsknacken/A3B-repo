@@ -1,8 +1,6 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
-#include <QDebug>//!!!!!!!!!!!!!!!!!
-
 
 ////// Tab 2 - Search
 void MainWindow::on_pushButtonP2search_clicked()
@@ -300,14 +298,85 @@ void MainWindow::on_pushButtonP2delete_clicked()
     }
 
     else
-        throw GUI_error("Ogiltligt index för sök widget!");
+        throw GUI_error("Ogiltligt index för Ta bort widget!");
 }
 
 void MainWindow::on_pushButtonP2change_clicked()
 {}
 
 void MainWindow::on_pushButtonP2show_clicked()
-{}
+{
+    int search_index = ui->stackedWidgetP2->currentIndex();
+
+    if(search_index == 0) // bok nr
+    {
+        int currentRow = ui->tableWidgetP2bok_nr->currentRow();
+        // show_function(search_resP2bok_nr, currentRow);
+        if (currentRow >= 0)
+        {
+            current_resP2 = search_resP2bok_nr.get_current_result()[currentRow];
+            QString show_context = QString::fromUtf8(
+                        "Information\n\n"
+                        "Reservations nummer: %1\n"
+                        "Namn: %2\n"
+                        "Telefon: %3\n"
+                        "Från: %4\n"
+                        "Till: %5\n"
+                        "Registreringsnummer: %6\n"
+                        "Adress: %7\n"
+                        "Post nummer: %8\n"
+                        "Stad: %9\n").arg(QString::number(current_resP2->get_res_nr()),
+                                          current_resP2->get_name(),
+                                          current_resP2->get_tel(),
+                                          current_resP2->get_start(),
+                                          current_resP2->get_end(),
+                                          current_resP2->get_reg_nr(),
+                                          current_resP2->get_adress(),
+                                          current_resP2->get_postal_nr(),
+                                          current_resP2->get_city());
+
+            QMessageBox::information(this,
+                                     QString::fromUtf8("Bekräfta borttagning"),
+                                     show_context,
+                                     QMessageBox::Ok);
+        }
+        else
+        {
+            QMessageBox::information(this,
+                                     QString::fromUtf8("Välj post"),
+                                     QString::fromUtf8("Vänligen välj en post innan du klickar på nästa."),
+                                     QMessageBox::Ok);
+            //please_select_entry();
+        }
+    }
+
+    else if(search_index == 1) // reg nr
+    {
+        int currentRow = ui->tableWidgetP2reg_nr->currentRow();
+        // show_function(search_resP2reg_nr, currentRow);
+    }
+
+    else if(search_index == 2) //namn
+    {
+        int currentRow = ui->tableWidgetP2name->currentRow();
+        // show_function(search_resP2name, currentRow);
+    }
+
+    else if(search_index == 4) //tel
+    {
+        int currentRow = ui->tableWidgetP2phone_nr->currentRow();
+        // show_function(search_resP2phone_nr, currentRow);
+    }
+
+    else if(search_index == 5) //datum
+    {
+        int currentRow = ui->tableWidgetP2date->currentRow();
+        // show_function(search_resP2date, currentRow);
+    }
+
+    else
+        throw GUI_error("Ogiltligt index för visa widget!");
+}
 
 
 void MainWindow::on_dateEditP2from_dateChanged(const QDate &date)
@@ -550,6 +619,47 @@ void MainWindow::deleting_function(Search_reservation& search_current_res, int c
         default:
             break;
         }
+    }
+    else
+    {
+        QMessageBox::information(this,
+                                 QString::fromUtf8("Välj post"),
+                                 QString::fromUtf8("Vänligen välj en post innan du klickar på nästa."),
+                                 QMessageBox::Ok);
+        //please_select_entry();
+    }
+}
+*/
+/*
+void MainWindow::show_function(Search_reservation& search_current_res, int current_row)
+{
+    if (current_row >= 0)
+    {
+        current_resP2 = search_current_res.get_current_result()[currentRow];
+        QString show_context = QString::fromUtf8(
+                    "Information\n\n"
+                    "Reservations nummer: %1\n"
+                    "Namn: %2\n"
+                    "Telefon: %3\n"
+                    "Från: %4\n"
+                    "Till: %5\n"
+                    "Registreringsnummer: %6\n"
+                    "Adress: %7\n"
+                    "Post nummer: %8\n"
+                    "Stad: %9\n").arg(QString::number(current_resP2->get_res_nr()),
+                                      current_resP2->get_name(),
+                                      current_resP2->get_tel(),
+                                      current_resP2->get_start(),
+                                      current_resP2->get_end(),
+                                      current_resP2->get_reg_nr(),
+                                      current_resP2->get_adress(),
+                                      current_resP2->get_postal_nr(),
+                                      current_resP2->get_city());
+
+        QMessageBox::information(this,
+                                 QString::fromUtf8("Bekräfta borttagning"),
+                                 show_context,
+                                 QMessageBox::Ok);
     }
     else
     {
