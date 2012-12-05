@@ -1,11 +1,13 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include "SettingsQ.h"
+#include <QMessageBox>
+
 
 #include <iostream>  //cout, cerr osv                                               //REMOVE
 //#include <QPlastiqueStyle>
 
-using namespace std;
+//using namespace std;
 
 /////////////////////////////////////////////////////////////////////
 // Constructor, Destructor:
@@ -25,7 +27,6 @@ MainWindow::MainWindow(QWidget* parent)
 
 MainWindow::~MainWindow()
 {
-    cerr << "~MainWindow()" << endl;                                                //REMOVE
     delete ui;
     delete settings;
     delete gui_settings;
@@ -118,8 +119,16 @@ void MainWindow::custom_setup()
     setup_tableWidgetP5();
 }
 
+void MainWindow::please_select_entry()
+{
+    QMessageBox::information(this,
+                             QString::fromUtf8("Välj post"),
+                             QString::fromUtf8("Vänligen välj en post innan du klickar på nästa."),
+                             QMessageBox::Ok);
 
-void MainWindow::generate_vehicle_list(vector<Vehicle*> input, QTableWidget* tableWidget)
+}
+
+void MainWindow::generate_vehicle_list(std::vector<Vehicle*> input, QTableWidget* tableWidget)
 {
     tableWidget->clearContents();
 
@@ -161,7 +170,7 @@ void MainWindow::generate_vehicle_list(vector<Vehicle*> input, QTableWidget* tab
 }
 
 
-void MainWindow::generate_reservation_list(vector<Reservation*> input, QTableWidget* tableWidget)
+void MainWindow::generate_reservation_list(std::vector<Reservation*> input, QTableWidget* tableWidget)
 {
     tableWidget->clearContents();
 
@@ -234,4 +243,39 @@ void MainWindow::on_tabWidgetMainTab_currentChanged(int index)
         on_pushButtonP5search_clicked();
 }
 
+void MainWindow::setup_tableWidget_vehicle(QTableWidget* tableWidget) const
+{
+    tableWidget->setColumnCount(4);
+    tableWidget->setHorizontalHeaderLabels(QStringList()
+                                                 << QString::fromUtf8("Reg. nr")
+                                                 << QString::fromUtf8("Typ")
+                                                 << QString::fromUtf8("Fabrikat")
+                                                 << QString::fromUtf8("Modell"));
+    tableWidget->setShowGrid(false);
+    tableWidget->verticalHeader()->hide();
+    tableWidget->setAlternatingRowColors(true);
+    tableWidget->setEditTriggers(0);
+    tableWidget->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+    tableWidget->setSortingEnabled(true);
+}
 
+void MainWindow::setup_tableWidget_reservation(QTableWidget* tableWidget) const
+{
+    tableWidget->setColumnCount(6);
+    tableWidget->setHorizontalHeaderLabels(QStringList()
+                                                 << QString::fromUtf8("Res. nr")
+                                                 << QString::fromUtf8("Reg. nr")
+                                                 << QString::fromUtf8("Namn")
+                                                 << QString::fromUtf8("Status")
+                                                 << QString::fromUtf8("Starttid")
+                                                 << QString::fromUtf8("Slutttid"));
+    tableWidget->setShowGrid(false);
+    tableWidget->verticalHeader()->hide();
+    tableWidget->setAlternatingRowColors(true);
+    tableWidget->setEditTriggers(0);
+    tableWidget->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+    tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    tableWidget->setSortingEnabled(true);
+}

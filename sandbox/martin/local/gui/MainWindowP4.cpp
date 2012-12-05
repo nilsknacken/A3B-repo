@@ -34,10 +34,7 @@ void MainWindow::on_pushButtonP4next_clicked()
         }
         else
         {
-            QMessageBox::information(this,
-                                     QString::fromUtf8("Välj post"),
-                                     QString::fromUtf8("Vänligen välj en post innan du klickar på nästa."),
-                                     QMessageBox::Ok);
+          please_select_entry();
         }
 
 
@@ -154,21 +151,7 @@ void MainWindow::on_checkBoxP4damages_yes_toggled(bool checked)
 
 void MainWindow::setup_tableWidgetP4() const
 {
-    ui->tableWidgetP4->setColumnCount(6);
-    ui->tableWidgetP4->setHorizontalHeaderLabels(QStringList()
-                                                 << QString::fromUtf8("Res. nr")
-                                                 << QString::fromUtf8("Reg. nr")
-                                                 << QString::fromUtf8("Namn")
-                                                 << QString::fromUtf8("Status")
-                                                 << QString::fromUtf8("Starttid")
-                                                 << QString::fromUtf8("Slutttid")); ui->tableWidgetP4->setShowGrid(false);
-    ui->tableWidgetP4->verticalHeader()->hide();
-    ui->tableWidgetP4->setAlternatingRowColors(true);
-    ui->tableWidgetP4->setEditTriggers(0);
-    ui->tableWidgetP4->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-    ui->tableWidgetP4->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableWidgetP4->setSortingEnabled(true);
-    ui->tableWidgetP4->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    setup_tableWidget_reservation(ui->tableWidgetP4);
     ui->tableWidgetP4->sortItems(5); //sortera på sluttid
 
     ui->textEditP4_conf->setDisabled(true); // tillåt ej edit av bekräftnings rutan

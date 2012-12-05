@@ -46,6 +46,7 @@ private slots:
     void on_pushButtonP1S_Truck_clicked();
     void on_pushButtonP1L_Truck_clicked();
 
+
     // Tab 2 - Search
     void on_pushButtonP2search_clicked();
     void on_pushButtonP2delete_clicked();
@@ -113,10 +114,19 @@ private:
     Search_vehicle search_vehicleP4;
     Search_vehicle search_vehicleP5;
 
+//Tab1 bokning
+    void when_next_clicked(Search_vehicle&, QTableWidget*, int);
+    void new_reservation(Search_vehicle&, QTableWidget*);
+
     void generate_vehicle_list(std::vector<Vehicle*>, QTableWidget*);
     void generate_reservation_list(std::vector<Reservation*>, QTableWidget*);
 
+    void please_select_entry();
+
     void custom_setup();
+    void setup_tableWidget_vehicle(QTableWidget*) const;
+    void setup_tableWidget_reservation(QTableWidget*) const;
+
 
     void setup_tableWidgetP1S_Car()     const;
     void setup_tableWidgetP1M_Car()     const;
@@ -136,6 +146,18 @@ private:
     void setup_tableWidgetP5()          const;
 
     void P5_change_appearance(bool)     const;
+
+
+    const QString S_Car_info = QString::fromUtf8(
+                "Liten bil\nLämplig för: 2 pers\nLastvolym: 50 liter");
+    const QString M_Car_info = QString::fromUtf8(
+                "Mellanbil\nLämplig för: 4 pers\nLastvolym: 100 liter");
+    const QString L_Car_info = QString::fromUtf8(
+                "Stor bil\nLämplig för: 4-5 pers\nLastvolym: 140 liter");
+    const QString S_Truck_info = QString::fromUtf8(
+                "Liten lastbil\nLämplig för: 2 pers\nLastvolym: 8 kubikmeter");
+    const QString L_Truck_info = QString::fromUtf8(
+                "Stor lastbil\nLämplig för: 3 pers\nLastvolym: 22 kubikmeter");
 
 
     // StyleSheet
