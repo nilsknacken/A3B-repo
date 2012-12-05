@@ -11,7 +11,7 @@ void MainWindow::on_pushButtonP3remove_reservation_clicked()
                     "Är du säker på att du vill radera nedanstående bokning?\n\n"
                     "Reservations nummer: %1\n"
                     "Namn: %2\n"
-                    "Telefon: %3"
+                    "Telefon: %3\n"
                     "Från: %4\n"
                     "Till: %5\n"
                     "Registreringsnummer: %6\n").arg(QString::number(current_resP3->get_res_nr()),
