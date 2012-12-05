@@ -1,3 +1,28 @@
+/*
+* Filename:    MainWindowP1.cpp
+* PROJECT:     A3B
+* PROGRAMMER:  Conny Andersson  Y3a conan414@student.liu.se
+*              Andreas Bolin    Y3a andbo467@student.liu.se
+*              Martin Andersson Y3a maran703@student.liu.se
+*              Adam Andersson   Y3a adaan690@student.liu.se
+* DATE:        2012-10-12
+*
+* DESCRIPTION:
+*
+* Implementation of tab nr 1 = Bokning.
+* Hanterar vad som händer när man gör något under bokningsfliken.
+*
+* Created by:
+* Andreas:  code structure
+*           on_pushButtonP1back_clicked
+*           on_pushButtonP1******_clicked
+*
+* Martin:   on_pushButtonP1next_clicked
+*           on_pushButtonP1search_clicked
+*           when_next_clicked
+*           new_reservation
+*/
+
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 

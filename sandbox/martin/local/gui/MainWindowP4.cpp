@@ -1,3 +1,26 @@
+/*
+* Filename:    MainWindowP4.cpp
+* PROJECT:     A3B
+* PROGRAMMER:  Conny Andersson  Y3a conan414@student.liu.se
+*              Andreas Bolin    Y3a andbo467@student.liu.se
+*              Martin Andersson Y3a maran703@student.liu.se
+*              Adam Andersson   Y3a adaan690@student.liu.se
+* DATE:        2012-10-12
+*
+* DESCRIPTION:
+* Implementation of tab nr 4 = Återlämna.
+* Hanterar vad som händer när man gör något under återlämningsfliken.
+*
+*Created by:
+* Andreas:  code structure
+*           on_pushButtonP4back_clicked
+*           on_checkBoxP4damages_yes_toggled
+* Martin:   on_pushButtonP4next_clicked
+*           setup_tableWidgetP4
+*
+*/
+
+
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include <QDialog>

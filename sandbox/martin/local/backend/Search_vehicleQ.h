@@ -28,7 +28,7 @@ class Search_vehicle
 {
 public:
     Search_vehicle()  = default;
-    ~Search_vehicle() = default;
+    ~Search_vehicle();
 
     std::vector<Vehicle*> all();
     std::vector<Vehicle*> reg_nr(QString&);

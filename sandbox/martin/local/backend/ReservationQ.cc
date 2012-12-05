@@ -54,6 +54,14 @@ save()
                                  adress_, postal_nr_, city_);
 }
 
+// Remove the current object from the database.
+void
+Reservation::
+remove()
+{
+    Database::remove_reservation(res_nr_);
+}
+
 // Apply changes of the parameters.
 void 
 Reservation::

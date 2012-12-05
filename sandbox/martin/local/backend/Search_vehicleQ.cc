@@ -9,12 +9,17 @@
 *
 * DESCRIPTION
 * 
-* ///////////////Programbeskrivning
+* Klass som sköter sökningen i databasen av fordon och hanterar dess resultat.
+*
+* Created by:
+* Conny: All
+* Martin: minor bug fix
 */
 
 #include <stdlib.h>
 #include <QString>
 #include <vector>
+#include <iostream> // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 #include "VehicleQ.h"
 #include "Search_vehicleQ.h"
 
@@ -23,6 +28,13 @@ using namespace std;
 /////////////////////////////////////////////////////////////////////
 // Search_vehicle:
 /////////////////////////////////////////////////////////////////////
+// First off, do delete on every pointer in the vector.
+// Then clear the vector.
+Search_vehicle::
+~Search_vehicle()
+{
+    clear();
+}
 
 // Search for all vehicles in the database.
 vector<Vehicle*> 
@@ -130,21 +142,28 @@ Search_vehicle::
 create_result(vector<vector<QString>>& str_vector)
 {
     clear();
-    vector<vector<QString>>::iterator it;
-
-    for(it = str_vector.begin(); it < str_vector.end(); it++)
+    try
     {
-        vector<QString> current = *it;
-        int mileage = current[5].toInt();
+        vector<vector<QString>>::iterator it;
 
-        if(current.size() == 7)
+        for(it = str_vector.begin(); it < str_vector.end(); it++)
         {
-            search_result.push_back(new Vehicle(current[0], current[1],
-                                                current[2], current[3], current[4], mileage,
-                                                current[6]));
+            vector<QString> current = *it;
+            int mileage = current[5].toInt();
+
+            if(current.size() == 7)
+            {
+                search_result.push_back(new Vehicle(current[0], current[1],
+                                                    current[2], current[3], current[4], mileage,
+                                                    current[6]));
+            }
+            else
+                throw search_vehicle_error("The lenght of the vector is not 7.");
         }
-        else
-            throw search_vehicle_error("The lenght of the vector is not 7.");
+    }
+    catch(const bad_alloc& ba)
+    {
+        clear();
     }
 }
 
@@ -161,5 +180,10 @@ void
 Search_vehicle::
 clear()
 {
-    search_result.clear();
+    while(! search_result.empty())
+    {
+        delete search_result.back();
+
+        search_result.pop_back();
+     }
 }

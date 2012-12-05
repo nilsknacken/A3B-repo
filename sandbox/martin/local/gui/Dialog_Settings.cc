@@ -11,7 +11,7 @@ Dialog_Settings::Dialog_Settings(QWidget* parent, Settings* settings)
       settings_(settings)
 {
     ui->setupUi(this);
-    //settings_->update();
+    settings_->update();
     update_qtimeedit(settings_);
 }
 
@@ -47,11 +47,13 @@ void Dialog_Settings::on_buttonBox_rejected()
 void Dialog_Settings::on_pushButtonCleanDB_clicked()
 {
     //Rensa databas
-    int i = QMessageBox::warning(this,
-                                 QString::fromUtf8("Rensa databas"),
-                                 QString::fromUtf8("Du är påväg att rensa databasen.\nVill du verkligen göra det?"),
-                                 QMessageBox::Cancel, QMessageBox::Yes);
-    if(i == 16384)
+    switch(QMessageBox::warning(this,
+                                QString::fromUtf8("Rensa databas"),
+                                QString::fromUtf8("Du är påväg att rensa databasen.\nVill du verkligen göra det?"),
+                                QMessageBox::Cancel,
+                                QMessageBox::Yes))
+    {
+    case QMessageBox::Yes:
     {
         cerr << "Databasen är inte rensad egentligen, detta ska implementeras!" << endl; //!!!!!!!!
         ui->pushButtonCleanDB->setDisabled(true);
@@ -60,6 +62,11 @@ void Dialog_Settings::on_pushButtonCleanDB_clicked()
         //                         QString::fromUtf8("Bekräftelse"),
         //                         QString::fromUtf8("Nu är databasen rensad."),
         //                         QMessageBox::Ok);
+        break;
+    }
+
+    default:
+        break;
     }
 }
 

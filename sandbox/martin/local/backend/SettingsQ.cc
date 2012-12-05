@@ -12,8 +12,9 @@
 * ///////////////Programbeskrivning
 */
 
-#include <iostream>
+#include <iostream>               //!!!!!!!!!!!!!!!!!!!!!!!
 #include "SettingsQ.h"
+#include <QDebug>
 
 using namespace std;
 
@@ -26,6 +27,42 @@ Settings::
 save()
 {
    Database::settings_update(open_hour_, open_min_, close_hour_, close_min_, min_rental_);
+}
+
+void
+Settings::
+update()
+{
+    QString open_hour  = Database::settings_search("open_hour");
+    QString open_min   = Database::settings_search("open_min");
+    QString close_hour = Database::settings_search("close_hour");
+    QString close_min  = Database::settings_search("close_min");
+    QString min_rental = Database::settings_search("min_rental");
+
+    if(open_hour.isEmpty())
+        open_hour_ = 0;
+    else
+        open_hour_ = open_hour.toInt();
+
+    if(open_min.isEmpty())
+        set_open_min(0);
+    else
+        set_open_min(open_min.toInt());
+
+    if(close_hour.isEmpty())
+        set_close_hour(0);
+    else
+        set_close_hour(close_hour.toInt());
+
+    if(close_min.isEmpty())
+        set_close_min(0);
+    else
+        set_close_min(close_min.toInt());
+
+    if(min_rental.isEmpty())
+        set_min_rental(0);
+    else
+        set_min_rental(min_rental.toInt());
 }
 
 // Apply changes of the parameters.

@@ -9,7 +9,11 @@
 *
 * DESCRIPTION
 * 
-* ///////////////Programbeskrivning
+* Klass som sköter sökningen i databasen av fordon och hanterar dess resultat.
+*
+* Created by:
+* Conny: All
+* Martin: minor bug fix
 */
 
 #include <stdlib.h>
@@ -137,6 +141,7 @@ void
 Search_vehicle::
 create_result(vector<vector<QString>>& str_vector)
 {
+    clear();
     try
     {
         vector<vector<QString>>::iterator it;

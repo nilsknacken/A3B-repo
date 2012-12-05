@@ -11,6 +11,10 @@
 * 
 * Handles permanent storage of data in the system.
 * SQlite3 is used as databse.
+*
+* Created by
+* Martin: All
+*
 */
 
 #ifndef DATABASE_H_
@@ -20,6 +24,8 @@
 #include <vector>
 #include <stdexcept>
 #include "sqlite3.h"
+
+
 
 
 // Error to be thrown in database

@@ -9,7 +9,10 @@
 *
 * DESCRIPTION:
 * 
-* Database
+* Implementation of the Database
+*
+* Created by:
+* Martin: All
 */
 
 #include "DatabaseQ.h"

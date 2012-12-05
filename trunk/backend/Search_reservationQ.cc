@@ -8,8 +8,12 @@
 * DATE:        2012-10-18
 *
 * DESCRIPTION
-* 
-* ///////////////Programbeskrivning
+* Klass som sköter sökningen i databasen av bokningar och hanterar dess resultat.
+*
+*
+* Created by:
+* Conny:    all
+* Martin: minor bug fix
 */
 
 #include <stdlib.h>
@@ -131,22 +135,30 @@ Search_reservation::
 create_result(vector<vector<QString>>& str_vector)
 {
     clear();
-    vector<vector<QString>>::iterator it;
-
-    for(it = str_vector.begin(); it < str_vector.end(); it++)
+    try
     {
-        vector<QString> current = *it;
-        int res_nr = current[0].toInt();
+        vector<vector<QString>>::iterator it;
 
-        if(current.size() == 10)
+        for(it = str_vector.begin(); it < str_vector.end(); it++)
         {
-            search_result.push_back(new Reservation(res_nr, current[1],
-                                                    current[2], current[3], current[4], current[5],
-                                                    current[6], current[7], current[8], current[9]));
+            vector<QString> current = *it;
+            int res_nr = current[0].toInt();
+
+            if(current.size() == 10)
+            {
+                search_result.push_back(new Reservation(res_nr, current[1],
+                                        current[2], current[3], current[4], current[5],
+                        current[6], current[7], current[8], current[9]));
+            }
+            else
+                throw search_reservation_error("The lenght of the vector is not 10.");
         }
-        else
-            throw search_reservation_error("The lenght of the vector is not 10.");
     }
+    catch (const bad_alloc& ba)
+    {
+        clear();
+    }
+
 }
 
 // Return true if search_result is empty, else false.
