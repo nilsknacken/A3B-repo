@@ -95,12 +95,25 @@ void MainWindow::on_pushButtonP1next_clicked()
     {
         if (change_reservation)
         {
-            // Reg nr, start, end ändras ej
-            current_resP1->set_name(ui->lineEditName_2->text());
-            current_resP1->set_tel(ui->lineEdit_2->text());
-            current_resP1->set_adress(ui->lineEditAddress_2->text());
-            current_resP1->set_postal_nr(ui->lineEditPostalnr_2->text());
-            current_resP1->set_city(ui->lineEditCity_2->text());
+            try
+            {
+                // Reg nr, start, end ändras ej
+                current_resP1->set_name(ui->lineEditName_2->text());
+                current_resP1->set_tel(ui->lineEdit_2->text());
+                current_resP1->set_adress(ui->lineEditAddress_2->text());
+                current_resP1->set_postal_nr(ui->lineEditPostalnr_2->text());
+                current_resP1->set_city(ui->lineEditCity_2->text());
+
+            }
+            catch (reservation_error& e)
+            {
+                QMessageBox::information(this,
+                                         QString::fromUtf8("Felaktig inmatning"),
+                                         QString::fromUtf8("Felaktig inmatning:\n%1").arg(e.what()),
+                                         QMessageBox::Ok);
+                return;
+            }
+
         }
         else
         {
