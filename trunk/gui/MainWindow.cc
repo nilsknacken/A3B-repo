@@ -239,21 +239,40 @@ void MainWindow::generate_reservation_list(std::vector<Reservation*> input, QTab
 
 int MainWindow::get_row_reservation(QTableWidget* tableWidget) const
 {
-    QString id = tableWidget->item(tableWidget->currentRow(),6)->text();
-    return id.toInt();
+    int currentRow = tableWidget->currentRow();
+
+    if (currentRow >= 0)
+    {
+        QString id = tableWidget->item(tableWidget->currentRow(),6)->text();
+        return id.toInt();
+    }
+    else
+    {
+        return -1;
+    }
 }
 
 int MainWindow::get_row_vehicle(QTableWidget* tableWidget) const
 {
-    QString id = tableWidget->item(tableWidget->currentRow(),4)->text();
-    return id.toInt();
+    int currentRow = tableWidget->currentRow();
+
+    if (currentRow >= 0)
+    {
+        QString id = tableWidget->item(tableWidget->currentRow(),4)->text();
+        return id.toInt();
+    }
+    else
+    {
+        return -1;
+    }
 }
 
 void MainWindow::on_tabWidgetMainTab_currentChanged(int index)
 {
     if(index == 0) // bokning
     {
-
+        if(change_reservation)
+            change_customer_info();
     }
     else if (index == 1) //sök
     {

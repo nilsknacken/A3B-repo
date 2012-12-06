@@ -26,9 +26,15 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
-void MainWindow::on_tabP1_clicked()
+void MainWindow::change_customer_info()
 {
-
+    ui->tabWidgetMainTab->setCurrentIndex(0);
+    ui->lineEditName_2->setText(current_resP1->get_name());
+    ui->lineEdit_2->setText(current_resP1->get_tel()); // tel
+    ui->lineEditAddress_2->setText(current_resP1->get_adress());
+    ui->lineEditPostalnr_2->setText(current_resP1->get_postal_nr());
+    ui->lineEditCity_2->setText(current_resP1->get_city());
+    ui->stackedWidgetP1->setCurrentIndex(1);
 }
 
 void MainWindow::on_pushButtonP1next_clicked()
@@ -208,8 +214,15 @@ void MainWindow::on_pushButtonP1back_clicked()
 
     if(index == 1)
     {
-        ui->stackedWidgetP1Main->setCurrentIndex(--index);
-        ui->pushButtonP1back->setDisabled(true);
+        if (change_reservation)
+        {
+            ui->tabWidgetMainTab->setCurrentIndex(1);
+        }
+        else
+        {
+            ui->stackedWidgetP1Main->setCurrentIndex(--index);
+            ui->pushButtonP1back->setDisabled(true);
+        }
     }
 
     else if(index == 2)

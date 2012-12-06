@@ -37,7 +37,6 @@ private slots:
     void on_actionQuit_triggered();
 
     // Tab 1 - Reservate
-    void on_tabP1_clicked();
     void on_pushButtonP1next_clicked();
     void on_pushButtonP1back_clicked();
     void on_pushButtonP1search_clicked();
@@ -122,6 +121,8 @@ private:
 // Tab1 bokning
     void when_next_clicked(Search_vehicle&, QTableWidget*, int);
     void new_reservation(Search_vehicle&, QTableWidget*);
+    void change_customer_info();
+
 
 // Tab2 sök
     void show_function(Search_reservation&, int);
