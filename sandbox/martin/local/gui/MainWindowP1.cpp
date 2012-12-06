@@ -34,7 +34,9 @@ void MainWindow::change_customer_info()
     ui->lineEditAddress_2->setText(current_resP1->get_adress());
     ui->lineEditPostalnr_2->setText(current_resP1->get_postal_nr());
     ui->lineEditCity_2->setText(current_resP1->get_city());
-    ui->stackedWidgetP1->setCurrentIndex(1);
+    ui->stackedWidgetP1Main->setCurrentIndex(1);
+    ui->pushButtonP1back->setDisabled(false);
+
 }
 
 void MainWindow::on_pushButtonP1next_clicked()
@@ -91,7 +93,16 @@ void MainWindow::on_pushButtonP1next_clicked()
 
     else if(tab_index == 1) // från kund till bekräftelse
     {
-        if (stacked_index == 0)
+        if (change_reservation)
+        {
+            // Reg nr, start, end ändras ej
+            current_resP1->set_name(ui->lineEditName_2->text());
+            current_resP1->set_tel(ui->lineEdit_2->text());
+            current_resP1->set_adress(ui->lineEditAddress_2->text());
+            current_resP1->set_postal_nr(ui->lineEditPostalnr_2->text());
+            current_resP1->set_city(ui->lineEditCity_2->text());
+        }
+        else
         {
             try
             {
@@ -105,70 +116,7 @@ void MainWindow::on_pushButtonP1next_clicked()
                                          QMessageBox::Ok);
                 return;
             }
-        }
-        else if (stacked_index == 1)
-        {
-            try
-            {
-                new_reservation(search_vehicleP1M_Car, ui->tableWidgetP1M_Car);
-            }
-            catch (reservation_error& e)
-            {
-                QMessageBox::information(this,
-                                         QString::fromUtf8("Felaktig inmatning"),
-                                         QString::fromUtf8("Felaktig inmatning:\n%1").arg(e.what()),
-                                         QMessageBox::Ok);
-                return;
-            }
-        }
-        else if (stacked_index == 2)
-        {
-            try
-            {
-                new_reservation(search_vehicleP1L_Car, ui->tableWidgetP1L_Car);
-            }
-            catch (reservation_error& e)
-            {
-                QMessageBox::information(this,
-                                         QString::fromUtf8("Felaktig inmatning"),
-                                         QString::fromUtf8("Felaktig inmatning:\n%1").arg(e.what()),
-                                         QMessageBox::Ok);
-                return;
-            }
-        }
-        else if(stacked_index == 3)
-        {
-            try
-            {
-                new_reservation(search_vehicleP1S_Truck, ui->tableWidgetP1S_Truck);
-            }
-            catch (reservation_error& e)
-            {
-                QMessageBox::information(this,
-                                         QString::fromUtf8("Felaktig inmatning"),
-                                         QString::fromUtf8("Felaktig inmatning:\n%1").arg(e.what()),
-                                         QMessageBox::Ok);
-                return;
-            }
-        }
-        else if(stacked_index == 4)
-        {
-            try
-            {
-                new_reservation(search_vehicleP1L_Truck, ui->tableWidgetP1L_Truck);
-            }
-            catch (reservation_error& e)
-            {
-                QMessageBox::information(this,
-                                         QString::fromUtf8("Felaktig inmatning"),
-                                         QString::fromUtf8("Felaktig inmatning:\n%1").arg(e.what()),
-                                         QMessageBox::Ok);
-                return;
-            }
-        }
-        else
-        {
-            throw GUI_error("Ogiltligt stack_index i P1");
+
         }
 
         QString confirm_reservation = QString::fromUtf8(
@@ -344,6 +292,7 @@ void MainWindow::when_next_clicked(Search_vehicle& search_vehicle,
     {
         QString reg_nr = search_vehicle.get_current_result()[row]->get_reg_nr();
         ui->labelSelectedRegnr_var_2->setText(reg_nr);
+        current_vehicleP1 = search_vehicle.get_current_result()[row];
 
         ui->stackedWidgetP1Main->setCurrentIndex(++tab_index);
         ui->pushButtonP1back->setDisabled(false);
@@ -357,8 +306,6 @@ void MainWindow::when_next_clicked(Search_vehicle& search_vehicle,
 
 void MainWindow::new_reservation(Search_vehicle & search_vehicle, QTableWidget* tableWidget)
 {
-    int row = get_row_vehicle(tableWidget);
-
     QDateTime* from = new QDateTime();
     QDateTime* to = new QDateTime();
     from->setDate(ui->dateEditFrom->date());
@@ -366,24 +313,24 @@ void MainWindow::new_reservation(Search_vehicle & search_vehicle, QTableWidget* 
     to->setDate(ui->dateEditTo->date());
     to->setTime(ui->timeEditTo->time());
 
-        QString reg_nr = search_vehicle.get_current_result()[row]->get_reg_nr();
-        QString start = from->toString(date_time_format);
-        QString end = to->toString(date_time_format);
-        QString name = ui->lineEditName_2->text();
-        QString tel = ui->lineEdit_2->text();
-        QString address = ui->lineEditAddress_2->text();
-        QString postal_nr = ui->lineEditPostalnr_2->text();
-        QString city = ui->lineEditCity_2->text();
+    QString reg_nr = current_vehicleP1->get_reg_nr();
+    QString start = from->toString(date_time_format);
+    QString end = to->toString(date_time_format);
+    QString name = ui->lineEditName_2->text();
+    QString tel = ui->lineEdit_2->text();
+    QString address = ui->lineEditAddress_2->text();
+    QString postal_nr = ui->lineEditPostalnr_2->text();
+    QString city = ui->lineEditCity_2->text();
 
 
-        current_resP1 = make_reservation(reg_nr,
-                                         start,
-                                         end,
-                                         name,
-                                         tel,
-                                         address,
-                                         postal_nr,
-                                         city);
+    current_resP1 = make_reservation(reg_nr,
+                                     start,
+                                     end,
+                                     name,
+                                     tel,
+                                     address,
+                                     postal_nr,
+                                     city);
 
 }
 

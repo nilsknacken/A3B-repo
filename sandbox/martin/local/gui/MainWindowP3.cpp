@@ -27,9 +27,9 @@
 void MainWindow::on_pushButtonP3remove_reservation_clicked()
 {
     int currentRow = get_row_reservation(ui->tableWidgetP3);
+
     if (currentRow >= 0)
     {
-        current_resP3 = search_resP3.get_current_result()[currentRow];
         QString confirm_removal = QString::fromUtf8(
                     "Är du säker på att du vill radera nedanstående bokning?\n\n"
                     "Reservations nummer: %1\n"
@@ -52,6 +52,7 @@ void MainWindow::on_pushButtonP3remove_reservation_clicked()
         {
         case QMessageBox::Yes:
         {
+            current_resP3 = search_resP3.get_current_result()[currentRow];
             current_resP3->remove();
             QString kommande = "kommande";
             generate_reservation_list(search_resP3.status(kommande), ui->tableWidgetP3);
