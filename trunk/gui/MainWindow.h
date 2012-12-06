@@ -79,6 +79,7 @@ private slots:
 
 
 private:
+    bool pushbuttonP5add_clicked = false;
     bool pushbuttonP5change_clicked = false;
 
     Ui::MainWindow *ui;
@@ -161,7 +162,8 @@ private:
     void setup_tableWidgetP4()          const;
     void setup_tableWidgetP5()          const;
 
-    void P5_change_appearance(bool)     const;
+    void P5_change_appearance1(bool)    const;
+    void P5_change_appearance2(bool)    const;
 
 
     const QString S_Car_info = QString::fromUtf8(
