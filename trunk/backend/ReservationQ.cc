@@ -77,12 +77,16 @@ void
 Reservation::
 set_reg_nr(const QString& reg_nr)
 {
+    correct_reg_nr(reg_nr);
+
     reg_nr_ = reg_nr;
 }
 void 
 Reservation::
 set_name(const QString& name)
 {
+    correct_name(name);
+
     name_ = name;
 }
 
@@ -90,6 +94,8 @@ void
 Reservation::
 set_tel(const QString& tel)
 {
+    correct_tel(tel);
+
     tel_ = tel;
 }
 
@@ -97,6 +103,8 @@ void
 Reservation::
 set_adress(const QString& adress)
 {
+    correct_adress(adress);
+
     adress_ = adress;
 }
 
@@ -104,6 +112,8 @@ void
 Reservation::
 set_postal_nr(const QString& postal_nr)
 {
+    correct_postal_nr(postal_nr);
+
     postal_nr_ = postal_nr;
 }
 
@@ -111,6 +121,8 @@ void
 Reservation::
 set_city(const QString& city)
 {
+    correct_city(city);
+
     city_ = city;
 }
 
@@ -118,13 +130,15 @@ void
 Reservation::
 set_status(const QString& status)
 {
+    correct_status(status);
+
     status_ = status;
 }
 
 void 
 Reservation::
 set_start(const QString& start)
-{
+{  
     start_ = start;
 }
 
