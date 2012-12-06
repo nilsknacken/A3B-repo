@@ -55,6 +55,7 @@ private slots:
     void on_actionQuit_triggered();
 
     // Tab 1 - Reservate
+    void on_tabP1_clicked();
     void on_pushButtonP1next_clicked();
     void on_pushButtonP1back_clicked();
     void on_pushButtonP1search_clicked();
@@ -143,6 +144,7 @@ private:
 // Tab2 sök
     void show_function(Search_reservation&, int);
     void remove_function(Search_reservation&, int);
+    void change_function(Search_reservation&, int);
 
 // Tab3 utlämning
     void checkout_function();

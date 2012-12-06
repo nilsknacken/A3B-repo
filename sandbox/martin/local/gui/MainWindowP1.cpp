@@ -27,6 +27,23 @@
 #include "ui_MainWindow.h"
 
 
+void MainWindow::on_tabP1_clicked()
+{
+    if (change_reservation)
+    {
+        QDateTime from = QDateTime::fromString(current_resP1->get_start(), date_time_format);
+        QDateTime to = QDateTime::fromString(current_resP1->get_end(), date_time_format);
+        ui->dateEditFrom->setDate(from.date());
+        ui->timeEditFrom->setTime(from.time());
+        ui->dateEditTo->setDate(to.date());
+        ui->timeEditTo->setTime(to.time());
+    }
+    else
+    {
+
+    }
+}
+
 void MainWindow::on_pushButtonP1next_clicked()
 {
     int tab_index = ui->stackedWidgetP1Main->currentIndex();
@@ -71,14 +88,24 @@ void MainWindow::on_pushButtonP1next_clicked()
         //ui->  datum från ->setText(from->toString(date_time_format));
         //ui->  datum till ->setText(to->toString(date_time_format));
 
-        //nollställ kunduppgifter
+        // kunduppgifter
+        if (change_reservation)
+        {
+            ui->lineEditName_2->setText(current_resP1->get_name());
+            ui->lineEdit_2->setText(current_resP1->get_tel());
+            ui->lineEditAddress_2->setText(current_resP1->get_adress());
+            ui->lineEditPostalnr_2->setText(current_resP1->get_postal_nr());
+            ui->lineEditCity_2->setText(current_resP1->get_city());
+        }
+        else
+        {
         ui->lineEditName_2->clear();
         ui->lineEdit_2->clear(); // tel
         ui->lineEditAddress_2->clear();
         ui->lineEditPostalnr_2->clear();
         ui->lineEditCity_2->clear();
-}
-
+        }
+    }
     else if(tab_index == 1) // från kund till bekräftelse
     {
         if (stacked_index == 0)

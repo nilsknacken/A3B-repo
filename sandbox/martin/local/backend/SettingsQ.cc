@@ -9,7 +9,10 @@
 *
 * DESCRIPTION
 * 
-* ///////////////Programbeskrivning
+* Defination av the settings class and it's functions.
+*
+* Created by:
+* Conny: All
 */
 
 #include <iostream>               //!!!!!!!!!!!!!!!!!!!!!!!

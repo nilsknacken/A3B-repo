@@ -8,11 +8,13 @@
 * DATE:        2012-10-18
 *
 * DESCRIPTION
-* Klass som sköter sökningen i databasen av bokningar och hanterar dess resultat.
 *
+* Defination av the reservation search class and it's functions.
+* The class handle searchings in the database of reservations and
+* create a proper output.
 *
 * Created by:
-* Conny:    all
+* Conny: All
 * Martin: minor bug fix
 */
 
@@ -27,6 +29,13 @@ using namespace std;
 /////////////////////////////////////////////////////////////////////
 // Search_reservation:
 /////////////////////////////////////////////////////////////////////
+// First off, do delete on every pointer in the vector.
+// Then clear the vector.
+Search_reservation::
+~Search_reservation()
+{
+    clear();
+}
 
 // Search for all  reservations in the database.
 vector<Reservation*>
@@ -146,9 +155,10 @@ create_result(vector<vector<QString>>& str_vector)
 
             if(current.size() == 10)
             {
-                search_result.push_back(new Reservation(res_nr, current[1],
-                                        current[2], current[3], current[4], current[5],
-                        current[6], current[7], current[8], current[9]));
+                search_result.push_back(new Reservation(res_nr, current[1], current[2],
+                                                        current[3], current[4], current[5],
+                                                        current[6], current[7], current[8],
+                                                        current[9]));
             }
             else
                 throw search_reservation_error("The lenght of the vector is not 10.");
@@ -174,5 +184,10 @@ void
 Search_reservation::
 clear()
 {
-    search_result.clear();
+    while(! search_result.empty())
+    {
+        delete search_result.back();
+
+        search_result.pop_back();
+     }
 }

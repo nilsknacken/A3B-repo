@@ -9,7 +9,7 @@
 *
 * DESCRIPTION
 *
-* Här defineras funktionerna för Tab3 "Lämna ut".
+* Here are the functions for Tab3 "Lämna ut" defined.
 *
 * Created by:
 * Conny:
@@ -84,7 +84,7 @@ void MainWindow::on_pushButtonP3checkout_clicked()
             throw GUI_error("Problem att hämta fordon från reservationen!");
 
         QString confirm_checkout = QString::fromUtf8(
-                    "Är du säker på att du vill lämna it nedanstående bokning?\n\n"
+                    "Är du säker på att du vill lämna ut nedanstående bokning?\n\n"
                     "Reservations nummer: %1\n"
                     "Namn: %2\n"
                     "Telefon: %3\n"

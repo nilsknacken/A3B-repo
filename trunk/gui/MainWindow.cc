@@ -304,6 +304,7 @@ void MainWindow::setup_tableWidget_reservation(QTableWidget* tableWidget) const
                                            << QString::fromUtf8("Slutttid")
                                            << QString::fromUtf8("ID"));
     tableWidget->setShowGrid(false);
+    tableWidget->hideColumn(6);
     tableWidget->verticalHeader()->hide();
     tableWidget->setAlternatingRowColors(true);
     tableWidget->setEditTriggers(0);
