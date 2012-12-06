@@ -15,8 +15,11 @@
 * Conny:
 *  on_pushButtonP2delete_clicked
 *  on_pushButtonP2show_clicked
+*  on_pushButtonP2change_clicked
 *  remove_function
 *  show_function
+*  change_function
+*
 *
 * Martin:
 *  on_pushButtonP2search_clicked
@@ -322,7 +325,6 @@ void MainWindow::remove_function(Search_reservation& search_current_res, int cur
 {
     if (current_row >= 0)
     {
-        current_resP2 = search_current_res.get_current_result()[current_row];
         QString confirm_removal = QString::fromUtf8(
                     "Är du säker på att du vill radera nedanstående bokning?\n\n"
                     "Reservations nummer: %1\n"
@@ -345,6 +347,7 @@ void MainWindow::remove_function(Search_reservation& search_current_res, int cur
         {
         case QMessageBox::Yes:
         {
+            current_resP2 = search_current_res.get_current_result()[current_row];
             current_resP2->remove();
             on_pushButtonP2search_clicked();
             break;
@@ -400,10 +403,28 @@ void MainWindow::change_function(Search_reservation& search_current_res, int cur
 {
     if (current_row >= 0)
     {
-        current_resP1 = search_current_res.get_current_result()[current_row];
-        change_reservation = true;
+        QString change_context = QString::fromUtf8(
+                    "Du är påväg att lämna söksidan för att gå till bokningsidan.\n"
+                    "Det är på bokningssidan du kan ändra dina personliga uppgifter.\n\n"
+                    "Vill du göra detta?\n");
 
-        ui->tabWidgetMainTab->setCurrentIndex(0);
+        switch(QMessageBox::warning(this,
+                                    QString::fromUtf8("Bekräfta sidbyte"),
+                                    change_context,
+                                    QMessageBox::Cancel,
+                                    QMessageBox::Yes))
+        {
+        case QMessageBox::Yes:
+        {
+            current_resP1 = search_current_res.get_current_result()[current_row];
+            change_reservation = true;
+            change_customer_info();
+            break;
+        }
+
+        default:
+            break;
+        }
     }
     else
     {
