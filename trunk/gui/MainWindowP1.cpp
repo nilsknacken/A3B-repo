@@ -34,7 +34,7 @@ void MainWindow::change_customer_info()
     ui->lineEditAddress_2->setText(current_resP1->get_adress());
     ui->lineEditPostalnr_2->setText(current_resP1->get_postal_nr());
     ui->lineEditCity_2->setText(current_resP1->get_city());
-    ui->stackedWidgetP1->setCurrentIndex(1);
+    ui->stackedWidgetP1Main->setCurrentIndex(1);
 }
 
 void MainWindow::on_pushButtonP1next_clicked()

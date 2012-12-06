@@ -418,7 +418,7 @@ void MainWindow::change_function(Search_reservation& search_current_res, int cur
         {
             current_resP1 = search_current_res.get_current_result()[current_row];
             change_reservation = true;
-            ui->tabWidgetMainTab->setCurrentIndex(0);
+            change_customer_info();
             break;
         }
 
