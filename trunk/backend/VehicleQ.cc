@@ -62,6 +62,8 @@ void
 Vehicle::
 set_mileage(const int mileage)
 {
+    correct_mileage(mileage);
+
     mileage_ = mileage;
 }
 
@@ -69,6 +71,8 @@ void
 Vehicle::
 set_reg_nr(const QString& reg_nr)
 {
+    correct_reg_nr(reg_nr);
+
     reg_nr_ = reg_nr;
 }
 
@@ -76,6 +80,8 @@ void
 Vehicle::
 set_type(const QString& type)
 {
+    correct_type(type);
+
     type_ = type;
 }
 
@@ -83,6 +89,8 @@ void
 Vehicle::
 set_status(const QString& status)
 {
+    correct_status(status);
+
     status_ = status;
 }
 

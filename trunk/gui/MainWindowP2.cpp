@@ -213,6 +213,7 @@ void MainWindow::on_dateEditP2from_dateChanged(const QDate &date)
 
 void MainWindow::on_pushButtonP2bok_nr_clicked()
 {
+    //disable_buttons(0);
     ui->stackedWidgetP2->setCurrentIndex(0);
     ui->stackedWidgetP2toggle_date_string->setCurrentIndex(0);
     set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2bok_nr);
@@ -225,6 +226,7 @@ void MainWindow::on_pushButtonP2bok_nr_clicked()
 
 void MainWindow::on_pushButtonP2reg_nr_clicked()
 {
+    //disable_buttons(1);
     ui->stackedWidgetP2->setCurrentIndex(1);
     ui->stackedWidgetP2toggle_date_string->setCurrentIndex(0);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2bok_nr);
@@ -237,6 +239,7 @@ void MainWindow::on_pushButtonP2reg_nr_clicked()
 
 void MainWindow::on_pushButtonP2name_clicked()
 {
+    //disable_buttons(2);
     ui->stackedWidgetP2->setCurrentIndex(2);
     ui->stackedWidgetP2toggle_date_string->setCurrentIndex(0);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2bok_nr);
@@ -249,6 +252,7 @@ void MainWindow::on_pushButtonP2name_clicked()
 
 void MainWindow::on_pushButtonP2per_nr_clicked()
 {
+    //disable_buttons(3);
     ui->stackedWidgetP2->setCurrentIndex(3);
     ui->stackedWidgetP2toggle_date_string->setCurrentIndex(0);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2bok_nr);
@@ -261,6 +265,7 @@ void MainWindow::on_pushButtonP2per_nr_clicked()
 
 void MainWindow::on_pushButtonP2phone_nr_clicked()
 {
+    //disable_buttons(4);
     ui->stackedWidgetP2->setCurrentIndex(4);
     ui->stackedWidgetP2toggle_date_string->setCurrentIndex(0);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2bok_nr);
@@ -274,6 +279,7 @@ void MainWindow::on_pushButtonP2phone_nr_clicked()
 
 void MainWindow::on_pushButtonP2date_clicked()
 {
+    //disable_buttons(5);
     ui->stackedWidgetP2->setCurrentIndex(5);
     ui->stackedWidgetP2toggle_date_string->setCurrentIndex(1);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2bok_nr);
@@ -325,6 +331,7 @@ void MainWindow::remove_function(Search_reservation& search_current_res, int cur
 {
     if (current_row >= 0)
     {
+        current_resP2 = search_current_res.get_current_result()[current_row];
         QString confirm_removal = QString::fromUtf8(
                     "Är du säker på att du vill radera nedanstående bokning?\n\n"
                     "Reservations nummer: %1\n"
@@ -347,7 +354,6 @@ void MainWindow::remove_function(Search_reservation& search_current_res, int cur
         {
         case QMessageBox::Yes:
         {
-            current_resP2 = search_current_res.get_current_result()[current_row];
             current_resP2->remove();
             on_pushButtonP2search_clicked();
             break;
@@ -403,6 +409,7 @@ void MainWindow::change_function(Search_reservation& search_current_res, int cur
 {
     if (current_row >= 0)
     {
+        current_resP1 = search_current_res.get_current_result()[current_row];
         QString change_context = QString::fromUtf8(
                     "Du är påväg att lämna söksidan för att gå till bokningsidan.\n"
                     "Det är på bokningssidan du kan ändra dina personliga uppgifter.\n\n"
@@ -416,7 +423,6 @@ void MainWindow::change_function(Search_reservation& search_current_res, int cur
         {
         case QMessageBox::Yes:
         {
-            current_resP1 = search_current_res.get_current_result()[current_row];
             change_reservation = true;
             change_customer_info();
             break;
@@ -432,3 +438,35 @@ void MainWindow::change_function(Search_reservation& search_current_res, int cur
     }
 }
 
+/* //Denna ska läggas till i MainWindow.h !!!!!!!!!!!!!!!!!!
+void MainWindow::disable_buttons(int i)
+{
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2bok_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2reg_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2name);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2per_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2phone_nr);
+    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2date);
+
+    if(i == 0)
+        set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2bok_nr);
+
+    else if(i == 1)
+        set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2reg_nr);
+
+    else if(i == 2)
+        set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2name);
+
+    else if(i == 3)
+        set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2per_nr);
+
+    else if(i == 4)
+        set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2phone_nr);
+
+    else if(i == 5)
+        set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2date);
+
+    else
+        throw GUI_error("Fel index för disable_buttons!");
+}
+*/
