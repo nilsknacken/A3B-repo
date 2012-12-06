@@ -161,11 +161,13 @@ void MainWindow::generate_vehicle_list(std::vector<Vehicle*> input, QTableWidget
         for(unsigned long i = 0; i < input.size(); i++)
         {
             current = input[i];
+            QString id = QString::number(i);
 
             tableWidget->setItem(i,0,new QTableWidgetItem(current->get_reg_nr(),0));
             tableWidget->setItem(i,1,new QTableWidgetItem(current->get_type(),0));
             tableWidget->setItem(i,2,new QTableWidgetItem(current->get_brand(),0));
             tableWidget->setItem(i,3,new QTableWidgetItem(current->get_model(),0));
+            tableWidget->setItem(i,4, new QTableWidgetItem(id,0));
         }
         tableWidget->setSortingEnabled(true);
         tableWidget->sortItems(0);
@@ -197,10 +199,6 @@ void MainWindow::generate_reservation_list(std::vector<Reservation*> input, QTab
     if(! input.empty())
     {
         tableWidget->setSortingEnabled(false);
-        for (int i = tableWidget->rowCount()-1; i >= 0; --i)
-        {
-            tableWidget->removeRow(i);
-        }
 
         tableWidget->setRowCount(input.size());
 
@@ -208,16 +206,17 @@ void MainWindow::generate_reservation_list(std::vector<Reservation*> input, QTab
         for(unsigned long i = 0; i < input.size(); i++)
         {
             current = input[i];
+            QString id = QString::number(i);
             tableWidget->setItem(i,0,new QTableWidgetItem(QString::number(current->get_res_nr()),0));
             tableWidget->setItem(i,1,new QTableWidgetItem(current->get_reg_nr(),0));
             tableWidget->setItem(i,2,new QTableWidgetItem(current->get_name(),0));
             tableWidget->setItem(i,3,new QTableWidgetItem(current->get_status(),0));
             tableWidget->setItem(i,4,new QTableWidgetItem(current->get_start(),0));
             tableWidget->setItem(i,5,new QTableWidgetItem(current->get_end(),0));
+            tableWidget->setItem(i,6,new QTableWidgetItem(id,0));
 
         }
         tableWidget->setSortingEnabled(true);
-      //  tableWidget->sortItems(4);
     }
     else
     {
@@ -238,6 +237,17 @@ void MainWindow::generate_reservation_list(std::vector<Reservation*> input, QTab
     }
 }
 
+int MainWindow::get_row_reservation(QTableWidget* tableWidget) const
+{
+    QString id = tableWidget->item(tableWidget->currentRow(),6)->text();
+    return id.toInt();
+}
+
+int MainWindow::get_row_vehicle(QTableWidget* tableWidget) const
+{
+    QString id = tableWidget->item(tableWidget->currentRow(),4)->text();
+    return id.toInt();
+}
 
 void MainWindow::on_tabWidgetMainTab_currentChanged(int index)
 {
@@ -265,13 +275,15 @@ void MainWindow::on_tabWidgetMainTab_currentChanged(int index)
 
 void MainWindow::setup_tableWidget_vehicle(QTableWidget* tableWidget) const
 {
-    tableWidget->setColumnCount(4);
+    tableWidget->setColumnCount(5);
     tableWidget->setHorizontalHeaderLabels(QStringList()
-                                                 << QString::fromUtf8("Reg. nr")
-                                                 << QString::fromUtf8("Typ")
-                                                 << QString::fromUtf8("Fabrikat")
-                                                 << QString::fromUtf8("Modell"));
+                                           << QString::fromUtf8("Reg. nr")
+                                           << QString::fromUtf8("Typ")
+                                           << QString::fromUtf8("Fabrikat")
+                                           << QString::fromUtf8("Modell")
+                                           << QString::fromUtf8("ID"));
     tableWidget->setShowGrid(false);
+    tableWidget->hideColumn(4);
     tableWidget->verticalHeader()->hide();
     tableWidget->setAlternatingRowColors(true);
     tableWidget->setEditTriggers(0);
@@ -282,14 +294,15 @@ void MainWindow::setup_tableWidget_vehicle(QTableWidget* tableWidget) const
 
 void MainWindow::setup_tableWidget_reservation(QTableWidget* tableWidget) const
 {
-    tableWidget->setColumnCount(6);
+    tableWidget->setColumnCount(7);
     tableWidget->setHorizontalHeaderLabels(QStringList()
-                                                 << QString::fromUtf8("Res. nr")
-                                                 << QString::fromUtf8("Reg. nr")
-                                                 << QString::fromUtf8("Namn")
-                                                 << QString::fromUtf8("Status")
-                                                 << QString::fromUtf8("Starttid")
-                                                 << QString::fromUtf8("Slutttid"));
+                                           << QString::fromUtf8("Res. nr")
+                                           << QString::fromUtf8("Reg. nr")
+                                           << QString::fromUtf8("Namn")
+                                           << QString::fromUtf8("Status")
+                                           << QString::fromUtf8("Starttid")
+                                           << QString::fromUtf8("Slutttid")
+                                           << QString::fromUtf8("ID"));
     tableWidget->setShowGrid(false);
     tableWidget->verticalHeader()->hide();
     tableWidget->setAlternatingRowColors(true);
