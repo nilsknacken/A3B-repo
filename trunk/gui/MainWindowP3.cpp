@@ -26,7 +26,7 @@
 
 void MainWindow::on_pushButtonP3remove_reservation_clicked()
 {
-    int currentRow = ui->tableWidgetP3->currentRow();
+    int currentRow = get_row_reservation(ui->tableWidgetP3);
     if (currentRow >= 0)
     {
         current_resP3 = search_resP3.get_current_result()[currentRow];
@@ -72,7 +72,7 @@ void MainWindow::on_pushButtonP3remove_reservation_clicked()
 
 void MainWindow::on_pushButtonP3checkout_clicked()
 {
-    int currentRow = ui->tableWidgetP3->currentRow();
+    int currentRow = get_row_reservation(ui->tableWidgetP3);
     if (currentRow >= 0)
     {
         current_resP3 = search_resP3.get_current_result()[currentRow];

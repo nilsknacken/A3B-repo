@@ -93,31 +93,31 @@ void MainWindow::on_pushButtonP2delete_clicked()
 
     if(search_index == 0) // bok nr
     {
-        int currentRow = ui->tableWidgetP2bok_nr->currentRow();
+        int currentRow = get_row_reservation(ui->tableWidgetP2bok_nr);
         remove_function(search_resP2bok_nr, currentRow);
     }
 
     else if(search_index == 1) // reg nr
     {
-        int currentRow = ui->tableWidgetP2reg_nr->currentRow();
+        int currentRow = get_row_reservation(ui->tableWidgetP2reg_nr);
         remove_function(search_resP2reg_nr, currentRow);
     }
 
     else if(search_index == 2) //namn
     {
-        int currentRow = ui->tableWidgetP2name->currentRow();
+        int currentRow = get_row_reservation(ui->tableWidgetP2name);
         remove_function(search_resP2name, currentRow);
     }
 
     else if(search_index == 4) //tel
     {
-        int currentRow = ui->tableWidgetP2phone_nr->currentRow();
+        int currentRow = get_row_reservation(ui->tableWidgetP2phone_nr);
         remove_function(search_resP2phone_nr, currentRow);
     }
 
     else if(search_index == 5) //datum
     {
-        int currentRow = ui->tableWidgetP2date->currentRow();
+        int currentRow = get_row_reservation(ui->tableWidgetP2date);
         remove_function(search_resP2date, currentRow);
     }
 
@@ -126,7 +126,42 @@ void MainWindow::on_pushButtonP2delete_clicked()
 }
 
 void MainWindow::on_pushButtonP2change_clicked()
-{}
+{
+    int search_index = ui->stackedWidgetP2->currentIndex();
+
+    if(search_index == 0) // bok nr
+    {
+        int currentRow = get_row_reservation(ui->tableWidgetP2bok_nr);
+        change_function(search_resP2bok_nr, currentRow);
+    }
+
+    else if(search_index == 1) // reg nr
+    {
+        int currentRow = get_row_reservation(ui->tableWidgetP2reg_nr);
+        change_function(search_resP2reg_nr, currentRow);
+    }
+
+    else if(search_index == 2) //namn
+    {
+        int currentRow = get_row_reservation(ui->tableWidgetP2name);
+        change_function(search_resP2name, currentRow);
+    }
+
+    else if(search_index == 4) //tel
+    {
+        int currentRow = get_row_reservation(ui->tableWidgetP2phone_nr);
+        change_function(search_resP2phone_nr, currentRow);
+    }
+
+    else if(search_index == 5) //datum
+    {
+        int currentRow = get_row_reservation(ui->tableWidgetP2date);
+        change_function(search_resP2date, currentRow);
+    }
+
+    else
+        throw GUI_error("Ogiltligt index för ändra widget!");
+}
 
 void MainWindow::on_pushButtonP2show_clicked()
 {
@@ -134,31 +169,31 @@ void MainWindow::on_pushButtonP2show_clicked()
 
     if(search_index == 0) // bok nr
     {
-        int currentRow = ui->tableWidgetP2bok_nr->currentRow();
+        int currentRow = get_row_reservation(ui->tableWidgetP2bok_nr);
         show_function(search_resP2bok_nr, currentRow);
     }
 
     else if(search_index == 1) // reg nr
     {
-        int currentRow = ui->tableWidgetP2reg_nr->currentRow();
+        int currentRow = get_row_reservation(ui->tableWidgetP2reg_nr);
         show_function(search_resP2reg_nr, currentRow);
     }
 
     else if(search_index == 2) //namn
     {
-        int currentRow = ui->tableWidgetP2name->currentRow();
+        int currentRow = get_row_reservation(ui->tableWidgetP2name);
         show_function(search_resP2name, currentRow);
     }
 
     else if(search_index == 4) //tel
     {
-        int currentRow = ui->tableWidgetP2phone_nr->currentRow();
+        int currentRow = get_row_reservation(ui->tableWidgetP2phone_nr);
         show_function(search_resP2phone_nr, currentRow);
     }
 
     else if(search_index == 5) //datum
     {
-        int currentRow = ui->tableWidgetP2date->currentRow();
+        int currentRow = get_row_reservation(ui->tableWidgetP2date);
         show_function(search_resP2date, currentRow);
     }
 
@@ -354,6 +389,21 @@ void MainWindow::show_function(Search_reservation& search_current_res, int curre
                                  QString::fromUtf8("Bekräfta borttagning"),
                                  show_context,
                                  QMessageBox::Ok);
+    }
+    else
+    {
+        please_select_entry();
+    }
+}
+
+void MainWindow::change_function(Search_reservation& search_current_res, int current_row)
+{
+    if (current_row >= 0)
+    {
+        current_resP1 = search_current_res.get_current_result()[current_row];
+        change_reservation = true;
+
+        ui->tabWidgetMainTab->setCurrentIndex(0);
     }
     else
     {

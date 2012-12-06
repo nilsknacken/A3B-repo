@@ -1,3 +1,21 @@
+/*
+* Filename:    MainWindowP4.cpp
+* PROJECT:     A3B
+* PROGRAMMER:  Conny Andersson  Y3a conan414@student.liu.se
+*              Andreas Bolin    Y3a andbo467@student.liu.se
+*              Martin Andersson Y3a maran703@student.liu.se
+*              Adam Andersson   Y3a adaan690@student.liu.se
+* DATE:        2012-10-12
+*
+* DESCRIPTION:
+* Implementation of tab nr 5 = Fordon.
+* Hanterar fordonsdatabasen.
+*
+*Created by:
+*Adam:      on_pushButtonP5search_clicked
+*
+*/
+
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include <iostream>                                                              //REMOVE
@@ -11,9 +29,45 @@ using namespace std;
 ////// Tab 5 - Search car
 void MainWindow::on_pushButtonP5search_clicked()
 {
+    int i = 0;
+
     on_tableWidgetP5_cellClicked(-1, -1);
 
     QString given_reg_nr = ui->lineEditP5search->text();
+
+    string check_reg = given_reg_nr.toStdString();
+
+    if(check_reg.length() == 6)
+    {
+        while(i < 3)
+        {
+            if(isalpha(check_reg[i]))
+                ++i;
+            else
+                break;                 //Kolla om tillåtet!!!
+        }
+
+        if(i == 3)
+        {
+            while(i < 6)
+            {
+                if(isdigit(check_reg[i]))
+                    ++i;
+                else
+                    break;            //Kolla om tillåtet!!!
+            }
+        }
+    }
+    else if(check_reg.length() > 0)
+        ++i;
+
+    if (i != 6 && i != 0)
+    {
+        QMessageBox::information(this,
+                                 QString::fromUtf8("Felaktig inmatning"),
+                                 QString::fromUtf8("Felaktig inmatning utav registreringsnummer."),
+                                 QMessageBox::Ok);
+    }
 
     if (given_reg_nr.isEmpty())
         generate_vehicle_list(search_vehicleP5.all(), ui->tableWidgetP5);
