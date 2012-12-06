@@ -94,6 +94,14 @@ void Database::fill_db()
                              67457,
                              "hö backspegel, växelspak saknas");
 
+    Database::vehicle_update("DEF456",
+                             "Liten bil",
+                             "ledig",
+                             "Skoda",
+                             "Fabia",
+                             10001,
+                             "Saknar 7 hjulbultar.");
+
     Database::vehicle_update("KSU638",
                              "Liten lastbil",
                              "ledig",
