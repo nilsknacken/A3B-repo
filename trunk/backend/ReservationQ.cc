@@ -9,7 +9,10 @@
 *
 * DESCRIPTION
 * 
-* ///////////////Programbeskrivning
+* Defination av the reservation class and it's functions.
+*
+* Created by:
+* Conny: All
 */
 
 #include <cctype>

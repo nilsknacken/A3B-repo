@@ -9,7 +9,10 @@
 *
 * DESCRIPTION
 * 
-* ///////////////Programbeskrivning
+* Declaration of the vehicle search class.
+*
+* Created by:
+* Conny: All
 */
 
 #ifndef SEARCH_VEHICLE

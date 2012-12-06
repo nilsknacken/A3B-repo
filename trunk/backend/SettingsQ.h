@@ -9,7 +9,12 @@
 *
 * DESCRIPTION
 * 
-* ///////////////Programbeskrivning
+* The settings class, uses as a connection between the database and the GUI.
+* Declaration of the settings class.
+*
+* Created by:
+* Conny: All
+*
 */
 
 #ifndef SETTINGS

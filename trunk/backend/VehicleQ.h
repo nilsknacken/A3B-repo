@@ -9,7 +9,11 @@
 *
 * DESCRIPTION
 * 
-* ///////////////Programbeskrivning
+* The vehicle class, uses as a connection between the database and the GUI.
+* Declaration of the vehicle class.
+*
+* Created by:
+* Conny: All
 */
 
 #ifndef VEHICLE
