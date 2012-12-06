@@ -104,6 +104,8 @@ private:
     Settings* settings;
     Dialog_Settings* gui_settings;
 
+    bool change_reservation = false;
+
     Reservation* current_resP1 = new Reservation();
     Reservation* current_resP2 = new Reservation();
     Reservation* current_resP3 = new Reservation();
@@ -148,13 +150,14 @@ private:
     // Generella
     void generate_vehicle_list(std::vector<Vehicle*>, QTableWidget*);
     void generate_reservation_list(std::vector<Reservation*>, QTableWidget*);
+    int get_row_reservation(QTableWidget*) const;
+    int get_row_vehicle(QTableWidget*) const;
 
     void please_select_entry();
 
     void custom_setup();
     void setup_tableWidget_vehicle(QTableWidget*) const;
     void setup_tableWidget_reservation(QTableWidget*) const;
-
 
     void setup_tableWidgetP1S_Car()     const;
     void setup_tableWidgetP1M_Car()     const;

@@ -321,7 +321,8 @@ void MainWindow::when_next_clicked(Search_vehicle& search_vehicle,
                                    QTableWidget* tableWidget,
                                    int tab_index)
 {
-    int row = tableWidget->currentRow();
+   int row = get_row_vehicle(tableWidget);
+
     if(row >= 0)
     {
         QString reg_nr = search_vehicle.get_current_result()[row]->get_reg_nr();
@@ -339,7 +340,7 @@ void MainWindow::when_next_clicked(Search_vehicle& search_vehicle,
 
 void MainWindow::new_reservation(Search_vehicle & search_vehicle, QTableWidget* tableWidget)
 {
-    int row = tableWidget->currentRow();
+    int row = get_row_vehicle(tableWidget);
 
     QDateTime* from = new QDateTime();
     QDateTime* to = new QDateTime();
