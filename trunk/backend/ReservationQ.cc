@@ -320,8 +320,8 @@ correct_postal_nr(const QString& postal_nr)
             throw reservation_error("Postnummer får endast innehålla "
                                     "siffror och ha längden 5.");
     }
-    if((! count_digit == 5) &&
-            (! count_space <= 1))
+    if((count_digit != 5) ||
+            (count_space > 1))
         throw reservation_error("Postnummer får endast innehålla "
                                 "siffror och ha längden 5.");
 
