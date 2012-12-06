@@ -9,7 +9,9 @@
 *
 * DESCRIPTION
 * 
-* Klass som sköter sökningen i databasen av fordon och hanterar dess resultat.
+* Defination av the vehicle search class and it's functions.
+* The class handle searchings in the database of vehicles and
+* create a proper output.
 *
 * Created by:
 * Conny: All

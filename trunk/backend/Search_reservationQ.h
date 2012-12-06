@@ -9,7 +9,10 @@
 *
 * DESCRIPTION
 * 
-* ///////////////Programbeskrivning
+* Declaration of the reservation search class.
+*
+* Created by:
+* Conny: All
 */
 
 #ifndef SEARCH_RESERVATION
@@ -28,7 +31,7 @@ class Search_reservation
 {
 public:
     Search_reservation()  = default;
-    ~Search_reservation() = default;
+    ~Search_reservation();
 
     std::vector<Reservation*> all();
     std::vector<Reservation*> res_nr(int);
