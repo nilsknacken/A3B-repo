@@ -9,7 +9,7 @@
 *
 * DESCRIPTION
 *
-* Här defineras funktionerna för Tab2 "sök".
+* Here are the functions for Tab2 "sök" defined.
 *
 * Created by:
 * Conny:

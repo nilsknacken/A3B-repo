@@ -10,6 +10,10 @@
 * DESCRIPTION
 * 
 * The reservation class, uses as a connection between the database and the GUI.
+* Declaration av the reservation class.
+*
+* Created by:
+* Conny: All
 */
 
 #ifndef RESERVATION
