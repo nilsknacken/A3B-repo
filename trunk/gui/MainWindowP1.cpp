@@ -341,7 +341,6 @@ void MainWindow::on_pushButtonP1L_Truck_clicked()
 
 void MainWindow::on_pushButtonP1search_clicked()
 {
-    ui->pushButtonP1next->setDisabled(true);
     P1_table_is_clicked[0] = false;
     P1_table_is_clicked[1] = false;
     P1_table_is_clicked[2] = false;
@@ -372,6 +371,7 @@ void MainWindow::on_pushButtonP1search_clicked()
     type = QString::fromUtf8("Stor lastbil");
     generate_vehicle_list(search_vehicleP1L_Truck.type_date(type, start, end), ui->tableWidgetP1L_Truck);
 
+    ui->pushButtonP1next->setDisabled(true);
     delete from;
     delete to;
 }
