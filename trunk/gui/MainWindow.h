@@ -60,11 +60,20 @@ private slots:
     void on_pushButtonP2change_clicked();
     void on_pushButtonP2show_clicked();
     void on_dateEditP2from_dateChanged(const QDate &date);
+
     void on_pushButtonP2bok_nr_clicked();
     void on_pushButtonP2reg_nr_clicked();
     void on_pushButtonP2name_clicked();
     void on_pushButtonP2phone_nr_clicked();
     void on_pushButtonP2date_clicked();
+
+    void on_tableWidgetP2bok_nr_itemSelectionChanged();
+    void on_tableWidgetP2reg_nr_itemSelectionChanged();
+    void on_tableWidgetP2name_itemSelectionChanged();
+    void on_tableWidgetP2phone_nr_itemSelectionChanged();
+    void on_tableWidgetP2date_itemSelectionChanged();
+
+    void P2_change_button_appearance(int) const;
 
     // Tab 3 - Checkout
     void on_pushButtonP3remove_reservation_clicked();
@@ -117,7 +126,6 @@ private:
     Search_reservation search_resP2bok_nr;
     Search_reservation search_resP2reg_nr;
     Search_reservation search_resP2name;
-    Search_reservation search_resP2per_nr;
     Search_reservation search_resP2phone_nr;
     Search_reservation search_resP2date;
 
@@ -137,9 +145,10 @@ private:
 
     // Tab2 sök
     void show_function(Search_reservation&, int);
-    void remove_function(Search_reservation&, int);
+    void remove_function(Search_reservation&, int, int);
     void change_function(Search_reservation&, int);
-    void disable_buttons(int);
+    void P2_disable_buttons(int);
+    bool P2_table_is_clicked[5] = {false};
 
     // Tab3 utlämning
     void checkout_function();
@@ -165,7 +174,6 @@ private:
     void setup_tableWidgetP2bok_nr()    const;
     void setup_tableWidgetP2reg_nr()    const;
     void setup_tableWidgetP2name()      const;
-    void setup_tableWidgetP2per_nr()    const;
     void setup_tableWidgetP2phone_nr()  const;
     void setup_tableWidgetP2date()      const;
 

@@ -102,7 +102,6 @@ void MainWindow::custom_setup()
     on_pushButtonP2bok_nr_clicked();
     ui->stackedWidgetP1Main->setCurrentIndex(0);
     ui->tabWidgetMainTab->setCurrentIndex(0);
-    ui->stackedWidgetP2toggle_date_string->setCurrentIndex(0);
     ui->stackedWidgetP4->setCurrentIndex(0);
     ui->stackedWidgetP5->setCurrentIndex(0);
 
@@ -116,7 +115,6 @@ void MainWindow::custom_setup()
     setup_tableWidgetP2date();
     setup_tableWidgetP2date();
     setup_tableWidgetP2name();
-    setup_tableWidgetP2per_nr();
     setup_tableWidgetP2phone_nr();
     setup_tableWidgetP2reg_nr();
 

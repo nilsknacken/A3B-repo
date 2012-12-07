@@ -63,7 +63,7 @@ void MainWindow::on_pushButtonP2search_clicked()
             generate_reservation_list(search_resP2name.name(name), ui->tableWidgetP2name);
     }
 
-    else if(search_index == 4) //tel
+    else if(search_index == 3) //tel
     {
         QString phone_nr = ui->lineEditSearch->text();
         if (phone_nr.isEmpty())
@@ -72,7 +72,7 @@ void MainWindow::on_pushButtonP2search_clicked()
             generate_reservation_list(search_resP2phone_nr.tel(phone_nr), ui->tableWidgetP2phone_nr);
     }
 
-    else if(search_index == 5) //datum
+    else if(search_index == 4) //datum
     {
         QString start = ui->dateEditP2from->date().toString(date_format);
         QString end = ui->dateEditP2to->date().toString(date_format);
@@ -89,6 +89,8 @@ void MainWindow::on_pushButtonP2search_clicked()
     else
         throw GUI_error("Ogiltligt index för sök widget!");
 
+    P2_table_is_clicked[search_index] = false;
+    P2_change_button_appearance(search_index);
 }
 
 void MainWindow::on_pushButtonP2delete_clicked()
@@ -98,31 +100,31 @@ void MainWindow::on_pushButtonP2delete_clicked()
     if(search_index == 0) // bok nr
     {
         int currentRow = get_row_reservation(ui->tableWidgetP2bok_nr);
-        remove_function(search_resP2bok_nr, currentRow);
+        remove_function(search_resP2bok_nr, currentRow, search_index);
     }
 
     else if(search_index == 1) // reg nr
     {
         int currentRow = get_row_reservation(ui->tableWidgetP2reg_nr);
-        remove_function(search_resP2reg_nr, currentRow);
+        remove_function(search_resP2reg_nr, currentRow, search_index);
     }
 
     else if(search_index == 2) //namn
     {
         int currentRow = get_row_reservation(ui->tableWidgetP2name);
-        remove_function(search_resP2name, currentRow);
+        remove_function(search_resP2name, currentRow, search_index);
     }
 
-    else if(search_index == 4) //tel
+    else if(search_index == 3) //tel
     {
         int currentRow = get_row_reservation(ui->tableWidgetP2phone_nr);
-        remove_function(search_resP2phone_nr, currentRow);
+        remove_function(search_resP2phone_nr, currentRow, search_index);
     }
 
-    else if(search_index == 5) //datum
+    else if(search_index == 4) //datum
     {
         int currentRow = get_row_reservation(ui->tableWidgetP2date);
-        remove_function(search_resP2date, currentRow);
+        remove_function(search_resP2date, currentRow, search_index);
     }
 
     else
@@ -151,13 +153,13 @@ void MainWindow::on_pushButtonP2change_clicked()
         change_function(search_resP2name, currentRow);
     }
 
-    else if(search_index == 4) //tel
+    else if(search_index == 3) //tel
     {
         int currentRow = get_row_reservation(ui->tableWidgetP2phone_nr);
         change_function(search_resP2phone_nr, currentRow);
     }
 
-    else if(search_index == 5) //datum
+    else if(search_index == 4) //datum
     {
         int currentRow = get_row_reservation(ui->tableWidgetP2date);
         change_function(search_resP2date, currentRow);
@@ -189,13 +191,13 @@ void MainWindow::on_pushButtonP2show_clicked()
         show_function(search_resP2name, currentRow);
     }
 
-    else if(search_index == 4) //tel
+    else if(search_index == 3) //tel
     {
         int currentRow = get_row_reservation(ui->tableWidgetP2phone_nr);
         show_function(search_resP2phone_nr, currentRow);
     }
 
-    else if(search_index == 5) //datum
+    else if(search_index == 4) //datum
     {
         int currentRow = get_row_reservation(ui->tableWidgetP2date);
         show_function(search_resP2date, currentRow);
@@ -214,39 +216,44 @@ void MainWindow::on_dateEditP2from_dateChanged(const QDate &date)
 
 void MainWindow::on_pushButtonP2bok_nr_clicked()
 {
-    disable_buttons(0);
+    P2_disable_buttons(0);
     ui->stackedWidgetP2->setCurrentIndex(0);
     ui->stackedWidgetP2toggle_date_string->setCurrentIndex(0);
+    P2_change_button_appearance(0);
 }
 
 void MainWindow::on_pushButtonP2reg_nr_clicked()
 {
-    disable_buttons(1);
+    P2_disable_buttons(1);
     ui->stackedWidgetP2->setCurrentIndex(1);
     ui->stackedWidgetP2toggle_date_string->setCurrentIndex(0);
+    P2_change_button_appearance(1);
 }
 
 void MainWindow::on_pushButtonP2name_clicked()
 {
-    disable_buttons(2);
+    P2_disable_buttons(2);
     ui->stackedWidgetP2->setCurrentIndex(2);
     ui->stackedWidgetP2toggle_date_string->setCurrentIndex(0);
+    P2_change_button_appearance(2);
 }
 
 
 void MainWindow::on_pushButtonP2phone_nr_clicked()
 {
-    disable_buttons(3);
-    ui->stackedWidgetP2->setCurrentIndex(4);
+    P2_disable_buttons(3);
+    ui->stackedWidgetP2->setCurrentIndex(3);
     ui->stackedWidgetP2toggle_date_string->setCurrentIndex(0);
+    P2_change_button_appearance(3);
 }
 
 
 void MainWindow::on_pushButtonP2date_clicked()
 {
-    disable_buttons(4);
-    ui->stackedWidgetP2->setCurrentIndex(5);
+    P2_disable_buttons(4);
+    ui->stackedWidgetP2->setCurrentIndex(4);
     ui->stackedWidgetP2toggle_date_string->setCurrentIndex(1);
+    P2_change_button_appearance(4);
 }
 
 void MainWindow::setup_tableWidgetP2bok_nr() const
@@ -255,10 +262,10 @@ void MainWindow::setup_tableWidgetP2bok_nr() const
     setup_tableWidget_reservation(ui->tableWidgetP2bok_nr);
 }
 
-void MainWindow::setup_tableWidgetP2date() const
+void MainWindow::setup_tableWidgetP2reg_nr() const
 {
-    ui->tableWidgetP2date->sortItems(4); //sort starttid
-    setup_tableWidget_reservation(ui->tableWidgetP2date);
+    ui->tableWidgetP2reg_nr->sortItems(1); //sort reg nr
+    setup_tableWidget_reservation(ui->tableWidgetP2reg_nr);
 }
 
 void MainWindow::setup_tableWidgetP2name() const
@@ -267,137 +274,112 @@ void MainWindow::setup_tableWidgetP2name() const
     setup_tableWidget_reservation(ui->tableWidgetP2name);
 }
 
-void MainWindow::setup_tableWidgetP2per_nr() const
-{
-
-    ui->tableWidgetP2per_nr->sortItems(2); // sort name
-    setup_tableWidget_reservation(ui->tableWidgetP2per_nr);
-}
-
 void MainWindow::setup_tableWidgetP2phone_nr() const
 {
     setup_tableWidget_reservation(ui->tableWidgetP2phone_nr);
 }
 
-void MainWindow::setup_tableWidgetP2reg_nr() const
+void MainWindow::setup_tableWidgetP2date() const
 {
-    ui->tableWidgetP2reg_nr->sortItems(1); //sort reg nr
-    setup_tableWidget_reservation(ui->tableWidgetP2reg_nr);
+    ui->tableWidgetP2date->sortItems(4); //sort starttid
+    setup_tableWidget_reservation(ui->tableWidgetP2date);
 }
 
 
-void MainWindow::remove_function(Search_reservation& search_current_res, int current_row)
+
+void MainWindow::remove_function(Search_reservation& search_current_res, int current_row, int menu_index)
 {
-    if (current_row >= 0)
+    current_resP2 = search_current_res.get_current_result()[current_row];
+    QString confirm_removal = QString::fromUtf8(
+                "Är du säker på att du vill radera nedanstående bokning?\n\n"
+                "Reservations nummer: %1\n"
+                "Namn: %2\n"
+                "Telefon: %3\n"
+                "Från: %4\n"
+                "Till: %5\n"
+                "Registreringsnummer: %6\n").arg(QString::number(current_resP2->get_res_nr()),
+                                                 current_resP2->get_name(),
+                                                 current_resP2->get_tel(),
+                                                 current_resP2->get_start(),
+                                                 current_resP2->get_end(),
+                                                 current_resP2->get_reg_nr());
+
+    switch(QMessageBox::warning(this,
+                                QString::fromUtf8("Bekräfta borttagning"),
+                                confirm_removal,
+                                QMessageBox::Cancel,
+                                QMessageBox::Yes))
     {
-        current_resP2 = search_current_res.get_current_result()[current_row];
-        QString confirm_removal = QString::fromUtf8(
-                    "Är du säker på att du vill radera nedanstående bokning?\n\n"
-                    "Reservations nummer: %1\n"
-                    "Namn: %2\n"
-                    "Telefon: %3\n"
-                    "Från: %4\n"
-                    "Till: %5\n"
-                    "Registreringsnummer: %6\n").arg(QString::number(current_resP2->get_res_nr()),
-                                                     current_resP2->get_name(),
-                                                     current_resP2->get_tel(),
-                                                     current_resP2->get_start(),
-                                                     current_resP2->get_end(),
-                                                     current_resP2->get_reg_nr());
-
-        switch(QMessageBox::warning(this,
-                                    QString::fromUtf8("Bekräfta borttagning"),
-                                    confirm_removal,
-                                    QMessageBox::Cancel,
-                                    QMessageBox::Yes))
-        {
-        case QMessageBox::Yes:
-        {
-            current_resP2->remove();
-            on_pushButtonP2search_clicked();
-            break;
-        }
-
-        default:
-            break;
-        }
+    case QMessageBox::Yes:
+    {
+        current_resP2->remove();
+        on_pushButtonP2search_clicked();
+        P2_table_is_clicked[menu_index] = false;
+        P2_change_button_appearance(menu_index);
+        break;
     }
-    else
-    {
-        please_select_entry();
+
+    default:
+        break;
     }
 }
 
 void MainWindow::show_function(Search_reservation& search_current_res, int current_row)
 {
-    if (current_row >= 0)
-    {
-        current_resP2 = search_current_res.get_current_result()[current_row];
-        QString show_context = QString::fromUtf8(
-                    "Information\n\n"
-                    "Reservations nummer: %1\n"
-                    "Namn: %2\n"
-                    "Telefon: %3\n"
-                    "Från: %4\n"
-                    "Till: %5\n"
-                    "Registreringsnummer: %6\n"
-                    "Adress: %7\n"
-                    "Postnummer: %8\n"
-                    "Stad: %9\n").arg(QString::number(current_resP2->get_res_nr()),
-                                      current_resP2->get_name(),
-                                      current_resP2->get_tel(),
-                                      current_resP2->get_start(),
-                                      current_resP2->get_end(),
-                                      current_resP2->get_reg_nr(),
-                                      current_resP2->get_adress(),
-                                      current_resP2->get_postal_nr(),
-                                      current_resP2->get_city());
+    current_resP2 = search_current_res.get_current_result()[current_row];
+    QString show_context = QString::fromUtf8(
+                "Information\n\n"
+                "Reservations nummer: %1\n"
+                "Namn: %2\n"
+                "Telefon: %3\n"
+                "Från: %4\n"
+                "Till: %5\n"
+                "Registreringsnummer: %6\n"
+                "Adress: %7\n"
+                "Postnummer: %8\n"
+                "Stad: %9\n").arg(QString::number(current_resP2->get_res_nr()),
+                                  current_resP2->get_name(),
+                                  current_resP2->get_tel(),
+                                  current_resP2->get_start(),
+                                  current_resP2->get_end(),
+                                  current_resP2->get_reg_nr(),
+                                  current_resP2->get_adress(),
+                                  current_resP2->get_postal_nr(),
+                                  current_resP2->get_city());
 
-        QMessageBox::information(this,
-                                 QString::fromUtf8("Bekräfta borttagning"),
-                                 show_context,
-                                 QMessageBox::Ok);
-    }
-    else
-    {
-        please_select_entry();
-    }
+    QMessageBox::information(this,
+                             QString::fromUtf8("Information"),
+                             show_context,
+                             QMessageBox::Ok);
 }
 
 void MainWindow::change_function(Search_reservation& search_current_res, int current_row)
 {
-    if (current_row >= 0)
+    current_resP1 = search_current_res.get_current_result()[current_row];
+    QString change_context = QString::fromUtf8(
+                "Du är påväg att lämna söksidan för att gå till bokningsidan.\n"
+                "Det är på bokningssidan du kan ändra dina personliga uppgifter.\n\n"
+                "Vill du göra detta?\n");
+
+    switch(QMessageBox::warning(this,
+                                QString::fromUtf8("Bekräfta sidbyte"),
+                                change_context,
+                                QMessageBox::Cancel,
+                                QMessageBox::Yes))
     {
-        current_resP1 = search_current_res.get_current_result()[current_row];
-        QString change_context = QString::fromUtf8(
-                    "Du är påväg att lämna söksidan för att gå till bokningsidan.\n"
-                    "Det är på bokningssidan du kan ändra dina personliga uppgifter.\n\n"
-                    "Vill du göra detta?\n");
-
-        switch(QMessageBox::warning(this,
-                                    QString::fromUtf8("Bekräfta sidbyte"),
-                                    change_context,
-                                    QMessageBox::Cancel,
-                                    QMessageBox::Yes))
-        {
-        case QMessageBox::Yes:
-        {
-            change_reservation = true;
-            change_customer_info();
-            break;
-        }
-
-        default:
-            break;
-        }
+    case QMessageBox::Yes:
+    {
+        change_reservation = true;
+        change_customer_info();
+        break;
     }
-    else
-    {
-        please_select_entry();
+
+    default:
+        break;
     }
 }
 
-void MainWindow::disable_buttons(int i)
+void MainWindow::P2_disable_buttons(int menu_index)
 {
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2bok_nr);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2reg_nr);
@@ -405,22 +387,60 @@ void MainWindow::disable_buttons(int i)
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2phone_nr);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2date);
 
-    if(i == 0)
+    if(menu_index == 0)
         set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2bok_nr);
 
-    else if(i == 1)
+    else if(menu_index == 1)
         set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2reg_nr);
 
-    else if(i == 2)
+    else if(menu_index == 2)
         set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2name);
 
-    else if(i == 3)
+    else if(menu_index == 3)
         set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2phone_nr);
 
-    else if(i == 4)
+    else if(menu_index == 4)
         set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2date);
 
     else
         throw GUI_error("Fel index för disable_buttons!");
 }
 
+void MainWindow::on_tableWidgetP2bok_nr_itemSelectionChanged()
+{
+    P2_table_is_clicked[0] = true;
+    P2_change_button_appearance(0);
+}
+
+void MainWindow::on_tableWidgetP2reg_nr_itemSelectionChanged()
+{
+    P2_table_is_clicked[1] = true;
+    P2_change_button_appearance(1);
+}
+
+
+void MainWindow::on_tableWidgetP2name_itemSelectionChanged()
+{
+    P2_table_is_clicked[2] = true;
+    P2_change_button_appearance(2);
+}
+
+void MainWindow::on_tableWidgetP2phone_nr_itemSelectionChanged()
+{
+    P2_table_is_clicked[3] = true;
+    P2_change_button_appearance(3);
+}
+
+void MainWindow::on_tableWidgetP2date_itemSelectionChanged()
+{
+    P2_table_is_clicked[4] = true;
+    P2_change_button_appearance(4);
+}
+
+
+void MainWindow::P2_change_button_appearance(int menu_index) const
+{
+    ui->pushButtonP2show->setEnabled(P2_table_is_clicked[menu_index]);
+    ui->pushButtonP2change->setEnabled(P2_table_is_clicked[menu_index]);
+    ui->pushButtonP2delete->setEnabled(P2_table_is_clicked[menu_index]);
+}
