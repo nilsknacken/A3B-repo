@@ -233,11 +233,6 @@ void MainWindow::on_pushButtonP2name_clicked()
     ui->stackedWidgetP2toggle_date_string->setCurrentIndex(0);
 }
 
-void MainWindow::on_pushButtonP2per_nr_clicked()
-{
-    ui->stackedWidgetP2->setCurrentIndex(3);
-    ui->stackedWidgetP2toggle_date_string->setCurrentIndex(0);
-}
 
 void MainWindow::on_pushButtonP2phone_nr_clicked()
 {

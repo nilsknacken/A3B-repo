@@ -59,7 +59,6 @@ private slots:
     void on_pushButtonP2bok_nr_clicked();
     void on_pushButtonP2reg_nr_clicked();
     void on_pushButtonP2name_clicked();
-    void on_pushButtonP2per_nr_clicked();
     void on_pushButtonP2phone_nr_clicked();
     void on_pushButtonP2date_clicked();
 

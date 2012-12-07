@@ -72,7 +72,7 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::on_actionSettings_triggered()
 {
-    int i = gui_settings->exec();
+    gui_settings->exec();
 }
 
 void MainWindow::on_actionQuit_triggered()
