@@ -74,7 +74,7 @@ void
 Settings::
 clean_db()
 {
-    //Database::erase_all();
+    Database::erase_all();
 }
 
 // Apply changes of the parameters.
