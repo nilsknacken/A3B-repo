@@ -121,7 +121,7 @@ private:
 
 // Tab1 bokning
     void when_next_clicked(Search_vehicle&, QTableWidget*, int);
-    void new_reservation(Search_vehicle&, QTableWidget*);
+    void new_reservation();
     void change_customer_info();
 
 

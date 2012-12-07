@@ -119,7 +119,7 @@ void MainWindow::on_pushButtonP1next_clicked()
         {
             try
             {
-                new_reservation(search_vehicleP1S_Car, ui->tableWidgetP1S_Car);
+                new_reservation();
             }
             catch (reservation_error& e)
             {
@@ -318,7 +318,7 @@ void MainWindow::when_next_clicked(Search_vehicle& search_vehicle,
     }
 }
 
-void MainWindow::new_reservation(Search_vehicle & search_vehicle, QTableWidget* tableWidget)
+void MainWindow::new_reservation()
 {
     QDateTime* from = new QDateTime();
     QDateTime* to = new QDateTime();
