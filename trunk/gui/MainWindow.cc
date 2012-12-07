@@ -241,6 +241,7 @@ int MainWindow::get_row_reservation(QTableWidget* tableWidget) const
     }
     else
     {
+        tableWidget->setCurrentCell(-1,-1);
         return -1;
     }
 }
@@ -256,6 +257,7 @@ int MainWindow::get_row_vehicle(QTableWidget* tableWidget) const
     }
     else
     {
+        tableWidget->setCurrentCell(-1,-1);
         return -1;
     }
 }
