@@ -15,9 +15,7 @@
 * Conny: All
 */
 
-#include <iostream>               //!!!!!!!!!!!!!!!!!!!!!!!
 #include "SettingsQ.h"
-#include <QDebug>
 
 using namespace std;
 
@@ -69,7 +67,7 @@ update()
         set_min_rental(min_rental.toInt());
 }
 
-// Clean the db of all information except the settings.
+// Clean the database of all information except the settings.
 void
 Settings::
 clean_db()
