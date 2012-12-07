@@ -223,3 +223,14 @@ correct_mileage(const int mileage)
         throw vehicle_error("Trippmätaren får endast ha positiva värden");
 }
 
+Vehicle*
+make_vehicle(QString& reg_nr, QString& type,
+             QString& brand, QString& model,
+             int mileage, QString& damage)
+{
+    QString status = "ledig";
+
+    return new Vehicle(reg_nr, type, status, brand, model,
+                       mileage, damage);
+}
+

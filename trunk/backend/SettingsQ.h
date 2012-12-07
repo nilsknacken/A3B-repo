@@ -34,6 +34,7 @@ public:
 
     void save();
     void update();
+    void clean_db();
 
     void set_open_hour(const int);
     void set_open_min(const int);

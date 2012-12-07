@@ -397,6 +397,22 @@ void Database::remove_vehicle(string& reg_nr)
 }
 
 
+// Erases all reservations and vehicles from the database
+void Database::erase_all()
+   {
+     sqlite3_exec(db,
+       "DELETE FROM Reservations",
+       NULL, 0, NULL);
+     check_for_error();
+
+     sqlite3_exec(db,
+      "DELETE FROM Vehicles",
+     NULL, 0, NULL);
+     check_for_error();
+
+}
+
+
 // Displays results, only for testing
 void Database::display(vector<vector<string>> result)
 {

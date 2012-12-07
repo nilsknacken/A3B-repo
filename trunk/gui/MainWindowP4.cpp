@@ -54,6 +54,8 @@ void MainWindow::on_pushButtonP4next_clicked()
             current_resP4->set_end(now);
             current_resP4->save();
 
+            delete date_time;
+
             ui->labelP4reg_nr_var->setText(reg_nr);
             ui->labelP4checkout_var->setText(current_resP4->get_start());
             ui->labelP4checkin_var->setText(current_resP4->get_end());

@@ -29,7 +29,6 @@
 #include "Dialog_Settings.h"
 #include "ui_Dialog_Settings.h"
 #include <QDialog>
-#include <iostream>                                                             //// REMOVE
 
 using namespace std;
 
@@ -82,7 +81,7 @@ void Dialog_Settings::on_pushButtonCleanDB_clicked()
     {
     case QMessageBox::Yes:
     {
-        cerr << "Databasen är inte rensad egentligen, detta ska implementeras!" << endl; //!!!!!!!!
+        settings_->clean_db();
         ui->pushButtonCleanDB->setDisabled(true);
         ui->pushButtonCleanDB->setText(QString::fromUtf8("Databas rensad"));
         //QMessageBox::information(this,

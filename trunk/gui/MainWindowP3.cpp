@@ -27,10 +27,9 @@
 void MainWindow::on_pushButtonP3remove_reservation_clicked()
 {
     int currentRow = get_row_reservation(ui->tableWidgetP3);
-    /*
+
     if (currentRow >= 0)
     {
-    */
         current_resP3 = search_resP3.get_current_result()[currentRow];
         QString confirm_removal = QString::fromUtf8(
                     "Är du säker på att du vill radera nedanstående bokning?\n\n"
@@ -65,14 +64,12 @@ void MainWindow::on_pushButtonP3remove_reservation_clicked()
         default:
             break;
         }
-    /*
     }
 
     else
     {
         please_select_entry();
     }
-    */
 }
 
 void MainWindow::on_pushButtonP3checkout_clicked()
@@ -92,6 +89,8 @@ void MainWindow::on_pushButtonP3checkout_clicked()
         QDateTime* date_time = new QDateTime();
         QString now = date_time->currentDateTime().toString(date_time_format);
         current_resP3->set_start(now);
+
+        delete date_time;
 
         QString confirm_checkout = QString::fromUtf8(
                     "Är du säker på att du vill lämna ut nedanstående bokning?\n\n"

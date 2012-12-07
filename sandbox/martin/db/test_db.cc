@@ -112,42 +112,15 @@ int main(int argc, char* argv[])
    result = Database::reservation_search(what, value);
    Database::display(result);
 
-   cout << "All vehicles\n";
-   what = "all";
-   value = "ABC123";
-   result = Database::vehicle_search(what, value);
-   Database::display(result);
-/*
->>>>>>> db
-   string start = "2011-11-10 11:12";
-   string end = "2011-12-11 10:12";
-
-   cout << "Search 2011-11-10 11:12 -> 2011-11-11 10:12 ----------\n\n";
-
-   result = Database::reservation_search_date(start,end);
-   Database::display(result);
-   */
+   Database::erase_all();
    
-   type = "small_car";
-   start = "2010-10-11 11:11";
-   end = "2012-11-10 11:11";
-
-cout << "Search type: " << type << " free from: " << start << " to: " << end << endl;
-   result = Database::vehicle_search(type, start, end);
+   cout << "All reservations\n";
+   what = "all";
+   value = "5678";
+   result = Database::reservation_search(what, value);
    Database::display(result);
-   start = "2011-11-10 11:12";
-   /*string start = "2011-11-10 11:12";
->>>>>>> db
-   string end = "2011-12-11 10:12";
-
-   cout << "Search 2011-11-10 11:12 -> 2011-11-11 10:12 ----------\n\n";
-
-   result = Database::reservation_search_date(start,end);
-   Database::display(result);
-<<<<<<< HEAD
-                                
-=======
-     */                           
+   
+                           
    Database::close();
    
    return 0;
