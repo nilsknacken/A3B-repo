@@ -233,16 +233,10 @@ void MainWindow::on_pushButtonP2name_clicked()
     ui->stackedWidgetP2toggle_date_string->setCurrentIndex(0);
 }
 
-void MainWindow::on_pushButtonP2per_nr_clicked()
-{
-    disable_buttons(3);
-    ui->stackedWidgetP2->setCurrentIndex(3);
-    ui->stackedWidgetP2toggle_date_string->setCurrentIndex(0);
-}
 
 void MainWindow::on_pushButtonP2phone_nr_clicked()
 {
-    disable_buttons(4);
+    disable_buttons(3);
     ui->stackedWidgetP2->setCurrentIndex(4);
     ui->stackedWidgetP2toggle_date_string->setCurrentIndex(0);
 }
@@ -250,7 +244,7 @@ void MainWindow::on_pushButtonP2phone_nr_clicked()
 
 void MainWindow::on_pushButtonP2date_clicked()
 {
-    disable_buttons(5);
+    disable_buttons(4);
     ui->stackedWidgetP2->setCurrentIndex(5);
     ui->stackedWidgetP2toggle_date_string->setCurrentIndex(1);
 }
@@ -348,7 +342,7 @@ void MainWindow::show_function(Search_reservation& search_current_res, int curre
                     "Till: %5\n"
                     "Registreringsnummer: %6\n"
                     "Adress: %7\n"
-                    "Post nummer: %8\n"
+                    "Postnummer: %8\n"
                     "Stad: %9\n").arg(QString::number(current_resP2->get_res_nr()),
                                       current_resP2->get_name(),
                                       current_resP2->get_tel(),
@@ -408,7 +402,6 @@ void MainWindow::disable_buttons(int i)
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2bok_nr);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2reg_nr);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2name);
-    set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2per_nr);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2phone_nr);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2date);
 
@@ -422,12 +415,9 @@ void MainWindow::disable_buttons(int i)
         set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2name);
 
     else if(i == 3)
-        set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2per_nr);
-
-    else if(i == 4)
         set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2phone_nr);
 
-    else if(i == 5)
+    else if(i == 4)
         set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP2date);
 
     else

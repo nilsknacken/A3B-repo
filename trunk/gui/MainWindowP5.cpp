@@ -44,7 +44,7 @@ void MainWindow::on_pushButtonP5search_clicked()
             if(isalpha(check_reg[i]))
                 ++i;
             else
-                break;                 //Kolla om tillåtet!!!
+                break;
         }
 
         if(i == 3)
@@ -54,7 +54,7 @@ void MainWindow::on_pushButtonP5search_clicked()
                 if(isdigit(check_reg[i]))
                     ++i;
                 else
-                    break;            //Kolla om tillåtet!!!
+                    break;
             }
         }
     }
@@ -119,6 +119,11 @@ void MainWindow::on_pushButtonP5add_clicked()
         ui->pushButtonP5change_and_save->setDisabled(true);
         ui->pushButtonP5remove_and_undo->setDisabled(true);
         ui->pushButtonP5add->setText(QString::fromUtf8("Spara"));
+        ui->comboBoxP5add_type->addItem(QString::fromUtf8("Liten bil"));
+        ui->comboBoxP5add_type->addItem(QString::fromUtf8("Mellanbil"));
+        ui->comboBoxP5add_type->addItem(QString::fromUtf8("Stor bil"));
+        ui->comboBoxP5add_type->addItem(QString::fromUtf8("Liten lastbil"));
+        ui->comboBoxP5add_type->addItem(QString::fromUtf8("Stor lastbil"));
     }
 
     else if(index == 1)
@@ -153,7 +158,6 @@ void MainWindow::on_pushButtonP5back_clicked()
     ui->lineEditP5add_fabric_var->clear();
     ui->lineEditP5add_model_var->clear();
     ui->lineEditP5add_regnr_var->clear();
-    ui->lineEditP5add_type_var->clear();
     ui->lineEditP5add_mileage_var->clear();
     ui->plainTextEditP5add_damages_var->clear();
 }

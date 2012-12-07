@@ -89,6 +89,10 @@ void MainWindow::on_pushButtonP3checkout_clicked()
         else
             throw GUI_error("Problem att hämta fordon från reservationen!");
 
+        QDateTime* date_time = new QDateTime();
+        QString now = date_time->currentDateTime().toString(date_time_format);
+        current_resP3->set_start(now);
+
         QString confirm_checkout = QString::fromUtf8(
                     "Är du säker på att du vill lämna ut nedanstående bokning?\n\n"
                     "Reservations nummer: %1\n"
@@ -146,9 +150,6 @@ void MainWindow::checkout_function()
     current_resP3->set_status(aktiv);
     current_vehicleP3->set_status(uthyrd);
 
-    QDateTime* date_time = new QDateTime();
-    QString now = date_time->currentDateTime().toString(date_time_format);
-    current_resP3->set_start(now);
     current_resP3->save();
     current_vehicleP3->save();
 
