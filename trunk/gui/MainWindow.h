@@ -37,6 +37,9 @@ private slots:
     void on_actionQuit_triggered();
 
     // Tab 1 - Reservate
+    void on_dateEditFrom_dateChanged(const QDate &date);
+    void on_timeEditFrom_timeChanged(const QTime &date);
+
     void on_pushButtonP1next_clicked();
     void on_pushButtonP1back_clicked();
     void on_pushButtonP1search_clicked();
@@ -78,6 +81,8 @@ private slots:
     void on_pushButtonP5change_and_save_clicked();
     void on_pushButtonP5remove_and_undo_clicked();
     void on_pushButtonP5back_clicked();
+
+
 
 private:
     bool pushbuttonP5change_clicked = false;
