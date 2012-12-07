@@ -1,0 +1,45 @@
+A3B-Carpark v1.0
+================
+This file is written in Swedish.
+
+
+INNEHÅLLSFÖRTÄCKNING
+1. PROGRAMBESKRIVNING
+2. KOMPILERASKRAV
+3. KOMPILERA
+4. KÖRBARA FILER
+5. GITHUB
+
+
+
+1. PROGRAMBESKRIVNING:
+Lite beskrivning om programmet med mera här
+Någon som har lite känsla för en bra formatering och programbeskrivning får gärna
+skriva detta. Har någon en annan version så skriv dit den versionen i "(testat med...".
+
+
+2. KOMPILERASKRAV:
+Följande är krav för att kunna kompilera detta program
+  C/C++11 kompilator (testat med gcc/g++ 4.7.2)
+  GNU Make           (testat med 3.81)
+  qt-sdk 4 bibliotek (testat med 4.8.3)
+  SQLite 3           (3.7.14.1 medföljer)
+
+
+3. KOMPILERA:
+För att kompilera programmet kör följande
+  $ qmake -makefile A3B-Carpark.pro
+  $ make
+
+
+4. KÖRBARA FILER
+Körbara filer efter kompilering, för att starta programmet
+  $ A3B-Carpark     (linux/unix)
+  $ A3B-Carpark.exe (windows)
+  $                 (mac)
+
+
+5. GITHUB
+Källkoden kan också ses på github:
+  https://github.com/nilsknacken/A3B-repo
+

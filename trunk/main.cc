@@ -21,21 +21,19 @@
 #include <iostream>
 #include <exception>
 
-#include <QResource>
-//int i = QResource::registerResource("./resource.rcc");
 
 int main(int argc, char *argv[])
 {
-    int i;
+    int exit_code;
 
     try
     {
         Database::open("default_db.sqlite");
 
-        QApplication a(argc, argv);
-        MainWindow w;
-        w.show();
-        i =  a.exec();
+        QApplication app(argc, argv);
+        MainWindow main_window;
+        main_window.show();
+        exit_code = app.exec();
     }
     catch(std::exception& e)
     {
@@ -43,6 +41,5 @@ int main(int argc, char *argv[])
     }
 
     Database::close();
-    return i;
-
+    return exit_code;
 }
