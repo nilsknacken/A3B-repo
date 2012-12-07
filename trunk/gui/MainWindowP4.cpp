@@ -34,7 +34,7 @@ void MainWindow::on_pushButtonP4next_clicked()
 {
     int index = ui->stackedWidgetP4->currentIndex();
 
-    if(index == 0)
+    if(index == 0) // "Nästa >" 1 klickad
     {
         QString id = ui->tableWidgetP4->item(ui->tableWidgetP4->currentRow(),4)->text();
         int currentRow = id.toInt();
@@ -65,7 +65,7 @@ void MainWindow::on_pushButtonP4next_clicked()
         ui->pushButtonP4back->setDisabled(false);
     }
 
-    else if(index == 1)
+    else if(index == 1) // "Nästa >" 2 klickad
     {
         // kolla mätarställning
         int difference = ui->lineEditP4mileage->text().toInt() - current_vehicleP4->get_mileage();
@@ -113,7 +113,7 @@ void MainWindow::on_pushButtonP4next_clicked()
         }
     }
 
-    else if(index == 2)
+    else if(index == 2) // "Bekräfta" klickad
     {
         //Bekräftelse
 
@@ -149,6 +149,7 @@ void MainWindow::on_pushButtonP4next_clicked()
         generate_reservation_list(search_resP4.status(aktiv), ui->tableWidgetP4);
         ui->stackedWidgetP4->setCurrentIndex(0);
         ui->pushButtonP4back->setDisabled(true);
+        ui->pushButtonP4next->setDisabled(true);
     }
 }
 

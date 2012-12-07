@@ -30,11 +30,7 @@ using namespace std;
 void MainWindow::on_pushButtonP5search_clicked()
 {
     int i = 0;
-
-    on_tableWidgetP5_cellClicked(-1, -1);
-
     QString given_reg_nr = ui->lineEditP5search->text();
-
     string check_reg = given_reg_nr.toStdString();
 
     if(check_reg.length() == 6)
@@ -75,17 +71,16 @@ void MainWindow::on_pushButtonP5search_clicked()
     else
         generate_vehicle_list(search_vehicleP5.reg_nr(given_reg_nr), ui->tableWidgetP5);
 
+    on_tableWidgetP5_cellClicked(-1, -1);
 }
 
 
 void MainWindow::on_tableWidgetP5_cellClicked(int row, int column)
 {
     (void)column;
-    row = get_row_vehicle(ui->tableWidgetP5);
 
-    if (row >= 0)
+    if (row >= 0) // visa info om bilen
     {
-        // här ska infon visas om bilen
         ui->pushButtonP5change_and_save->setEnabled(true);
         ui->pushButtonP5remove_and_undo->setEnabled(true);
 
@@ -97,18 +92,18 @@ void MainWindow::on_tableWidgetP5_cellClicked(int row, int column)
         ui->labelP5status_var->setText(current_vehicleP5->get_status());
         ui->lineEditP5mileage_var->setText(QString::number (current_vehicleP5->get_mileage()));
         ui->plainTextEditP5damages_var->setPlainText(current_vehicleP5->get_damage());
-
     }
-    else
+    else // cleara info om bilen och disabla knappar
     {
         ui->pushButtonP5change_and_save->setDisabled(true);
         ui->pushButtonP5remove_and_undo->setDisabled(true);
-        ui->labelP5regnr_var->setText(QString::null);
-        ui->labelP5fabric_var->setText(QString::null);
-        ui->labelP5model_var->setText(QString::null);
-        ui->labelP5type_var->setText(QString::null);
-        ui->lineEditP5mileage_var->setText(QString::null);
-
+        ui->labelP5regnr_var->clear();
+        ui->labelP5fabric_var->clear();
+        ui->labelP5model_var->clear();
+        ui->labelP5type_var->clear();
+        ui->labelP5status_var->clear();
+        ui->lineEditP5mileage_var->clear();
+        ui->plainTextEditP5damages_var->clear();
     }
 }
 
@@ -124,8 +119,6 @@ void MainWindow::on_pushButtonP5add_clicked()
         ui->pushButtonP5change_and_save->setDisabled(true);
         ui->pushButtonP5remove_and_undo->setDisabled(true);
         ui->pushButtonP5add->setText(QString::fromUtf8("Spara"));
-
-
     }
 
     else if(index == 1) // spara klickat
@@ -187,17 +180,13 @@ void MainWindow::on_pushButtonP5back_clicked()
 
 void MainWindow::on_pushButtonP5change_and_save_clicked()
 {
-    //int current_row = ui->tableWidgetP5->currentRow();
-    //cerr << "pushButtonP5change_and_save row: " << current_row << endl;                       //REMOVE
-
-        //if (currentRow >= 0)
-    if(! pushbuttonP5change_clicked)
+    if(! pushbuttonP5change_clicked) // change clicked
     {
         pushbuttonP5change_clicked = true;
         P5_change_appearance(pushbuttonP5change_clicked);
     }
 
-    else if(pushbuttonP5change_clicked)
+    else if(pushbuttonP5change_clicked) // save clicked
     {
         int mileage = ui->lineEditP5mileage_var->text().toInt();
         QString damage = ui->plainTextEditP5damages_var->toPlainText();

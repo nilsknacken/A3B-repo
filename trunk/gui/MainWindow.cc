@@ -39,7 +39,6 @@ MainWindow::MainWindow(QWidget* parent)
       settings(new Settings()),
       gui_settings(new Dialog_Settings(this, settings))
 {
-    //QApplication::setStyle(new QPlastiqueStyle);
     ui->setupUi(this);
     custom_setup();
 
@@ -305,11 +304,14 @@ void MainWindow::on_tabWidgetMainTab_currentChanged(int index)
     {
         QString kommande = "kommande";
         generate_reservation_list(search_resP3.status(kommande), ui->tableWidgetP3);
+        ui->pushButtonP3checkout->setDisabled(true);
+        ui->pushButtonP3remove_reservation->setDisabled(true);
     }
     else if (index == 3) // återlämna
     {
         QString aktiv = "aktiv";
         generate_reservation_list(search_resP4.status(aktiv), ui->tableWidgetP4);
+        ui->pushButtonP4next->setDisabled(true);
     }
     else if(index == 4) // fordon
         on_pushButtonP5search_clicked();
