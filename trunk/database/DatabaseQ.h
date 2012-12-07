@@ -102,6 +102,8 @@ public:
    static bool exists_vehicle(QString&);
    static void remove_reservation(int);
    static void remove_vehicle(QString& reg_nr);
+
+   static void erase_all();
    
    static void display(std::vector<std::vector<QString> >); // used for testing
   
