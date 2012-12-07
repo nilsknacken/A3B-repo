@@ -26,6 +26,7 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
+#include <iostream>
 
 void MainWindow::when_next_clicked(Search_vehicle& search_vehicle,
                                    QTableWidget* tableWidget,
@@ -292,7 +293,7 @@ void MainWindow::on_pushButtonP1S_Car_clicked()
 {
     ui->stackedWidgetP1->setCurrentIndex(0);
     ui->pushButtonP1next->setEnabled(P1_table_is_clicked[0]);
-    //ui-> info vid bokningsidan ->setText(S_Car_info)
+  //  ui->label setText(S_Car_info)
     set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP1S_Car);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1M_Car);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1L_Car);
