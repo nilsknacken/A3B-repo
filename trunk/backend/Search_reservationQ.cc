@@ -21,6 +21,7 @@
 #include <stdlib.h>
 #include <QString>
 #include <vector>
+#include <iostream> //!!!!!!!!!!!!!!!!!!!!!!!!!
 #include "ReservationQ.h"
 #include "Search_reservationQ.h"
 
@@ -148,7 +149,7 @@ create_result(vector<vector<QString>>& str_vector)
     {
         vector<vector<QString>>::iterator it;
 
-        for(it = str_vector.begin(); it < str_vector.end(); it++)
+        for(it = str_vector.begin(); it != str_vector.end(); ++it)
         {
             vector<QString> current = *it;
             int res_nr = current[0].toInt();
@@ -189,5 +190,5 @@ clear()
         delete search_result.back();
 
         search_result.pop_back();
-     }
+    }
 }

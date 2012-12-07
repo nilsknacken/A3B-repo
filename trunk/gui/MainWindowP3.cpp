@@ -78,9 +78,9 @@ void MainWindow::on_pushButtonP3remove_reservation_clicked()
 void MainWindow::on_pushButtonP3checkout_clicked()
 {
     int currentRow = get_row_reservation(ui->tableWidgetP3);
-    /*
+
     if (currentRow >= 0)
-    {*/
+    {
         current_resP3 = search_resP3.get_current_result()[currentRow];
         QString reg_nr = current_resP3->get_reg_nr();
         search_vehicleP3.reg_nr(reg_nr);
@@ -122,13 +122,13 @@ void MainWindow::on_pushButtonP3checkout_clicked()
         default:
             break;
         }
-        /*
     }
 
     else
     {
         please_select_entry();
-    }*/
+    }
+
 }
 
 void MainWindow::setup_tableWidgetP3() const

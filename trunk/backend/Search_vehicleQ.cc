@@ -182,10 +182,22 @@ void
 Search_vehicle::
 clear()
 {
+    /*
     while(! search_result.empty())
     {
         delete search_result.back();
 
         search_result.pop_back();
      }
+    */
+    vector<Vehicle*>::iterator it;
+
+    for(it = search_result.begin(); it != search_result.end(); ++it)
+    {
+        Vehicle* temp = *it;
+        *it = 0;
+        delete temp;
+    }
+
+    //search_result.clear();
 }
