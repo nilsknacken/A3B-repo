@@ -186,5 +186,10 @@ void MainWindow::setup_tableWidgetP4() const
     setup_tableWidget_reservation(ui->tableWidgetP4);
     ui->tableWidgetP4->sortItems(5); //sortera på sluttid
 
-    ui->textEditP4_conf->setDisabled(true); // tillåt ej edit av bekräftnings rutan
+    ui->textEditP4_conf->setReadOnly(true);//  setDisabled(true); // tillåt ej edit av bekräftnings rutan
+}
+
+void MainWindow::on_tableWidgetP4_itemSelectionChanged()
+{
+    ui->pushButtonP4next->setEnabled(true);
 }

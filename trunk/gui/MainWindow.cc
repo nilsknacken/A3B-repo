@@ -119,6 +119,7 @@ void MainWindow::custom_setup()
     ui->tabWidgetMainTab->setCurrentIndex(0);
     ui->stackedWidgetP2toggle_date_string->setCurrentIndex(0);
     ui->stackedWidgetP4->setCurrentIndex(0);
+    ui->stackedWidgetP5->setCurrentIndex(0);
 
     setup_tableWidgetP1S_Car();
     setup_tableWidgetP1M_Car();

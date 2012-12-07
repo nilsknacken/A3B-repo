@@ -63,11 +63,13 @@ private slots:
     // Tab 3 - Checkout
     void on_pushButtonP3remove_reservation_clicked();
     void on_pushButtonP3checkout_clicked();
+    void on_tableWidgetP3_itemSelectionChanged();
 
     // Tab 4 - Checkin
     void on_pushButtonP4next_clicked();
     void on_pushButtonP4back_clicked();
     void on_checkBoxP4damages_yes_toggled(bool checked);
+    void on_tableWidgetP4_itemSelectionChanged();
 
     // Tab 5 - Vehicle Search
     void on_pushButtonP5search_clicked();
@@ -76,7 +78,6 @@ private slots:
     void on_pushButtonP5change_and_save_clicked();
     void on_pushButtonP5remove_and_undo_clicked();
     void on_pushButtonP5back_clicked();
-
 
 private:
     bool pushbuttonP5change_clicked = false;

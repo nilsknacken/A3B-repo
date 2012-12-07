@@ -299,16 +299,17 @@ void MainWindow::when_next_clicked(Search_vehicle& search_vehicle,
                                    QTableWidget* tableWidget,
                                    int tab_index)
 {
-   int row = get_row_vehicle(tableWidget);
+    int row = get_row_vehicle(tableWidget);
 
     if(row >= 0)
     {
         QString reg_nr = search_vehicle.get_current_result()[row]->get_reg_nr();
-        ui->labelSelectedRegnr_var_2->setText(reg_nr);
+        ui->labelP1selected_regnr_var->setText(reg_nr);
         current_vehicleP1 = search_vehicle.get_current_result()[row];
 
         ui->stackedWidgetP1Main->setCurrentIndex(++tab_index);
         ui->pushButtonP1back->setDisabled(false);
+
     }
     else
     {

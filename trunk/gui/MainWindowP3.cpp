@@ -27,9 +27,10 @@
 void MainWindow::on_pushButtonP3remove_reservation_clicked()
 {
     int currentRow = get_row_reservation(ui->tableWidgetP3);
-
+    /*
     if (currentRow >= 0)
     {
+    */
         current_resP3 = search_resP3.get_current_result()[currentRow];
         QString confirm_removal = QString::fromUtf8(
                     "Är du säker på att du vill radera nedanstående bokning?\n\n"
@@ -56,26 +57,30 @@ void MainWindow::on_pushButtonP3remove_reservation_clicked()
             current_resP3->remove();
             QString kommande = "kommande";
             generate_reservation_list(search_resP3.status(kommande), ui->tableWidgetP3);
+            ui->pushButtonP3checkout->setDisabled(true);
+            ui->pushButtonP3remove_reservation->setDisabled(true);
             break;
         }
 
         default:
             break;
         }
+    /*
     }
 
     else
     {
         please_select_entry();
     }
-
+    */
 }
 
 void MainWindow::on_pushButtonP3checkout_clicked()
 {
     int currentRow = get_row_reservation(ui->tableWidgetP3);
+    /*
     if (currentRow >= 0)
-    {
+    {*/
         current_resP3 = search_resP3.get_current_result()[currentRow];
         QString reg_nr = current_resP3->get_reg_nr();
         search_vehicleP3.reg_nr(reg_nr);
@@ -109,18 +114,21 @@ void MainWindow::on_pushButtonP3checkout_clicked()
             checkout_function();
             QString kommande = "kommande";
             generate_reservation_list(search_resP3.status(kommande), ui->tableWidgetP3);
+            ui->pushButtonP3checkout->setDisabled(true);
+            ui->pushButtonP3remove_reservation->setDisabled(true);
             break;
         }
 
         default:
             break;
         }
+        /*
     }
 
     else
     {
         please_select_entry();
-    }
+    }*/
 }
 
 void MainWindow::setup_tableWidgetP3() const
@@ -165,4 +173,9 @@ void MainWindow::checkout_function()
 }
 
 
+void MainWindow::on_tableWidgetP3_itemSelectionChanged()
+{
+    ui->pushButtonP3checkout->setEnabled(true);
+    ui->pushButtonP3remove_reservation->setEnabled(true);
+}
 

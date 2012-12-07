@@ -88,9 +88,9 @@ void MainWindow::on_tableWidgetP5_cellClicked(int row, int column)
         ui->pushButtonP5change_and_save->setEnabled(true);
         ui->pushButtonP5remove_and_undo->setEnabled(true);
         ui->labelP5regnr_var->setText(ui->tableWidgetP5->item(ui->tableWidgetP5->currentRow(), 0)->text());
-        ui->labelP5fabric_var->setText(ui->tableWidgetP5->item(ui->tableWidgetP5->currentRow(), 1)->text());
-        ui->labelP5model_var->setText(ui->tableWidgetP5->item(ui->tableWidgetP5->currentRow(), 2)->text());
-        ui->labelP5type_var->setText(ui->tableWidgetP5->item(ui->tableWidgetP5->currentRow(), 3)->text());
+        ui->labelP5type_var->setText(ui->tableWidgetP5->item(ui->tableWidgetP5->currentRow(), 1)->text());
+        ui->labelP5fabric_var->setText(ui->tableWidgetP5->item(ui->tableWidgetP5->currentRow(), 2)->text());
+        ui->labelP5model_var->setText(ui->tableWidgetP5->item(ui->tableWidgetP5->currentRow(), 3)->text());
         // att göra lineEditP5mileage_var och plainTextEditP5damages_var
     }
     else
@@ -109,11 +109,54 @@ void MainWindow::on_tableWidgetP5_cellClicked(int row, int column)
 
 
 void MainWindow::on_pushButtonP5add_clicked()
-{}
+{
+    int index = ui->stackedWidgetP5->currentIndex();
+
+    if(index == 0)
+    {
+        ui->stackedWidgetP5->setCurrentIndex(1);
+        ui->pushButtonP5back->setEnabled(true);
+        ui->pushButtonP5change_and_save->setDisabled(true);
+        ui->pushButtonP5remove_and_undo->setDisabled(true);
+        ui->pushButtonP5add->setText(QString::fromUtf8("Spara"));
+    }
+
+    else if(index == 1)
+    {
+        //Spara den nya bilen här
+        cerr << "Bilen är ej sparad, att inplementera" << endl;                               //REMOVE
+
+        ui->stackedWidgetP5->setCurrentIndex(0);
+        ui->pushButtonP5back->setDisabled(true);
+        ui->pushButtonP5add->setText(QString::fromUtf8("Lägg till >"));
+
+        if(ui->tableWidgetP5->currentRow() != -1)
+        {
+            ui->pushButtonP5change_and_save->setEnabled(true);
+            ui->pushButtonP5remove_and_undo->setEnabled(true);
+        }
+    }
+}
 
 
 void MainWindow::on_pushButtonP5back_clicked()
-{}
+{
+    if(ui->tableWidgetP5->currentRow() != -1)
+    {
+        ui->pushButtonP5change_and_save->setEnabled(true);
+        ui->pushButtonP5remove_and_undo->setEnabled(true);
+    }
+
+    ui->stackedWidgetP5->setCurrentIndex(0);
+    ui->pushButtonP5add->setText(QString::fromUtf8("Lägg till >"));
+    ui->pushButtonP5back->setDisabled(true);
+    ui->lineEditP5add_fabric_var->clear();
+    ui->lineEditP5add_model_var->clear();
+    ui->lineEditP5add_regnr_var->clear();
+    ui->lineEditP5add_type_var->clear();
+    ui->lineEditP5add_mileage_var->clear();
+    ui->plainTextEditP5add_damages_var->clear();
+}
 
 
 void MainWindow::on_pushButtonP5change_and_save_clicked()
