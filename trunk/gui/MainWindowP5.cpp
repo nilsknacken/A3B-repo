@@ -81,17 +81,23 @@ void MainWindow::on_pushButtonP5search_clicked()
 void MainWindow::on_tableWidgetP5_cellClicked(int row, int column)
 {
     (void)column;
+    row = get_row_vehicle(ui->tableWidgetP5);
 
     if (row >= 0)
     {
         // här ska infon visas om bilen
         ui->pushButtonP5change_and_save->setEnabled(true);
         ui->pushButtonP5remove_and_undo->setEnabled(true);
-        ui->labelP5regnr_var->setText(ui->tableWidgetP5->item(ui->tableWidgetP5->currentRow(), 0)->text());
-        ui->labelP5type_var->setText(ui->tableWidgetP5->item(ui->tableWidgetP5->currentRow(), 1)->text());
-        ui->labelP5fabric_var->setText(ui->tableWidgetP5->item(ui->tableWidgetP5->currentRow(), 2)->text());
-        ui->labelP5model_var->setText(ui->tableWidgetP5->item(ui->tableWidgetP5->currentRow(), 3)->text());
-        // att göra lineEditP5mileage_var och plainTextEditP5damages_var
+
+        current_vehicleP5 = search_vehicleP5.get_current_result()[row];
+        ui->labelP5regnr_var->setText(current_vehicleP5->get_reg_nr());
+        ui->labelP5fabric_var->setText(current_vehicleP5->get_brand());
+        ui->labelP5model_var->setText(current_vehicleP5->get_model());
+        ui->labelP5type_var->setText(current_vehicleP5->get_type());
+        ui->labelP5status_var->setText(current_vehicleP5->get_status());
+        ui->lineEditP5mileage_var->setText(QString::number (current_vehicleP5->get_mileage()));
+        ui->plainTextEditP5damages_var->setPlainText(current_vehicleP5->get_damage());
+
     }
     else
     {
@@ -102,7 +108,6 @@ void MainWindow::on_tableWidgetP5_cellClicked(int row, int column)
         ui->labelP5model_var->setText(QString::null);
         ui->labelP5type_var->setText(QString::null);
         ui->lineEditP5mileage_var->setText(QString::null);
-        //ui->plainTextEditP5damages_var->setText(QString::null);
 
     }
 }
@@ -119,17 +124,34 @@ void MainWindow::on_pushButtonP5add_clicked()
         ui->pushButtonP5change_and_save->setDisabled(true);
         ui->pushButtonP5remove_and_undo->setDisabled(true);
         ui->pushButtonP5add->setText(QString::fromUtf8("Spara"));
-        ui->comboBoxP5add_type->addItem(QString::fromUtf8("Liten bil"));
-        ui->comboBoxP5add_type->addItem(QString::fromUtf8("Mellanbil"));
-        ui->comboBoxP5add_type->addItem(QString::fromUtf8("Stor bil"));
-        ui->comboBoxP5add_type->addItem(QString::fromUtf8("Liten lastbil"));
-        ui->comboBoxP5add_type->addItem(QString::fromUtf8("Stor lastbil"));
+
+
     }
 
-    else if(index == 1)
+    else if(index == 1) // spara klickat
     {
-        //Spara den nya bilen här
-        cerr << "Bilen är ej sparad, att inplementera" << endl;                               //REMOVE
+        delete current_vehicleP5;
+        current_vehicleP5 = new Vehicle();
+
+        QString reg_nr = ui->lineEditP5add_regnr_var->text();
+        QString brand = ui->lineEditP5add_fabric_var->text();
+        QString model = ui->lineEditP5add_model_var->text();
+        QString type = ui->comboBoxP5add_type->currentText();
+        int mileage = ui->lineEditP5add_mileage_var->text().toInt();
+        QString damage = ui->plainTextEditP5add_damages_var->toPlainText();
+        QString ledig = QString::fromUtf8("ledig");
+
+        current_vehicleP5->set_reg_nr(reg_nr);
+        current_vehicleP5->set_brand(brand);
+        current_vehicleP5->set_model(model);
+        current_vehicleP5->set_type(type);
+        current_vehicleP5->set_mileage(mileage);
+        current_vehicleP5->set_damage(damage);
+        current_vehicleP5->set_status(ledig);
+        current_vehicleP5->save();
+
+        delete current_vehicleP5;
+        current_vehicleP5 = new Vehicle();
 
         ui->stackedWidgetP5->setCurrentIndex(0);
         ui->pushButtonP5back->setDisabled(true);
@@ -177,10 +199,15 @@ void MainWindow::on_pushButtonP5change_and_save_clicked()
 
     else if(pushbuttonP5change_clicked)
     {
+        int mileage = ui->lineEditP5mileage_var->text().toInt();
+        QString damage = ui->plainTextEditP5damages_var->toPlainText();
+
+        current_vehicleP5->set_mileage(mileage);
+        current_vehicleP5->set_damage(damage);
+        current_vehicleP5->save();              //Sparar ner förändrad mätarställning samt skador.
+
         pushbuttonP5change_clicked = false;
         P5_change_appearance(pushbuttonP5change_clicked);
-
-        // här ska de nya värderna sparas i databasen
     }
 }
 
@@ -221,19 +248,12 @@ void MainWindow::on_pushButtonP5remove_and_undo_clicked()
 
 void MainWindow::setup_tableWidgetP5() const
 {
-    ui->tableWidgetP5->setColumnCount(4);
-    ui->tableWidgetP5->setHorizontalHeaderLabels(QStringList()
-                                                 << QString::fromUtf8("Reg. nr")
-                                                 << QString::fromUtf8("Typ")
-                                                 << QString::fromUtf8("Fabrikat")
-                                                 << QString::fromUtf8("Modell"));
-    ui->tableWidgetP5->setShowGrid(false);
-    ui->tableWidgetP5->verticalHeader()->hide();
-    ui->tableWidgetP5->setAlternatingRowColors(true);
-    ui->tableWidgetP5->setEditTriggers(0);
-    ui->tableWidgetP5->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-    ui->tableWidgetP5->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableWidgetP5->setSortingEnabled(true);
+    setup_tableWidget_vehicle(ui->tableWidgetP5);
+    ui->comboBoxP5add_type->addItem("Liten bil");
+    ui->comboBoxP5add_type->addItem("Mellanbil");
+    ui->comboBoxP5add_type->addItem("Stor bil");
+    ui->comboBoxP5add_type->addItem("Liten lastbil");
+    ui->comboBoxP5add_type->addItem("Stor lastbil");
 }
 
 void MainWindow::P5_change_appearance(bool state) const
