@@ -32,6 +32,7 @@ save()
    Database::settings_update(open_hour_, open_min_, close_hour_, close_min_, min_rental_);
 }
 
+// Update the current object from information from the database.
 void
 Settings::
 update()
@@ -66,6 +67,14 @@ update()
         set_min_rental(0);
     else
         set_min_rental(min_rental.toInt());
+}
+
+// Clean the db of all information except the settings.
+void
+Settings::
+clean_db()
+{
+    //Database::erase_all();
 }
 
 // Apply changes of the parameters.

@@ -74,6 +74,11 @@ private:
     QString damage_;
 };
 
+// Help functions
+Vehicle*
+make_vehicle(QString&, QString&, QString&,
+             QString&, int, QString&);
+
 // Error to be thrown in Search_vehicleehicle
 class vehicle_error : public std::logic_error
 {

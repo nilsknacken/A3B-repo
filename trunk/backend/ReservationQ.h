@@ -33,7 +33,7 @@ public:
                 QString&, QString&, QString&,
                 QString&, QString&, QString&,
                 QString&);
-    Reservation() = default;
+    Reservation()                              = default;
     Reservation(const Reservation&)            = default;
     Reservation(Reservation&&)                 = default;
     ~Reservation()                             = default;
