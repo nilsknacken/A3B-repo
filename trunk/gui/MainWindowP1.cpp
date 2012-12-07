@@ -26,7 +26,6 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
-#include <iostream>
 
 void MainWindow::when_next_clicked(Search_vehicle& search_vehicle,
                                    QTableWidget* tableWidget,
@@ -34,21 +33,12 @@ void MainWindow::when_next_clicked(Search_vehicle& search_vehicle,
 {
     int row = get_row_vehicle(tableWidget);
 
-    if(row >= 0)
-    {
-        QString reg_nr = search_vehicle.get_current_result()[row]->get_reg_nr();
-        ui->labelP1selected_regnr_var->setText(reg_nr);
-        current_vehicleP1 = search_vehicle.get_current_result()[row];
+    QString reg_nr = search_vehicle.get_current_result()[row]->get_reg_nr();
+    ui->labelP1selected_regnr_var->setText(reg_nr);
+    current_vehicleP1 = search_vehicle.get_current_result()[row];
 
-        ui->stackedWidgetP1Main->setCurrentIndex(++tab_index);
-        ui->pushButtonP1back->setDisabled(false);
-
-    }
-    else
-    {
-        please_select_entry();
-        return;
-    }
+    ui->stackedWidgetP1Main->setCurrentIndex(++tab_index);
+    ui->pushButtonP1back->setDisabled(false);
 }
 
 void MainWindow::new_reservation()
@@ -244,7 +234,7 @@ void MainWindow::on_pushButtonP1next_clicked()
                                                      current_resP1->get_start(),
                                                      current_resP1->get_end(),
                                                      current_resP1->get_reg_nr());
-        ui->label_7->setText(confirm_reservation); // label_7 är texten på konf sidan
+        ui->labelP1confirm->setText(confirm_reservation);
         ui->stackedWidgetP1Main->setCurrentIndex(++tab_index);
         ui->pushButtonP1next->setText(QString::fromUtf8("Bekräfta"));
     }
@@ -293,7 +283,7 @@ void MainWindow::on_pushButtonP1S_Car_clicked()
 {
     ui->stackedWidgetP1->setCurrentIndex(0);
     ui->pushButtonP1next->setEnabled(P1_table_is_clicked[0]);
-  //  ui->label setText(S_Car_info)
+    ui->labelP1info->setText(S_Car_info);
     set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP1S_Car);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1M_Car);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1L_Car);
@@ -305,6 +295,7 @@ void MainWindow::on_pushButtonP1M_Car_clicked()
 {
     ui->stackedWidgetP1->setCurrentIndex(1);
     ui->pushButtonP1next->setEnabled(P1_table_is_clicked[1]);
+    ui->labelP1info->setText(M_Car_info);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1S_Car);
     set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP1M_Car);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1L_Car);
@@ -316,6 +307,7 @@ void MainWindow::on_pushButtonP1L_Car_clicked()
 {
     ui->stackedWidgetP1->setCurrentIndex(2);
     ui->pushButtonP1next->setEnabled(P1_table_is_clicked[2]);
+    ui->labelP1info->setText(L_Car_info);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1S_Car);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1M_Car);
     set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP1L_Car);
@@ -327,6 +319,7 @@ void MainWindow::on_pushButtonP1S_Truck_clicked()
 {
     ui->stackedWidgetP1->setCurrentIndex(3);
     ui->pushButtonP1next->setEnabled(P1_table_is_clicked[3]);
+    ui->labelP1info->setText(S_Truck_info);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1S_Car);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1M_Car);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1L_Car);
@@ -338,6 +331,7 @@ void MainWindow::on_pushButtonP1L_Truck_clicked()
 {
     ui->stackedWidgetP1->setCurrentIndex(4);
     ui->pushButtonP1next->setEnabled(P1_table_is_clicked[4]);
+    ui->labelP1info->setText(L_Truck_info);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1S_Car);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1M_Car);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1L_Car);

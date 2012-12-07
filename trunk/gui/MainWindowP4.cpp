@@ -37,40 +37,32 @@ void MainWindow::on_pushButtonP4next_clicked()
     if(index == 0)
     {
         QString id = ui->tableWidgetP4->item(ui->tableWidgetP4->currentRow(),4)->text();
-            int currentRow = id.toInt();
+        int currentRow = id.toInt();
         //int currentRow = ui->tableWidgetP4->currentRow();
-        if (currentRow >= 0)
-        {
-            current_resP4 = search_resP4.get_current_result()[currentRow];
-            QString reg_nr = current_resP4->get_reg_nr();
-            search_vehicleP4.reg_nr(reg_nr);
-            if (! search_vehicleP4.get_current_result().empty())
-                current_vehicleP4 = search_vehicleP4.get_current_result()[0];
-            else
-                throw GUI_error("Problem att hämta fordon från reservationen!");
 
-            QDateTime* date_time = new QDateTime();
-            QString now = date_time->currentDateTime().toString(date_time_format);
-            current_resP4->set_end(now);
-            current_resP4->save();
-
-            delete date_time;
-
-            ui->labelP4reg_nr_var->setText(reg_nr);
-            ui->labelP4checkout_var->setText(current_resP4->get_start());
-            ui->labelP4checkin_var->setText(current_resP4->get_end());
-            ui->lineEditP4mileage->setText(QString::number(current_vehicleP4->get_mileage()));
-            ui->plainTextEditP4damages->setPlainText(current_vehicleP4->get_damage());
-
-            ui->stackedWidgetP4->setCurrentIndex(++index);
-            ui->pushButtonP4back->setDisabled(false);
-        }
+        current_resP4 = search_resP4.get_current_result()[currentRow];
+        QString reg_nr = current_resP4->get_reg_nr();
+        search_vehicleP4.reg_nr(reg_nr);
+        if (! search_vehicleP4.get_current_result().empty())
+            current_vehicleP4 = search_vehicleP4.get_current_result()[0];
         else
-        {
-          please_select_entry();
-        }
+            throw GUI_error("Problem att hämta fordon från reservationen!");
 
+        QDateTime* date_time = new QDateTime();
+        QString now = date_time->currentDateTime().toString(date_time_format);
+        current_resP4->set_end(now);
+        current_resP4->save();
 
+        delete date_time;
+
+        ui->labelP4reg_nr_var->setText(reg_nr);
+        ui->labelP4checkout_var->setText(current_resP4->get_start());
+        ui->labelP4checkin_var->setText(current_resP4->get_end());
+        ui->lineEditP4mileage->setText(QString::number(current_vehicleP4->get_mileage()));
+        ui->plainTextEditP4damages->setPlainText(current_vehicleP4->get_damage());
+
+        ui->stackedWidgetP4->setCurrentIndex(++index);
+        ui->pushButtonP4back->setDisabled(false);
     }
 
     else if(index == 1)
@@ -188,7 +180,7 @@ void MainWindow::setup_tableWidgetP4() const
     setup_tableWidget_reservation(ui->tableWidgetP4);
     ui->tableWidgetP4->sortItems(5); //sortera på sluttid
 
-    ui->textEditP4_conf->setReadOnly(true);//  setDisabled(true); // tillåt ej edit av bekräftnings rutan
+    ui->textEditP4_conf->setReadOnly(true); // tillåt ej edit av bekräftnings rutan
 }
 
 void MainWindow::on_tableWidgetP4_itemSelectionChanged()

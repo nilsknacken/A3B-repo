@@ -579,7 +579,7 @@ background: solid white; }</string>
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tabReservate">
        <property name="styleSheet">
@@ -604,7 +604,7 @@ background: solid white; }</string>
            <string notr="true"/>
           </property>
           <property name="currentIndex">
-           <number>2</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="stackedWidgetP1Page1">
            <layout class="QGridLayout" name="gridLayout_9">
@@ -835,13 +835,13 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_11">
                   <property name="spacing">
-                   <number>0</number>
+                   <number>15</number>
                   </property>
                   <property name="leftMargin">
                    <number>15</number>
                   </property>
                   <property name="topMargin">
-                   <number>0</number>
+                   <number>5</number>
                   </property>
                   <property name="rightMargin">
                    <number>0</number>
@@ -991,7 +991,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                   <enum>QFrame::NoFrame</enum>
                  </property>
                  <property name="currentIndex">
-                  <number>4</number>
+                  <number>3</number>
                  </property>
                  <widget class="QWidget" name="pageP1S_Car">
                   <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -1002,7 +1002,11 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                     <number>0</number>
                    </property>
                    <item>
-                    <widget class="QTableWidget" name="tableWidgetP1S_Car"/>
+                    <widget class="QTableWidget" name="tableWidgetP1S_Car">
+                     <property name="frameShape">
+                      <enum>QFrame::NoFrame</enum>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </widget>
@@ -1015,7 +1019,11 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                     <number>0</number>
                    </property>
                    <item>
-                    <widget class="QTableWidget" name="tableWidgetP1M_Car"/>
+                    <widget class="QTableWidget" name="tableWidgetP1M_Car">
+                     <property name="frameShape">
+                      <enum>QFrame::NoFrame</enum>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </widget>
@@ -1028,7 +1036,11 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                     <number>0</number>
                    </property>
                    <item>
-                    <widget class="QTableWidget" name="tableWidgetP1L_Car"/>
+                    <widget class="QTableWidget" name="tableWidgetP1L_Car">
+                     <property name="frameShape">
+                      <enum>QFrame::NoFrame</enum>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </widget>
@@ -1041,7 +1053,11 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                     <number>0</number>
                    </property>
                    <item>
-                    <widget class="QTableWidget" name="tableWidgetP1S_Truck"/>
+                    <widget class="QTableWidget" name="tableWidgetP1S_Truck">
+                     <property name="frameShape">
+                      <enum>QFrame::NoFrame</enum>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </widget>
@@ -1054,7 +1070,11 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                     <number>0</number>
                    </property>
                    <item>
-                    <widget class="QTableWidget" name="tableWidgetP1L_Truck"/>
+                    <widget class="QTableWidget" name="tableWidgetP1L_Truck">
+                     <property name="frameShape">
+                      <enum>QFrame::NoFrame</enum>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </widget>
@@ -1064,7 +1084,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="QFrame" name="frame_2">
+             <widget class="QFrame" name="frameP1vehicle_info">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -1077,25 +1097,21 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                 <height>0</height>
                </size>
               </property>
-              <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
+              <property name="styleSheet">
+               <string notr="true"/>
               </property>
-              <property name="frameShadow">
-               <enum>QFrame::Raised</enum>
-              </property>
-              <widget class="QLabel" name="labelInfo">
-               <property name="geometry">
-                <rect>
-                 <x>10</x>
-                 <y>10</y>
-                 <width>181</width>
-                 <height>291</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>TextLabel</string>
-               </property>
-              </widget>
+              <layout class="QVBoxLayout" name="verticalLayout_9">
+               <item>
+                <widget class="QLabel" name="labelP1info">
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                 <property name="text">
+                  <string>Bilinfo</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </item>
            </layout>
@@ -1571,14 +1587,14 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
               <property name="rightMargin">
                <number>9</number>
               </property>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_7">
+              <item row="0" column="1">
+               <widget class="QLabel" name="labelP1confirm">
                 <property name="text">
                  <string>3. tabConfirm</string>
                 </property>
                </widget>
               </item>
-              <item row="0" column="1">
+              <item row="0" column="3">
                <spacer name="verticalSpacer_20">
                 <property name="orientation">
                  <enum>Qt::Vertical</enum>
@@ -1587,6 +1603,32 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                  <size>
                   <width>20</width>
                   <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="0" column="0">
+               <spacer name="horizontalSpacer_22">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="0" column="2">
+               <spacer name="horizontalSpacer_25">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
                  </size>
                 </property>
                </spacer>
@@ -1730,13 +1772,13 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_10">
               <property name="spacing">
-               <number>0</number>
+               <number>15</number>
               </property>
               <property name="leftMargin">
                <number>15</number>
               </property>
               <property name="topMargin">
-               <number>0</number>
+               <number>5</number>
               </property>
               <property name="rightMargin">
                <number>0</number>
@@ -2303,7 +2345,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
             </property>
             <property name="sizeHint" stdset="0">
              <size>
-              <width>150</width>
+              <width>120</width>
               <height>20</height>
              </size>
             </property>
@@ -2311,9 +2353,15 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
           </item>
           <item>
            <widget class="QTableWidget" name="tableWidgetP3">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="maximumSize">
              <size>
-              <width>600</width>
+              <width>650</width>
               <height>16777215</height>
              </size>
             </property>
@@ -2329,7 +2377,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
             </property>
             <property name="sizeHint" stdset="0">
              <size>
-              <width>150</width>
+              <width>120</width>
               <height>20</height>
              </size>
             </property>
@@ -2545,7 +2593,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
            </font>
           </property>
           <property name="currentIndex">
-           <number>2</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="pageP4page1">
            <layout class="QHBoxLayout" name="horizontalLayout_3">

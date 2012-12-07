@@ -134,16 +134,14 @@ void MainWindow::custom_setup()
     ui->dateEditTo->setMinimumDate(now.date());
     ui->timeEditTo->setMinimumTime(now.time().addSecs(3600 * min_rental));
 
-
-}
-
-void MainWindow::please_select_entry()
-{
-    QMessageBox::information(this,
-                             QString::fromUtf8("Välj post"),
-                             QString::fromUtf8("Vänligen välj en post innan du går vidare."),
-                             QMessageBox::Ok);
-
+    //Set stylesheet, detta borde flyttas till en separat stylesheetfil då det kommer komma en jävla massa mer kod
+    ui->frameP1vehicle_info->setStyleSheet("QFrame{"
+                                           "border-left: 1px solid lightgrey;"
+                                           "border-right: none;"
+                                           "border-bottom: none;"
+                                           "border-top: none; }"
+                                           "QLabel{"
+                                           "border: none; }");
 }
 
 void MainWindow::generate_vehicle_list(std::vector<Vehicle*> input, QTableWidget* tableWidget)
@@ -238,7 +236,6 @@ void MainWindow::generate_reservation_list(std::vector<Reservation*> input, QTab
         tableWidget->setItem(0, 0, reg);
         tableWidget->setItem(0, 1, name);
         tableWidget->setItem(0, 2, status);
-
     }
 }
 
@@ -299,13 +296,11 @@ void MainWindow::on_tabWidgetMainTab_currentChanged(int index)
             ui->dateEditTo->setMinimumDate(now.date());
             ui->timeEditTo->setMinimumTime(now.time().addSecs(3600 * min_rental));
         }
-
-
     }
+
     else if (index == 1) //sök
-    {
+    {}
 
-    }
     else if (index == 2) // lämna ut
     {
         QString kommande = "kommande";
@@ -355,7 +350,6 @@ void MainWindow::setup_tableWidget_reservation(QTableWidget* tableWidget) const
     tableWidget->verticalHeader()->hide();
     tableWidget->setAlternatingRowColors(true);
     tableWidget->setEditTriggers(0);
-    tableWidget->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
     tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     tableWidget->setSortingEnabled(true);

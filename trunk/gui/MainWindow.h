@@ -159,8 +159,6 @@ private:
     int get_row_reservation(QTableWidget*) const;
     int get_row_vehicle(QTableWidget*) const;
 
-    void please_select_entry();
-
     void custom_setup();
     void setup_tableWidget_vehicle(QTableWidget*) const;
     void setup_tableWidget_reservation(QTableWidget*) const;
