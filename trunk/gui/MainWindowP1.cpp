@@ -26,6 +26,53 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
+
+void MainWindow::when_next_clicked(Search_vehicle& search_vehicle,
+                                   QTableWidget* tableWidget,
+                                   int tab_index)
+{
+    int row = get_row_vehicle(tableWidget);
+
+    if(row >= 0)
+    {
+        QString reg_nr = search_vehicle.get_current_result()[row]->get_reg_nr();
+        ui->labelP1selected_regnr_var->setText(reg_nr);
+        current_vehicleP1 = search_vehicle.get_current_result()[row];
+
+        ui->stackedWidgetP1Main->setCurrentIndex(++tab_index);
+        ui->pushButtonP1back->setDisabled(false);
+
+    }
+    else
+    {
+        please_select_entry();
+        return;
+    }
+}
+
+void MainWindow::new_reservation()
+{
+    QString reg_nr = current_vehicleP1->get_reg_nr();
+    QString start = ui->labelP1selected_from_var->text();
+    QString end = ui->labelP1selected_to_var->text();
+    QString name = ui->lineEditName_2->text();
+    QString tel = ui->lineEdit_2->text();
+    QString address = ui->lineEditAddress_2->text();
+    QString postal_nr = ui->lineEditPostalnr_2->text();
+    QString city = ui->lineEditCity_2->text();
+
+
+    current_resP1 = make_reservation(reg_nr,
+                                     start,
+                                     end,
+                                     name,
+                                     tel,
+                                     address,
+                                     postal_nr,
+                                     city);
+
+}
+
 void MainWindow::change_customer_info()
 {
     ui->tabWidgetMainTab->setCurrentIndex(0);
@@ -38,6 +85,48 @@ void MainWindow::change_customer_info()
     ui->pushButtonP1back->setDisabled(false);
 
 }
+
+void MainWindow::on_dateEditFrom_dateChanged(const QDate &date)
+{
+    QDateTime now;
+    now.setDate(date);
+    now.setTime(ui->timeEditFrom->time());
+    int min_rental = settings->get_min_rental();
+    int from_hour = now.time().hour();
+
+    if (min_rental + from_hour >= 24)
+    {
+        ui->dateEditTo->setMinimumDate(now.date().addDays(1));
+        ui->timeEditTo->setMinimumTime(now.time().addSecs(-3600 * (23 - min_rental)));
+    }
+    else
+    {
+        ui->dateEditTo->setMinimumDate(now.date());
+        ui->timeEditTo->setMinimumTime(now.time().addSecs(3600 * min_rental));
+    }
+}
+
+void MainWindow::on_timeEditFrom_timeChanged(const QTime &time)
+{
+    QDateTime now;
+    now.setDate(ui->dateEditFrom->date());
+    now.setTime(time);
+    int min_rental = settings->get_min_rental();
+    int from_hour = now.time().hour();
+
+    if (min_rental + from_hour >= 24)
+    {
+        ui->dateEditTo->setMinimumDate(now.date().addDays(1));
+        ui->timeEditTo->setMinimumTime(now.time().addSecs(-3600 * (24 - min_rental)));
+    }
+    else
+    {
+        ui->dateEditTo->setMinimumDate(now.date());
+        ui->timeEditTo->setMinimumTime(now.time().addSecs(3600 * min_rental));
+    }
+
+}
+
 
 void MainWindow::on_pushButtonP1next_clicked()
 {
@@ -79,9 +168,9 @@ void MainWindow::on_pushButtonP1next_clicked()
         to->setDate(ui->dateEditTo->date());
         to->setTime(ui->timeEditTo->time());
 
-        // sätt label i kunduppgifter
-        //ui->  datum från ->setText(from->toString(date_time_format));
-        //ui->  datum till ->setText(to->toString(date_time_format));
+        // sätt datumlabel i kunduppgifter
+        ui->labelP1selected_from_var->setText(from->toString(date_time_format));
+        ui->labelP1selected_to_var->setText(to->toString(date_time_format));
 
         //nollställ kunduppgifter
         ui->lineEditName_2->clear();
@@ -89,6 +178,9 @@ void MainWindow::on_pushButtonP1next_clicked()
         ui->lineEditAddress_2->clear();
         ui->lineEditPostalnr_2->clear();
         ui->lineEditCity_2->clear();
+
+        delete from;
+        delete to;
 }
 
     else if(tab_index == 1) // från kund till bekräftelse
@@ -292,61 +384,11 @@ void MainWindow::on_pushButtonP1search_clicked()
                                 QString::fromUtf8("Vänligen välj fordonstyp innan du klickar på Sök."),
                                 QMessageBox::Ok);
     }
+
+    delete from;
+    delete to;
 }
 
-
-void MainWindow::when_next_clicked(Search_vehicle& search_vehicle,
-                                   QTableWidget* tableWidget,
-                                   int tab_index)
-{
-    int row = get_row_vehicle(tableWidget);
-
-    if(row >= 0)
-    {
-        QString reg_nr = search_vehicle.get_current_result()[row]->get_reg_nr();
-        ui->labelP1selected_regnr_var->setText(reg_nr);
-        current_vehicleP1 = search_vehicle.get_current_result()[row];
-
-        ui->stackedWidgetP1Main->setCurrentIndex(++tab_index);
-        ui->pushButtonP1back->setDisabled(false);
-
-    }
-    else
-    {
-        please_select_entry();
-        return;
-    }
-}
-
-void MainWindow::new_reservation()
-{
-    QDateTime* from = new QDateTime();
-    QDateTime* to = new QDateTime();
-    from->setDate(ui->dateEditFrom->date());
-    from->setTime(ui->timeEditFrom->time());
-    to->setDate(ui->dateEditTo->date());
-    to->setTime(ui->timeEditTo->time());
-
-    QString reg_nr = current_vehicleP1->get_reg_nr();
-    QString start = from->toString(date_time_format);
-    QString end = to->toString(date_time_format);
-    QString name = ui->lineEditName_2->text();
-    QString tel = ui->lineEdit_2->text();
-    QString address = ui->lineEditAddress_2->text();
-    QString postal_nr = ui->lineEditPostalnr_2->text();
-    QString city = ui->lineEditCity_2->text();
-
-
-    current_resP1 = make_reservation(reg_nr,
-                                     start,
-                                     end,
-                                     name,
-                                     tel,
-                                     address,
-                                     postal_nr,
-                                     city);
-
-}
 
 void MainWindow::setup_tableWidgetP1S_Car() const
 {

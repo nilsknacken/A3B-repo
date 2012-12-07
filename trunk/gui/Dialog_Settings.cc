@@ -45,7 +45,6 @@ Dialog_Settings::Dialog_Settings(QWidget* parent, Settings* settings)
 
 Dialog_Settings::~Dialog_Settings()
 {
-    cerr << "~Dialog_Settings()" << endl;                                        //REMOVE
     delete ui;
 }
 
