@@ -291,6 +291,7 @@ void MainWindow::on_pushButtonP1back_clicked()
 void MainWindow::on_pushButtonP1S_Car_clicked()
 {
     ui->stackedWidgetP1->setCurrentIndex(0);
+    ui->pushButtonP1next->setEnabled(P1_table_is_clicked[0]);
     //ui-> info vid bokningsidan ->setText(S_Car_info)
     set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP1S_Car);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1M_Car);
@@ -302,6 +303,7 @@ void MainWindow::on_pushButtonP1S_Car_clicked()
 void MainWindow::on_pushButtonP1M_Car_clicked()
 {
     ui->stackedWidgetP1->setCurrentIndex(1);
+    ui->pushButtonP1next->setEnabled(P1_table_is_clicked[1]);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1S_Car);
     set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP1M_Car);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1L_Car);
@@ -312,6 +314,7 @@ void MainWindow::on_pushButtonP1M_Car_clicked()
 void MainWindow::on_pushButtonP1L_Car_clicked()
 {
     ui->stackedWidgetP1->setCurrentIndex(2);
+    ui->pushButtonP1next->setEnabled(P1_table_is_clicked[2]);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1S_Car);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1M_Car);
     set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP1L_Car);
@@ -322,6 +325,7 @@ void MainWindow::on_pushButtonP1L_Car_clicked()
 void MainWindow::on_pushButtonP1S_Truck_clicked()
 {
     ui->stackedWidgetP1->setCurrentIndex(3);
+    ui->pushButtonP1next->setEnabled(P1_table_is_clicked[3]);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1S_Car);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1M_Car);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1L_Car);
@@ -332,6 +336,7 @@ void MainWindow::on_pushButtonP1S_Truck_clicked()
 void MainWindow::on_pushButtonP1L_Truck_clicked()
 {
     ui->stackedWidgetP1->setCurrentIndex(4);
+    ui->pushButtonP1next->setEnabled(P1_table_is_clicked[4]);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1S_Car);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1M_Car);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP1L_Car);
@@ -341,8 +346,13 @@ void MainWindow::on_pushButtonP1L_Truck_clicked()
 
 void MainWindow::on_pushButtonP1search_clicked()
 {
-    int stacked_index = ui->stackedWidgetP1->currentIndex();
-
+    ui->pushButtonP1next->setDisabled(true);
+    P1_table_is_clicked[0] = false;
+    P1_table_is_clicked[1] = false;
+    P1_table_is_clicked[2] = false;
+    P1_table_is_clicked[3] = false;
+    P1_table_is_clicked[4] = false;
+    QString type;
     QDateTime* from = new QDateTime();
     QDateTime* to = new QDateTime();
     from->setDate(ui->dateEditFrom->date());
@@ -352,38 +362,20 @@ void MainWindow::on_pushButtonP1search_clicked()
     QString start = from->toString(date_time_format);
     QString end = to->toString(date_time_format);
 
-    if(stacked_index == 0) //S_Car
-    {
-        QString type = QString::fromUtf8("Liten bil");
-        generate_vehicle_list(search_vehicleP1S_Car.type_date(type, start, end), ui->tableWidgetP1S_Car);
-    }
-    else if (stacked_index == 1) //M_Car
-    {
-        QString type = QString::fromUtf8("Mellanbil");
-        generate_vehicle_list(search_vehicleP1M_Car.type_date(type, start, end), ui->tableWidgetP1M_Car);
-    }
-    else if (stacked_index == 2) //L_Car
-    {
-        QString type = QString::fromUtf8("Stor bil");
-        generate_vehicle_list(search_vehicleP1L_Car.type_date(type, start, end), ui->tableWidgetP1L_Car);
-    }
-    else if (stacked_index == 3) //S_Truck
-    {
-        QString type = QString::fromUtf8("Liten lastbil");
-        generate_vehicle_list(search_vehicleP1S_Truck.type_date(type, start, end), ui->tableWidgetP1S_Truck);
-    }
-    else if (stacked_index == 4) // L_Truck
-    {
-        QString type = QString::fromUtf8("Stor lastbil");
-        generate_vehicle_list(search_vehicleP1L_Truck.type_date(type, start, end), ui->tableWidgetP1L_Truck);
-    }
-    else
-    {
-       QMessageBox::information(this,
-                                QString::fromUtf8("Välj fordonstyp"),
-                                QString::fromUtf8("Vänligen välj fordonstyp innan du klickar på Sök."),
-                                QMessageBox::Ok);
-    }
+    type = QString::fromUtf8("Liten bil");
+    generate_vehicle_list(search_vehicleP1S_Car.type_date(type, start, end), ui->tableWidgetP1S_Car);
+
+    type = QString::fromUtf8("Mellanbil");
+    generate_vehicle_list(search_vehicleP1M_Car.type_date(type, start, end), ui->tableWidgetP1M_Car);
+
+    type = QString::fromUtf8("Stor bil");
+    generate_vehicle_list(search_vehicleP1L_Car.type_date(type, start, end), ui->tableWidgetP1L_Car);
+
+    type = QString::fromUtf8("Liten lastbil");
+    generate_vehicle_list(search_vehicleP1S_Truck.type_date(type, start, end), ui->tableWidgetP1S_Truck);
+
+    type = QString::fromUtf8("Stor lastbil");
+    generate_vehicle_list(search_vehicleP1L_Truck.type_date(type, start, end), ui->tableWidgetP1L_Truck);
 
     delete from;
     delete to;
@@ -415,3 +407,33 @@ void MainWindow::setup_tableWidgetP1L_Truck() const
     setup_tableWidget_vehicle(ui->tableWidgetP1L_Truck);
 }
 
+
+void MainWindow::on_tableWidgetP1S_Car_itemSelectionChanged()
+{
+    P1_table_is_clicked[0] = true;
+    ui->pushButtonP1next->setEnabled(true);
+}
+
+void MainWindow::on_tableWidgetP1M_Car_itemSelectionChanged()
+{
+    P1_table_is_clicked[1] = true;
+    ui->pushButtonP1next->setEnabled(true);
+}
+
+void MainWindow::on_tableWidgetP1L_Car_itemSelectionChanged()
+{
+    P1_table_is_clicked[2] = true;
+    ui->pushButtonP1next->setEnabled(true);
+}
+
+void MainWindow::on_tableWidgetP1S_Truck_itemSelectionChanged()
+{
+    P1_table_is_clicked[3] = true;
+    ui->pushButtonP1next->setEnabled(true);
+}
+
+void MainWindow::on_tableWidgetP1L_Truck_itemSelectionChanged()
+{
+    P1_table_is_clicked[4] = true;
+    ui->pushButtonP1next->setEnabled(true);
+}

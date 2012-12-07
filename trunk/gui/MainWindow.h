@@ -29,7 +29,7 @@ public:
 public slots:
 
 private slots:
-    void on_tabWidgetMainTab_currentChanged(int index);
+    void on_tabWidgetMainTab_currentChanged(int);
 
     // Menu-Bar
     void on_actionAbout_triggered();
@@ -39,7 +39,11 @@ private slots:
     // Tab 1 - Reservate
     void on_dateEditFrom_dateChanged(const QDate &date);
     void on_timeEditFrom_timeChanged(const QTime &date);
-
+    void on_tableWidgetP1S_Car_itemSelectionChanged();
+    void on_tableWidgetP1M_Car_itemSelectionChanged();
+    void on_tableWidgetP1L_Car_itemSelectionChanged();
+    void on_tableWidgetP1S_Truck_itemSelectionChanged();
+    void on_tableWidgetP1L_Truck_itemSelectionChanged();
     void on_pushButtonP1next_clicked();
     void on_pushButtonP1back_clicked();
     void on_pushButtonP1search_clicked();
@@ -82,7 +86,6 @@ private slots:
     void on_pushButtonP5back_clicked();
 
 
-
 private:
     bool pushbuttonP5change_clicked = false;
 
@@ -92,6 +95,8 @@ private:
     Dialog_Settings* gui_settings;
 
     bool change_reservation = false;
+    const QString date_format = "yyyy-MM-dd";
+    const QString date_time_format = "yyyy-MM-dd hh:mm";
 
     Reservation* current_resP1 = new Reservation();
     Reservation* current_resP2 = new Reservation();
@@ -123,19 +128,20 @@ private:
     Search_vehicle search_vehicleP4;
     Search_vehicle search_vehicleP5;
 
-// Tab1 bokning
+    // Tab1 bokning
     void when_next_clicked(Search_vehicle&, QTableWidget*, int);
     void new_reservation();
     void change_customer_info();
+    bool P1_table_is_clicked[5] = {false};
 
 
-// Tab2 sök
+    // Tab2 sök
     void show_function(Search_reservation&, int);
     void remove_function(Search_reservation&, int);
     void change_function(Search_reservation&, int);
     void disable_buttons(int);
 
-// Tab3 utlämning
+    // Tab3 utlämning
     void checkout_function();
 
     // Generella
@@ -186,10 +192,8 @@ private:
     void set_stylesheet(const QString&, QPushButton*&) const;
     const QString SS_SIDEMENU_ENABLE = "QPushButton {font: bold;color: white;}";
     const QString SS_SIDEMENU_DISABLE = "QPushButton {font: bold;color: grey;}";
-
-    const QString date_format = "yyyy-MM-dd";
-    const QString date_time_format = "yyyy-MM-dd hh:mm";
 };
+
 
 // GUI error class
 class GUI_error : public std::logic_error
