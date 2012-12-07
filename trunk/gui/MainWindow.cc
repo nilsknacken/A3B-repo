@@ -81,13 +81,6 @@ void MainWindow::on_actionQuit_triggered()
     delete about;
     delete gui_settings;
     delete settings;
-    delete current_resP1;
-    delete current_resP2;
-    delete current_resP3;
-    delete current_resP4;
-    delete current_vehicleP1;
-    delete current_vehicleP4;
-    delete current_vehicleP5;
 
     exit(0);
 }
@@ -130,6 +123,20 @@ void MainWindow::custom_setup()
     setup_tableWidgetP3();
     setup_tableWidgetP4();
     setup_tableWidgetP5();
+
+    // Sets default date
+    QDateTime now = QDateTime::currentDateTime();
+    QTime time = QTime::currentTime();
+    time.setHMS(time.hour() + 1, 0,0);
+    now.setTime(time);
+    ui->dateEditFrom->setDate(now.date());
+    ui->timeEditFrom->setTime(now.time());
+
+    int min_rental = settings->get_min_rental();
+    ui->dateEditTo->setMinimumDate(now.date());
+    ui->timeEditTo->setMinimumTime(now.time().addSecs(3600 * min_rental));
+
+
 }
 
 void MainWindow::please_select_entry()
