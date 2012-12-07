@@ -21,7 +21,6 @@
 #include <stdlib.h>
 #include <QString>
 #include <vector>
-#include <iostream> //!!!!!!!!!!!!!!!!!!!!!!!!!
 #include "ReservationQ.h"
 #include "Search_reservationQ.h"
 
@@ -44,7 +43,7 @@ Search_reservation::
 all()
 {
     vector<vector<QString>> reservation_str_vector =
-            Database::reservation_search("all", "value");
+            Database::reservation_search("all", "");
 
     create_result(reservation_str_vector);
 

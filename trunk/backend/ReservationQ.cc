@@ -370,7 +370,17 @@ make_reservation(QString& reg_nr,    QString& start, QString& end,
     }
     while(Database::exists_reservation(res_nr));
 
-    return new Reservation(res_nr, reg_nr, start, end, status,
-                           name, tel, adress, postal_nr, city);
+    Reservation* temp = NULL;
+    try
+    {
+        temp = new Reservation(res_nr, reg_nr, start, end, status,
+                               name, tel, adress, postal_nr, city);
+    }
+    catch(const bad_alloc& ba)
+    {
+        delete temp;
+    }
+
+    return temp;
 }
 

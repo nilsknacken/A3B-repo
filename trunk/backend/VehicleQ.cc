@@ -228,9 +228,20 @@ make_vehicle(QString& reg_nr, QString& type,
              QString& brand, QString& model,
              int mileage, QString& damage)
 {
-    QString status = "ledig";
+    Vehicle* temp = NULL;
 
-    return new Vehicle(reg_nr, type, status, brand, model,
-                       mileage, damage);
+    try
+    {
+        QString status = "ledig";
+
+        temp = new Vehicle(reg_nr, type, status, brand, model,
+                           mileage, damage);
+    }
+    catch(const bad_alloc& ba)
+    {
+        delete temp;
+    }
+
+    return temp;
 }
 

@@ -21,7 +21,6 @@
 #include <stdlib.h>
 #include <QString>
 #include <vector>
-#include <iostream> // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 #include "VehicleQ.h"
 #include "Search_vehicleQ.h"
 
@@ -148,7 +147,7 @@ create_result(vector<vector<QString>>& str_vector)
     {
         vector<vector<QString>>::iterator it;
 
-        for(it = str_vector.begin(); it < str_vector.end(); it++)
+        for(it = str_vector.begin(); it != str_vector.end(); it++)
         {
             vector<QString> current = *it;
             int mileage = current[5].toInt();
@@ -182,22 +181,10 @@ void
 Search_vehicle::
 clear()
 {
-    /*
     while(! search_result.empty())
     {
         delete search_result.back();
 
         search_result.pop_back();
      }
-    */
-    vector<Vehicle*>::iterator it;
-
-    for(it = search_result.begin(); it != search_result.end(); ++it)
-    {
-        Vehicle* temp = *it;
-        *it = 0;
-        delete temp;
-    }
-
-    //search_result.clear();
 }
