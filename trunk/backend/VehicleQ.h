@@ -35,7 +35,7 @@ public:
     ~Vehicle() = default;
 
     void save();
-    void remove();
+    bool remove();
 
     void set_mileage(const int);
     void set_reg_nr(const QString&);
@@ -52,6 +52,8 @@ public:
     QString get_brand()   const;
     QString get_model()   const;
     QString get_damage()  const;
+
+    bool exists()         ;
 
 private:
     Vehicle(const Vehicle&)            = delete;

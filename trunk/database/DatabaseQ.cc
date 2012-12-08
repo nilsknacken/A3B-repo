@@ -402,20 +402,36 @@ void Database::remove_reservation(int res_nr)
 }
 
 
-// Removes given vehicle
-void Database::remove_vehicle(QString& reg_nr)
+// Removes given vehicle if not in an active or coming reservation
+bool Database::remove_vehicle(QString& reg_nr)
 {
-    sqlite3_stmt* statement;
-    const char* query = "DELETE FROM Vehicles WHERE reg_nr = ?1";
+    sqlite3_stmt* test_statement;
+    const char* test_query = "SELECT * FROM Reservations WHERE reg_nr = ?1 AND"
+            "(status = 'aktiv' OR status = 'kommande')";
 
-    if (sqlite3_prepare_v2(db, query, -1, &statement, 0) == SQLITE_OK)
-    {
-        sqlite3_bind_text(statement, 1, reg_nr.toStdString().c_str(), reg_nr.size(), SQLITE_TRANSIENT);
-        sqlite3_step(statement);
-    }
+   if (sqlite3_prepare_v2(db, test_query, -1, &test_statement, 0) == SQLITE_OK)
+   {
+       sqlite3_bind_text(test_statement, 1, reg_nr.toStdString().c_str(), reg_nr.size(), SQLITE_TRANSIENT);
+   }
+   check_for_error();
 
-    sqlite3_finalize(statement);
-    check_for_error();
+   if(sqlite3_step(test_statement) == SQLITE_ROW)
+       return false;
+   else
+   {
+       sqlite3_stmt* statement;
+       const char* query = "DELETE FROM Vehicles WHERE reg_nr = ?1";
+
+       if (sqlite3_prepare_v2(db, query, -1, &statement, 0) == SQLITE_OK)
+       {
+           sqlite3_bind_text(statement, 1, reg_nr.toStdString().c_str(), reg_nr.size(), SQLITE_TRANSIENT);
+           sqlite3_step(statement);
+       }
+
+       sqlite3_finalize(statement);
+       check_for_error();
+       return true;
+   }
 }
 
 // Erases all reservations and vehicles from the database

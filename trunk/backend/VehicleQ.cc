@@ -48,12 +48,12 @@ save()
                              brand_, model_, mileage_, damage_);
 }
 
-// Remove the current object from the database.
-void
+// Remove the current object from the database, returns true if possible
+bool
 Vehicle::
 remove()
 {
-    Database::remove_vehicle(reg_nr_);
+   return Database::remove_vehicle(reg_nr_);
 }
 
 
@@ -163,6 +163,13 @@ Vehicle::
 get_damage() const
 {
     return damage_;
+}
+
+bool
+Vehicle::
+exists()
+{
+    return Database::exists_vehicle(reg_nr_);
 }
 
 // Correct indata?

@@ -168,16 +168,9 @@ void MainWindow::generate_vehicle_list(std::vector<Vehicle*> input, QTableWidget
         for(unsigned long i = 0; i < input.size(); i++)
         {
             current = input[i];
-
-            // Kollar så att current är av typ Vehicle*
-            if (typeid(*current) != typeid(Vehicle))
-                throw GUI_error("search_vehiclexxx doens't cointain Vehicle*");
-
             QString id = QString::number(i);
-            std::cerr << "innan reg nr tas ut\n";
-            tableWidget->setItem(i,0,new QTableWidgetItem(current->get_reg_nr(),0));
-            std::cerr << "efter reg nr tas ut\n";
 
+            tableWidget->setItem(i,0,new QTableWidgetItem(current->get_reg_nr(),0));
             tableWidget->setItem(i,1,new QTableWidgetItem(current->get_type(),0));
             tableWidget->setItem(i,2,new QTableWidgetItem(current->get_brand(),0));
             tableWidget->setItem(i,3,new QTableWidgetItem(current->get_model(),0));
@@ -185,6 +178,7 @@ void MainWindow::generate_vehicle_list(std::vector<Vehicle*> input, QTableWidget
         }
         tableWidget->setSortingEnabled(true);
         tableWidget->sortItems(0);
+        tableWidget->setDisabled(false);
     }
     else
     {
@@ -201,6 +195,8 @@ void MainWindow::generate_vehicle_list(std::vector<Vehicle*> input, QTableWidget
         tableWidget->setItem(0, 0, reg);
         tableWidget->setItem(0, 1, type);
         tableWidget->setItem(0, 2, brand);
+
+        tableWidget->setDisabled(true);
 
     }
 }
@@ -231,6 +227,7 @@ void MainWindow::generate_reservation_list(std::vector<Reservation*> input, QTab
 
         }
         tableWidget->setSortingEnabled(true);
+        tableWidget->setDisabled(false);
     }
     else
     {
@@ -247,6 +244,8 @@ void MainWindow::generate_reservation_list(std::vector<Reservation*> input, QTab
         tableWidget->setItem(0, 0, reg);
         tableWidget->setItem(0, 1, name);
         tableWidget->setItem(0, 2, status);
+
+        tableWidget->setDisabled(true);
     }
 }
 

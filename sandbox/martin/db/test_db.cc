@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
                                 "ABC123",
                                 "2011-11-09 11:11",
                                 "2011-11-11 11:11",
-                                "kommande",
+                                "aktiv",
                                 "För Efternamn",
                                 "0707123456",
                                 "Storgatan 1",
@@ -50,7 +50,7 @@ int main(int argc, char* argv[])
                                 "DEF456",
                                 "2011-08-10 11:11",
                                 "2011-08-11 12:12",
-                                "kommande",
+                                "avslutad",
                                 "För Efternamn",
                                 "0707123456",
                                 "Storgatan 1",
@@ -92,6 +92,14 @@ int main(int argc, char* argv[])
                             4711,
                             "hö backspegel repad");
 
+   Database::vehicle_update("DEF456",
+                            "liten_bil",
+                            "ledig",
+                            "Ford",
+                            "Ka",
+                            4711,
+                            "vä backspegel repad");
+
    Database::settings_update(10, 20, 6);
 
    cout << "Settings table\nopen_hour: " << Database::settings_search("open_hour") << endl;
@@ -106,19 +114,26 @@ int main(int argc, char* argv[])
 
    vector<vector<string>> result; 
    
-   cout << "All reservations\n";
+   cout << "All vehicles\n";
    what = "all";
    value = "5678";
-   result = Database::reservation_search(what, value);
+   result = Database::vehicle_search(what, value);
    Database::display(result);
 
-   Database::erase_all();
-   
+   string reg_nr = "DEF456";
+
+   if(Database::remove_vehicle(reg_nr))
+     cout << "remove lyckades\n";
+   else
+    cout << "remove genomfördes ej\n";
+
    cout << "All reservations\n";
    what = "all";
    value = "5678";
-   result = Database::reservation_search(what, value);
+   result = Database::vehicle_search(what, value);
    Database::display(result);
+
+
    
                            
    Database::close();

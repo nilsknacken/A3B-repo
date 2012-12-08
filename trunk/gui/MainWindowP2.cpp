@@ -290,37 +290,50 @@ void MainWindow::setup_tableWidgetP2date() const
 void MainWindow::remove_function(Search_reservation& search_current_res, int current_row, int menu_index)
 {
     current_resP2 = search_current_res.get_current_result()[current_row];
-    QString confirm_removal = QString::fromUtf8(
-                "Är du säker på att du vill radera nedanstående bokning?\n\n"
-                "Reservations nummer: %1\n"
-                "Namn: %2\n"
-                "Telefon: %3\n"
-                "Från: %4\n"
-                "Till: %5\n"
-                "Registreringsnummer: %6\n").arg(QString::number(current_resP2->get_res_nr()),
-                                                 current_resP2->get_name(),
-                                                 current_resP2->get_tel(),
-                                                 current_resP2->get_start(),
-                                                 current_resP2->get_end(),
-                                                 current_resP2->get_reg_nr());
 
-    switch(QMessageBox::warning(this,
-                                QString::fromUtf8("Bekräfta borttagning"),
-                                confirm_removal,
-                                QMessageBox::Cancel,
-                                QMessageBox::Yes))
+    if(current_resP2->get_status() != "aktiv")
     {
-    case QMessageBox::Yes:
-    {
-        current_resP2->remove();
-        on_pushButtonP2search_clicked();
-        P2_table_is_clicked[menu_index] = false;
-        P2_change_button_appearance(menu_index);
-        break;
+        QString confirm_removal = QString::fromUtf8(
+                    "Är du säker på att du vill radera nedanstående bokning?\n\n"
+                    "Reservations nummer: %1\n"
+                    "Namn: %2\n"
+                    "Telefon: %3\n"
+                    "Från: %4\n"
+                    "Till: %5\n"
+                    "Registreringsnummer: %6\n").arg(QString::number(current_resP2->get_res_nr()),
+                                                     current_resP2->get_name(),
+                                                     current_resP2->get_tel(),
+                                                     current_resP2->get_start(),
+                                                     current_resP2->get_end(),
+                                                     current_resP2->get_reg_nr());
+
+        switch(QMessageBox::warning(this,
+                                    QString::fromUtf8("Bekräfta borttagning"),
+                                    confirm_removal,
+                                    QMessageBox::Cancel,
+                                    QMessageBox::Yes))
+        {
+        case QMessageBox::Yes:
+        {
+            current_resP2->remove();
+      //    delete current_resP2;
+       //   current_resP2 = new Reservation();
+            on_pushButtonP2search_clicked();
+            P2_table_is_clicked[menu_index] = false;
+            P2_change_button_appearance(menu_index);
+            break;
+        }
+
+        default:
+            break;
+        }
     }
-
-    default:
-        break;
+    else
+    {
+        QMessageBox::information(this,
+                                 QString::fromUtf8("Ogiltlig borttagning"),
+                                 QString::fromUtf8("Det är ej tillåtet att radera en aktiv bokning!"),
+                                 QMessageBox::Ok);
     }
 }
 

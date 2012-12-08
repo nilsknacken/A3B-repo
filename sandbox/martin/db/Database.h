@@ -91,7 +91,7 @@ public:
    static bool exists_reservation(int);
    static bool exists_vehicle(std::string&);
    static void remove_reservation(int);
-   static void remove_vehicle(std::string& reg_nr);
+   static bool remove_vehicle(std::string& reg_nr);
 
    static
    void

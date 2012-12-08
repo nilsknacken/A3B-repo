@@ -38,6 +38,9 @@
 *           setup_tableWidgetP1L_Car
 *           setup_tableWidgetP1S_Truck
 *           setup_tableWidgetP1L_Truck
+*           change_customer_info
+*           on_dateEditFrom_dateChanged
+*           on_timeEditFrom_timeChanged
 */
 
 #include "MainWindow.h"
@@ -257,6 +260,7 @@ void MainWindow::on_pushButtonP1next_clicked()
         ui->stackedWidgetP1Main->setCurrentIndex(0);
         ui->pushButtonP1next->setText(QString::fromUtf8("Nästa >"));
         ui->pushButtonP1back->setDisabled(true);
+        on_pushButtonP1search_clicked();
     }
 }
 

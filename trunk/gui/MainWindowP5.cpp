@@ -78,6 +78,7 @@ void MainWindow::on_pushButtonP5search_clicked()
 void MainWindow::on_tableWidgetP5_cellClicked(int row, int column)
 {
     (void)column;
+    row = get_row_vehicle(ui->tableWidgetP5);
 
     if (row >= 0) // visa info om bilen
     {
@@ -119,44 +120,82 @@ void MainWindow::on_pushButtonP5add_clicked()
         ui->pushButtonP5change_and_save->setDisabled(true);
         ui->pushButtonP5remove_and_undo->setDisabled(true);
         ui->pushButtonP5add->setText(QString::fromUtf8("Spara"));
+
+        ui->lineEditP5add_fabric_var->clear();
+        ui->lineEditP5add_model_var->clear();
+        ui->lineEditP5add_regnr_var->clear();
+        ui->lineEditP5add_mileage_var->clear();
+        ui->plainTextEditP5add_damages_var->clear();
     }
 
     else if(index == 1) // spara klickat
     {
-        delete current_vehicleP5;
-        current_vehicleP5 = new Vehicle();
-
         QString reg_nr = ui->lineEditP5add_regnr_var->text();
-        QString brand = ui->lineEditP5add_fabric_var->text();
-        QString model = ui->lineEditP5add_model_var->text();
-        QString type = ui->comboBoxP5add_type->currentText();
-        int mileage = ui->lineEditP5add_mileage_var->text().toInt();
-        QString damage = ui->plainTextEditP5add_damages_var->toPlainText();
-        QString ledig = QString::fromUtf8("ledig");
-
-        current_vehicleP5->set_reg_nr(reg_nr);
-        current_vehicleP5->set_brand(brand);
-        current_vehicleP5->set_model(model);
-        current_vehicleP5->set_type(type);
-        current_vehicleP5->set_mileage(mileage);
-        current_vehicleP5->set_damage(damage);
-        current_vehicleP5->set_status(ledig);
-        current_vehicleP5->save();
-
-        delete current_vehicleP5;
-        current_vehicleP5 = new Vehicle();
-
-        ui->stackedWidgetP5->setCurrentIndex(0);
-        ui->pushButtonP5back->setDisabled(true);
-        ui->pushButtonP5add->setText(QString::fromUtf8("Lägg till >"));
-
-        if(ui->tableWidgetP5->currentRow() != -1)
+        try
         {
-            ui->pushButtonP5change_and_save->setEnabled(true);
-            ui->pushButtonP5remove_and_undo->setEnabled(true);
+            current_vehicleP5->set_reg_nr(reg_nr);
+
+            if(current_vehicleP5->exists())
+            {
+                QMessageBox::information(this,
+                                         QString::fromUtf8("Fordon existerar redan"),
+                                         QString::fromUtf8("Fordon med registreringsnummer %1"
+                                                           "\nexisterar redan").arg(reg_nr),
+                                         QMessageBox::Ok);
+            }
+            else
+            {
+                QString brand = ui->lineEditP5add_fabric_var->text();
+                QString model = ui->lineEditP5add_model_var->text();
+                QString type = ui->comboBoxP5add_type->currentText();
+                int mileage = ui->lineEditP5add_mileage_var->text().toInt();
+                QString damage = ui->plainTextEditP5add_damages_var->toPlainText();
+                QString ledig = QString::fromUtf8("ledig");
+
+                if (model == "" || brand == "")
+                {
+                    QMessageBox::information(this,
+                                             QString::fromUtf8("Ange fabrikat och modell"),
+                                             QString::fromUtf8("Fabrikat samt modell måste anges!"),
+                                             QMessageBox::Ok);
+                }
+                else
+                {
+
+
+                    current_vehicleP5->set_brand(brand);
+                    current_vehicleP5->set_model(model);
+                    current_vehicleP5->set_type(type);
+                    current_vehicleP5->set_mileage(mileage);
+                    current_vehicleP5->set_damage(damage);
+                    current_vehicleP5->set_status(ledig);
+                    current_vehicleP5->save();
+
+                    ui->stackedWidgetP5->setCurrentIndex(0);
+                    ui->pushButtonP5back->setDisabled(true);
+                    ui->pushButtonP5add->setText(QString::fromUtf8("Lägg till >"));
+
+                    /*            if(ui->tableWidgetP5->currentRow() != -1)
+                {
+                    ui->pushButtonP5change_and_save->setEnabled(true);
+                    ui->pushButtonP5remove_and_undo->setEnabled(true);
+                }
+    */
+                    on_pushButtonP5search_clicked();
+                }
+            }
+        }
+        catch (const vehicle_error& e)
+        {
+            QMessageBox::information(this,
+                                     QString::fromUtf8("Felaktigt reg nr"),
+                                     QString::fromUtf8(e.what()),
+                                     QMessageBox::Ok);
+            return;
         }
     }
 }
+
 
 
 void MainWindow::on_pushButtonP5back_clicked()
@@ -170,11 +209,6 @@ void MainWindow::on_pushButtonP5back_clicked()
     ui->stackedWidgetP5->setCurrentIndex(0);
     ui->pushButtonP5add->setText(QString::fromUtf8("Lägg till >"));
     ui->pushButtonP5back->setDisabled(true);
-    ui->lineEditP5add_fabric_var->clear();
-    ui->lineEditP5add_model_var->clear();
-    ui->lineEditP5add_regnr_var->clear();
-    ui->lineEditP5add_mileage_var->clear();
-    ui->plainTextEditP5add_damages_var->clear();
 }
 
 
@@ -191,12 +225,24 @@ void MainWindow::on_pushButtonP5change_and_save_clicked()
         int mileage = ui->lineEditP5mileage_var->text().toInt();
         QString damage = ui->plainTextEditP5damages_var->toPlainText();
 
-        current_vehicleP5->set_mileage(mileage);
-        current_vehicleP5->set_damage(damage);
-        current_vehicleP5->save();              //Sparar ner förändrad mätarställning samt skador.
+        if (mileage >= current_vehicleP5->get_mileage())
+        {
+            current_vehicleP5->set_mileage(mileage);
+            current_vehicleP5->set_damage(damage);
+            current_vehicleP5->save();              //Sparar ner förändrad mätarställning samt skador.
 
-        pushbuttonP5change_clicked = false;
-        P5_change_appearance(pushbuttonP5change_clicked);
+            pushbuttonP5change_clicked = false;
+            P5_change_appearance(pushbuttonP5change_clicked);
+        }
+        else
+        {
+            ui->lineEditP5mileage_var->setText(QString::number(current_vehicleP5->get_mileage()));
+            QMessageBox::information(this,
+                                     QString::fromUtf8("Felaktig mätarställning"),
+                                     QString::fromUtf8("Vänligen mata in en mätarställning\n"
+                                                       "större eller lika med %1").arg(current_vehicleP5->get_mileage()),
+                                     QMessageBox::Ok);
+        }
     }
 }
 
@@ -218,17 +264,36 @@ void MainWindow::on_pushButtonP5remove_and_undo_clicked()
 
         if(button_index == 0) //yes pressed
         {
-            on_tableWidgetP5_cellClicked(-1, -1);
+            if(current_vehicleP5->remove())
+            {
+                QMessageBox::information(this,
+                                         QString::fromUtf8("Borttagning bekräftad!"),
+                                         QString::fromUtf8("Borttagning av fordon: %1 lyckades")
+                                         .arg(current_vehicleP5->get_reg_nr()),
+                                         QMessageBox::Ok);
+            }
+            else
+            {
+                QMessageBox::information(this,
+                                         QString::fromUtf8("Borttagning ej tillåten!"),
+                                         QString::fromUtf8("Ej tillåtet att ta bort fordon: %1\n"
+                                                           "ty det ingår i aktiva och/eller kommande bokningar")
+                                         .arg(current_vehicleP5->get_reg_nr()),
+                                         QMessageBox::Ok);
+            }
 
-            cerr << "Fordon är inte borttaget, detta ska inplementeras" << endl;            //REMOVE
-            //Här ska ett fordon tas bort och infon ska nollställas
-        }
+      //      delete current_vehicleP5;
+       //     current_vehicleP5 = new Vehicle();
+
+            on_pushButtonP5search_clicked();
+  }
     }
 
     else if(pushbuttonP5change_clicked) //undo pressed
     {
-        //Här ska ändringar ångras, dvs mätarställning och skador läsas in pånytt,
-        //alternativt köra on_tableWidgetP5_cellClicked(ui->tableWidgetP5->currentRow(), 0)
+        ui->lineEditP5mileage_var->setText(QString::number (current_vehicleP5->get_mileage()));
+        ui->plainTextEditP5damages_var->setPlainText(current_vehicleP5->get_damage());
+
         pushbuttonP5change_clicked = false;
         P5_change_appearance(pushbuttonP5change_clicked);
     }

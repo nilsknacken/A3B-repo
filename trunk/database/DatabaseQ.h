@@ -101,7 +101,7 @@ public:
    static bool exists_reservation(int);
    static bool exists_vehicle(QString&);
    static void remove_reservation(int);
-   static void remove_vehicle(QString& reg_nr);
+   static bool remove_vehicle(QString& reg_nr);
 
    static void erase_all();
    
