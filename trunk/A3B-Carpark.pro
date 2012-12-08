@@ -1,8 +1,22 @@
-#-------------------------------------------------
 #
-# Project created by QtCreator 2012-11-21T20:31:45
+# FILENAMN:    A3B-Carpark.pro
+# PROJECT:     A3B
+# PROGRAMMER:  Conny Andersson  Y3a conan414@student.liu.se
+#              Andreas Bolin    Y3a andbo467@student.liu.se
+#              Martin Andersson Y3a maran703@student.liu.se
+#              Adam Andersson   Y3a adaan690@student.liu.se
+# DATE:        2012-12-08
 #
-#-------------------------------------------------
+# DESCRIPTION
+#
+# QT Projectfile. Make a makefile with:
+# $ qmake -makefile A3B-Carpark.pro
+# Then compile with
+# $ make
+#
+# Created by:
+# Andreas:  allt
+#
 
 QT       += core gui
 
@@ -22,11 +36,11 @@ SOURCES += main.cc \
            backend/Search_vehicleQ.cc \
            backend/Search_reservationQ.cc \
            backend/ReservationQ.cc \
-           gui/MainWindowP5.cpp \
-           gui/MainWindowP4.cpp \
-           gui/MainWindowP3.cpp \
+           gui/MainWindowP1.cc \
            gui/MainWindowP2.cpp \
-           gui/MainWindowP1.cpp \
+           gui/MainWindowP3.cpp \
+           gui/MainWindowP4.cpp \
+           gui/MainWindowP5.cpp \
            database/fill_db.cpp
 
 HEADERS  += gui/MainWindow.h \

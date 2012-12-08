@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+* FILENAMN:    Dialog_Settings.ui
+* PROJECT:     A3B
+* PROGRAMMER:  Conny Andersson  Y3a conan414@student.liu.se
+*              Andreas Bolin    Y3a andbo467@student.liu.se
+*              Martin Andersson Y3a maran703@student.liu.se
+*              Adam Andersson   Y3a adaan690@student.liu.se
+* DATE:        2012-12-08
+*
+* DESCRIPTION
+*
+* Här ligger all gui design till gui_settings fönstret.
+*
+* Created by:
+* Andreas:  allt
+*
+-->
 <ui version="4.0">
  <class>Dialog_Settings</class>
  <widget class="QDialog" name="Dialog_Settings">

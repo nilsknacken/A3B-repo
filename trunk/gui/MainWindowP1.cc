@@ -1,32 +1,51 @@
 /*
-* Filename:    MainWindowP1.cpp
+* Filename:    MainWindowP1.cc
 * PROJECT:     A3B
 * PROGRAMMER:  Conny Andersson  Y3a conan414@student.liu.se
 *              Andreas Bolin    Y3a andbo467@student.liu.se
 *              Martin Andersson Y3a maran703@student.liu.se
 *              Adam Andersson   Y3a adaan690@student.liu.se
-* DATE:        2012-10-12
+* DATE:        2012-12-08
 *
 * DESCRIPTION:
 *
-* Implementation of tab nr 1 = Bokning.
+* Implementation av tab nr 1 = Bokning.
 * Hanterar vad som händer när man gör något under bokningsfliken.
 *
 * Created by:
-* Andreas:  code structure
+* Andreas:  code structure / code skeleton / signal & slots
+*           on_pushButtonP1next_clicked
 *           on_pushButtonP1back_clicked
-*           on_pushButtonP1******_clicked
+*           on_pushButtonP1S_Car_clicked
+*           on_pushButtonP1M_Car_clicked
+*           on_pushButtonP1L_Car_clicked
+*           on_pushButtonP1S_Truck_clicked
+*           on_pushButtonP1L_Truck_clicked
+*           on_pushButtonP1search_clicked
+*           on_tableWidgetP1S_Car_itemSelectionChanged
+*           on_tableWidgetP1M_Car_itemSelectionChanged
+*           on_tableWidgetP1L_Car_itemSelectionChanged
+*           on_tableWidgetP1S_Truck_itemSelectionChanged
+*           on_tableWidgetP1L_Truck_itemSelectionChanged
+*
 *
 * Martin:   on_pushButtonP1next_clicked
 *           on_pushButtonP1search_clicked
 *           when_next_clicked
 *           new_reservation
+*           setup_tableWidgetP1S_Car
+*           setup_tableWidgetP1M_Car
+*           setup_tableWidgetP1L_Car
+*           setup_tableWidgetP1S_Truck
+*           setup_tableWidgetP1L_Truck
 */
 
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
-
+/////////////////////////////////////////////////////////////////////
+//  MainWindow Tab 1 / Bokning
+/////////////////////////////////////////////////////////////////////
 void MainWindow::when_next_clicked(Search_vehicle& search_vehicle,
                                    QTableWidget* tableWidget,
                                    int tab_index)
@@ -52,7 +71,6 @@ void MainWindow::new_reservation()
     QString postal_nr = ui->lineEditPostalnr_2->text();
     QString city = ui->lineEditCity_2->text();
 
-
     current_resP1 = make_reservation(reg_nr,
                                      start,
                                      end,
@@ -61,7 +79,6 @@ void MainWindow::new_reservation()
                                      address,
                                      postal_nr,
                                      city);
-
 }
 
 void MainWindow::change_customer_info()
@@ -73,8 +90,7 @@ void MainWindow::change_customer_info()
     ui->lineEditPostalnr_2->setText(current_resP1->get_postal_nr());
     ui->lineEditCity_2->setText(current_resP1->get_city());
     ui->stackedWidgetP1Main->setCurrentIndex(1);
-    ui->pushButtonP1back->setDisabled(false);
-
+    ui->pushButtonP1back->setEnabled(true);
 }
 
 void MainWindow::on_dateEditFrom_dateChanged(const QDate &date)
@@ -115,10 +131,11 @@ void MainWindow::on_timeEditFrom_timeChanged(const QTime &time)
         ui->dateEditTo->setMinimumDate(now.date());
         ui->timeEditTo->setMinimumTime(now.time().addSecs(3600 * min_rental));
     }
-
 }
 
-
+/////////////////////////////////////////////////////////////////////
+//  MainWindow Tab 1 - Slots - Knappar
+/////////////////////////////////////////////////////////////////////
 void MainWindow::on_pushButtonP1next_clicked()
 {
     int tab_index = ui->stackedWidgetP1Main->currentIndex();
@@ -127,29 +144,22 @@ void MainWindow::on_pushButtonP1next_clicked()
     if(tab_index == 0) // från sök till kundupgifter
     {
         if(stacked_index == 0)
-        {
-           when_next_clicked(search_vehicleP1S_Car, ui->tableWidgetP1S_Car, tab_index);
-         }
+            when_next_clicked(search_vehicleP1S_Car, ui->tableWidgetP1S_Car, tab_index);
+
         else if(stacked_index == 1)
-        {
             when_next_clicked(search_vehicleP1M_Car, ui->tableWidgetP1M_Car, tab_index);
-        }
+
         else if(stacked_index == 2)
-        {
             when_next_clicked(search_vehicleP1L_Car, ui->tableWidgetP1L_Car, tab_index);
-        }
+
         else if(stacked_index == 3)
-        {
             when_next_clicked(search_vehicleP1S_Truck, ui->tableWidgetP1S_Truck, tab_index);
-        }
+
         else if(stacked_index == 4)
-        {
             when_next_clicked(search_vehicleP1L_Truck, ui->tableWidgetP1L_Truck, tab_index);
-        }
+
         else
-        {
             throw GUI_error("Ogiltligt stack_index i P1");
-        }
 
         QDateTime* from = new QDateTime();
         QDateTime* to = new QDateTime();
@@ -172,7 +182,7 @@ void MainWindow::on_pushButtonP1next_clicked()
 
         delete from;
         delete to;
-}
+    }
 
     else if(tab_index == 1) // från kund till bekräftelse
     {
@@ -196,7 +206,6 @@ void MainWindow::on_pushButtonP1next_clicked()
                                          QMessageBox::Ok);
                 return;
             }
-
         }
         else
         {
@@ -212,7 +221,6 @@ void MainWindow::on_pushButtonP1next_clicked()
                                          QMessageBox::Ok);
                 return;
             }
-
         }
 
         QString confirm_reservation = QString::fromUtf8(
@@ -256,12 +264,11 @@ void MainWindow::on_pushButtonP1back_clicked()
 {
     int index = ui->stackedWidgetP1Main->currentIndex();
 
-    if(index == 1)
+    if(index == 1) // Personuppgifter
     {
         if (change_reservation)
-        {
             ui->tabWidgetMainTab->setCurrentIndex(1);
-        }
+
         else
         {
             ui->stackedWidgetP1Main->setCurrentIndex(--index);
@@ -269,16 +276,55 @@ void MainWindow::on_pushButtonP1back_clicked()
         }
     }
 
-    else if(index == 2)
+    else if(index == 2) // Bekfräfta
     {
         ui->stackedWidgetP1Main->setCurrentIndex(--index);
         ui->pushButtonP1next->setText(QString::fromUtf8("Nästa >"));
     }
 }
 
+void MainWindow::on_pushButtonP1search_clicked()
+{
+    P1_table_is_clicked[0] = false;
+    P1_table_is_clicked[1] = false;
+    P1_table_is_clicked[2] = false;
+    P1_table_is_clicked[3] = false;
+    P1_table_is_clicked[4] = false;
+    QString type;
+    QDateTime* from = new QDateTime();
+    QDateTime* to = new QDateTime();
+    from->setDate(ui->dateEditFrom->date());
+    from->setTime(ui->timeEditFrom->time());
+    to->setDate(ui->dateEditTo->date());
+    to->setTime(ui->timeEditTo->time());
+    QString start = from->toString(date_time_format);
+    QString end = to->toString(date_time_format);
+
+    type = QString::fromUtf8("Liten bil");
+    generate_vehicle_list(search_vehicleP1S_Car.type_date(type, start, end), ui->tableWidgetP1S_Car);
+
+    type = QString::fromUtf8("Mellanbil");
+    generate_vehicle_list(search_vehicleP1M_Car.type_date(type, start, end), ui->tableWidgetP1M_Car);
+
+    type = QString::fromUtf8("Stor bil");
+    generate_vehicle_list(search_vehicleP1L_Car.type_date(type, start, end), ui->tableWidgetP1L_Car);
+
+    type = QString::fromUtf8("Liten lastbil");
+    generate_vehicle_list(search_vehicleP1S_Truck.type_date(type, start, end), ui->tableWidgetP1S_Truck);
+
+    type = QString::fromUtf8("Stor lastbil");
+    generate_vehicle_list(search_vehicleP1L_Truck.type_date(type, start, end), ui->tableWidgetP1L_Truck);
+
+    ui->pushButtonP1next->setDisabled(true);
+    delete from;
+    delete to;
+}
 
 
-///// Tab 1 - Reservate
+
+/////////////////////////////////////////////////////////////////////
+//  MainWindow Tab 1 - Slots - Sidomeny
+/////////////////////////////////////////////////////////////////////
 void MainWindow::on_pushButtonP1S_Car_clicked()
 {
     ui->stackedWidgetP1->setCurrentIndex(0);
@@ -339,70 +385,11 @@ void MainWindow::on_pushButtonP1L_Truck_clicked()
     set_stylesheet(SS_SIDEMENU_ENABLE, ui->pushButtonP1L_Truck);
 }
 
-void MainWindow::on_pushButtonP1search_clicked()
-{
-    P1_table_is_clicked[0] = false;
-    P1_table_is_clicked[1] = false;
-    P1_table_is_clicked[2] = false;
-    P1_table_is_clicked[3] = false;
-    P1_table_is_clicked[4] = false;
-    QString type;
-    QDateTime* from = new QDateTime();
-    QDateTime* to = new QDateTime();
-    from->setDate(ui->dateEditFrom->date());
-    from->setTime(ui->timeEditFrom->time());
-    to->setDate(ui->dateEditTo->date());
-    to->setTime(ui->timeEditTo->time());
-    QString start = from->toString(date_time_format);
-    QString end = to->toString(date_time_format);
-
-    type = QString::fromUtf8("Liten bil");
-    generate_vehicle_list(search_vehicleP1S_Car.type_date(type, start, end), ui->tableWidgetP1S_Car);
-
-    type = QString::fromUtf8("Mellanbil");
-    generate_vehicle_list(search_vehicleP1M_Car.type_date(type, start, end), ui->tableWidgetP1M_Car);
-
-    type = QString::fromUtf8("Stor bil");
-    generate_vehicle_list(search_vehicleP1L_Car.type_date(type, start, end), ui->tableWidgetP1L_Car);
-
-    type = QString::fromUtf8("Liten lastbil");
-    generate_vehicle_list(search_vehicleP1S_Truck.type_date(type, start, end), ui->tableWidgetP1S_Truck);
-
-    type = QString::fromUtf8("Stor lastbil");
-    generate_vehicle_list(search_vehicleP1L_Truck.type_date(type, start, end), ui->tableWidgetP1L_Truck);
-
-    ui->pushButtonP1next->setDisabled(true);
-    delete from;
-    delete to;
-}
 
 
-void MainWindow::setup_tableWidgetP1S_Car() const
-{
-    setup_tableWidget_vehicle(ui->tableWidgetP1S_Car);
-}
-
-void MainWindow::setup_tableWidgetP1M_Car() const
-{
-    setup_tableWidget_vehicle(ui->tableWidgetP1M_Car);
-}
-
-void MainWindow::setup_tableWidgetP1L_Car() const
-{
-    setup_tableWidget_vehicle(ui->tableWidgetP1L_Car);
-}
-
-void MainWindow::setup_tableWidgetP1S_Truck() const
-{
-    setup_tableWidget_vehicle(ui->tableWidgetP1S_Truck);
-}
-
-void MainWindow::setup_tableWidgetP1L_Truck() const
-{
-    setup_tableWidget_vehicle(ui->tableWidgetP1L_Truck);
-}
-
-
+/////////////////////////////////////////////////////////////////////
+//  MainWindow Tab 1 - Slots - tableWidget
+/////////////////////////////////////////////////////////////////////
 void MainWindow::on_tableWidgetP1S_Car_itemSelectionChanged()
 {
     P1_table_is_clicked[0] = true;
@@ -431,4 +418,34 @@ void MainWindow::on_tableWidgetP1L_Truck_itemSelectionChanged()
 {
     P1_table_is_clicked[4] = true;
     ui->pushButtonP1next->setEnabled(true);
+}
+
+
+
+/////////////////////////////////////////////////////////////////////
+//  MainWindow Tab 1 - Setup tableWidgets
+/////////////////////////////////////////////////////////////////////
+void MainWindow::setup_tableWidgetP1S_Car() const
+{
+    setup_tableWidget_vehicle(ui->tableWidgetP1S_Car);
+}
+
+void MainWindow::setup_tableWidgetP1M_Car() const
+{
+    setup_tableWidget_vehicle(ui->tableWidgetP1M_Car);
+}
+
+void MainWindow::setup_tableWidgetP1L_Car() const
+{
+    setup_tableWidget_vehicle(ui->tableWidgetP1L_Car);
+}
+
+void MainWindow::setup_tableWidgetP1S_Truck() const
+{
+    setup_tableWidget_vehicle(ui->tableWidgetP1S_Truck);
+}
+
+void MainWindow::setup_tableWidgetP1L_Truck() const
+{
+    setup_tableWidget_vehicle(ui->tableWidgetP1L_Truck);
 }

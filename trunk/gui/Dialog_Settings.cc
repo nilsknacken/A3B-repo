@@ -1,11 +1,11 @@
 /*
-* FILENAMN:    Dialog_Settings.cpp
+* FILENAMN:    Dialog_Settings.cc
 * PROJECT:     A3B
 * PROGRAMMER:  Conny Andersson  Y3a conan414@student.liu.se
 *              Andreas Bolin    Y3a andbo467@student.liu.se
 *              Martin Andersson Y3a maran703@student.liu.se
 *              Adam Andersson   Y3a adaan690@student.liu.se
-* DATE:        2012-12-05
+* DATE:        2012-12-08
 *
 * DESCRIPTION
 *
@@ -13,16 +13,15 @@
 * Dessutom raderar man databasen från inställningar.
 *
 * Created by:
-* Conny:
-*  on_buttonBox_accepted
-*  on_buttonBox_rejected
-*  on_pushButtonCleanDB_clicked
-*  update_qtimeedit
+* Conny:    on_buttonBox_accepted
+*           on_buttonBox_rejected
+*           on_pushButtonCleanDB_clicked
+*           update_qtimeedit
 *
-* Andreas:
-*  Dialog_Settings
-*  ~Dialog_Settings
-*  restore_appearance
+* Andreas:  code structure / code skeleton / signals & slots
+*           Dialog_Settings
+*           ~Dialog_Settings
+*           restore_appearance
 *
 */
 
@@ -66,6 +65,7 @@ void Dialog_Settings::on_buttonBox_accepted()
 
 void Dialog_Settings::on_buttonBox_rejected()
 {
+    //Skriv över ändringarna
     update_qtimeedit(settings_);
     restore_appearance();
 }
@@ -84,10 +84,6 @@ void Dialog_Settings::on_pushButtonCleanDB_clicked()
         settings_->clean_db();
         ui->pushButtonCleanDB->setDisabled(true);
         ui->pushButtonCleanDB->setText(QString::fromUtf8("Databas rensad"));
-        //QMessageBox::information(this,
-        //                         QString::fromUtf8("Bekräftelse"),
-        //                         QString::fromUtf8("Nu är databasen rensad."),
-        //                         QMessageBox::Ok);
         break;
     }
 

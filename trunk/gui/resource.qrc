@@ -1,8 +1,23 @@
+<!--
+* FILENAMN:    resource.qrc
+* PROJECT:     A3B
+* PROGRAMMER:  Conny Andersson  Y3a conan414@student.liu.se
+*              Andreas Bolin    Y3a andbo467@student.liu.se
+*              Martin Andersson Y3a maran703@student.liu.se
+*              Adam Andersson   Y3a adaan690@student.liu.se
+* DATE:        2012-12-08
+*
+* DESCRIPTION
+*
+* Här finns länkar till externa resurser som ikoner och bakgrunder.
+*
+* Created by:
+* Andreas:  allt
+*
+-->
+
 <RCC>
     <qresource prefix="/">
-        <file>images/test.png</file>
-        <file>images/test2.png</file>
-        <file>images/test3.png</file>
         <file alias="Linen_Patterns_1.jpg">images/Linen_Patterns_1.jpg</file>
         <file alias="Linen_Patterns_2.jpg">images/Linen_Patterns_2.jpg</file>
         <file alias="Linen_Patterns_3.jpg">images/Linen_Patterns_3.jpg</file>

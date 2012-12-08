@@ -198,6 +198,7 @@ private:
     void set_stylesheet(const QString&, QPushButton*&) const;
     const QString SS_SIDEMENU_ENABLE = "QPushButton {font: bold;color: white;}";
     const QString SS_SIDEMENU_DISABLE = "QPushButton {font: bold;color: grey;}";
+    void setup_stylesheet();
 };
 
 

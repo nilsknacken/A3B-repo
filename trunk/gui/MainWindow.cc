@@ -12,12 +12,21 @@
 * Här defineras huvudfönstrets funktioner.
 *
 * Created by:
-* Martin:
-*  please_select_entry
-*  generate_vehicle_list
-*  generate_reservation_list
-*  setup_tableWidget_vehicle
-*  setup_tableWidget_reservation
+* Martin:   generate_vehicle_list
+*           generate_reservation_list
+*           setup_tableWidget_vehicle
+*           setup_tableWidget_reservation
+*
+* Andreas:  code structure / code skeleton / signal & slots
+*           MainWindow
+*           ~MainWindow
+*           on_actionAbout_triggered
+*           on_actionSettings_triggered
+*           on_actionQuit_triggered
+*           set_stylesheet
+*           custom_setup                       + någon mer
+*           setup_stylesheet
+*           on_tabWidgetMainTab_currentChanged + någon mer
 *
 */
 
@@ -41,7 +50,7 @@ MainWindow::MainWindow(QWidget* parent)
 {
     ui->setupUi(this);
     custom_setup();
-
+    setup_stylesheet();
 }
 
 MainWindow::~MainWindow()
@@ -132,8 +141,11 @@ void MainWindow::custom_setup()
     int min_rental = settings->get_min_rental();
     ui->dateEditTo->setMinimumDate(now.date());
     ui->timeEditTo->setMinimumTime(now.time().addSecs(3600 * min_rental));
+}
 
-    //Set stylesheet, detta borde flyttas till en separat stylesheetfil då det kommer komma en jävla massa mer kod
+void MainWindow::setup_stylesheet()
+{
+    //Set stylesheet
     ui->frameP1vehicle_info->setStyleSheet("QFrame{"
                                            "border-left: 1px solid lightgrey;"
                                            "border-right: none;"

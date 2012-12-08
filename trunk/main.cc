@@ -12,7 +12,7 @@
 * Our main function
 *
 * Created by:
-* Andreas:
+* Andreas: main()
 */
 
 #include <QApplication>
