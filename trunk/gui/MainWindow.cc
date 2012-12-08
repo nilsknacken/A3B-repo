@@ -58,6 +58,7 @@ MainWindow::~MainWindow()
     delete ui;
     delete settings;
     delete gui_settings;
+
 }
 
 

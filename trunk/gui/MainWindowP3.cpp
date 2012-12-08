@@ -81,6 +81,7 @@ void MainWindow::on_pushButtonP3checkout_clicked()
     current_resP3->set_start(now);
 
     delete date_time;
+    date_time = nullptr;
 
     QString confirm_checkout = QString::fromUtf8(
                 "Är du säker på att du vill lämna ut nedanstående bokning?\n\n"

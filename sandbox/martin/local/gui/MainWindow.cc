@@ -50,13 +50,10 @@ MainWindow::~MainWindow()
     delete ui;
     delete settings;
     delete gui_settings;
+
     delete current_resP1;
-    delete current_resP2;
-    delete current_resP3;
-    delete current_resP4;
-    delete current_vehicleP1;
-    delete current_vehicleP4;
-    delete current_vehicleP5;
+    current_resP1 = nullptr;
+    delete current_resP1;
 
 }
 

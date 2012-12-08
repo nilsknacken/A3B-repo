@@ -184,7 +184,9 @@ void MainWindow::on_pushButtonP1next_clicked()
         ui->lineEditCity_2->clear();
 
         delete from;
+        from = nullptr;
         delete to;
+        to = nullptr;
     }
 
     else if(tab_index == 1) // från kund till bekräftelse
@@ -321,7 +323,9 @@ void MainWindow::on_pushButtonP1search_clicked()
 
     ui->pushButtonP1next->setDisabled(true);
     delete from;
+    from = nullptr;
     delete to;
+    to = nullptr;
 }
 
 
