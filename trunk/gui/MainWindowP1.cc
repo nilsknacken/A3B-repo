@@ -96,6 +96,67 @@ void MainWindow::change_customer_info()
     ui->pushButtonP1back->setEnabled(true);
 }
 
+void MainWindow::set_date_now()
+{
+    // Sätter till nuvarande tid och minimum till nu + min_rental
+       QDateTime now = QDateTime::currentDateTime();
+       QTime time = QTime::currentTime();
+       time.setHMS(time.hour(), 0,0);
+       now.setTime(time);
+       ui->dateEditFrom->setMinimumDate(now.date());
+       ui->timeEditFrom->setMinimumTime(now.time());
+
+       int min_rental = settings->get_min_rental();
+       int from_hour = now.time().hour();
+
+       if (min_rental + from_hour >= 24)
+       {
+           ui->dateEditTo->setMinimumDate(now.date().addDays(1));
+           ui->timeEditTo->setMinimumTime(now.time().addSecs(-3600 * (23 - min_rental)));
+       }
+       else
+       {
+           ui->dateEditTo->setMinimumDate(now.date());
+           ui->timeEditTo->setMinimumTime(now.time().addSecs(3600 * min_rental));
+       }
+}
+
+
+void MainWindow::please_press_search()
+{
+    please_press_search_helpfunc(ui->tableWidgetP1S_Car);
+    please_press_search_helpfunc(ui->tableWidgetP1M_Car);
+    please_press_search_helpfunc(ui->tableWidgetP1L_Car);
+    please_press_search_helpfunc(ui->tableWidgetP1S_Truck);
+    please_press_search_helpfunc(ui->tableWidgetP1L_Truck);
+}
+
+
+void MainWindow::please_press_search_helpfunc(QTableWidget* tableWidget)
+{
+    tableWidget->setRowCount(1);
+
+    QTableWidgetItem* reg = new QTableWidgetItem();
+    QTableWidgetItem* type = new QTableWidgetItem();
+    QTableWidgetItem* brand = new QTableWidgetItem();
+    QTableWidgetItem* model = new QTableWidgetItem();
+
+
+
+    reg->setText(QString::fromUtf8("Välj datum och"));
+    type->setText(QString::fromUtf8(" tryck  sök  för"));
+    brand->setText(QString::fromUtf8("att lista lediga"));
+    model->setText(QString::fromUtf8("fordon"));
+
+    tableWidget->setItem(0, 0, reg);
+    tableWidget->setItem(0, 1, type);
+    tableWidget->setItem(0, 2, brand);
+    tableWidget->setItem(0, 3, model);
+
+    tableWidget->setDisabled(true);
+
+}
+
 void MainWindow::on_dateEditFrom_dateChanged(const QDate &date)
 {
     QDateTime now;
@@ -114,6 +175,8 @@ void MainWindow::on_dateEditFrom_dateChanged(const QDate &date)
         ui->dateEditTo->setMinimumDate(now.date());
         ui->timeEditTo->setMinimumTime(now.time().addSecs(3600 * min_rental));
     }
+
+    please_press_search();
 }
 
 void MainWindow::on_timeEditFrom_timeChanged(const QTime &time)
@@ -134,6 +197,8 @@ void MainWindow::on_timeEditFrom_timeChanged(const QTime &time)
         ui->dateEditTo->setMinimumDate(now.date());
         ui->timeEditTo->setMinimumTime(now.time().addSecs(3600 * min_rental));
     }
+
+    please_press_search();
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -262,6 +327,7 @@ void MainWindow::on_pushButtonP1next_clicked()
         ui->stackedWidgetP1Main->setCurrentIndex(0);
         ui->pushButtonP1next->setText(QString::fromUtf8("Nästa >"));
         ui->pushButtonP1back->setDisabled(true);
+        set_date_now();
         on_pushButtonP1search_clicked();
     }
 }

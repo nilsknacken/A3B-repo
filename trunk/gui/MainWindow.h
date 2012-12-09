@@ -140,6 +140,9 @@ private:
     void when_next_clicked(Search_vehicle&, QTableWidget*, int);
     void new_reservation();
     void change_customer_info();
+    void set_date_now();
+    void please_press_search();
+    void please_press_search_helpfunc(QTableWidget*);
     bool P1_table_is_clicked[5] = {false};
 
 

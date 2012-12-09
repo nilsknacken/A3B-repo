@@ -131,17 +131,8 @@ void MainWindow::custom_setup()
     setup_tableWidgetP4();
     setup_tableWidgetP5();
 
-    // Sets default date
-    QDateTime now = QDateTime::currentDateTime();
-    QTime time = QTime::currentTime();
-    time.setHMS(time.hour() + 1, 0,0);
-    now.setTime(time);
-    ui->dateEditFrom->setDate(now.date());
-    ui->timeEditFrom->setTime(now.time());
-
-    int min_rental = settings->get_min_rental();
-    ui->dateEditTo->setMinimumDate(now.date());
-    ui->timeEditTo->setMinimumTime(now.time().addSecs(3600 * min_rental));
+    set_date_now();
+    please_press_search();
 }
 
 void MainWindow::setup_stylesheet()
@@ -286,27 +277,7 @@ void MainWindow::on_tabWidgetMainTab_currentChanged(int index)
 {
     if(index == 0) // bokning
     {
-        // Sätter till nuvarande tid och minimum till nu + min_rental
-        QDateTime now = QDateTime::currentDateTime();
-        QTime time = QTime::currentTime();
-        time.setHMS(time.hour() + 1, 0,0);
-        now.setTime(time);
-        ui->dateEditFrom->setDate(now.date());
-        ui->timeEditFrom->setTime(now.time());
-
-        int min_rental = settings->get_min_rental();
-        int from_hour = now.time().hour();
-
-        if (min_rental + from_hour >= 24)
-        {
-            ui->dateEditTo->setMinimumDate(now.date().addDays(1));
-            ui->timeEditTo->setMinimumTime(now.time().addSecs(-3600 * (24 - min_rental)));
-        }
-        else
-        {
-            ui->dateEditTo->setMinimumDate(now.date());
-            ui->timeEditTo->setMinimumTime(now.time().addSecs(3600 * min_rental));
-        }
+       // set_date_now();
     }
 
     else if (index == 1) //sök
