@@ -28,7 +28,10 @@ int main(int argc, char *argv[])
 
     try
     {
-        Database::open("default_db.sqlite");
+        if (argc == 2)
+            Database::open(argv[1]);
+        else
+            Database::open("default_db.sqlite");
 
         QApplication app(argc, argv);
         MainWindow main_window;
