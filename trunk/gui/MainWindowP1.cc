@@ -320,6 +320,8 @@ void MainWindow::on_pushButtonP1next_clicked()
     else if(tab_index == 2) // bekfräfta
     {
         current_resP1->save();
+        delete current_resP1;
+        current_resP1 = new Reservation();
         QMessageBox::information(this,
                                  QString::fromUtf8("Bokning genomförd"),
                                  QString::fromUtf8("Din bokning är nu genomförd."),
