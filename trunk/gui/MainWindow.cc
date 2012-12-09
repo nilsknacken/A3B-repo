@@ -56,9 +56,17 @@ MainWindow::MainWindow(QWidget* parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete about;
     delete settings;
     delete gui_settings;
-
+    delete current_resP1;
+    delete current_resP2;
+    delete current_resP3;
+    delete current_resP4;
+    delete current_vehicleP1;
+    delete current_vehicleP3;
+    delete current_vehicleP4;
+    delete current_vehicleP5;
 }
 
 
@@ -67,15 +75,15 @@ MainWindow::~MainWindow()
 /////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionAbout_triggered()
 {
-    about->about( this, QString::fromUtf8("Om A3B bilpark"),
-                        QString::fromUtf8("\t<b>A3B bilpark</b><br>"
-                                          "\tVersion 1.0<br><br>"
-                                          "A3B bilpark är ... bla bla bla<br><br>"
-                                          "Copyright 1951-2012 Such-and-such."
-                                          "<Någonting annat här.><br><br>"
-                                          "För teknisk support, ring 123456789 eller besök<br>"
-                                          "<url>https://github.com/nilsknacken/A3B-repo</url><br>"));
-    about->aboutQt(this, "suprice! :)");
+    about->about(this, QString::fromUtf8("Om A3B bilpark"),
+                       QString::fromUtf8("\t<b>A3B bilpark</b><br>"
+                                         "\tVersion 1.0<br><br>"
+                                         "A3B bilpark är ... bla bla bla<br><br>"
+                                         "Copyright 1951-2012 Such-and-such."
+                                         "<Någonting annat här.><br><br>"
+                                         "För teknisk support, ring 123456789 eller besök<br>"
+                                         "<url>https://github.com/nilsknacken/A3B-repo</url><br>"));
+    about->aboutQt(this, "suprice! :)");                                                                  //REMOVE
 }
 
 
@@ -88,8 +96,16 @@ void MainWindow::on_actionQuit_triggered()
 {
     delete ui;
     delete about;
-    delete gui_settings;
     delete settings;
+    delete gui_settings;
+    delete current_resP1;
+    delete current_resP2;
+    delete current_resP3;
+    delete current_resP4;
+    delete current_vehicleP1;
+    delete current_vehicleP3;
+    delete current_vehicleP4;
+    delete current_vehicleP5;
 
     exit(0);
 }
@@ -135,7 +151,7 @@ void MainWindow::custom_setup()
     please_press_search();
 }
 
-void MainWindow::setup_stylesheet()
+void MainWindow::setup_stylesheet() const
 {
     //Set stylesheet
     ui->frameP1vehicle_info->setStyleSheet("QFrame{"

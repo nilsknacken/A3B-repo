@@ -88,7 +88,7 @@ private slots:
 
     // Tab 5 - Vehicle Search
     void on_pushButtonP5search_clicked();
-    void on_tableWidgetP5_cellClicked(int row, int column);
+    void on_tableWidgetP5_cellClicked(int, int);
     void on_pushButtonP5add_clicked();
     void on_pushButtonP5change_and_save_clicked();
     void on_pushButtonP5remove_and_undo_clicked();
@@ -201,7 +201,7 @@ private:
     void set_stylesheet(const QString&, QPushButton*&) const;
     const QString SS_SIDEMENU_ENABLE = "QPushButton {font: bold;color: white;}";
     const QString SS_SIDEMENU_DISABLE = "QPushButton {font: bold;color: grey;}";
-    void setup_stylesheet();
+    void setup_stylesheet() const;
 };
 
 
