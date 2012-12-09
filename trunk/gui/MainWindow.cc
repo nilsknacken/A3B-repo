@@ -106,8 +106,7 @@ void MainWindow::on_actionQuit_triggered()
     delete current_vehicleP3;
     delete current_vehicleP4;
     delete current_vehicleP5;
-
-    exit(0);
+    exit(EXIT_SUCCESS);
 }
 
 
