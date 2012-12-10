@@ -146,3 +146,23 @@ get_min_rental() const
 {
     return min_rental_;
 }
+
+QTime
+Settings::
+get_open_QTime()  const
+{
+    QTime open;
+    open.setHMS(open_hour_, open_min_, 0);
+
+    return open;
+}
+
+QTime
+Settings::
+get_close_QTime()  const
+{
+    QTime close;
+    close.setHMS(close_hour_, close_min_, 0);
+
+    return close;
+}

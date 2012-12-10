@@ -346,7 +346,7 @@ void MainWindow::setup_tableWidget_reservation(QTableWidget* tableWidget) const
                                            << QString::fromUtf8("Namn")
                                            << QString::fromUtf8("Status")
                                            << QString::fromUtf8("Starttid")
-                                           << QString::fromUtf8("Slutttid")
+                                           << QString::fromUtf8("Sluttid")
                                            << QString::fromUtf8("ID"));
     tableWidget->setShowGrid(false);
     tableWidget->hideColumn(6);
@@ -354,6 +354,6 @@ void MainWindow::setup_tableWidget_reservation(QTableWidget* tableWidget) const
     tableWidget->setAlternatingRowColors(true);
     tableWidget->setEditTriggers(0);
     tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
-    tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    tableWidget->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     tableWidget->setSortingEnabled(true);
 }

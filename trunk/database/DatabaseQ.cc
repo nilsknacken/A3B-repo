@@ -464,7 +464,7 @@ void Database::init_db()
 
     sqlite3_exec(db,
                  "CREATE TABLE IF NOT EXISTS Vehicles ("
-                 "reg_nr TEXT NOT NULL UNIQUE, type TEXT, status TEXT,"
+                 "reg_nr TEXT COLLATE NOCASE NOT NULL UNIQUE, type TEXT, status TEXT,"
                  "brand TEXT COLLATE NOCASE, model TEXT COLLATE NOCASE,"
                  "mileage INTEGER, damage TEXT)", NULL, 0, NULL);
     check_for_error();

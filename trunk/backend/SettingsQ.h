@@ -22,6 +22,7 @@
 
 #include <stdexcept>
 #include "DatabaseQ.h"
+#include <QTime>
 
 /////////////////////////////////////////////////////////////////////
 // Settings:
@@ -47,6 +48,9 @@ public:
     int get_close_hour() const;
     int get_close_min() const;
     int get_min_rental() const;
+
+    QTime get_open_QTime() const;
+    QTime get_close_QTime() const;
 
 private:
     Settings(const Settings&)            = delete;
