@@ -87,6 +87,7 @@ void MainWindow::new_reservation()
 void MainWindow::change_customer_info()
 {
     ui->tabWidgetMainTab->setCurrentIndex(0);
+    ui->tabWidgetMainTab->setTabText(0, QString::fromUtf8("Ändring"));
     ui->lineEditName_2->setText(current_resP1->get_name());
     ui->lineEdit_2->setText(current_resP1->get_tel()); // tel
     ui->lineEditAddress_2->setText(current_resP1->get_adress());
@@ -94,6 +95,7 @@ void MainWindow::change_customer_info()
     ui->lineEditCity_2->setText(current_resP1->get_city());
     ui->stackedWidgetP1Main->setCurrentIndex(1);
     ui->pushButtonP1back->setEnabled(true);
+    ui->pushButtonP1next->setEnabled(true);
 }
 
 void MainWindow::set_date_now()
@@ -320,17 +322,24 @@ void MainWindow::on_pushButtonP1next_clicked()
     else if(tab_index == 2) // bekfräfta
     {
         current_resP1->save();
-        delete current_resP1;
-        current_resP1 = new Reservation();
         QMessageBox::information(this,
                                  QString::fromUtf8("Bokning genomförd"),
                                  QString::fromUtf8("Din bokning är nu genomförd."),
                                  QMessageBox::Ok);
-        ui->stackedWidgetP1Main->setCurrentIndex(0);
         ui->pushButtonP1next->setText(QString::fromUtf8("Nästa >"));
         ui->pushButtonP1back->setDisabled(true);
-        set_date_now();
-        on_pushButtonP1search_clicked();
+        ui->stackedWidgetP1Main->setCurrentIndex(0);
+
+        if(! change_reservation)
+        {
+            set_date_now();
+            on_pushButtonP1search_clicked();
+        }
+        else
+        {
+            ui->tabWidgetMainTab->setCurrentIndex(1);
+            ui->tabWidgetMainTab->setTabText(0, QString::fromUtf8("Bokning"));
+        }
     }
 }
 
@@ -341,12 +350,12 @@ void MainWindow::on_pushButtonP1back_clicked()
     if(index == 1) // Personuppgifter
     {
         if (change_reservation)
+        {
             ui->tabWidgetMainTab->setCurrentIndex(1);
-
+            ui->tabWidgetMainTab->setTabText(0, QString::fromUtf8("Bokning"));
+        }
         else
         {
-            delete current_resP1;
-            current_resP1 = new Reservation();
             ui->stackedWidgetP1Main->setCurrentIndex(--index);
             ui->pushButtonP1back->setDisabled(true);
         }
