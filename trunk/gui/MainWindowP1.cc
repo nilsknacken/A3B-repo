@@ -448,10 +448,6 @@ void MainWindow::on_pushButtonP1back_clicked()
             ui->tabWidgetMainTab->setCurrentIndex(1);
             ui->tabWidgetMainTab->setTabText(0, QString::fromUtf8("Bokning"));
             ui->pushButtonP1next->setDisabled(true);
-<<<<<<< HEAD
-            std::cerr << "disablad\n";                                                              //REMOVE
-=======
->>>>>>> a7230110b9158184b4829cbfe5f87b5365c59018
             change_reservation = false;
         }
         else
