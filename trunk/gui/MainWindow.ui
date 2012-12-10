@@ -566,7 +566,7 @@ background: solid white; }</string>
       </property>
       <property name="font">
        <font>
-        <pointsize>11</pointsize>
+        <pointsize>14</pointsize>
         <weight>75</weight>
         <italic>false</italic>
         <bold>true</bold>
@@ -579,7 +579,7 @@ background: solid white; }</string>
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tabReservate">
        <property name="styleSheet">
@@ -991,7 +991,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                   <enum>QFrame::NoFrame</enum>
                  </property>
                  <property name="currentIndex">
-                  <number>3</number>
+                  <number>1</number>
                  </property>
                  <widget class="QWidget" name="pageP1S_Car">
                   <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -1054,6 +1054,12 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                    </property>
                    <item>
                     <widget class="QTableWidget" name="tableWidgetP1S_Truck">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
                      <property name="frameShape">
                       <enum>QFrame::NoFrame</enum>
                      </property>
@@ -1928,7 +1934,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
               <enum>QFrame::NoFrame</enum>
              </property>
              <property name="currentIndex">
-              <number>3</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="pageP2bok_nr">
               <layout class="QVBoxLayout" name="verticalLayout_12">

@@ -55,6 +55,8 @@ vector<Reservation*>
 Search_reservation::
 res_nr(int res_nr)
 {
+    correct_res_nr(res_nr);
+
     vector<vector<QString>> reservation_str_vector =
             Database::reservation_search(res_nr);
 
@@ -68,6 +70,8 @@ vector<Reservation*>
 Search_reservation::
 reg_nr(QString& reg_nr)
 {
+    correct_reg_nr(reg_nr);
+
     vector<vector<QString>> reservation_str_vector =
             Database::reservation_search("reg_nr", reg_nr);
 
@@ -81,6 +85,8 @@ vector<Reservation*>
 Search_reservation::
 name(QString& name)
 {
+    correct_name(name);
+
     vector<vector<QString>> reservation_str_vector =
             Database::reservation_search("name", name);
 
@@ -94,6 +100,8 @@ vector<Reservation*>
 Search_reservation::
 tel(QString& tel)
 {
+    correct_tel(tel);
+
     vector<vector<QString>> reservation_str_vector =
             Database::reservation_search("tel", tel);
 
@@ -189,5 +197,76 @@ clear()
         delete search_result.back();
 
         search_result.pop_back();
+    }
+}
+
+// Correct indata?
+void
+Search_reservation::
+correct_res_nr(const int res_nr)
+{
+    if(res_nr < 10000 || res_nr > 99999)
+        throw search_reservation_error("Res nr. får endast vara mellan 10000 och 99999.");
+
+}
+
+void
+Search_reservation::
+correct_reg_nr(const QString& reg_nr)
+{
+    if(reg_nr.size() != 6)
+        throw search_reservation_error("Reg nr. får endast innehålla tre bokstäver "
+                                "följt av tre siffror");
+
+    for(int i = 0; i < reg_nr.size(); i++)
+    {
+        char c = reg_nr.toStdString()[i];
+
+        if(i < 3)
+        {
+            if(! isalpha(c))
+                throw search_reservation_error("Reg nr. får endast innehålla tre bokstäver"
+                                        " följt av tre siffror");
+        }
+        if(i >= 3)
+        {
+            if(! isdigit(c))
+                throw search_reservation_error("Reg nr. får endast innehålla tre bokstäver "
+                                        "följt av tre siffror");
+        }
+    }
+}
+
+void
+Search_reservation::
+correct_name(const QString& name)
+{
+    unsigned int count_space = 0;
+    for(int i = 0; i < name.size(); i++)
+    {
+        char c = name.toStdString()[i];
+
+        if(c == ' ')
+            count_space++;
+        else if(! isalpha(c))
+            throw search_reservation_error("Namn får endast innehålla bokstäver, "
+                                    "och för- och efternamn ska ingå.");
+    }
+    if(count_space == 0)
+        throw search_reservation_error("Namn får endast innehålla bokstäver, "
+                                "och för- och efternamn ska ingå.");
+}
+
+void
+Search_reservation::
+correct_tel(const QString& tel)
+{
+    for(int i = 0; i < tel.size(); i++)
+    {
+        char c = tel.toStdString()[i];
+
+        if(! isdigit(c) && ! (c == ' '))
+            throw search_reservation_error("Felaktigt telefonnummer, "
+                                    "ska bara innehålla siffror.");
     }
 }

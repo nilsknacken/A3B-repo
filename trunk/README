@@ -5,9 +5,9 @@ We do more than take you from A 2 B!
 This file is written in Swedish.
 
 
-INNEHÅLLSFÖRTÄCKNING
+INNEHÅLLSFÖRTECKNING
 1. PROGRAMBESKRIVNING
-2. KOMPILERASKRAV
+2. KOMPILERINGSKRAV
 3. KOMPILERA
 4. KÖRBARA FILER
 5. GITHUB
@@ -15,7 +15,7 @@ INNEHÅLLSFÖRTÄCKNING
 
 
 1. PROGRAMBESKRIVNING:
-Programmet ät tänkt att hantera bokningar och fordon för en mindre uthyrningsstation.
+Programmet är tänkt att hantera bokningar och fordon för en mindre uthyrningsstation.
 Användaren är personalen på stationen.
 
 Huvudstrukturen är de fem översta tabbarna: Bokning, Sök, Lämna ut, Återlämna samt Fordon.
@@ -42,7 +42,7 @@ Fordon
 Här kan fordon sökas, ändras samt tas bort och info om valt fordon visas.
 
 
-2. KOMPILERASKRAV:
+2. KOMPILERINGSKRAV:
 Följande är krav för att kunna kompilera detta program
   C/C++11 kompilator (testat med gcc/g++ 4.7.2 samt Apple clang 4.0)
   GNU Make           (testat med 3.81)

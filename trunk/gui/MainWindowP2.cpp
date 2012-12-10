@@ -42,7 +42,20 @@ void MainWindow::on_pushButtonP2search_clicked()
         if (res_nr.isEmpty())
             generate_reservation_list(search_resP2bok_nr.all(), ui->tableWidgetP2bok_nr);
         else
-            generate_reservation_list(search_resP2bok_nr.res_nr(res_nr.toInt()), ui->tableWidgetP2bok_nr);
+        {
+            try
+            {
+                generate_reservation_list(search_resP2bok_nr.res_nr(res_nr.toInt()), ui->tableWidgetP2bok_nr);
+            }
+            catch (search_reservation_error& e)
+            {
+                QMessageBox::information(this,
+                                         QString::fromUtf8("Felaktig inmatning"),
+                                         QString::fromUtf8("Felaktig inmatning:\n%1").arg(QString::fromUtf8(e.what())),
+                                         QMessageBox::Ok);
+                return;
+            }
+        }
     }
 
     else if(search_index == 1) // reg nr
@@ -51,7 +64,20 @@ void MainWindow::on_pushButtonP2search_clicked()
         if (reg_nr.isEmpty())
             generate_reservation_list(search_resP2reg_nr.all(), ui->tableWidgetP2reg_nr);
         else
-            generate_reservation_list(search_resP2reg_nr.reg_nr(reg_nr), ui->tableWidgetP2reg_nr);
+        {
+            try
+            {
+                generate_reservation_list(search_resP2reg_nr.reg_nr(reg_nr), ui->tableWidgetP2reg_nr);
+            }
+            catch (search_reservation_error& e)
+            {
+                QMessageBox::information(this,
+                                         QString::fromUtf8("Felaktig inmatning"),
+                                         QString::fromUtf8("Felaktig inmatning:\n%1").arg(QString::fromUtf8(e.what())),
+                                         QMessageBox::Ok);
+                return;
+            }
+        }
     }
 
     else if(search_index == 2) //namn
@@ -60,7 +86,20 @@ void MainWindow::on_pushButtonP2search_clicked()
         if (name.isEmpty())
             generate_reservation_list(search_resP2name.all(), ui->tableWidgetP2name);
         else
-            generate_reservation_list(search_resP2name.name(name), ui->tableWidgetP2name);
+        {
+            try
+            {
+                generate_reservation_list(search_resP2name.name(name), ui->tableWidgetP2name);
+            }
+            catch (search_reservation_error& e)
+            {
+                QMessageBox::information(this,
+                                         QString::fromUtf8("Felaktig inmatning"),
+                                         QString::fromUtf8("Felaktig inmatning:\n%1").arg(QString::fromUtf8(e.what())),
+                                         QMessageBox::Ok);
+                return;
+            }
+        }
     }
 
     else if(search_index == 3) //tel
@@ -69,19 +108,29 @@ void MainWindow::on_pushButtonP2search_clicked()
         if (phone_nr.isEmpty())
             generate_reservation_list(search_resP2phone_nr.all(), ui->tableWidgetP2phone_nr);
         else
-            generate_reservation_list(search_resP2phone_nr.tel(phone_nr), ui->tableWidgetP2phone_nr);
+        {
+            try
+            {
+                generate_reservation_list(search_resP2phone_nr.tel(phone_nr), ui->tableWidgetP2phone_nr);
+            }
+            catch (search_reservation_error& e)
+            {
+                QMessageBox::information(this,
+                                         QString::fromUtf8("Felaktig inmatning"),
+                                         QString::fromUtf8("Felaktig inmatning:\n%1").arg(QString::fromUtf8(e.what())),
+                                         QMessageBox::Ok);
+                return;
+            }
+        }
     }
 
     else if(search_index == 4) //datum
     {
+
         QString start = ui->dateEditP2from->date().toString(date_format);
         QString end = ui->dateEditP2to->date().toString(date_format);
         start.append(" 00:01");
         end.append(" 23:59");
-        QMessageBox::information(this,
-                                 QString::fromUtf8("Återlämning genomförd!"),
-                                 QString::fromUtf8("söker mellan %1 och %2").arg(start, end),
-                                 QMessageBox::Ok);
 
         generate_reservation_list(search_resP2date.start_end(start, end), ui->tableWidgetP2date);
     }
@@ -207,7 +256,6 @@ void MainWindow::on_pushButtonP2show_clicked()
         throw GUI_error("Ogiltligt index för visa widget!");
 }
 
-
 void MainWindow::on_dateEditP2from_dateChanged(const QDate &date)
 {
     ui->dateEditP2to->setMinimumDate(date);
@@ -250,6 +298,9 @@ void MainWindow::on_pushButtonP2phone_nr_clicked()
 
 void MainWindow::on_pushButtonP2date_clicked()
 {
+    QDateTime now = QDateTime::currentDateTime();
+    ui->dateEditP2from->setMinimumDate(now.date());
+
     P2_disable_buttons(4);
     ui->stackedWidgetP2->setCurrentIndex(4);
     ui->stackedWidgetP2toggle_date_string->setCurrentIndex(1);

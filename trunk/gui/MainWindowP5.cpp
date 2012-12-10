@@ -29,47 +29,26 @@ using namespace std;
 ////// Tab 5 - Search car
 void MainWindow::on_pushButtonP5search_clicked()
 {
-    int i = 0;
     QString given_reg_nr = ui->lineEditP5search->text();
-    string check_reg = given_reg_nr.toStdString();
-
-    if(check_reg.length() == 6)
-    {
-        while(i < 3)
-        {
-            if(isalpha(check_reg[i]))
-                ++i;
-            else
-                break;
-        }
-
-        if(i == 3)
-        {
-            while(i < 6)
-            {
-                if(isdigit(check_reg[i]))
-                    ++i;
-                else
-                    break;
-            }
-        }
-    }
-    else if(check_reg.length() > 0)
-        ++i;
-
-    if (i != 6 && i != 0)
-    {
-        QMessageBox::information(this,
-                                 QString::fromUtf8("Felaktig inmatning"),
-                                 QString::fromUtf8("Felaktig inmatning utav registreringsnummer."),
-                                 QMessageBox::Ok);
-    }
 
     if (given_reg_nr.isEmpty())
         generate_vehicle_list(search_vehicleP5.all(), ui->tableWidgetP5);
 
     else
-        generate_vehicle_list(search_vehicleP5.reg_nr(given_reg_nr), ui->tableWidgetP5);
+    {
+        try
+        {
+            generate_vehicle_list(search_vehicleP5.reg_nr(given_reg_nr), ui->tableWidgetP5);
+        }
+        catch (search_vehicle_error& e)
+        {
+            QMessageBox::information(this,
+                                     QString::fromUtf8("Felaktig inmatning"),
+                                     QString::fromUtf8("Felaktig inmatning:\n%1").arg(QString::fromUtf8(e.what())),
+                                     QMessageBox::Ok);
+            return;
+        }
+    }
 
     on_tableWidgetP5_cellClicked(-1, -1);
 }
