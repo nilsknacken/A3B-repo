@@ -76,45 +76,57 @@ void MainWindow::on_pushButtonP3checkout_clicked()
     else
         throw GUI_error("Problem att hämta fordon från reservationen!");
 
-    QDateTime* date_time = new QDateTime();
-    QString now = date_time->currentDateTime().toString(date_time_format);
-    current_resP3->set_start(now);
-
-    delete date_time;
-    date_time = nullptr;
-
-    QString confirm_checkout = QString::fromUtf8(
-                "Är du säker på att du vill lämna ut nedanstående bokning?\n\n"
-                "Reservations nummer: %1\n"
-                "Namn: %2\n"
-                "Telefon: %3\n"
-                "Från: %4\n"
-                "Till: %5\n"
-                "Registreringsnummer: %6\n").arg(QString::number(current_resP3->get_res_nr()),
-                                                 current_resP3->get_name(),
-                                                 current_resP3->get_tel(),
-                                                 current_resP3->get_start(),
-                                                 current_resP3->get_end(),
-                                                 current_resP3->get_reg_nr());
-
-    switch(QMessageBox::warning(this,
-                                QString::fromUtf8("Bekräfta utlämning"),
-                                confirm_checkout,
-                                QMessageBox::Cancel,
-                                QMessageBox::Yes))
+    if (current_vehicleP3->get_status() == "ledig")
     {
-    case QMessageBox::Yes:
-    {
-        checkout_function();
-        QString kommande = "kommande";
-        generate_reservation_list(search_resP3.status(kommande), ui->tableWidgetP3);
-        ui->pushButtonP3checkout->setDisabled(true);
-        ui->pushButtonP3remove_reservation->setDisabled(true);
-        break;
+        QDateTime* date_time = new QDateTime();
+        QString now = date_time->currentDateTime().toString(date_time_format);
+        current_resP3->set_start(now);
+
+        delete date_time;
+        date_time = nullptr;
+
+        QString confirm_checkout = QString::fromUtf8(
+                    "Är du säker på att du vill lämna ut nedanstående bokning?\n\n"
+                    "Reservations nummer: %1\n"
+                    "Namn: %2\n"
+                    "Telefon: %3\n"
+                    "Från: %4\n"
+                    "Till: %5\n"
+                    "Registreringsnummer: %6\n").arg(QString::number(current_resP3->get_res_nr()),
+                                                     current_resP3->get_name(),
+                                                     current_resP3->get_tel(),
+                                                     current_resP3->get_start(),
+                                                     current_resP3->get_end(),
+                                                     current_resP3->get_reg_nr());
+
+        switch(QMessageBox::warning(this,
+                                    QString::fromUtf8("Bekräfta utlämning"),
+                                    confirm_checkout,
+                                    QMessageBox::Cancel,
+                                    QMessageBox::Yes))
+        {
+        case QMessageBox::Yes:
+        {
+            checkout_function();
+            QString kommande = "kommande";
+            generate_reservation_list(search_resP3.status(kommande), ui->tableWidgetP3);
+            ui->pushButtonP3checkout->setDisabled(true);
+            ui->pushButtonP3remove_reservation->setDisabled(true);
+            break;
+        }
+
+        default:
+            break;
+        }
     }
-
-    default:
-        break;
+    else
+    {
+        QMessageBox::warning(this,
+                             QString::fromUtf8("Utlämning ej möjlig"),
+                             QString::fromUtf8("Fordon: %1 kan ej lämnas ut\n"
+                                               "då det ej blivit återlämnat ännu.")
+                             .arg(current_vehicleP3->get_reg_nr()),
+                             QMessageBox::Ok);
     }
 }
 

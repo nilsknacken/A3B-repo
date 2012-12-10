@@ -335,6 +335,7 @@ void MainWindow::remove_function(Search_reservation& search_current_res, int cur
                                  QString::fromUtf8("Det är ej tillåtet att radera en aktiv bokning!"),
                                  QMessageBox::Ok);
     }
+
 }
 
 void MainWindow::show_function(Search_reservation& search_current_res, int current_row)

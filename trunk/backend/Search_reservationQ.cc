@@ -187,7 +187,6 @@ clear()
     while(! search_result.empty())
     {
         delete search_result.back();
-        search_result.back() = NULL;
 
         search_result.pop_back();
     }

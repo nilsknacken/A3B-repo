@@ -345,6 +345,8 @@ void MainWindow::on_pushButtonP1back_clicked()
 
         else
         {
+            delete current_resP1;
+            current_resP1 = new Reservation();
             ui->stackedWidgetP1Main->setCurrentIndex(--index);
             ui->pushButtonP1back->setDisabled(true);
         }

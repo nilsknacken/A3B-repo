@@ -59,7 +59,7 @@ MainWindow::~MainWindow()
     delete about;
     delete settings;
     delete gui_settings;
-    delete current_resP1;
+  /*  delete current_resP1;
     delete current_resP2;
     delete current_resP3;
     delete current_resP4;
@@ -67,6 +67,7 @@ MainWindow::~MainWindow()
     delete current_vehicleP3;
     delete current_vehicleP4;
     delete current_vehicleP5;
+*/
 }
 
 

@@ -295,7 +295,9 @@ Database::vehicle_search(const QString& type, const QString& start, const QStrin
 
     const char* query = "SELECT * FROM Vehicles WHERE type = ?1 AND Vehicles.reg_nr NOT IN "
             "(SELECT Reservations.reg_nr FROM Reservations WHERE "
-            "(Reservations.start >= ?2 AND Reservations.start <= ?3) OR (Reservations.end >= ?2 AND Reservations.end <= ?3) )";
+            "(Reservations.start >= ?2 AND Reservations.start <= ?3) OR "
+            "(Reservations.end >= ?2 AND Reservations.end <= ?3) OR "
+            "(Reservations.start < ?2 AND Reservations.end > ?3) )";
 
     if (sqlite3_prepare_v2(db, query, -1, &statement,0) == SQLITE_OK)
     {
