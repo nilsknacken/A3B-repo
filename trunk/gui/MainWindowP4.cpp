@@ -33,6 +33,7 @@
 void MainWindow::on_pushButtonP4next_clicked()
 {
     int index = ui->stackedWidgetP4->currentIndex();
+    int new_mileage = 0;
 
     if(index == 0) // "Nästa >" 1 klickad
     {
@@ -70,10 +71,9 @@ void MainWindow::on_pushButtonP4next_clicked()
     {
         // kolla mätarställning
         int difference = ui->lineEditP4mileage->text().toInt() - current_vehicleP4->get_mileage();
-        int new_mileage = ui->lineEditP4mileage->text().toInt();
+        new_mileage = ui->lineEditP4mileage->text().toInt();
         if (new_mileage >= current_vehicleP4->get_mileage())
         {
-            current_vehicleP4->set_mileage(new_mileage);
             if (ui->checkBoxP4damages_yes)
                 current_vehicleP4->set_damage(ui->plainTextEditP4damages->toPlainText());
 
@@ -120,6 +120,7 @@ void MainWindow::on_pushButtonP4next_clicked()
 
         QString avslutad = "avslutad";
         QString ledig = "ledig";
+        current_vehicleP4->set_mileage(new_mileage);
         current_resP4->set_status(avslutad);
         current_vehicleP4->set_status(ledig);
         current_resP4->save();
