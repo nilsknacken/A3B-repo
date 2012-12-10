@@ -92,7 +92,7 @@ void Database::fill_db()
                              "Ford",
                              "Ka",
                              67457,
-                             "hö backspegel, växelspak saknas");
+                             QString::fromUtf8("hö backspegel, växelspak saknas"));
 
     Database::vehicle_update("DEF456",
                              "Liten bil",
@@ -108,7 +108,7 @@ void Database::fill_db()
                              "Citroen",
                              "Jumpy",
                              674573,
-                             "hö bakhjul saknas");
+                             QString::fromUtf8("hö bakhjul saknas"));
 
     Database::vehicle_update("DHR937",
                              "Stor lastbil",
@@ -116,7 +116,7 @@ void Database::fill_db()
                              "Volvo",
                              "FH12",
                              674573,
-                             "hö bakhjul saknas");
+                             QString::fromUtf8("hö bakhjul saknas"));
 
 
     Database::vehicle_update("REV666",
@@ -125,7 +125,7 @@ void Database::fill_db()
                              "Hyundai",
                              "i30",
                              234621,
-                             "lätt rökskadad");
+                             QString::fromUtf8("lätt rökskadad"));
 
     Database::vehicle_update("NRG372",
                              "Mellanbil",
@@ -150,5 +150,5 @@ void Database::fill_db()
                              "Ford",
                              "Ka",
                              4711,
-                             "hö backspegel repad");
+                             QString::fromUtf8("hö backspegel repad"));
 }
