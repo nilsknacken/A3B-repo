@@ -101,6 +101,7 @@ void MainWindow::change_customer_info()
     ui->stackedWidgetP1Main->setCurrentIndex(1);
     ui->pushButtonP1back->setEnabled(true);
     ui->pushButtonP1next->setEnabled(true);
+    change_reservation = true;
 }
 
 void MainWindow::set_date_now()
@@ -447,7 +448,10 @@ void MainWindow::on_pushButtonP1back_clicked()
             ui->tabWidgetMainTab->setCurrentIndex(1);
             ui->tabWidgetMainTab->setTabText(0, QString::fromUtf8("Bokning"));
             ui->pushButtonP1next->setDisabled(true);
+<<<<<<< HEAD
             std::cerr << "disablad\n";                                                              //REMOVE
+=======
+>>>>>>> a7230110b9158184b4829cbfe5f87b5365c59018
             change_reservation = false;
         }
         else
@@ -455,6 +459,8 @@ void MainWindow::on_pushButtonP1back_clicked()
             ui->stackedWidgetP1Main->setCurrentIndex(--index);
             ui->tabWidgetMainTab->setTabText(0, QString::fromUtf8("Bokning"));
             ui->pushButtonP1back->setDisabled(true);
+            ui->pushButtonP1next->setDisabled(true);
+
         }
     }
 
