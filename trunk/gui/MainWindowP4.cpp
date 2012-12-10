@@ -62,7 +62,10 @@ void MainWindow::on_pushButtonP4next_clicked()
         ui->labelP4checkin_var->setText(current_resP4->get_end());
         ui->lineEditP4mileage->setText(QString::number(current_vehicleP4->get_mileage()));
         ui->plainTextEditP4damages->setPlainText(current_vehicleP4->get_damage());
-
+        ui->tabWidgetMainTab->setTabEnabled(0, false);
+        ui->tabWidgetMainTab->setTabEnabled(1, false);
+        ui->tabWidgetMainTab->setTabEnabled(2, false);
+        ui->tabWidgetMainTab->setTabEnabled(4, false);
         ui->stackedWidgetP4->setCurrentIndex(++index);
         ui->pushButtonP4back->setDisabled(false);
     }
@@ -116,8 +119,6 @@ void MainWindow::on_pushButtonP4next_clicked()
 
     else if(index == 2) // "Bekräfta" klickad
     {
-        //Bekräftelse
-
         QString avslutad = "avslutad";
         QString ledig = "ledig";
         current_vehicleP4->set_mileage(new_mileage);
@@ -152,6 +153,10 @@ void MainWindow::on_pushButtonP4next_clicked()
         ui->stackedWidgetP4->setCurrentIndex(0);
         ui->pushButtonP4back->setDisabled(true);
         ui->pushButtonP4next->setDisabled(true);
+        ui->tabWidgetMainTab->setTabEnabled(0, true);
+        ui->tabWidgetMainTab->setTabEnabled(1, true);
+        ui->tabWidgetMainTab->setTabEnabled(2, true);
+        ui->tabWidgetMainTab->setTabEnabled(4, true);
     }
 }
 
@@ -159,11 +164,14 @@ void MainWindow::on_pushButtonP4back_clicked()
 {
     int index = ui->stackedWidgetP4->currentIndex();
 
-
     if(index == 1)
     {
         ui->stackedWidgetP4->setCurrentIndex(--index);
         ui->pushButtonP4back->setDisabled(true);
+        ui->tabWidgetMainTab->setTabEnabled(0, true);
+        ui->tabWidgetMainTab->setTabEnabled(1, true);
+        ui->tabWidgetMainTab->setTabEnabled(2, true);
+        ui->tabWidgetMainTab->setTabEnabled(4, true);
     }
 
     if(index == 2)

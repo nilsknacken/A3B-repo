@@ -92,14 +92,17 @@ void MainWindow::on_pushButtonP5add_clicked()
 {
     int index = ui->stackedWidgetP5->currentIndex();
 
-    if(index == 0)
+    if(index == 0) // "Lägg till >" klickat
     {
         ui->stackedWidgetP5->setCurrentIndex(1);
         ui->pushButtonP5back->setEnabled(true);
         ui->pushButtonP5change_and_save->setDisabled(true);
         ui->pushButtonP5remove_and_undo->setDisabled(true);
         ui->pushButtonP5add->setText(QString::fromUtf8("Spara"));
-
+        ui->tabWidgetMainTab->setTabEnabled(0, false);
+        ui->tabWidgetMainTab->setTabEnabled(1, false);
+        ui->tabWidgetMainTab->setTabEnabled(2, false);
+        ui->tabWidgetMainTab->setTabEnabled(3, false);
         ui->lineEditP5add_fabric_var->clear();
         ui->lineEditP5add_model_var->clear();
         ui->lineEditP5add_regnr_var->clear();
@@ -107,7 +110,7 @@ void MainWindow::on_pushButtonP5add_clicked()
         ui->plainTextEditP5add_damages_var->clear();
     }
 
-    else if(index == 1) // spara klickat
+    else if(index == 1) // "Spara" klickat
     {
         QString reg_nr = ui->lineEditP5add_regnr_var->text();
         try
@@ -140,8 +143,6 @@ void MainWindow::on_pushButtonP5add_clicked()
                 }
                 else
                 {
-
-
                     new_vehicleP5->set_brand(brand);
                     new_vehicleP5->set_model(model);
                     new_vehicleP5->set_type(type);
@@ -149,17 +150,14 @@ void MainWindow::on_pushButtonP5add_clicked()
                     new_vehicleP5->set_damage(damage);
                     new_vehicleP5->set_status(ledig);
                     new_vehicleP5->save();
-
+                    ui->tabWidgetMainTab->setTabEnabled(0, true);
+                    ui->tabWidgetMainTab->setTabEnabled(1, true);
+                    ui->tabWidgetMainTab->setTabEnabled(2, true);
+                    ui->tabWidgetMainTab->setTabEnabled(3, true);
                     ui->stackedWidgetP5->setCurrentIndex(0);
                     ui->pushButtonP5back->setDisabled(true);
                     ui->pushButtonP5add->setText(QString::fromUtf8("Lägg till >"));
 
-                    /*            if(ui->tableWidgetP5->currentRow() != -1)
-                {
-                    ui->pushButtonP5change_and_save->setEnabled(true);
-                    ui->pushButtonP5remove_and_undo->setEnabled(true);
-                }
-    */
                     on_pushButtonP5search_clicked();
                 }
             }
@@ -188,6 +186,10 @@ void MainWindow::on_pushButtonP5back_clicked()
     ui->stackedWidgetP5->setCurrentIndex(0);
     ui->pushButtonP5add->setText(QString::fromUtf8("Lägg till >"));
     ui->pushButtonP5back->setDisabled(true);
+    ui->tabWidgetMainTab->setTabEnabled(0, true);
+    ui->tabWidgetMainTab->setTabEnabled(1, true);
+    ui->tabWidgetMainTab->setTabEnabled(2, true);
+    ui->tabWidgetMainTab->setTabEnabled(3, true);
 }
 
 

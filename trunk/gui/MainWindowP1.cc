@@ -70,20 +70,20 @@ void MainWindow::new_reservation()
     QString reg_nr = current_vehicleP1->get_reg_nr();
     QString start = ui->labelP1selected_from_var->text();
     QString end = ui->labelP1selected_to_var->text();
-    QString name = ui->lineEditName_2->text();
-    QString tel = ui->lineEdit_2->text();
-    QString address = ui->lineEditAddress_2->text();
-    QString postal_nr = ui->lineEditPostalnr_2->text();
-    QString city = ui->lineEditCity_2->text();
+    QString name = ui->lineEditP1name_var->text();
+    QString tel = ui->lineEditP1phone_nr_var->text();
+    QString address = ui->lineEditP1address_var->text();
+    QString postal_nr = ui->lineEditP1postal_nr_var->text();
+    QString city = ui->lineEditP1city_var->text();
 
     new_reservationP1 = make_reservation(reg_nr,
-                                     start,
-                                     end,
-                                     name,
-                                     tel,
-                                     address,
-                                     postal_nr,
-                                     city);
+                                         start,
+                                         end,
+                                         name,
+                                         tel,
+                                         address,
+                                         postal_nr,
+                                         city);
 }
 
 void MainWindow::change_customer_info()
@@ -93,46 +93,50 @@ void MainWindow::change_customer_info()
     ui->labelP1selected_regnr_var->setText(current_resP1->get_reg_nr());
     ui->labelP1selected_from_var->setText(current_resP1->get_start());
     ui->labelP1selected_to_var->setText(current_resP1->get_end());
-    ui->lineEditName_2->setText(current_resP1->get_name());
-    ui->lineEdit_2->setText(current_resP1->get_tel()); // tel
-    ui->lineEditAddress_2->setText(current_resP1->get_adress());
-    ui->lineEditPostalnr_2->setText(current_resP1->get_postal_nr());
-    ui->lineEditCity_2->setText(current_resP1->get_city());
+    ui->lineEditP1name_var->setText(current_resP1->get_name());
+    ui->lineEditP1phone_nr_var->setText(current_resP1->get_tel());
+    ui->lineEditP1address_var->setText(current_resP1->get_adress());
+    ui->lineEditP1postal_nr_var->setText(current_resP1->get_postal_nr());
+    ui->lineEditP1city_var->setText(current_resP1->get_city());
     ui->stackedWidgetP1Main->setCurrentIndex(1);
     ui->pushButtonP1back->setEnabled(true);
     ui->pushButtonP1next->setEnabled(true);
+    ui->tabWidgetMainTab->setTabEnabled(1, false);
+    ui->tabWidgetMainTab->setTabEnabled(2, false);
+    ui->tabWidgetMainTab->setTabEnabled(3, false);
+    ui->tabWidgetMainTab->setTabEnabled(4, false);
     change_reservation = true;
 }
 
 void MainWindow::set_date_now()
 {
     // Sätter till nuvarande tid och minimum till nu + min_rental
-       QDateTime now = QDateTime::currentDateTime();
-       QTime time = QTime::currentTime();
-       time.setHMS(time.hour(), 0,0);
-       now.setTime(time);
+    QDateTime now = QDateTime::currentDateTime();
+    QTime time = QTime::currentTime();
+    time.setHMS(time.hour(), 0,0);
+    now.setTime(time);
 
-       ui->dateEditFrom->setMinimumDate(now.date());
-       ui->timeEditFrom->setTime(now.time());
+    ui->dateEditFrom->setMinimumDate(now.date());
+    ui->timeEditFrom->setTime(now.time());
 
-       int min_rental = settings->get_min_rental();
-       QTime min_to = now.time();
-       min_to.addSecs(3600 * min_rental);
-       QTime open = settings->get_open_QTime();
-       QTime close = settings->get_close_QTime();
+    int min_rental = settings->get_min_rental();
+    QTime min_to = now.time();
+    min_to.addSecs(3600 * min_rental);
+    QTime open = settings->get_open_QTime();
+    QTime close = settings->get_close_QTime();
 
-       if (open <= min_to && min_to <= close)
-       {
-           ui->dateEditTo->setMinimumDate(now.date());
-           ui->timeEditTo->setMinimumTime(min_to);
-       }
-       else
-       {
-           ui->dateEditTo->setMinimumDate(now.date().addDays(1));
-           ui->timeEditTo->setMinimumTime(open);
-       }
+    if (open <= min_to && min_to <= close)
+    {
+        ui->dateEditTo->setMinimumDate(now.date());
+        ui->timeEditTo->setMinimumTime(min_to);
+    }
+    else
+    {
+        ui->dateEditTo->setMinimumDate(now.date().addDays(1));
+        ui->timeEditTo->setMinimumTime(open);
+    }
 
-/*
+    /*
        int min_rental = settings->get_min_rental();
        int from_hour = now.time().hour();
 
@@ -309,11 +313,17 @@ void MainWindow::on_pushButtonP1next_clicked()
         ui->labelP1selected_to_var->setText(to->toString(date_time_format));
 
         //nollställ kunduppgifter
-        ui->lineEditName_2->clear();
-        ui->lineEdit_2->clear(); // tel
-        ui->lineEditAddress_2->clear();
-        ui->lineEditPostalnr_2->clear();
-        ui->lineEditCity_2->clear();
+        ui->lineEditP1name_var->clear();
+        ui->lineEditP1phone_nr_var->clear();
+        ui->lineEditP1address_var->clear();
+        ui->lineEditP1postal_nr_var->clear();
+        ui->lineEditP1city_var->clear();
+
+        //disabla andra tabbar
+        ui->tabWidgetMainTab->setTabEnabled(1, false);
+        ui->tabWidgetMainTab->setTabEnabled(2, false);
+        ui->tabWidgetMainTab->setTabEnabled(3, false);
+        ui->tabWidgetMainTab->setTabEnabled(4, false);
 
         delete from;
         from = nullptr;
@@ -329,14 +339,14 @@ void MainWindow::on_pushButtonP1next_clicked()
             try
             {
                 // Reg nr, start, end ändras ej
-                current_resP1->set_name(ui->lineEditName_2->text());
-                current_resP1->set_tel(ui->lineEdit_2->text());
-                current_resP1->set_adress(ui->lineEditAddress_2->text());
-                current_resP1->set_postal_nr(ui->lineEditPostalnr_2->text());
-                current_resP1->set_city(ui->lineEditCity_2->text());
+                current_resP1->set_name(ui->lineEditP1name_var->text());
+                current_resP1->set_tel(ui->lineEditP1phone_nr_var->text());
+                current_resP1->set_adress(ui->lineEditP1address_var->text());
+                current_resP1->set_postal_nr(ui->lineEditP1postal_nr_var->text());
+                current_resP1->set_city(ui->lineEditP1city_var->text());
 
                 confirm = QString::fromUtf8(
-                            "Vänligen bekfräfta att du vill genomföra nedanstående bokning\n\n"
+                            "Vänligen bekfräfta att du vill ändra nedanstående bokning\n\n"
                             "Reservationsnummer: %1\n\n"
                             "Namn: %2\n"
                             "Telefonnummer: %3\n"
@@ -393,7 +403,6 @@ void MainWindow::on_pushButtonP1next_clicked()
                              new_reservationP1->get_start(),
                              new_reservationP1->get_end(),
                              new_reservationP1->get_reg_nr());
-
             }
             catch (reservation_error& e)
             {
@@ -412,27 +421,53 @@ void MainWindow::on_pushButtonP1next_clicked()
 
     else if(tab_index == 2) // bekfräfta
     {
+        QString confirm_head_msg;
+        QString confirm_msg;
 
+        if(change_reservation)
+        {
+            confirm_head_msg = QString::fromUtf8("Bokning ändrad");
+            confirm_msg = QString::fromUtf8("Din bokning är nu ändrad.");
+        }
+        else
+        {
+            confirm_head_msg = QString::fromUtf8("Bokning genomförd");
+            confirm_msg = QString::fromUtf8("Din bokning är nu genomförd.");
+        }
         QMessageBox::information(this,
-                                 QString::fromUtf8("Bokning genomförd"),
-                                 QString::fromUtf8("Din bokning är nu genomförd."),
+                                 confirm_head_msg,
+                                 confirm_msg,
                                  QMessageBox::Ok);
+
         ui->pushButtonP1next->setText(QString::fromUtf8("Nästa >"));
         ui->pushButtonP1back->setDisabled(true);
         ui->stackedWidgetP1Main->setCurrentIndex(0);
 
-        if(! change_reservation)
+        if(change_reservation)
+        {
+            int P1_current_index = ui->stackedWidgetP1->currentIndex();
+
+            current_resP1->save();
+            ui->tabWidgetMainTab->setTabEnabled(1, true);
+            ui->tabWidgetMainTab->setTabEnabled(2, true);
+            ui->tabWidgetMainTab->setTabEnabled(3, true);
+            ui->tabWidgetMainTab->setTabEnabled(4, true);
+            ui->tabWidgetMainTab->setCurrentIndex(1);
+            ui->stackedWidgetP1Main->setCurrentIndex(0);
+            ui->tabWidgetMainTab->setTabText(0, QString::fromUtf8("Bokning"));
+            ui->pushButtonP1back->setDisabled(true);
+            ui->pushButtonP1next->setEnabled(P1_table_is_clicked[P1_current_index]);
+            change_reservation = false;
+        }
+        else
         {
             new_reservationP1->save();
             set_date_now();
             on_pushButtonP1search_clicked();
-        }
-        else
-        {
-            current_resP1->save();
-            ui->tabWidgetMainTab->setCurrentIndex(1);
-            ui->tabWidgetMainTab->setTabText(0, QString::fromUtf8("Bokning"));
-            change_reservation = false;
+            ui->tabWidgetMainTab->setTabEnabled(1, true);
+            ui->tabWidgetMainTab->setTabEnabled(2, true);
+            ui->tabWidgetMainTab->setTabEnabled(3, true);
+            ui->tabWidgetMainTab->setTabEnabled(4, true);
         }
     }
 }
@@ -445,18 +480,27 @@ void MainWindow::on_pushButtonP1back_clicked()
     {
         if (change_reservation)
         {
+            int P1_current_index = ui->stackedWidgetP1->currentIndex();
+
+            ui->tabWidgetMainTab->setTabEnabled(1, true);
+            ui->tabWidgetMainTab->setTabEnabled(2, true);
+            ui->tabWidgetMainTab->setTabEnabled(3, true);
+            ui->tabWidgetMainTab->setTabEnabled(4, true);
             ui->tabWidgetMainTab->setCurrentIndex(1);
+            ui->stackedWidgetP1Main->setCurrentIndex(0);
             ui->tabWidgetMainTab->setTabText(0, QString::fromUtf8("Bokning"));
-            ui->pushButtonP1next->setDisabled(true);
+            ui->pushButtonP1back->setDisabled(true);
+            ui->pushButtonP1next->setEnabled(P1_table_is_clicked[P1_current_index]);
             change_reservation = false;
         }
         else
         {
             ui->stackedWidgetP1Main->setCurrentIndex(--index);
-            ui->tabWidgetMainTab->setTabText(0, QString::fromUtf8("Bokning"));
             ui->pushButtonP1back->setDisabled(true);
-            ui->pushButtonP1next->setDisabled(true);
-
+            ui->tabWidgetMainTab->setTabEnabled(1, true);
+            ui->tabWidgetMainTab->setTabEnabled(2, true);
+            ui->tabWidgetMainTab->setTabEnabled(3, true);
+            ui->tabWidgetMainTab->setTabEnabled(4, true);
         }
     }
 

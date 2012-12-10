@@ -421,39 +421,8 @@ void MainWindow::show_function(Search_reservation& search_current_res, int curre
 void MainWindow::change_function(Search_reservation& search_current_res, int current_row)
 {
     current_resP1 = search_current_res.get_current_result()[current_row];
-
-    if (current_resP1->get_status() == "kommande")
-    {
-        QString change_context = QString::fromUtf8(
-                    "Du är påväg att lämna söksidan för att gå till bokningsidan.\n"
-                    "Det är på bokningssidan du kan ändra dina personliga uppgifter.\n\n"
-                    "Vill du göra detta?\n");
-
-        switch(QMessageBox::warning(this,
-                                    QString::fromUtf8("Bekräfta sidbyte"),
-                                    change_context,
-                                    QMessageBox::Cancel,
-                                    QMessageBox::Yes))
-        {
-        case QMessageBox::Yes:
-        {
-            change_reservation = true;
-            change_customer_info();
-            break;
-        }
-
-        default:
-            break;
-        }
-    }
-    else
-    {
-        QMessageBox::warning(this,
-                             QString::fromUtf8("Ändring ej tillåten"),
-                             QString::fromUtf8("Endast tillåtet att ändra i kommande bokningar."),
-                             QMessageBox::Ok);
-    }
-
+    change_reservation = true;
+    change_customer_info();
 }
 
 void MainWindow::P2_disable_buttons(int menu_index) const
@@ -483,41 +452,84 @@ void MainWindow::P2_disable_buttons(int menu_index) const
         throw GUI_error("Fel index för disable_buttons!");
 }
 
-void MainWindow::on_tableWidgetP2bok_nr_itemSelectionChanged()
+void MainWindow::on_tableWidgetP2bok_nr_cellClicked(int row, int column)
 {
+    (void)column;
     P2_table_is_clicked[0] = true;
+
+    if(ui->tableWidgetP2bok_nr->item(row, 3)->text() == "kommande")
+        P2_change_button_enabled[0] = true;
+
+    else
+        P2_change_button_enabled[0] = false;
+
     P2_change_button_appearance(0);
 }
 
-void MainWindow::on_tableWidgetP2reg_nr_itemSelectionChanged()
+void MainWindow::on_tableWidgetP2reg_nr_cellClicked(int row, int column)
 {
+    (void)column;
     P2_table_is_clicked[1] = true;
-    P2_change_button_appearance(1);
+
+    if(ui->tableWidgetP2reg_nr->item(row, 3)->text() == "kommande")
+        P2_change_button_enabled[1] = true;
+
+    else
+        P2_change_button_enabled[1] = true;
+
+        P2_change_button_appearance(1);
 }
 
-
-void MainWindow::on_tableWidgetP2name_itemSelectionChanged()
+void MainWindow::on_tableWidgetP2name_cellClicked(int row, int column)
 {
+    (void)column;
     P2_table_is_clicked[2] = true;
+
+    if(ui->tableWidgetP2name->item(row, 3)->text() == "kommande")
+        P2_change_button_enabled[2] = true;
+
+    else
+        P2_change_button_enabled[2] = false;
+
     P2_change_button_appearance(2);
 }
 
-void MainWindow::on_tableWidgetP2phone_nr_itemSelectionChanged()
+void MainWindow::on_tableWidgetP2phone_nr_cellClicked(int row, int column)
 {
+    (void)column;
     P2_table_is_clicked[3] = true;
+
+    if(ui->tableWidgetP2phone_nr->item(row, 3)->text() == "kommande")
+        P2_change_button_enabled[3] = true;
+
+    else
+        P2_change_button_enabled[3] = false;
+
     P2_change_button_appearance(3);
 }
 
-void MainWindow::on_tableWidgetP2date_itemSelectionChanged()
+void MainWindow::on_tableWidgetP2date_cellClicked(int row, int column)
 {
+    (void)column;
     P2_table_is_clicked[4] = true;
+
+    if(ui->tableWidgetP2date->item(row, 3)->text() == "kommande")
+        P2_change_button_enabled[4] = true;
+
+    else
+        P2_change_button_enabled[4] = false;
+
     P2_change_button_appearance(4);
 }
 
 
 void MainWindow::P2_change_button_appearance(int menu_index) const
 {
+    if(P2_table_is_clicked[menu_index] && P2_change_button_enabled[menu_index])
+        ui->pushButtonP2change->setEnabled(true);
+    else
+        ui->pushButtonP2change->setDisabled(true);
+
     ui->pushButtonP2show->setEnabled(P2_table_is_clicked[menu_index]);
-    ui->pushButtonP2change->setEnabled(P2_table_is_clicked[menu_index]);
     ui->pushButtonP2delete->setEnabled(P2_table_is_clicked[menu_index]);
 }

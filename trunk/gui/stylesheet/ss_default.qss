@@ -7,9 +7,6 @@ background-color: transparent; }
 QFrame {
 background: solid white; }
 
-Line{
-color: solid green; }
-
 QTabWidget::tab-bar {
 left: 20px;}
 QTabWidget::pane {

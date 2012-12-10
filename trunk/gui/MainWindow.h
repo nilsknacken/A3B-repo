@@ -64,11 +64,11 @@ private slots:
     void on_pushButtonP2phone_nr_clicked();
     void on_pushButtonP2date_clicked();
 
-    void on_tableWidgetP2bok_nr_itemSelectionChanged();
-    void on_tableWidgetP2reg_nr_itemSelectionChanged();
-    void on_tableWidgetP2name_itemSelectionChanged();
-    void on_tableWidgetP2phone_nr_itemSelectionChanged();
-    void on_tableWidgetP2date_itemSelectionChanged();
+    void on_tableWidgetP2bok_nr_cellClicked(int, int);
+    void on_tableWidgetP2reg_nr_cellClicked(int, int);
+    void on_tableWidgetP2name_cellClicked(int, int);
+    void on_tableWidgetP2phone_nr_cellClicked(int, int);
+    void on_tableWidgetP2date_cellClicked(int, int);
 
     // Tab 3 - Checkout
     void on_pushButtonP3remove_reservation_clicked();
@@ -89,11 +89,13 @@ private slots:
     void on_pushButtonP5remove_and_undo_clicked();
     void on_pushButtonP5back_clicked();
 
-
 private:
     // Variabler
-    bool pushbuttonP5change_clicked = false;
-    bool change_reservation         = false;
+    bool pushbuttonP5change_clicked  = false;
+    bool change_reservation          = false;
+    bool P1_table_is_clicked[5]      = {false};
+    bool P2_table_is_clicked[5]      = {false};
+    bool P2_change_button_enabled[5] = {false};
 
     // Konstanter
     const QString SS_SIDEMENU_ENABLE  = "QPushButton {font: bold;color: white;}";
@@ -101,13 +103,13 @@ private:
     const QString date_format         = "yyyy-MM-dd";
     const QString date_time_format    = "yyyy-MM-dd hh:mm";
     const QString S_Car_info          = QString::fromUtf8(
-                "Liten bil\n\nLämplig för: 2 pers\n\nLastvolym: 50 liter");
+                "Liten bil\n\nLämplig för: 2 pers\n\nLastvolym: 500 liter");
     const QString M_Car_info          = QString::fromUtf8(
-                "Mellanbil\n\nLämplig för: 4 pers\n\nLastvolym: 100 liter");
+                "Mellanbil\n\nLämplig för: 4 pers\n\nLastvolym: 1 kubikmeter");
     const QString L_Car_info          = QString::fromUtf8(
-                "Stor bil\n\nLämplig för: 4-5 pers\n\nLastvolym: 140 liter");
+                "Stor bil\n\nLämplig för: 4-5 pers\n\nLastvolym: 3 kubikmeter");
     const QString S_Truck_info        = QString::fromUtf8(
-                "Liten lastbil\n\nLämplig för: 2 pers\n\nLastvolym: 8 kubikmeter");
+                "Liten lastbil\n\nLämplig för: 2 pers\n\nLastvolym: 10 kubikmeter");
     const QString L_Truck_info        = QString::fromUtf8(
                 "Stor lastbil\n\nLämplig för: 3 pers\n\nLastvolym: 22 kubikmeter");
 
@@ -156,16 +158,13 @@ private:
     void set_date_now();
     void please_press_search();
     void please_press_search_helpfunc(QTableWidget*);
-    bool P1_table_is_clicked[5]                        = {false};
-
 
     // Funktioner - Tab2 sök
-    void P2_change_button_appearance(int)              const;
+    void P2_change_button_appearance(int)        const;
     void show_function(Search_reservation&, int);
     void remove_function(Search_reservation&, int, int);
     void change_function(Search_reservation&, int);
     void P2_disable_buttons(int)                       const;
-    bool P2_table_is_clicked[5]                        = {false};
 
     // Funktioner - Tab3 utlämning
     void checkout_function();

@@ -353,14 +353,40 @@ void MainWindow::setup_stylesheet() const
 {
     // Övergripande stylesheet finns i den separata stylesheetfilen
     // Här sätt objektspecifik stylesheet
-    ui->frameP1vehicle_info->setStyleSheet("QFrame{"
-                                           "border-left: 1px solid lightgrey;"
-                                           "border-right: none;"
-                                           "border-bottom: none;"
-                                           "border-top: none; }"
-                                           "QLabel{"
-                                           "border: none; }");
+    ui->lineP1_1->setStyleSheet("color: rgb(0, 170, 255);");
+    ui->lineP1_2->setStyleSheet("color: rgb(0, 170, 255);");
+    ui->lineP1_3->setStyleSheet("color: rgb(0, 170, 255);");
+    ui->lineP2->setStyleSheet("color: rgb(0, 170, 255);");
+    ui->lineP3->setStyleSheet("color: rgb(0, 170, 255);");
+    ui->lineP4->setStyleSheet("color: rgb(0, 170, 255);");
+    ui->lineP5_1->setStyleSheet("color: rgb(0, 170, 255);");
+    ui->lineP5_2->setStyleSheet("color: rgb(0, 170, 255);");
 
+    ui->tableWidgetP1S_Car->setStyleSheet("QTableWidget{"
+                                          "border-left: none;"
+                                          "border-right: 1px solid lightgrey;"
+                                          "border-bottom: none;"
+                                          "border-top: none; }");
+    ui->tableWidgetP1M_Car->setStyleSheet("QTableWidget{"
+                                          "border-left: none;"
+                                          "border-right: 1px solid lightgrey;"
+                                          "border-bottom: none;"
+                                          "border-top: none; }");
+    ui->tableWidgetP1L_Car->setStyleSheet("QTableWidget{"
+                                          "border-left: none;"
+                                          "border-right: 1px solid lightgrey;"
+                                          "border-bottom: none;"
+                                          "border-top: none; }");
+    ui->tableWidgetP1S_Truck->setStyleSheet("QTableWidget{"
+                                          "border-left: none;"
+                                          "border-right: 1px solid lightgrey;"
+                                          "border-bottom: none;"
+                                          "border-top: none; }");
+    ui->tableWidgetP1L_Truck->setStyleSheet("QTableWidget{"
+                                          "border-left: none;"
+                                          "border-right: 1px solid lightgrey;"
+                                          "border-bottom: none;"
+                                          "border-top: none; }");
     ui->tableWidgetP2bok_nr->setStyleSheet("QTableWidget{"
                                            "border-left: none;"
                                            "border-right: 1px solid lightgrey;"
@@ -411,7 +437,7 @@ void MainWindow::setup_stylesheet() const
 
     ui->frameP1Middle->setStyleSheet("QFrame{"
                                      "background: solid transparent;"
-                                     "background-image: url(:/Linen_Patterns_4.jpg); }"
+                                     "background-image: url(:/Linen_Patterns_1.jpg); }"
 
                                      "QPushButton {"
                                      "text-align: left;"
@@ -439,7 +465,7 @@ void MainWindow::setup_stylesheet() const
 
     ui->frameP2Middle->setStyleSheet("QFrame{"
                                      "background: solid transparent;"
-                                     "background-image: url(:/Linen_Patterns_4.jpg); }"
+                                     "background-image: url(:/Linen_Patterns_1.jpg); }"
 
                                      "QPushButton {"
                                      "text-align: left;"
