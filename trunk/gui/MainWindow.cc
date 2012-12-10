@@ -28,6 +28,8 @@
 *           setup_stylesheet
 *           on_tabWidgetMainTab_currentChanged + någon mer
 *
+*Adam:      on_actionAbout_triggered
+*
 */
 
 #include "MainWindow.h"
@@ -59,7 +61,7 @@ MainWindow::~MainWindow()
     delete about;
     delete settings;
     delete gui_settings;
-  /*  delete current_resP1;
+    delete current_resP1;
     delete current_resP2;
     delete current_resP3;
     delete current_resP4;
@@ -67,7 +69,6 @@ MainWindow::~MainWindow()
     delete current_vehicleP3;
     delete current_vehicleP4;
     delete current_vehicleP5;
-*/
 }
 
 
@@ -77,14 +78,20 @@ MainWindow::~MainWindow()
 void MainWindow::on_actionAbout_triggered()
 {
     about->about(this, QString::fromUtf8("Om A3B bilpark"),
-                       QString::fromUtf8("\t<b>A3B bilpark</b><br>"
-                                         "\tVersion 1.0<br><br>"
-                                         "A3B bilpark är ... bla bla bla<br><br>"
-                                         "Copyright 1951-2012 Such-and-such."
-                                         "<Någonting annat här.><br><br>"
-                                         "För teknisk support, ring 123456789 eller besök<br>"
-                                         "<url>https://github.com/nilsknacken/A3B-repo</url><br>"));
-    about->aboutQt(this, "suprice! :)");                                                                  //REMOVE
+                       QString::fromUtf8("<b>A3B bilpark</b><br>"
+                                         "Version 1.0<br><br>"
+
+                                         "A3B bilpark är en programmvara utvecklad av den nystartade gruppen A3B "
+                                         "som består utav 4 stycken independent-utvecklare. "
+                                         "Programmvaran är gjord så att aktörer inom biluthyrning, stora som små, "
+                                         "ska kunna sköta sina uthyrningar på ett smidigt sätt.<br><br>"
+
+                                         "För teknisk support, konsultera README-filen eller kontakta oss på någon utav följande mailadresser:<br>"
+                                         "maran703@student.liu.se, conan414@student.liu.se, andbo467@student.liu.se, "
+                                         "adaan690@student.liu.se <br><br>"
+
+                                         "Mvh A3B - \"Because we do more than take you from A 2 B\" <br><br>"
+                                         "&copy;2012 A3B"));
 }
 
 

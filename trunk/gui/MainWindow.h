@@ -186,15 +186,15 @@ private:
 
 
     const QString S_Car_info = QString::fromUtf8(
-                "Liten bil\nLämplig för: 2 pers\nLastvolym: 50 liter");
+                "Liten bil\n\nLämplig för: 2 pers\n\nLastvolym: 50 liter");
     const QString M_Car_info = QString::fromUtf8(
-                "Mellanbil\nLämplig för: 4 pers\nLastvolym: 100 liter");
+                "Mellanbil\n\nLämplig för: 4 pers\n\nLastvolym: 100 liter");
     const QString L_Car_info = QString::fromUtf8(
-                "Stor bil\nLämplig för: 4-5 pers\nLastvolym: 140 liter");
+                "Stor bil\n\nLämplig för: 4-5 pers\n\nLastvolym: 140 liter");
     const QString S_Truck_info = QString::fromUtf8(
-                "Liten lastbil\nLämplig för: 2 pers\nLastvolym: 8 kubikmeter");
+                "Liten lastbil\n\nLämplig för: 2 pers\n\nLastvolym: 8 kubikmeter");
     const QString L_Truck_info = QString::fromUtf8(
-                "Stor lastbil\nLämplig för: 3 pers\nLastvolym: 22 kubikmeter");
+                "Stor lastbil\n\nLämplig för: 3 pers\n\nLastvolym: 22 kubikmeter");
 
 
     // StyleSheet
