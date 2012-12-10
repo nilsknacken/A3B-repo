@@ -51,7 +51,20 @@ void MainWindow::on_pushButtonP2search_clicked()
         if (reg_nr.isEmpty())
             generate_reservation_list(search_resP2reg_nr.all(), ui->tableWidgetP2reg_nr);
         else
-            generate_reservation_list(search_resP2reg_nr.reg_nr(reg_nr), ui->tableWidgetP2reg_nr);
+        {
+            try
+            {
+                generate_reservation_list(search_resP2reg_nr.reg_nr(reg_nr), ui->tableWidgetP2reg_nr);
+            }
+            catch (search_reservation_error& e)
+            {
+                QMessageBox::information(this,
+                                         QString::fromUtf8("Felaktig inmatning"),
+                                         QString::fromUtf8("Felaktig inmatning:\n%1").arg(QString::fromUtf8(e.what())),
+                                         QMessageBox::Ok);
+                return;
+            }
+        }
     }
 
     else if(search_index == 2) //namn

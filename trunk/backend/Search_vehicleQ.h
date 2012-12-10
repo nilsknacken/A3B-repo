@@ -53,6 +53,8 @@ private:
     Search_vehicle& operator=(const Search_vehicle&) = delete;
     Search_vehicle& operator=(Search_vehicle&&)      = delete;
 
+    void correct_reg_nr(const QString&);
+
     void create_result(std::vector<std::vector<QString>>&);
 
     std::vector<Vehicle*> search_result;

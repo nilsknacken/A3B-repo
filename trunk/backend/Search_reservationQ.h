@@ -52,6 +52,8 @@ private:
     Search_reservation& operator=(const Search_reservation&) = delete;
     Search_reservation& operator=(Search_reservation&&)      = delete;
 
+    void correct_reg_nr(const QString&);
+
     void create_result(std::vector<std::vector<QString>>&);
 
     std::vector<Reservation*> search_result;

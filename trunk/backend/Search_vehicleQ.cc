@@ -55,6 +55,7 @@ vector<Vehicle*>
 Search_vehicle::
 reg_nr(QString& reg_nr)
 {
+    correct_reg_nr(reg_nr);
     vector<vector<QString>> vehicle_str_vector =
             Database::vehicle_search("reg_nr", reg_nr);
 
@@ -187,4 +188,32 @@ clear()
 
         search_result.pop_back();
      }
+}
+
+// Correct indata?
+void
+Search_vehicle::
+correct_reg_nr(const QString& reg_nr)
+{
+    if(reg_nr.size() != 6)
+        throw search_vehicle_error("Reg nr. får endast innehålla tre bokstäver "
+                                "följt av tre siffror");
+
+    for(int i = 0; i < reg_nr.size(); i++)
+    {
+        char c = reg_nr.toStdString()[i];
+
+        if(i < 3)
+        {
+            if(! isalpha(c))
+                throw search_vehicle_error("Reg nr. får endast innehålla tre bokstäver"
+                                        " följt av tre siffror");
+        }
+        if(i >= 3)
+        {
+            if(! isdigit(c))
+                throw search_vehicle_error("Reg nr. får endast innehålla tre bokstäver "
+                                        "följt av tre siffror");
+        }
+    }
 }
