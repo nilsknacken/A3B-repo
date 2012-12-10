@@ -74,7 +74,7 @@ void MainWindow::new_reservation()
     QString postal_nr = ui->lineEditPostalnr_2->text();
     QString city = ui->lineEditCity_2->text();
 
-    current_resP1 = make_reservation(reg_nr,
+    new_reservationP1 = make_reservation(reg_nr,
                                      start,
                                      end,
                                      name,
@@ -258,6 +258,7 @@ void MainWindow::on_pushButtonP1next_clicked()
 
     else if(tab_index == 1) // från kund till bekräftelse
     {
+        QString confirm;
         if (change_reservation)
         {
             try
@@ -269,6 +270,26 @@ void MainWindow::on_pushButtonP1next_clicked()
                 current_resP1->set_postal_nr(ui->lineEditPostalnr_2->text());
                 current_resP1->set_city(ui->lineEditCity_2->text());
 
+                confirm = QString::fromUtf8(
+                            "Vänligen bekfräfta att du vill genomföra nedanstående bokning\n\n"
+                            "Reservationsnummer: %1\n\n"
+                            "Namn: %2\n"
+                            "Telefonnummer: %3\n"
+                            "Adress: %4\n"
+                            "Postnummer: %5\n"
+                            "Stad: %6\n\n"
+                            "Från: %7\n"
+                            "Till: %8\n"
+                            "Registreringsnummer: %9\n")
+                        .arg(QString::number(current_resP1->get_res_nr()),
+                             current_resP1->get_name(),
+                             current_resP1->get_tel(),
+                             current_resP1->get_adress(),
+                             current_resP1->get_postal_nr(),
+                             current_resP1->get_city(),
+                             current_resP1->get_start(),
+                             current_resP1->get_end(),
+                             current_resP1->get_reg_nr());
             }
             catch (reservation_error& e)
             {
@@ -284,6 +305,28 @@ void MainWindow::on_pushButtonP1next_clicked()
             try
             {
                 new_reservation();
+
+                confirm = QString::fromUtf8(
+                            "Vänligen bekfräfta att du vill genomföra nedanstående bokning\n\n"
+                            "Reservationsnummer: %1\n\n"
+                            "Namn: %2\n"
+                            "Telefonnummer: %3\n"
+                            "Adress: %4\n"
+                            "Postnummer: %5\n"
+                            "Stad: %6\n\n"
+                            "Från: %7\n"
+                            "Till: %8\n"
+                            "Registreringsnummer: %9\n")
+                        .arg(QString::number(new_reservationP1->get_res_nr()),
+                             new_reservationP1->get_name(),
+                             new_reservationP1->get_tel(),
+                             new_reservationP1->get_adress(),
+                             new_reservationP1->get_postal_nr(),
+                             new_reservationP1->get_city(),
+                             new_reservationP1->get_start(),
+                             new_reservationP1->get_end(),
+                             new_reservationP1->get_reg_nr());
+
             }
             catch (reservation_error& e)
             {
@@ -295,33 +338,14 @@ void MainWindow::on_pushButtonP1next_clicked()
             }
         }
 
-        QString confirm_reservation = QString::fromUtf8(
-                    "Vänligen bekfräfta att du vill genomföra nedanstående bokning\n\n"
-                    "Reservationsnummer: %1\n\n"
-                    "Namn: %2\n"
-                    "Telefonnummer: %3\n"
-                    "Adress: %4\n"
-                    "Postnummer: %5\n"
-                    "Stad: %6\n\n"
-                    "Från: %7\n"
-                    "Till: %8\n"
-                    "Registreringsnummer: %9\n").arg(QString::number(current_resP1->get_res_nr()),
-                                                     current_resP1->get_name(),
-                                                     current_resP1->get_tel(),
-                                                     current_resP1->get_adress(),
-                                                     current_resP1->get_postal_nr(),
-                                                     current_resP1->get_city(),
-                                                     current_resP1->get_start(),
-                                                     current_resP1->get_end(),
-                                                     current_resP1->get_reg_nr());
-        ui->labelP1confirm->setText(confirm_reservation);
+        ui->labelP1confirm->setText(confirm);
         ui->stackedWidgetP1Main->setCurrentIndex(++tab_index);
         ui->pushButtonP1next->setText(QString::fromUtf8("Bekräfta"));
     }
 
     else if(tab_index == 2) // bekfräfta
     {
-        current_resP1->save();
+
         QMessageBox::information(this,
                                  QString::fromUtf8("Bokning genomförd"),
                                  QString::fromUtf8("Din bokning är nu genomförd."),
@@ -332,11 +356,13 @@ void MainWindow::on_pushButtonP1next_clicked()
 
         if(! change_reservation)
         {
+            new_reservationP1->save();
             set_date_now();
             on_pushButtonP1search_clicked();
         }
         else
         {
+            current_resP1->save();
             ui->tabWidgetMainTab->setCurrentIndex(1);
             ui->tabWidgetMainTab->setTabText(0, QString::fromUtf8("Bokning"));
         }

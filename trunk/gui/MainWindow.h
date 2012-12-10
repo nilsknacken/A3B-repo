@@ -107,6 +107,9 @@ private:
     const QString date_format = "yyyy-MM-dd";
     const QString date_time_format = "yyyy-MM-dd hh:mm";
 
+    Reservation* new_reservationP1 = new Reservation();
+    Vehicle* new_vehicleP5 = new Vehicle();
+
     Reservation* current_resP1 = new Reservation();
     Reservation* current_resP2 = new Reservation();
     Reservation* current_resP3 = new Reservation();
