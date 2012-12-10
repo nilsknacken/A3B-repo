@@ -90,6 +90,9 @@ void MainWindow::change_customer_info()
 {
     ui->tabWidgetMainTab->setCurrentIndex(0);
     ui->tabWidgetMainTab->setTabText(0, QString::fromUtf8("Ändring"));
+    ui->labelP1selected_regnr_var->setText(current_resP1->get_reg_nr());
+    ui->labelP1selected_from_var->setText(current_resP1->get_start());
+    ui->labelP1selected_to_var->setText(current_resP1->get_end());
     ui->lineEditName_2->setText(current_resP1->get_name());
     ui->lineEdit_2->setText(current_resP1->get_tel()); // tel
     ui->lineEditAddress_2->setText(current_resP1->get_adress());
@@ -351,6 +354,8 @@ void MainWindow::on_pushButtonP1next_clicked()
                              current_resP1->get_start(),
                              current_resP1->get_end(),
                              current_resP1->get_reg_nr());
+
+                current_resP1->save();
             }
             catch (reservation_error& e)
             {
@@ -426,6 +431,7 @@ void MainWindow::on_pushButtonP1next_clicked()
             current_resP1->save();
             ui->tabWidgetMainTab->setCurrentIndex(1);
             ui->tabWidgetMainTab->setTabText(0, QString::fromUtf8("Bokning"));
+            change_reservation = false;
         }
     }
 }
@@ -440,10 +446,14 @@ void MainWindow::on_pushButtonP1back_clicked()
         {
             ui->tabWidgetMainTab->setCurrentIndex(1);
             ui->tabWidgetMainTab->setTabText(0, QString::fromUtf8("Bokning"));
+            ui->pushButtonP1next->setDisabled(true);
+            std::cerr << "dsiablad\n";
+            change_reservation = false;
         }
         else
         {
             ui->stackedWidgetP1Main->setCurrentIndex(--index);
+            ui->tabWidgetMainTab->setTabText(0, QString::fromUtf8("Bokning"));
             ui->pushButtonP1back->setDisabled(true);
         }
     }

@@ -295,7 +295,7 @@ void MainWindow::on_tabWidgetMainTab_currentChanged(int index)
 {
     if(index == 0) // bokning
     {
-       // set_date_now();
+       change_reservation = false;
     }
 
     else if (index == 1) //sök
