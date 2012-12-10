@@ -153,7 +153,7 @@ private:
     void show_function(Search_reservation&, int);
     void remove_function(Search_reservation&, int, int);
     void change_function(Search_reservation&, int);
-    void P2_disable_buttons(int);
+    void P2_disable_buttons(int) const;
     bool P2_table_is_clicked[5] = {false};
 
     // Tab3 utlämning
