@@ -16,15 +16,15 @@
 */
 
 #include <QApplication>
-#include "MainWindow.h"
-#include "DatabaseQ.h"
+#include <QFile>
 #include <iostream>
 #include <exception>
-
+#include "MainWindow.h"
+#include "DatabaseQ.h"
 
 int main(int argc, char *argv[])
 {
-    int exit_code;
+    int exit_code = 0;
 
     try
     {
@@ -39,8 +39,18 @@ int main(int argc, char *argv[])
                 return EXIT_FAILURE;
         }
 
+
         QApplication app(argc, argv);
         MainWindow main_window;
+
+
+QFile file(":/ss_default.qss");
+file.open(QFile::ReadOnly);
+QString styleSheet = QLatin1String(file.readAll());
+
+qApp->setStyleSheet(styleSheet);
+
+
         main_window.show();
         exit_code = app.exec();
     }

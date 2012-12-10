@@ -447,7 +447,7 @@ void MainWindow::on_pushButtonP1back_clicked()
             ui->tabWidgetMainTab->setCurrentIndex(1);
             ui->tabWidgetMainTab->setTabText(0, QString::fromUtf8("Bokning"));
             ui->pushButtonP1next->setDisabled(true);
-            std::cerr << "dsiablad\n";
+            std::cerr << "disablad\n";                                                              //REMOVE
             change_reservation = false;
         }
         else

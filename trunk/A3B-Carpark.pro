@@ -64,3 +64,6 @@ INCLUDEPATH += ./gui/ \
 
 QMAKE_CXXFLAGS += -std=c++11 -pedantic -Wextra
 QMAKE_LFLAGS += -static-libstdc++
+
+OTHER_FILES += \
+    gui/stylesheet/ss_default.qss

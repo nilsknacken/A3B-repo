@@ -1,0 +1,90 @@
+QMainWindow{
+background-image: url(:/Linen_Patterns_4.jpg); }
+
+QStatusBar{
+background-color: transparent; }
+
+QFrame {
+background: solid white; }
+
+Line{
+color: solid green; }
+
+QTabWidget::tab-bar {
+left: 20px;}
+QTabWidget::pane {
+border-top: 20px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(0, 0, 0, 0), stop:0.199052 rgba(0, 0, 0, 8), stop:0.459716 rgba(0, 0, 0, 38), stop:0.7109 rgba(0, 0, 0, 135), stop:0.799 rgba(0, 0, 0, 209), stop:0.8 rgba(0, 170, 255, 255));
+border-bottom: 10px solid qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:0.578199 rgba(0, 0, 0, 37), stop:0.810427 rgba(0, 0, 0, 120), stop:1 rgba(0, 0, 0, 235));
+background: solid rgba(0, 0, 0, 0);
+top: -18px; }
+QTabBar::tab {
+height: 60px; width: 120px;
+border: 2px;
+border-top-left-radius: 2px;
+border-top-right-radius: 2px;}
+QTabBar::tab:selected {
+background: rgb(0, 170, 255);
+border-bottom-color: rgb(0, 170, 255);
+border-color: rgb(0, 170, 255);
+font:;color: white;}
+QTabBar::tab:!selected {
+font:;color: grey;}
+QTabBar::tab:disabled {
+font:;color: lightgrey;}
+
+QPushButton {
+border: 3px solid rgba(0, 0, 0, 0);
+border-radius: 1px;
+background-color: rgb(0, 170, 255);
+min-width: 80px;
+min-height: 30px;
+font: bold; color: white;
+padding: 1px 4px; }
+QPushButton:pressed {
+border-color: rgb(0, 170, 255);
+background-color: rgb(255, 255, 255);
+font: bold; color: rgb(0, 0, 0);}
+QPushButton:flat {
+border: transparent; }
+QPushButton:default {
+border-color: lightblue; }
+QPushButton:disabled {
+background-color: lightgrey;}
+
+QMenu {
+background-color: white;
+border: 1px solid rgb(0, 170, 255); }
+QMenu::item {
+background-color: transparent;
+padding: 5px 15px;
+font: normal; color: dark grey; }
+QMenu::item:selected {
+background-color: rgb(0, 170, 255);
+font: bold; color: white; }
+QMenu::item:!selected {
+background-color: transparent; }
+QMenu::separator {
+height: 2px;
+background: lightblue;
+margin-left: 10px;
+margin-right: 5px; }
+QMenuBar {
+background-color: transparent;
+font: normal; color: dark grey; }
+QMenuBar::item {
+spacing: 5px;
+padding: 3px 5px;
+background-color: transparent;
+border-top-left-radius: 1px;
+border-top-right-radius: 1px; }
+QMenuBar::item:selected {
+background-color: rgb(0, 170, 255); }
+QMenuBar::item:pressed {
+background: white;
+border: 1px solid rgb(0, 170, 255);
+border-top-left-radius: 2px;
+border-top-right-radius: 2px;
+font: bold; }
+
+QMessageBox {
+background: solid white; }

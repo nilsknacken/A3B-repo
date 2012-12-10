@@ -435,103 +435,12 @@
   <property name="windowTitle">
    <string>A3B Bilpark</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resource.qrc">
+    <normaloff>:/car_icon_with_margin.png</normaloff>:/car_icon_with_margin.png</iconset>
+  </property>
   <property name="styleSheet">
-   <string notr="true">QMainWindow{
-background-image: url(:/Linen_Patterns_4.jpg); }
-
-QStatusBar{
-/*background: solid rgba(0, 0, 0, 0); }*/
-background-color: transparent; }
-
-QFrame {
-background: solid white; }
-
-Line{
-border-color: rgb(0, 170, 255); }
-
-QTabWidget::tab-bar {
-left: 20px;}
-QTabWidget::pane {
-border-top: 20px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(0, 0, 0, 0), stop:0.199052 rgba(0, 0, 0, 8), stop:0.459716 rgba(0, 0, 0, 38), stop:0.7109 rgba(0, 0, 0, 135), stop:0.799 rgba(0, 0, 0, 209), stop:0.8 rgba(0, 170, 255, 255));
-border-bottom: 10px solid qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:0.578199 rgba(0, 0, 0, 37), stop:0.810427 rgba(0, 0, 0, 120), stop:1 rgba(0, 0, 0, 235));
-background: solid rgba(0, 0, 0, 0);
-top: -18px; }
-QTabBar::tab {
-height: 60px; width: 120px;
-border: 2px;
-border-top-left-radius: 2px;
-border-top-right-radius: 2px;}
-QTabBar::tab:selected {
-background: rgb(0, 170, 255);
-border-bottom-color: rgb(0, 170, 255);
-border-color: rgb(0, 170, 255);
-font:;color: white;}
-QTabBar::tab:!selected {
-font:;color: grey;}
-QTabBar::tab:disabled {
-font:;color: lightgrey;}
-
-
-
-QPushButton {
-border: 3px solid rgba(0, 0, 0, 0);
-border-radius: 1px;
-background-color: rgb(0, 170, 255);
-min-width: 80px;
-min-height: 30px;
-font: bold; color: white;
-padding: 1px 4px; }
-QPushButton:pressed {
-border-color: rgb(0, 170, 255);
-background-color: rgb(255, 255, 255);
-font: bold; color: rgb(0, 0, 0);}
-QPushButton:flat {
-border: transparent; }
-QPushButton:default {
-border-color: lightblue; }
-QPushButton:disabled {
-background-color: lightgrey;}
-
-
-QMenu {
-background-color: white;
-/*background-color: rgba(255, 255, 255, 50);*/
-border: 1px solid rgb(0, 170, 255); }
-QMenu::item {
-background-color: transparent;
-padding: 5px 15px;
-font: normal; color: dark grey; }
-QMenu::item:selected {
-background-color: rgb(0, 170, 255);
-font: bold; color: white; }
-QMenu::item:!selected {
-background-color: transparent; }
-QMenu::separator {
-height: 2px;
-background: lightblue;
-margin-left: 10px;
-margin-right: 5px; }
-QMenuBar {
-background-color: transparent;
-font: normal; color: dark grey; }
-QMenuBar::item {
-spacing: 5px;
-padding: 3px 5px;
-background-color: transparent;
-border-top-left-radius: 1px;
-border-top-right-radius: 1px; }
-QMenuBar::item:selected {
-background-color: rgb(0, 170, 255); }
-QMenuBar::item:pressed {
-background: white;
-border: 1px solid rgb(0, 170, 255);
-border-top-left-radius: 2px;
-border-top-right-radius: 2px; 
-font: bold; }
-
-
-QMessageBox {
-background: solid white; }</string>
+   <string notr="true"/>
   </property>
   <property name="dockOptions">
    <set>QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks</set>
@@ -579,7 +488,7 @@ background: solid white; }</string>
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="tabReservate">
        <property name="styleSheet">
@@ -634,6 +543,11 @@ background: solid white; }</string>
               </item>
               <item row="0" column="6" rowspan="2">
                <widget class="QPushButton" name="pushButtonP1search">
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Sök</string>
                 </property>
@@ -656,10 +570,26 @@ background: solid white; }</string>
                </spacer>
               </item>
               <item row="0" column="4">
-               <widget class="QTimeEdit" name="timeEditFrom"/>
+               <widget class="QTimeEdit" name="timeEditFrom">
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <weight>50</weight>
+                  <bold>false</bold>
+                 </font>
+                </property>
+               </widget>
               </item>
               <item row="0" column="3">
                <widget class="QDateEdit" name="dateEditFrom">
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
+                </property>
                 <property name="calendarPopup">
                  <bool>true</bool>
                 </property>
@@ -667,6 +597,11 @@ background: solid white; }</string>
               </item>
               <item row="1" column="1">
                <widget class="QLabel" name="labelTo">
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Till</string>
                 </property>
@@ -682,10 +617,23 @@ background: solid white; }</string>
                </widget>
               </item>
               <item row="1" column="4">
-               <widget class="QTimeEdit" name="timeEditTo"/>
+               <widget class="QTimeEdit" name="timeEditTo">
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <weight>50</weight>
+                  <bold>false</bold>
+                 </font>
+                </property>
+               </widget>
               </item>
               <item row="0" column="1">
                <widget class="QLabel" name="labelFrom">
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Från</string>
                 </property>
@@ -696,6 +644,13 @@ background: solid white; }</string>
               </item>
               <item row="1" column="3">
                <widget class="QDateEdit" name="dateEditTo">
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <weight>50</weight>
+                  <bold>false</bold>
+                 </font>
+                </property>
                 <property name="calendarPopup">
                  <bool>true</bool>
                 </property>
@@ -767,33 +722,7 @@ background: solid white; }</string>
                </sizepolicy>
               </property>
               <property name="styleSheet">
-               <string notr="true">QFrame{
-background: solid transparent;
-background-image: url(:/Linen_Patterns_4.jpg); }
-
-QPushButton {
-text-align: left;
-border: none;
-border-radius: none;
-background-color: transparent;
-font: bold; color: grey;
-padding: 0px 0px; }
-QPushButton:pressed {
-border-color: rgb(0, 170, 255);
-background-color: transparent;
-font:; color: white; }
-/*QPushButton:flat {
-border: none; }*/
-/*
-QPushButton:default {
-border-color: lightblue; }
-*/
-
-QStackedWidget {
-background: solid white; }
-
-QTableWidget {
-background: white; }</string>
+               <string notr="true"/>
               </property>
               <property name="frameShape">
                <enum>QFrame::NoFrame</enum>
@@ -820,12 +749,7 @@ background: white; }</string>
                   </size>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">QFrame {
-border-top: 10px solid qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:0.402844 rgba(0, 0, 0, 31), stop:0.635071 rgba(0, 0, 0, 80), stop:0.763033 rgba(0, 0, 0, 107), stop:0.890995 rgba(0, 0, 0, 125), stop:1 rgba(0, 0, 0, 226));
-border-right: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:0.402844 rgba(0, 0, 0, 31), stop:0.635071 rgba(0, 0, 0, 80), stop:0.763033 rgba(0, 0, 0, 107), stop:0.890995 rgba(0, 0, 0, 125), stop:1 rgba(0, 0, 0, 226));
-border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(0, 0, 0, 0), stop:0.402844 rgba(0, 0, 0, 31), stop:0.635071 rgba(0, 0, 0, 80), stop:0.763033 rgba(0, 0, 0, 107), stop:0.890995 rgba(0, 0, 0, 125), stop:1 rgba(0, 0, 0, 226));
- }
-</string>
+                  <string notr="true"/>
                  </property>
                  <property name="frameShape">
                   <enum>QFrame::NoFrame</enum>
@@ -853,8 +777,8 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                    <widget class="QPushButton" name="pushButtonP1S_Car">
                     <property name="minimumSize">
                      <size>
-                      <width>80</width>
-                      <height>30</height>
+                      <width>94</width>
+                      <height>38</height>
                      </size>
                     </property>
                     <property name="font">
@@ -877,8 +801,8 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                    <widget class="QPushButton" name="pushButtonP1M_Car">
                     <property name="minimumSize">
                      <size>
-                      <width>80</width>
-                      <height>30</height>
+                      <width>94</width>
+                      <height>38</height>
                      </size>
                     </property>
                     <property name="font">
@@ -901,8 +825,8 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                    <widget class="QPushButton" name="pushButtonP1L_Car">
                     <property name="minimumSize">
                      <size>
-                      <width>80</width>
-                      <height>30</height>
+                      <width>94</width>
+                      <height>38</height>
                      </size>
                     </property>
                     <property name="font">
@@ -925,8 +849,8 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                    <widget class="QPushButton" name="pushButtonP1S_Truck">
                     <property name="minimumSize">
                      <size>
-                      <width>80</width>
-                      <height>30</height>
+                      <width>94</width>
+                      <height>38</height>
                      </size>
                     </property>
                     <property name="font">
@@ -949,8 +873,8 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                    <widget class="QPushButton" name="pushButtonP1L_Truck">
                     <property name="minimumSize">
                      <size>
-                      <width>80</width>
-                      <height>30</height>
+                      <width>94</width>
+                      <height>38</height>
                      </size>
                     </property>
                     <property name="font">
@@ -987,11 +911,19 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                </item>
                <item>
                 <widget class="QStackedWidget" name="stackedWidgetP1">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                   <weight>50</weight>
+                   <italic>false</italic>
+                   <bold>false</bold>
+                  </font>
+                 </property>
                  <property name="frameShape">
                   <enum>QFrame::NoFrame</enum>
                  </property>
                  <property name="currentIndex">
-                  <number>1</number>
+                  <number>4</number>
                  </property>
                  <widget class="QWidget" name="pageP1S_Car">
                   <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -1003,6 +935,26 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                    </property>
                    <item>
                     <widget class="QTableWidget" name="tableWidgetP1S_Car">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>1000</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
                      <property name="frameShape">
                       <enum>QFrame::NoFrame</enum>
                      </property>
@@ -1020,6 +972,26 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                    </property>
                    <item>
                     <widget class="QTableWidget" name="tableWidgetP1M_Car">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>1000</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
                      <property name="frameShape">
                       <enum>QFrame::NoFrame</enum>
                      </property>
@@ -1037,6 +1009,26 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                    </property>
                    <item>
                     <widget class="QTableWidget" name="tableWidgetP1L_Car">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>1000</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
                      <property name="frameShape">
                       <enum>QFrame::NoFrame</enum>
                      </property>
@@ -1055,10 +1047,24 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                    <item>
                     <widget class="QTableWidget" name="tableWidgetP1S_Truck">
                      <property name="sizePolicy">
-                      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
                        <horstretch>0</horstretch>
                        <verstretch>0</verstretch>
                       </sizepolicy>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>1000</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
                      </property>
                      <property name="frameShape">
                       <enum>QFrame::NoFrame</enum>
@@ -1077,6 +1083,26 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                    </property>
                    <item>
                     <widget class="QTableWidget" name="tableWidgetP1L_Truck">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>1000</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
                      <property name="frameShape">
                       <enum>QFrame::NoFrame</enum>
                      </property>
@@ -1109,6 +1135,13 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
               <layout class="QVBoxLayout" name="verticalLayout_9">
                <item>
                 <widget class="QLabel" name="labelP1info">
+                 <property name="font">
+                  <font>
+                   <pointsize>11</pointsize>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true"/>
                  </property>
@@ -1249,7 +1282,18 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
               <item row="3" column="1">
                <layout class="QGridLayout" name="gridLayout_21">
                 <item row="3" column="2">
-                 <widget class="QLineEdit" name="lineEditPostalnr_2"/>
+                 <widget class="QLineEdit" name="lineEditPostalnr_2">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="maxLength">
+                   <number>5</number>
+                  </property>
+                 </widget>
                 </item>
                 <item row="0" column="1" rowspan="5">
                  <spacer name="horizontalSpacer_19">
@@ -1269,6 +1313,11 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                 </item>
                 <item row="4" column="0">
                  <widget class="QLabel" name="labelCity_2">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>Stad</string>
                   </property>
@@ -1276,32 +1325,82 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                 </item>
                 <item row="2" column="0">
                  <widget class="QLabel" name="labelAddress_2">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>Adress</string>
                   </property>
                  </widget>
                 </item>
                 <item row="2" column="2">
-                 <widget class="QLineEdit" name="lineEditAddress_2"/>
+                 <widget class="QLineEdit" name="lineEditAddress_2">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                 </widget>
                 </item>
                 <item row="0" column="0">
                  <widget class="QLabel" name="labelName_2">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>Namn</string>
                   </property>
                  </widget>
                 </item>
                 <item row="1" column="2">
-                 <widget class="QLineEdit" name="lineEdit_2"/>
+                 <widget class="QLineEdit" name="lineEdit_2">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="maxLength">
+                   <number>10</number>
+                  </property>
+                 </widget>
                 </item>
                 <item row="0" column="2">
-                 <widget class="QLineEdit" name="lineEditName_2"/>
+                 <widget class="QLineEdit" name="lineEditName_2">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                 </widget>
                 </item>
                 <item row="4" column="2">
-                 <widget class="QLineEdit" name="lineEditCity_2"/>
+                 <widget class="QLineEdit" name="lineEditCity_2">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                 </widget>
                 </item>
                 <item row="3" column="0">
                  <widget class="QLabel" name="labelPostalnr_2">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>Postnummer</string>
                   </property>
@@ -1309,6 +1408,11 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                 </item>
                 <item row="1" column="0">
                  <widget class="QLabel" name="labelPhonenr_2">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>Telefonnummer</string>
                   </property>
@@ -1595,6 +1699,13 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
               </property>
               <item row="0" column="1">
                <widget class="QLabel" name="labelP1confirm">
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <weight>50</weight>
+                  <bold>false</bold>
+                 </font>
+                </property>
                 <property name="text">
                  <string>3. tabConfirm</string>
                 </property>
@@ -1652,6 +1763,14 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
             <property name="enabled">
              <bool>false</bool>
             </property>
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="text">
              <string>&lt; Bakåt</string>
             </property>
@@ -1675,6 +1794,14 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
           </item>
           <item row="0" column="2">
            <widget class="QPushButton" name="pushButtonP1next">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="text">
              <string>Nästa &gt;</string>
             </property>
@@ -1717,27 +1844,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
            </sizepolicy>
           </property>
           <property name="styleSheet">
-           <string notr="true">QFrame{
-background: solid transparent;
-background-image: url(:/Linen_Patterns_4.jpg); }
-
-QPushButton {
-text-align: left;
-border: none;
-border-radius: none;
-background-color: transparent;
-font: bold; color: grey;
-padding: 0px 0px; }
-QPushButton:pressed {
-border-color: rgb(0, 170, 255);
-background-color: transparent;
-font:; color: white; }
-
-QStackedWidget {
-background: solid white; }
-
-QTableWidget {
-background: white; }</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
@@ -1764,11 +1871,7 @@ background: white; }</string>
               </size>
              </property>
              <property name="styleSheet">
-              <string notr="true">QFrame {
-border-top: 10px solid qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:0.402844 rgba(0, 0, 0, 31), stop:0.635071 rgba(0, 0, 0, 80), stop:0.763033 rgba(0, 0, 0, 107), stop:0.890995 rgba(0, 0, 0, 125), stop:1 rgba(0, 0, 0, 226));
-border-right: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:0.402844 rgba(0, 0, 0, 31), stop:0.635071 rgba(0, 0, 0, 80), stop:0.763033 rgba(0, 0, 0, 107), stop:0.890995 rgba(0, 0, 0, 125), stop:1 rgba(0, 0, 0, 226));
-border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(0, 0, 0, 0), stop:0.402844 rgba(0, 0, 0, 31), stop:0.635071 rgba(0, 0, 0, 80), stop:0.763033 rgba(0, 0, 0, 107), stop:0.890995 rgba(0, 0, 0, 125), stop:1 rgba(0, 0, 0, 226));
- }</string>
+              <string notr="true"/>
              </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
@@ -1796,8 +1899,8 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                <widget class="QPushButton" name="pushButtonP2bok_nr">
                 <property name="minimumSize">
                  <size>
-                  <width>80</width>
-                  <height>30</height>
+                  <width>94</width>
+                  <height>38</height>
                  </size>
                 </property>
                 <property name="font">
@@ -1820,8 +1923,8 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                <widget class="QPushButton" name="pushButtonP2reg_nr">
                 <property name="minimumSize">
                  <size>
-                  <width>80</width>
-                  <height>30</height>
+                  <width>94</width>
+                  <height>38</height>
                  </size>
                 </property>
                 <property name="font">
@@ -1844,8 +1947,8 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                <widget class="QPushButton" name="pushButtonP2name">
                 <property name="minimumSize">
                  <size>
-                  <width>80</width>
-                  <height>30</height>
+                  <width>94</width>
+                  <height>38</height>
                  </size>
                 </property>
                 <property name="font">
@@ -1868,8 +1971,8 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                <widget class="QPushButton" name="pushButtonP2phone_nr">
                 <property name="minimumSize">
                  <size>
-                  <width>80</width>
-                  <height>30</height>
+                  <width>94</width>
+                  <height>38</height>
                  </size>
                 </property>
                 <property name="font">
@@ -1892,8 +1995,8 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                <widget class="QPushButton" name="pushButtonP2date">
                 <property name="minimumSize">
                  <size>
-                  <width>80</width>
-                  <height>30</height>
+                  <width>94</width>
+                  <height>38</height>
                  </size>
                 </property>
                 <property name="font">
@@ -1934,7 +2037,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
               <enum>QFrame::NoFrame</enum>
              </property>
              <property name="currentIndex">
-              <number>0</number>
+              <number>4</number>
              </property>
              <widget class="QWidget" name="pageP2bok_nr">
               <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -1945,7 +2048,31 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                 <number>0</number>
                </property>
                <item>
-                <widget class="QTableWidget" name="tableWidgetP2bok_nr"/>
+                <widget class="QTableWidget" name="tableWidgetP2bok_nr">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>1000</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>11</pointsize>
+                   <weight>50</weight>
+                   <italic>false</italic>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::NoFrame</enum>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -1958,7 +2085,31 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                 <number>0</number>
                </property>
                <item>
-                <widget class="QTableWidget" name="tableWidgetP2reg_nr"/>
+                <widget class="QTableWidget" name="tableWidgetP2reg_nr">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>1000</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>11</pointsize>
+                   <weight>50</weight>
+                   <italic>false</italic>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::NoFrame</enum>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -1971,7 +2122,31 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                 <number>0</number>
                </property>
                <item>
-                <widget class="QTableWidget" name="tableWidgetP2name"/>
+                <widget class="QTableWidget" name="tableWidgetP2name">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>1000</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>11</pointsize>
+                   <weight>50</weight>
+                   <italic>false</italic>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::NoFrame</enum>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -1984,7 +2159,31 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                 <number>0</number>
                </property>
                <item>
-                <widget class="QTableWidget" name="tableWidgetP2phone_nr"/>
+                <widget class="QTableWidget" name="tableWidgetP2phone_nr">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>1000</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>11</pointsize>
+                   <weight>50</weight>
+                   <italic>false</italic>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::NoFrame</enum>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -1997,7 +2196,31 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                 <number>0</number>
                </property>
                <item>
-                <widget class="QTableWidget" name="tableWidgetP2date"/>
+                <widget class="QTableWidget" name="tableWidgetP2date">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>1000</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>11</pointsize>
+                   <weight>50</weight>
+                   <italic>false</italic>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::NoFrame</enum>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -2013,6 +2236,14 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
             <property name="enabled">
              <bool>false</bool>
             </property>
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="text">
              <string>Ta Bort</string>
             </property>
@@ -2023,6 +2254,14 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
             <property name="enabled">
              <bool>false</bool>
             </property>
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="text">
              <string>Ändra</string>
             </property>
@@ -2032,6 +2271,14 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
            <widget class="QPushButton" name="pushButtonP2show">
             <property name="enabled">
              <bool>false</bool>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
             </property>
             <property name="text">
              <string>Visa</string>
@@ -2150,6 +2397,14 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
           </item>
           <item row="0" column="4" rowspan="2">
            <widget class="QPushButton" name="pushButtonP2search">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="text">
              <string>Sök</string>
             </property>
@@ -2176,6 +2431,14 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                   <height>0</height>
                  </size>
                 </property>
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
+                </property>
                </widget>
               </item>
              </layout>
@@ -2187,6 +2450,11 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
               </property>
               <item row="1" column="0">
                <widget class="QLabel" name="label_25">
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Till</string>
                 </property>
@@ -2197,6 +2465,11 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
               </item>
               <item row="0" column="0">
                <widget class="QLabel" name="label_24">
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Från</string>
                 </property>
@@ -2207,6 +2480,14 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
               </item>
               <item row="1" column="2">
                <widget class="QDateEdit" name="dateEditP2to">
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
+                </property>
                 <property name="calendarPopup">
                  <bool>true</bool>
                 </property>
@@ -2219,6 +2500,14 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
                 </property>
                 <property name="calendarPopup">
                  <bool>true</bool>
@@ -2351,7 +2640,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
             </property>
             <property name="sizeHint" stdset="0">
              <size>
-              <width>120</width>
+              <width>30</width>
               <height>20</height>
              </size>
             </property>
@@ -2367,9 +2656,20 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
             </property>
             <property name="maximumSize">
              <size>
-              <width>650</width>
+              <width>1000</width>
               <height>16777215</height>
              </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
             </property>
            </widget>
           </item>
@@ -2383,7 +2683,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
             </property>
             <property name="sizeHint" stdset="0">
              <size>
-              <width>120</width>
+              <width>30</width>
               <height>20</height>
              </size>
             </property>
@@ -2427,6 +2727,14 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
             <property name="enabled">
              <bool>false</bool>
             </property>
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="text">
              <string>Lämna Ut &gt;</string>
             </property>
@@ -2436,6 +2744,11 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
            <widget class="QPushButton" name="pushButtonP3remove_reservation">
             <property name="enabled">
              <bool>false</bool>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+             </font>
             </property>
             <property name="text">
              <string>Ta Bort</string>
@@ -2543,6 +2856,14 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
             <property name="enabled">
              <bool>false</bool>
             </property>
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="text">
              <string>Nästa &gt;</string>
             </property>
@@ -2568,6 +2889,11 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
            <widget class="QPushButton" name="pushButtonP4back">
             <property name="enabled">
              <bool>false</bool>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+             </font>
             </property>
             <property name="text">
              <string>&lt; Bakåt</string>
@@ -2616,7 +2942,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
               </property>
               <property name="sizeHint" stdset="0">
                <size>
-                <width>150</width>
+                <width>30</width>
                 <height>20</height>
                </size>
               </property>
@@ -2632,9 +2958,12 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
               </property>
               <property name="maximumSize">
                <size>
-                <width>600</width>
+                <width>1000</width>
                 <height>16777215</height>
                </size>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::NoFrame</enum>
               </property>
               <attribute name="horizontalHeaderMinimumSectionSize">
                <number>14</number>
@@ -2651,7 +2980,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
               </property>
               <property name="sizeHint" stdset="0">
                <size>
-                <width>150</width>
+                <width>30</width>
                 <height>20</height>
                </size>
               </property>
@@ -3027,7 +3356,7 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
         <item>
          <widget class="QStackedWidget" name="stackedWidgetP5">
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="pageP5search">
            <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -3072,6 +3401,14 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
+                </property>
                 <property name="maxLength">
                  <number>6</number>
                 </property>
@@ -3095,6 +3432,14 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
               </item>
               <item row="0" column="5">
                <widget class="QPushButton" name="pushButtonP5search">
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <weight>75</weight>
+                  <italic>false</italic>
+                  <bold>true</bold>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Sök</string>
                 </property>
@@ -3186,19 +3531,39 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>500</width>
+                  <width>700</width>
                   <height>16777215</height>
                  </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::NoFrame</enum>
                 </property>
                </widget>
               </item>
               <item>
                <layout class="QGridLayout" name="gridLayout_5">
+                <property name="leftMargin">
+                 <number>9</number>
+                </property>
+                <property name="topMargin">
+                 <number>9</number>
+                </property>
+                <property name="rightMargin">
+                 <number>9</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
                 <property name="horizontalSpacing">
                  <number>20</number>
-                </property>
-                <property name="margin">
-                 <number>9</number>
                 </property>
                 <item row="5" column="0" colspan="2">
                  <widget class="QLabel" name="labelP5mileage">
@@ -3298,6 +3663,13 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                     <height>16777215</height>
                    </size>
                   </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>11</pointsize>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                   </font>
+                  </property>
                   <property name="readOnly">
                    <bool>true</bool>
                   </property>
@@ -3346,6 +3718,13 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                     <height>0</height>
                    </size>
                   </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>11</pointsize>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                   </font>
+                  </property>
                   <property name="maxLength">
                    <number>6</number>
                   </property>
@@ -3370,8 +3749,10 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                   </property>
                   <property name="font">
                    <font>
-                    <pointsize>12</pointsize>
+                    <pointsize>11</pointsize>
+                    <weight>50</weight>
                     <italic>true</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -3395,8 +3776,10 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                   </property>
                   <property name="font">
                    <font>
-                    <pointsize>12</pointsize>
+                    <pointsize>11</pointsize>
+                    <weight>50</weight>
                     <italic>true</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -3420,8 +3803,10 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                   </property>
                   <property name="font">
                    <font>
-                    <pointsize>12</pointsize>
+                    <pointsize>11</pointsize>
+                    <weight>50</weight>
                     <italic>true</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -3445,8 +3830,10 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                   </property>
                   <property name="font">
                    <font>
-                    <pointsize>12</pointsize>
+                    <pointsize>11</pointsize>
+                    <weight>50</weight>
                     <italic>true</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -3524,8 +3911,10 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                  <widget class="QLabel" name="labelP5status_var">
                   <property name="font">
                    <font>
-                    <pointsize>12</pointsize>
+                    <pointsize>11</pointsize>
+                    <weight>50</weight>
                     <italic>true</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -3758,16 +4147,50 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                   <height>16777215</height>
                  </size>
                 </property>
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <weight>50</weight>
+                  <bold>false</bold>
+                 </font>
+                </property>
                </widget>
               </item>
               <item row="2" column="2">
-               <widget class="QLineEdit" name="lineEditP5add_model_var"/>
+               <widget class="QLineEdit" name="lineEditP5add_model_var">
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <weight>50</weight>
+                  <bold>false</bold>
+                 </font>
+                </property>
+               </widget>
               </item>
               <item row="1" column="2">
-               <widget class="QLineEdit" name="lineEditP5add_fabric_var"/>
+               <widget class="QLineEdit" name="lineEditP5add_fabric_var">
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <weight>50</weight>
+                  <bold>false</bold>
+                 </font>
+                </property>
+               </widget>
               </item>
               <item row="0" column="2">
-               <widget class="QLineEdit" name="lineEditP5add_regnr_var"/>
+               <widget class="QLineEdit" name="lineEditP5add_regnr_var">
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <weight>50</weight>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="maxLength">
+                 <number>6</number>
+                </property>
+               </widget>
               </item>
               <item row="2" column="0" colspan="2">
                <widget class="QLabel" name="labelP5add_model">
@@ -3822,7 +4245,18 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                </widget>
               </item>
               <item row="4" column="2">
-               <widget class="QLineEdit" name="lineEditP5add_mileage_var"/>
+               <widget class="QLineEdit" name="lineEditP5add_mileage_var">
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <weight>50</weight>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="maxLength">
+                 <number>6</number>
+                </property>
+               </widget>
               </item>
               <item row="4" column="0" colspan="2">
                <widget class="QLabel" name="labelP5add_mileage">
@@ -3851,7 +4285,16 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
                </widget>
               </item>
               <item row="3" column="2">
-               <widget class="QComboBox" name="comboBoxP5add_type"/>
+               <widget class="QComboBox" name="comboBoxP5add_type">
+                <property name="font">
+                 <font>
+                  <pointsize>11</pointsize>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>
@@ -3889,6 +4332,14 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
          <layout class="QGridLayout" name="gridLayoutP5bottom">
           <item row="0" column="4">
            <widget class="QPushButton" name="pushButtonP5add">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="text">
              <string>Lägg till &gt;</string>
             </property>
@@ -3928,6 +4379,14 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
             <property name="enabled">
              <bool>false</bool>
             </property>
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="text">
              <string>Ändra</string>
             </property>
@@ -3938,6 +4397,14 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
             <property name="enabled">
              <bool>false</bool>
             </property>
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="text">
              <string>Ta Bort</string>
             </property>
@@ -3947,6 +4414,14 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
            <widget class="QPushButton" name="pushButtonP5back">
             <property name="enabled">
              <bool>false</bool>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
             </property>
             <property name="text">
              <string>&lt; Bakåt</string>
@@ -4077,7 +4552,9 @@ border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, st
   <tabstop>lineEditP5add_mileage_var</tabstop>
   <tabstop>plainTextEditP5add_damages_var</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
  <connections/>
  <designerdata>
   <property name="gridDeltaX">

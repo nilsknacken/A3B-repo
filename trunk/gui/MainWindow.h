@@ -26,8 +26,6 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-public slots:
-
 private slots:
     void on_tabWidgetMainTab_currentChanged(int);
 
@@ -37,8 +35,8 @@ private slots:
     void on_actionQuit_triggered();
 
     // Tab 1 - Reservate
-    void on_dateEditFrom_dateChanged(const QDate &date);
-    void on_timeEditFrom_timeChanged(const QTime &date);
+    void on_dateEditFrom_dateChanged(const QDate&);
+    void on_timeEditFrom_timeChanged(const QTime&);
     void on_tableWidgetP1S_Car_itemSelectionChanged();
     void on_tableWidgetP1M_Car_itemSelectionChanged();
     void on_tableWidgetP1L_Car_itemSelectionChanged();
@@ -53,13 +51,12 @@ private slots:
     void on_pushButtonP1S_Truck_clicked();
     void on_pushButtonP1L_Truck_clicked();
 
-
     // Tab 2 - Search
     void on_pushButtonP2search_clicked();
     void on_pushButtonP2delete_clicked();
     void on_pushButtonP2change_clicked();
     void on_pushButtonP2show_clicked();
-    void on_dateEditP2from_dateChanged(const QDate &date);
+    void on_dateEditP2from_dateChanged(const QDate&);
 
     void on_pushButtonP2bok_nr_clicked();
     void on_pushButtonP2reg_nr_clicked();
@@ -73,8 +70,6 @@ private slots:
     void on_tableWidgetP2phone_nr_itemSelectionChanged();
     void on_tableWidgetP2date_itemSelectionChanged();
 
-    void P2_change_button_appearance(int) const;
-
     // Tab 3 - Checkout
     void on_pushButtonP3remove_reservation_clicked();
     void on_pushButtonP3checkout_clicked();
@@ -83,7 +78,7 @@ private slots:
     // Tab 4 - Checkin
     void on_pushButtonP4next_clicked();
     void on_pushButtonP4back_clicked();
-    void on_checkBoxP4damages_yes_toggled(bool checked);
+    void on_checkBoxP4damages_yes_toggled(bool);
     void on_tableWidgetP4_itemSelectionChanged();
 
     // Tab 5 - Vehicle Search
@@ -96,35 +91,51 @@ private slots:
 
 
 private:
+    // Variabler
     bool pushbuttonP5change_clicked = false;
+    bool change_reservation         = false;
 
-    Ui::MainWindow *ui;
-    QMessageBox* about;
-    Settings* settings;
+    // Konstanter
+    const QString SS_SIDEMENU_ENABLE  = "QPushButton {font: bold;color: white;}";
+    const QString SS_SIDEMENU_DISABLE = "QPushButton {font: bold;color: grey;}";
+    const QString date_format         = "yyyy-MM-dd";
+    const QString date_time_format    = "yyyy-MM-dd hh:mm";
+    const QString S_Car_info          = QString::fromUtf8(
+                "Liten bil\n\nLämplig för: 2 pers\n\nLastvolym: 50 liter");
+    const QString M_Car_info          = QString::fromUtf8(
+                "Mellanbil\n\nLämplig för: 4 pers\n\nLastvolym: 100 liter");
+    const QString L_Car_info          = QString::fromUtf8(
+                "Stor bil\n\nLämplig för: 4-5 pers\n\nLastvolym: 140 liter");
+    const QString S_Truck_info        = QString::fromUtf8(
+                "Liten lastbil\n\nLämplig för: 2 pers\n\nLastvolym: 8 kubikmeter");
+    const QString L_Truck_info        = QString::fromUtf8(
+                "Stor lastbil\n\nLämplig för: 3 pers\n\nLastvolym: 22 kubikmeter");
+
+    // Objektpekare
+    Ui::MainWindow*  ui;
+    QMessageBox*     about;
+    Settings*        settings;
     Dialog_Settings* gui_settings;
 
-    bool change_reservation = false;
-    const QString date_format = "yyyy-MM-dd";
-    const QString date_time_format = "yyyy-MM-dd hh:mm";
+    Reservation*     new_reservationP1 = new Reservation();
+    Vehicle*         new_vehicleP5     = new Vehicle();
 
-    Reservation* new_reservationP1 = new Reservation();
-    Vehicle* new_vehicleP5 = new Vehicle();
+    Reservation*     current_resP1     = new Reservation();
+    Reservation*     current_resP2     = new Reservation();
+    Reservation*     current_resP3     = new Reservation();
+    Reservation*     current_resP4     = new Reservation();
 
-    Reservation* current_resP1 = new Reservation();
-    Reservation* current_resP2 = new Reservation();
-    Reservation* current_resP3 = new Reservation();
-    Reservation* current_resP4 = new Reservation();
+    Vehicle*         current_vehicleP1 = new Vehicle();
+    Vehicle*         current_vehicleP3 = new Vehicle();
+    Vehicle*         current_vehicleP4 = new Vehicle();
+    Vehicle*         current_vehicleP5 = new Vehicle();
 
-    Vehicle* current_vehicleP1 = new Vehicle();
-    Vehicle* current_vehicleP3 = new Vehicle();
-    Vehicle* current_vehicleP4 = new Vehicle();
-    Vehicle* current_vehicleP5 = new Vehicle();
-
-    Search_vehicle search_vehicleP1S_Car;
-    Search_vehicle search_vehicleP1M_Car;
-    Search_vehicle search_vehicleP1L_Car;
-    Search_vehicle search_vehicleP1S_Truck;
-    Search_vehicle search_vehicleP1L_Truck;
+    // Objekt
+    Search_vehicle     search_vehicleP1S_Car;
+    Search_vehicle     search_vehicleP1M_Car;
+    Search_vehicle     search_vehicleP1L_Car;
+    Search_vehicle     search_vehicleP1S_Truck;
+    Search_vehicle     search_vehicleP1L_Truck;
 
     Search_reservation search_resP2bok_nr;
     Search_reservation search_resP2reg_nr;
@@ -132,79 +143,64 @@ private:
     Search_reservation search_resP2phone_nr;
     Search_reservation search_resP2date;
 
-
     Search_reservation search_resP3;
     Search_reservation search_resP4;
-    Search_vehicle search_vehicleP3;
-    Search_vehicle search_vehicleP4;
-    Search_vehicle search_vehicleP5;
+    Search_vehicle     search_vehicleP3;
+    Search_vehicle     search_vehicleP4;
+    Search_vehicle     search_vehicleP5;
 
-    // Tab1 bokning
+    // Funktioner - Tab1 bokning
     void when_next_clicked(Search_vehicle&, QTableWidget*, int);
     void new_reservation();
     void change_customer_info();
     void set_date_now();
     void please_press_search();
     void please_press_search_helpfunc(QTableWidget*);
-    bool P1_table_is_clicked[5] = {false};
+    bool P1_table_is_clicked[5]                        = {false};
 
 
-    // Tab2 sök
+    // Funktioner - Tab2 sök
+    void P2_change_button_appearance(int)              const;
     void show_function(Search_reservation&, int);
     void remove_function(Search_reservation&, int, int);
     void change_function(Search_reservation&, int);
-    void P2_disable_buttons(int) const;
-    bool P2_table_is_clicked[5] = {false};
+    void P2_disable_buttons(int)                       const;
+    bool P2_table_is_clicked[5]                        = {false};
 
-    // Tab3 utlämning
+    // Funktioner - Tab3 utlämning
     void checkout_function();
 
-    // Generella
+    // Funktioner - Tab5 fordon
+    void P5_change_appearance(bool)                    const;
+
+    // Funktioner - Generella
+    void set_stylesheet(const QString&, QPushButton*&) const;
     void generate_vehicle_list(std::vector<Vehicle*>, QTableWidget*);
     void generate_reservation_list(std::vector<Reservation*>, QTableWidget*);
-    int get_row_reservation(QTableWidget*) const;
-    int get_row_vehicle(QTableWidget*) const;
+    int  get_row_reservation(QTableWidget*)            const;
+    int  get_row_vehicle(QTableWidget*)                const;
 
+    // Funktioner - Setup
     void custom_setup();
-    void setup_tableWidget_vehicle(QTableWidget*) const;
-    void setup_tableWidget_reservation(QTableWidget*) const;
+    void setup_stylesheet()                            const;
+    void setup_tableWidget_vehicle(QTableWidget*)      const;
+    void setup_tableWidget_reservation(QTableWidget*)  const;
 
-    void setup_tableWidgetP1S_Car()     const;
-    void setup_tableWidgetP1M_Car()     const;
-    void setup_tableWidgetP1L_Car()     const;
-    void setup_tableWidgetP1S_Truck()   const;
-    void setup_tableWidgetP1L_Truck()   const;
+    void setup_tableWidgetP1S_Car()                    const;
+    void setup_tableWidgetP1M_Car()                    const;
+    void setup_tableWidgetP1L_Car()                    const;
+    void setup_tableWidgetP1S_Truck()                  const;
+    void setup_tableWidgetP1L_Truck()                  const;
 
-    void setup_tableWidgetP2bok_nr()    const;
-    void setup_tableWidgetP2reg_nr()    const;
-    void setup_tableWidgetP2name()      const;
-    void setup_tableWidgetP2phone_nr()  const;
-    void setup_tableWidgetP2date()      const;
+    void setup_tableWidgetP2bok_nr()                   const;
+    void setup_tableWidgetP2reg_nr()                   const;
+    void setup_tableWidgetP2name()                     const;
+    void setup_tableWidgetP2phone_nr()                 const;
+    void setup_tableWidgetP2date()                     const;
 
-    void setup_tableWidgetP3()          const;
-    void setup_tableWidgetP4()          const;
-    void setup_tableWidgetP5()          const;
-
-    void P5_change_appearance(bool)     const;
-
-
-    const QString S_Car_info = QString::fromUtf8(
-                "Liten bil\n\nLämplig för: 2 pers\n\nLastvolym: 50 liter");
-    const QString M_Car_info = QString::fromUtf8(
-                "Mellanbil\n\nLämplig för: 4 pers\n\nLastvolym: 100 liter");
-    const QString L_Car_info = QString::fromUtf8(
-                "Stor bil\n\nLämplig för: 4-5 pers\n\nLastvolym: 140 liter");
-    const QString S_Truck_info = QString::fromUtf8(
-                "Liten lastbil\n\nLämplig för: 2 pers\n\nLastvolym: 8 kubikmeter");
-    const QString L_Truck_info = QString::fromUtf8(
-                "Stor lastbil\n\nLämplig för: 3 pers\n\nLastvolym: 22 kubikmeter");
-
-
-    // StyleSheet
-    void set_stylesheet(const QString&, QPushButton*&) const;
-    const QString SS_SIDEMENU_ENABLE = "QPushButton {font: bold;color: white;}";
-    const QString SS_SIDEMENU_DISABLE = "QPushButton {font: bold;color: grey;}";
-    void setup_stylesheet() const;
+    void setup_tableWidgetP3()                         const;
+    void setup_tableWidgetP4()                         const;
+    void setup_tableWidgetP5()                         const;
 };
 
 

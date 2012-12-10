@@ -42,7 +42,7 @@ private slots:
 
 private:
     Ui::Dialog_Settings* ui;
-    Settings* settings_;
+    Settings*            settings_;
 
     void update_qtimeedit(Settings*);
     void restore_appearance();

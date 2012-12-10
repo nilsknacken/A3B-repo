@@ -67,6 +67,7 @@ MainWindow::~MainWindow()
 }
 
 
+
 /////////////////////////////////////////////////////////////////////
 // Private Slots:
 /////////////////////////////////////////////////////////////////////
@@ -82,8 +83,8 @@ void MainWindow::on_actionAbout_triggered()
                                          "ska kunna sköta sina uthyrningar på ett smidigt sätt.<br><br>"
 
                                          "För teknisk support, konsultera README-filen eller kontakta oss på någon utav följande mailadresser:<br>"
-                                         "maran703@student.liu.se, conan414@student.liu.se, andbo467@student.liu.se, "
-                                         "adaan690@student.liu.se <br><br>"
+                                         "maran703@student.liu.se, conan414@student.liu.se,<br>"
+                                         "andbo467@student.liu.se, adaan690@student.liu.se <br><br>"
 
                                          "Mvh A3B - \"Because we do more than take you from A 2 B\" <br><br>"
                                          "&copy;2012 A3B"));
@@ -109,6 +110,7 @@ void MainWindow::on_actionQuit_triggered()
     delete current_vehicleP3;
     delete current_vehicleP4;
     delete current_vehicleP5;
+
     exit(EXIT_SUCCESS);
 }
 
@@ -125,6 +127,7 @@ void MainWindow::set_stylesheet(const QString& stylesheet, QPushButton*& p) cons
 
 void MainWindow::custom_setup()
 {
+    //QMessageBox::Ok->setText();
     on_pushButtonP1S_Car_clicked();
     on_pushButtonP2bok_nr_clicked();
     ui->stackedWidgetP1Main->setCurrentIndex(0);
@@ -151,18 +154,6 @@ void MainWindow::custom_setup()
 
     set_date_now();
     please_press_search();
-}
-
-void MainWindow::setup_stylesheet() const
-{
-    //Set stylesheet
-    ui->frameP1vehicle_info->setStyleSheet("QFrame{"
-                                           "border-left: 1px solid lightgrey;"
-                                           "border-right: none;"
-                                           "border-bottom: none;"
-                                           "border-top: none; }"
-                                           "QLabel{"
-                                           "border: none; }");
 }
 
 void MainWindow::generate_vehicle_list(std::vector<Vehicle*> input, QTableWidget* tableWidget)
@@ -356,4 +347,120 @@ void MainWindow::setup_tableWidget_reservation(QTableWidget* tableWidget) const
     tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
     tableWidget->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     tableWidget->setSortingEnabled(true);
+}
+
+void MainWindow::setup_stylesheet() const
+{
+    // Övergripande stylesheet finns i den separata stylesheetfilen
+    // Här sätt objektspecifik stylesheet
+    ui->frameP1vehicle_info->setStyleSheet("QFrame{"
+                                           "border-left: 1px solid lightgrey;"
+                                           "border-right: none;"
+                                           "border-bottom: none;"
+                                           "border-top: none; }"
+                                           "QLabel{"
+                                           "border: none; }");
+
+    ui->tableWidgetP2bok_nr->setStyleSheet("QTableWidget{"
+                                           "border-left: none;"
+                                           "border-right: 1px solid lightgrey;"
+                                           "border-bottom: none;"
+                                           "border-top: none; }");
+
+    ui->tableWidgetP2date->setStyleSheet("QTableWidget{"
+                                         "border-left: none;"
+                                         "border-right: 1px solid lightgrey;"
+                                         "border-bottom: none;"
+                                         "border-top: none; }");
+
+    ui->tableWidgetP2name->setStyleSheet("QTableWidget{"
+                                         "border-left: none;"
+                                         "border-right: 1px solid lightgrey;"
+                                         "border-bottom: none;"
+                                         "border-top: none; }");
+
+    ui->tableWidgetP2phone_nr->setStyleSheet("QTableWidget{"
+                                             "border-left: none;"
+                                             "border-right: 1px solid lightgrey;"
+                                             "border-bottom: none;"
+                                             "border-top: none; }");
+
+    ui->tableWidgetP2reg_nr->setStyleSheet("QTableWidget{"
+                                           "border-left: none;"
+                                           "border-right: 1px solid lightgrey;"
+                                           "border-bottom: none;"
+                                           "border-top: none; }");
+
+    ui->tableWidgetP3->setStyleSheet("QTableWidget{"
+                                     "border-left: 1px solid lightgrey;"
+                                     "border-right: 1px solid lightgrey;"
+                                     "border-bottom: none;"
+                                     "border-top: none; }");
+
+    ui->tableWidgetP4->setStyleSheet("QTableWidget{"
+                                     "border-left: 1px solid lightgrey;"
+                                     "border-right: 1px solid lightgrey;"
+                                     "border-bottom: none;"
+                                     "border-top: none; }");
+
+    ui->tableWidgetP5->setStyleSheet("QTableWidget{"
+                                     "border-left: 1px solid lightgrey;"
+                                     "border-right: 1px solid lightgrey;"
+                                     "border-bottom: none;"
+                                     "border-top: none; }");
+
+    ui->frameP1Middle->setStyleSheet("QFrame{"
+                                     "background: solid transparent;"
+                                     "background-image: url(:/Linen_Patterns_4.jpg); }"
+
+                                     "QPushButton {"
+                                     "text-align: left;"
+                                     "border: none;"
+                                     "border-radius: none;"
+                                     "background-color: transparent;"
+                                     "font: bold; color: grey;"
+                                     "padding: 0px 0px; }"
+
+                                     "QPushButton:pressed {"
+                                     "border-color: rgb(0, 170, 255);"
+                                     "background-color: transparent;"
+                                     "font:; color: white; }"
+
+                                     "QStackedWidget {"
+                                     "background: solid white; }"
+
+                                     "QTableWidget {"
+                                     "background: white; }");
+
+    ui->frameP1Buttonbox->setStyleSheet("QFrame {"
+                                        "border-top: 10px solid qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:0.402844 rgba(0, 0, 0, 31), stop:0.635071 rgba(0, 0, 0, 80), stop:0.763033 rgba(0, 0, 0, 107), stop:0.890995 rgba(0, 0, 0, 125), stop:1 rgba(0, 0, 0, 226));"
+                                        "border-right: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:0.402844 rgba(0, 0, 0, 31), stop:0.635071 rgba(0, 0, 0, 80), stop:0.763033 rgba(0, 0, 0, 107), stop:0.890995 rgba(0, 0, 0, 125), stop:1 rgba(0, 0, 0, 226));"
+                                        "border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(0, 0, 0, 0), stop:0.402844 rgba(0, 0, 0, 31), stop:0.635071 rgba(0, 0, 0, 80), stop:0.763033 rgba(0, 0, 0, 107), stop:0.890995 rgba(0, 0, 0, 125), stop:1 rgba(0, 0, 0, 226)); }");
+
+    ui->frameP2Middle->setStyleSheet("QFrame{"
+                                     "background: solid transparent;"
+                                     "background-image: url(:/Linen_Patterns_4.jpg); }"
+
+                                     "QPushButton {"
+                                     "text-align: left;"
+                                     "border: none;"
+                                     "border-radius: none;"
+                                     "background-color: transparent;"
+                                     "font: bold; color: grey;"
+                                     "padding: 0px 0px; }"
+                                     "QPushButton:pressed {"
+                                     "border-color: rgb(0, 170, 255);"
+                                     "background-color: transparent;"
+                                     "font:; color: white; }"
+
+                                     "QStackedWidget {"
+                                     "background: solid white; }"
+
+                                     "QTableWidget {"
+                                     "background: white; }");
+
+    ui->frameP2Buttonbox->setStyleSheet("QFrame {"
+                                        "border-top: 10px solid qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:0.402844 rgba(0, 0, 0, 31), stop:0.635071 rgba(0, 0, 0, 80), stop:0.763033 rgba(0, 0, 0, 107), stop:0.890995 rgba(0, 0, 0, 125), stop:1 rgba(0, 0, 0, 226));"
+                                        "border-right: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:0.402844 rgba(0, 0, 0, 31), stop:0.635071 rgba(0, 0, 0, 80), stop:0.763033 rgba(0, 0, 0, 107), stop:0.890995 rgba(0, 0, 0, 125), stop:1 rgba(0, 0, 0, 226));"
+                                        "border-bottom: 10px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(0, 0, 0, 0), stop:0.402844 rgba(0, 0, 0, 31), stop:0.635071 rgba(0, 0, 0, 80), stop:0.763033 rgba(0, 0, 0, 107), stop:0.890995 rgba(0, 0, 0, 125), stop:1 rgba(0, 0, 0, 226));}");
 }
