@@ -133,9 +133,9 @@ void MainWindow::on_pushButtonP5add_clicked()
         QString reg_nr = ui->lineEditP5add_regnr_var->text();
         try
         {
-            current_vehicleP5->set_reg_nr(reg_nr);
+            new_vehicleP5->set_reg_nr(reg_nr);
 
-            if(current_vehicleP5->exists())
+            if(new_vehicleP5->exists())
             {
                 QMessageBox::information(this,
                                          QString::fromUtf8("Fordon existerar redan"),
@@ -163,13 +163,13 @@ void MainWindow::on_pushButtonP5add_clicked()
                 {
 
 
-                    current_vehicleP5->set_brand(brand);
-                    current_vehicleP5->set_model(model);
-                    current_vehicleP5->set_type(type);
-                    current_vehicleP5->set_mileage(mileage);
-                    current_vehicleP5->set_damage(damage);
-                    current_vehicleP5->set_status(ledig);
-                    current_vehicleP5->save();
+                    new_vehicleP5->set_brand(brand);
+                    new_vehicleP5->set_model(model);
+                    new_vehicleP5->set_type(type);
+                    new_vehicleP5->set_mileage(mileage);
+                    new_vehicleP5->set_damage(damage);
+                    new_vehicleP5->set_status(ledig);
+                    new_vehicleP5->save();
 
                     ui->stackedWidgetP5->setCurrentIndex(0);
                     ui->pushButtonP5back->setDisabled(true);
@@ -254,9 +254,8 @@ void MainWindow::on_pushButtonP5remove_and_undo_clicked()
         int button_index =
                 QMessageBox::question(this,
                                       QString::fromUtf8("Radera fordon"),
-                                      QString::fromUtf8("Är du säker på att du vill ta bort ")
-                                      + ui->tableWidgetP5->item(ui->tableWidgetP5->currentRow(), 0)->text()
-                                      + QString::fromUtf8("?\n"),
+                                      QString::fromUtf8("Är du säker på att du vill ta bort %1 ?\n")
+                                      .arg(current_vehicleP5->get_reg_nr()),
                                       QString::fromUtf8("Ja"),
                                       QString::fromUtf8("Nej"),
                                       QString::null,
@@ -274,7 +273,7 @@ void MainWindow::on_pushButtonP5remove_and_undo_clicked()
             }
             else
             {
-                QMessageBox::information(this,
+                QMessageBox::warning(this,
                                          QString::fromUtf8("Borttagning ej tillåten!"),
                                          QString::fromUtf8("Ej tillåtet att ta bort fordon: %1\n"
                                                            "ty det ingår i aktiva och/eller kommande bokningar")
