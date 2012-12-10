@@ -370,27 +370,39 @@ void MainWindow::show_function(Search_reservation& search_current_res, int curre
 void MainWindow::change_function(Search_reservation& search_current_res, int current_row)
 {
     current_resP1 = search_current_res.get_current_result()[current_row];
-    QString change_context = QString::fromUtf8(
-                "Du är påväg att lämna söksidan för att gå till bokningsidan.\n"
-                "Det är på bokningssidan du kan ändra dina personliga uppgifter.\n\n"
-                "Vill du göra detta?\n");
 
-    switch(QMessageBox::warning(this,
-                                QString::fromUtf8("Bekräfta sidbyte"),
-                                change_context,
-                                QMessageBox::Cancel,
-                                QMessageBox::Yes))
+    if (current_resP1->get_status() == "kommande")
     {
-    case QMessageBox::Yes:
+        QString change_context = QString::fromUtf8(
+                    "Du är påväg att lämna söksidan för att gå till bokningsidan.\n"
+                    "Det är på bokningssidan du kan ändra dina personliga uppgifter.\n\n"
+                    "Vill du göra detta?\n");
+
+        switch(QMessageBox::warning(this,
+                                    QString::fromUtf8("Bekräfta sidbyte"),
+                                    change_context,
+                                    QMessageBox::Cancel,
+                                    QMessageBox::Yes))
+        {
+        case QMessageBox::Yes:
+        {
+            change_reservation = true;
+            change_customer_info();
+            break;
+        }
+
+        default:
+            break;
+        }
+    }
+    else
     {
-        change_reservation = true;
-        change_customer_info();
-        break;
+        QMessageBox::warning(this,
+                             QString::fromUtf8("Ändring ej tillåten"),
+                             QString::fromUtf8("Endast tillåtet att ändra i kommande bokningar."),
+                             QMessageBox::Ok);
     }
 
-    default:
-        break;
-    }
 }
 
 void MainWindow::P2_disable_buttons(int menu_index)
