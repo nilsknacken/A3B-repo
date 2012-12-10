@@ -405,7 +405,7 @@ void MainWindow::change_function(Search_reservation& search_current_res, int cur
 
 }
 
-void MainWindow::P2_disable_buttons(int menu_index)
+void MainWindow::P2_disable_buttons(int menu_index) const
 {
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2bok_nr);
     set_stylesheet(SS_SIDEMENU_DISABLE, ui->pushButtonP2reg_nr);
