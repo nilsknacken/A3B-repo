@@ -1,5 +1,7 @@
 A3B-Carpark v1.0
 ================
+We do more than take you from A 2 B!
+================
 This file is written in Swedish.
 
 
@@ -13,14 +15,36 @@ INNEHÅLLSFÖRTÄCKNING
 
 
 1. PROGRAMBESKRIVNING:
-Lite beskrivning om programmet med mera här
-Någon som har lite känsla för en bra formatering och programbeskrivning får gärna
-skriva detta. Har någon en annan version så skriv dit den versionen i "(testat med...".
+Programmet ät tänkt att hantera bokningar och fordon för en mindre uthyrningsstation.
+Användaren är personalen på stationen.
+
+Huvudstrukturen är de fem översta tabbarna: Bokning, Sök, Lämna ut, Återlämna samt Fordon.
+Dessa förklaras kort nedan:
+
+Bokning
+Här söker man fram lediga fordon mellan valda datum för att
+sedan gå vidare och mata in kunduppgifter.
+Slutligen bekräftas att bokningen gått igenom.
+
+Sök
+Här kan man söka fram alla bokningar. När önskad bokning funnits
+kan denna ändras, visas eller tas bort om detta tillåts.
+
+Lämna ut
+Under denna tab listas kommande bokningar. Är fordonet tillgängligt
+går utlämningen igenom.
+
+Återlämna
+Här listas alla aktiva bokningar. När en bokning återlämnas
+uppmanas man uppdatera mätarställning samt eventuella skador
+
+Fordon
+Här kan fordon sökas, ändras samt tas bort och info om valt fordon visas.
 
 
 2. KOMPILERASKRAV:
 Följande är krav för att kunna kompilera detta program
-  C/C++11 kompilator (testat med gcc/g++ 4.7.2)
+  C/C++11 kompilator (testat med gcc/g++ 4.7.2 samt Apple clang 4.0)
   GNU Make           (testat med 3.81)
   qt-sdk 4 bibliotek (testat med 4.8.3)
   SQLite 3           (3.7.14.1 medföljer)
@@ -36,8 +60,12 @@ För att kompilera programmet kör följande
 Körbara filer efter kompilering, för att starta programmet
   $ A3B-Carpark     (linux/unix)
   $ A3B-Carpark.exe (windows)
-  $                 (mac)
+  $ A3B-Carpark     (mac)
 
+Valfri databasfil kompatibel med SQLite kan öppnas/skapas genom
+att ange filnamnet efter programnamnet enligt nedan:
+  $ A3B-Carpark filename
+Anges inget filnamn öppnas/skapas databasen i filen "default_db.sqlite".
 
 5. GITHUB
 Källkoden kan också ses på github:

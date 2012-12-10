@@ -151,4 +151,6 @@ void Database::fill_db()
                              "Ka",
                              4711,
                              QString::fromUtf8("hö backspegel repad"));
+
+    Database::settings_update(7,0,22,0,4);
 }
