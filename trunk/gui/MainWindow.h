@@ -35,8 +35,8 @@ private slots:
     void on_actionQuit_triggered();
 
     // Tab 1 - Reservate
-    void on_dateEditFrom_dateChanged(const QDate&);
-    void on_timeEditFrom_timeChanged(const QTime&);
+    void on_dateEditFrom_dateChanged();
+    void on_timeEditFrom_timeChanged();
     void on_tableWidgetP1S_Car_itemSelectionChanged();
     void on_tableWidgetP1M_Car_itemSelectionChanged();
     void on_tableWidgetP1L_Car_itemSelectionChanged();
@@ -160,6 +160,7 @@ private:
     void new_reservation();
     void change_customer_info();
     void set_date_now();
+    void correct_date_time();
     void please_press_search();
     void please_press_search_helpfunc(QTableWidget*);
 
