@@ -19,44 +19,58 @@
 #include <QFile>
 #include <iostream>
 #include <exception>
+#include <QMessageBox>
 #include "MainWindow.h"
 #include "DatabaseQ.h"
 
 int main(int argc, char *argv[])
 {
-    int exit_code = 0;
+    int exit_code;
 
     try
     {
-        if (argc == 2)
-        {
-            if(! Database::open(argv[1]))
-                return EXIT_FAILURE;
-        }
-        else
-        {
-            if(! Database::open("default_db.sqlite"))
-                return EXIT_FAILURE;
-        }
-
-
         QApplication app(argc, argv);
-        MainWindow main_window;
-
-
         QFile file(":/ss_default.qss");
         file.open(QFile::ReadOnly);
         QString styleSheet = QLatin1String(file.readAll());
-
         qApp->setStyleSheet(styleSheet);
 
+        try
+        {
+            if (argc >= 2)
+            {
+                Database::open(argv[1]);
+            }
+            else
+            {
+                Database::open("default_db.sqlite");
+            }
+        }
+        catch(database_error& e)
+        {
+            QMessageBox::warning(nullptr,
+                                 QString::fromUtf8("Databasfel"),
+                                 QString::fromUtf8("Följande databasfel har påträffats:\n\n\"")
+                                 + e.what()
+                                 + QString::fromUtf8("\"\n\nProgrammet kommer att avslutas."));
+            std::cerr << e.what() << std::endl;
+            return EXIT_FAILURE;
+        }
 
+        MainWindow main_window;
         main_window.show();
         exit_code = app.exec();
     }
     catch(std::exception& e)
     {
+        QMessageBox::warning(nullptr,
+                             QString::fromUtf8("Fel"),
+                             QString::fromUtf8("Ett oväntat fel har påträffats:\n\n\"")
+                             + e.what()
+                             + QString::fromUtf8("\"\n\nProgrammet kommer att avslutas."));
         std::cerr << e.what() << std::endl;
+        Database::close();
+        return EXIT_FAILURE;
     }
 
     Database::close();
