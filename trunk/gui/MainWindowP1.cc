@@ -136,21 +136,20 @@ void MainWindow::set_date_now()
         ui->timeEditTo->setMinimumTime(open);
     }
 
-    /*
-       int min_rental = settings->get_min_rental();
-       int from_hour = now.time().hour();
 
-       if (min_rental + from_hour >= 24)
-       {
-           ui->dateEditTo->setMinimumDate(now.date().addDays(1));
-           ui->timeEditTo->setMinimumTime(now.time().addSecs(-3600 * (23 - min_rental)));
-       }
-       else
-       {
-           ui->dateEditTo->setMinimumDate(now.date());
-           ui->timeEditTo->setMinimumTime(now.time().addSecs(3600 * min_rental));
-       }
-       */
+    int from_hour = now.time().hour();
+
+    if (min_rental + from_hour >= 24)
+    {
+        ui->dateEditTo->setMinimumDate(now.date().addDays(1));
+        ui->timeEditTo->setMinimumTime(now.time().addSecs(-3600 * (23 - min_rental)));
+    }
+    else
+    {
+        ui->dateEditTo->setMinimumDate(now.date());
+        ui->timeEditTo->setMinimumTime(now.time().addSecs(3600 * min_rental));
+    }
+
 }
 
 
