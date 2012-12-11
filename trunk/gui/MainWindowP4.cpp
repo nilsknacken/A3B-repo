@@ -84,7 +84,7 @@ void MainWindow::on_pushButtonP4next_clicked()
             // Setup confirmation page
             ui->stackedWidgetP4->setCurrentIndex(++index);
             ui->pushButtonP4next->setText(QString::fromUtf8("Bekräfta"));
-            QString confirmation1 = QString::fromUtf8("Vänligen bekräfta inlämning av nedanstående bokning data\n\n"
+            QString confirmation1 = QString::fromUtf8("Vänligen bekräfta inlämning av nedanstående bokning\n\n"
                                            "Reservations nummer: %1\n"
                                            "Namn: %2\n"
                                            "Från: %3\n"
