@@ -37,9 +37,7 @@ void MainWindow::on_pushButtonP4next_clicked()
 
     if(index == 0) // "Nästa >" 1 klickad
     {
-        QString id = ui->tableWidgetP4->item(ui->tableWidgetP4->currentRow(),4)->text();
-        int currentRow = id.toInt();
-        //int currentRow = ui->tableWidgetP4->currentRow();
+        int currentRow = get_row_reservation(ui->tableWidgetP4);
 
         current_resP4 = search_resP4.get_current_result()[currentRow];
         QString reg_nr = current_resP4->get_reg_nr();
