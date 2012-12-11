@@ -18,6 +18,7 @@
 * Martin: minor bug fix
 */
 
+#include <cctype>
 #include <stdlib.h>
 #include <QString>
 #include <vector>
@@ -241,20 +242,22 @@ void
 Search_reservation::
 correct_name(const QString& name)
 {
-    unsigned int count_space = 0;
     for(int i = 0; i < name.size(); i++)
     {
         char c = name.toStdString()[i];
+        QString qstr;
+        qstr += name.toStdString()[i];
 
-        if(c == ' ')
-            count_space++;
-        else if(! isalpha(c))
-            throw search_reservation_error("Namn får endast innehålla bokstäver, "
-                                    "och för- och efternamn ska ingå.");
+        if(! isalpha(c)                       &&
+           c != ' '                           &&
+           qstr != QString::fromUtf8("å")     &&
+           qstr != QString::fromUtf8("ä")     &&
+           qstr != QString::fromUtf8("ö")     &&
+           qstr != QString::fromUtf8("Å")     &&
+           qstr != QString::fromUtf8("Ä")     &&
+           qstr != QString::fromUtf8("Ö"))
+            throw search_reservation_error("Namn får endast innehålla bokstäver.");
     }
-    if(count_space == 0)
-        throw search_reservation_error("Namn får endast innehålla bokstäver, "
-                                "och för- och efternamn ska ingå.");
 }
 
 void

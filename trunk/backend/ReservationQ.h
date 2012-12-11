@@ -67,7 +67,6 @@ public:
     QString get_end()       const;
 
 private:
-
     void correct_reg_nr(const QString&);
     void correct_status(const QString&);
     void correct_name(const QString&);
@@ -75,8 +74,6 @@ private:
     void correct_adress(const QString&);
     void correct_postal_nr(const QString&);
     void correct_city(const QString&);
-    void correct_time(const QString&, const QString&);
-
 
     int     res_nr_;
     QString reg_nr_;

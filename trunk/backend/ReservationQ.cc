@@ -37,7 +37,6 @@ Reservation(int res_nr, QString& reg_nr, QString& start, QString& end,
 {
     //Throw if parameter is incorrect.
     correct_reg_nr(reg_nr);
-    correct_time(start, end);
     correct_status(status);
     correct_name(name);
     correct_tel(tel);
@@ -261,15 +260,31 @@ correct_status(const QString& status)
 void 
 Reservation::
 correct_name(const QString& name)
-{
+{    
     unsigned int count_space = 0;
+    unsigned int count_alpha = 0;
+
     for(int i = 0; i < name.size(); i++)
     {
         char c = name.toStdString()[i];
 
-        if(c == ' ')
+        if((i == name.size() - 1) && ! count_space)
+            throw reservation_error("Namn får endast innehålla bokstäver, "
+                                    "och för- och efternamn ska ingå.");
+
+        if(c == ' ' && count_alpha)
             count_space++;
-        else if(! isalpha(c))
+
+        else if(isalpha(c) ||
+                c == 'å'   ||
+                c == 'ä'   ||
+                c == 'ö'   ||
+                c == 'Å'   ||
+                c == 'Ä'   ||
+                c == 'Ö')
+            count_alpha++;
+
+        else
             throw reservation_error("Namn får endast innehålla bokstäver, "
                                     "och för- och efternamn ska ingå.");
     }
@@ -296,8 +311,8 @@ void
 Reservation::
 correct_adress(const QString& adress)
 {
-    (void)adress;
-    // Kan utökas vid behov.
+    (void) adress;
+    // Kan implementeras vid behov.
 }
 
 void
@@ -334,19 +349,16 @@ correct_city(const QString& city)
     {
         char c = city.toStdString()[i];
 
-        if(! isalpha(c))
+        if(! isalpha(c) &&
+           c != 'å'     &&
+           c != 'ä'     &&
+           c != 'ö'     &&
+           c != 'Å'     &&
+           c != 'Ä'     &&
+           c != 'Ö')
             throw reservation_error("Felaktigt stad, "
                                     "ska bara innehålla bokstäver.");
     }
-}
-
-void
-Reservation::
-correct_time(const QString& start, const QString& end)
-{
-    (void)start;
-    (void)end;
-    // Kolla så GUI håller koll på detta!
 }
 
 /////////////////////////////////////////////////////////////////////
