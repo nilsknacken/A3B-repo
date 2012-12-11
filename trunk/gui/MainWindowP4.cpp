@@ -75,6 +75,8 @@ void MainWindow::on_pushButtonP4next_clicked()
         new_mileage = ui->lineEditP4mileage->text().toInt();
         if (new_mileage >= current_vehicleP4->get_mileage())
         {
+            current_vehicleP4->set_mileage(new_mileage);
+
             if (ui->checkBoxP4damages_yes)
                 current_vehicleP4->set_damage(ui->plainTextEditP4damages->toPlainText());
 
@@ -107,6 +109,7 @@ void MainWindow::on_pushButtonP4next_clicked()
         }
         else
         {
+            ui->lineEditP4mileage->setText(QString::number(current_vehicleP4->get_mileage()));
             QMessageBox::information(this,
                                      QString::fromUtf8("Felaktig mätarställning"),
                                      QString::fromUtf8("Vänligen mata in en mätarställning\n"
@@ -119,7 +122,6 @@ void MainWindow::on_pushButtonP4next_clicked()
     {
         QString avslutad = "avslutad";
         QString ledig = "ledig";
-        current_vehicleP4->set_mileage(new_mileage);
         current_resP4->set_status(avslutad);
         current_vehicleP4->set_status(ledig);
         current_resP4->save();

@@ -150,6 +150,7 @@ void MainWindow::set_date_now()
         ui->timeEditTo->setMinimumTime(now.time().addSecs(3600 * min_rental));
     }
 
+    ui->timeEditTo->setMaximumTime(close);
 }
 
 
@@ -268,6 +269,19 @@ void MainWindow::on_timeEditFrom_timeChanged(const QTime &time)
 
     }
 
+    ui->timeEditTo->setMaximumTime(close);
+
+    please_press_search();
+}
+
+
+void MainWindow::on_dateEditTo_dateChanged()
+{
+    please_press_search();
+}
+
+void MainWindow::on_timeEditTo_timeChanged()
+{
     please_press_search();
 }
 
