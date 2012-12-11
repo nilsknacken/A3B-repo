@@ -76,7 +76,17 @@ void MainWindow::new_reservation()
     QString postal_nr = ui->lineEditP1postal_nr_var->text();
     QString city = ui->lineEditP1city_var->text();
 
-    new_reservationP1 = make_reservation(reg_nr,
+    if(tel.isEmpty())
+        throw GUI_error("Du måste ange telefonnummer.");
+
+    else if(address.isEmpty())
+        throw GUI_error("Du måste ange adress.");
+
+    else if(city.isEmpty())
+        throw GUI_error("Du måste ange stad.");
+
+    else
+        new_reservationP1 = make_reservation(reg_nr,
                                          start,
                                          end,
                                          name,
@@ -375,6 +385,14 @@ void MainWindow::on_pushButtonP1next_clicked()
                 QMessageBox::information(this,
                                          QString::fromUtf8("Felaktig inmatning"),
                                          QString::fromUtf8("Felaktig inmatning:\n%1").arg(e.what()),
+                                         QMessageBox::Ok);
+                return;
+            }
+            catch(GUI_error& e)
+            {
+                QMessageBox::information(this,
+                                         QString::fromUtf8("Felaktig inmatning"),
+                                         QString::fromUtf8("Felaktig inmatning:\n%1").arg(QString::fromUtf8(e.what())),
                                          QMessageBox::Ok);
                 return;
             }
