@@ -58,9 +58,8 @@ För att kompilera programmet kör följande
 
 4. KÖRBARA FILER
 Körbara filer efter kompilering, för att starta programmet
-  $ A3B-Carpark     (linux/unix)
+  $ A3B-Carpark     (linux/unix/mac)
   $ A3B-Carpark.exe (windows)
-  $ A3B-Carpark     (mac)
 
 Valfri databasfil kompatibel med SQLite kan öppnas/skapas genom
 att ange filnamnet efter programnamnet enligt nedan:

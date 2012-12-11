@@ -57,6 +57,7 @@ MainWindow::MainWindow(QWidget* parent)
 
 MainWindow::~MainWindow()
 {
+    std::cerr << "~MainWindow()" << std::endl;                                                         //REMOVE
     delete ui;
     delete about;
     delete settings;
@@ -98,20 +99,7 @@ void MainWindow::on_actionSettings_triggered()
 
 void MainWindow::on_actionQuit_triggered()
 {
-    delete ui;
-    delete about;
-    delete settings;
-    delete gui_settings;
-    delete current_resP1;
-    delete current_resP2;
-    delete current_resP3;
-    delete current_resP4;
-    delete current_vehicleP1;
-    delete current_vehicleP3;
-    delete current_vehicleP4;
-    delete current_vehicleP5;
-
-    exit(EXIT_SUCCESS);
+    this->close();
 }
 
 

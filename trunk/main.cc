@@ -12,7 +12,7 @@
 * Our main function
 *
 * Created by:
-* Andreas: main()
+* Andreas: main
 */
 
 #include <QApplication>
@@ -44,11 +44,11 @@ int main(int argc, char *argv[])
         MainWindow main_window;
 
 
-QFile file(":/ss_default.qss");
-file.open(QFile::ReadOnly);
-QString styleSheet = QLatin1String(file.readAll());
+        QFile file(":/ss_default.qss");
+        file.open(QFile::ReadOnly);
+        QString styleSheet = QLatin1String(file.readAll());
 
-qApp->setStyleSheet(styleSheet);
+        qApp->setStyleSheet(styleSheet);
 
 
         main_window.show();

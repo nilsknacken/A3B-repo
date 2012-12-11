@@ -28,6 +28,7 @@
 #include "Dialog_Settings.h"
 #include "ui_Dialog_Settings.h"
 #include <QDialog>
+#include <iostream>                                                //REMOVE
 
 using namespace std;
 
@@ -43,6 +44,7 @@ Dialog_Settings::Dialog_Settings(QWidget* parent, Settings* settings)
 
 Dialog_Settings::~Dialog_Settings()
 {
+    std::cerr << "~Dialog_Settings()" << endl;
     delete ui;
 }
 
