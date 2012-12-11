@@ -309,20 +309,20 @@ void MainWindow::on_pushButtonP2date_clicked()
 
 void MainWindow::setup_tableWidgetP2bok_nr() const
 {
-    ui->tableWidgetP2bok_nr->sortItems(0); // sortera på re_ nr
     setup_tableWidget_reservation(ui->tableWidgetP2bok_nr);
+    ui->tableWidgetP2bok_nr->sortItems(0); // sortera på re_ nr
 }
 
 void MainWindow::setup_tableWidgetP2reg_nr() const
 {
-    ui->tableWidgetP2reg_nr->sortItems(1); //sort reg nr
     setup_tableWidget_reservation(ui->tableWidgetP2reg_nr);
+    ui->tableWidgetP2reg_nr->sortItems(1); //sort reg nr
 }
 
 void MainWindow::setup_tableWidgetP2name() const
 {
-    ui->tableWidgetP2name->sortItems(2);  //sort name
     setup_tableWidget_reservation(ui->tableWidgetP2name);
+    ui->tableWidgetP2name->sortItems(2);  //sort name
 }
 
 void MainWindow::setup_tableWidgetP2phone_nr() const
@@ -332,8 +332,8 @@ void MainWindow::setup_tableWidgetP2phone_nr() const
 
 void MainWindow::setup_tableWidgetP2date() const
 {
-    ui->tableWidgetP2date->sortItems(4); //sort starttid
     setup_tableWidget_reservation(ui->tableWidgetP2date);
+    ui->tableWidgetP2date->sortItems(4); //sort starttid
 }
 
 

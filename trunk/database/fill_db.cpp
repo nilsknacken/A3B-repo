@@ -129,7 +129,7 @@ void Database::fill_db()
 
     Database::vehicle_update("NRG372",
                              "Mellanbil",
-                             "uthyrd",
+                             "ledig",
                              "Volvo",
                              "v40",
                              2343,
@@ -137,7 +137,7 @@ void Database::fill_db()
 
     Database::vehicle_update("WJD729",
                              "Stor bil",
-                             "uthyrd",
+                             "ledig",
                              "Volvo",
                              "XC90",
                              234334,

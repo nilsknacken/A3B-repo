@@ -132,8 +132,8 @@ void MainWindow::on_pushButtonP3checkout_clicked()
 
 void MainWindow::setup_tableWidgetP3() const
 {
-    ui->tableWidgetP3->sortItems(4); //sortera på starttid
     setup_tableWidget_reservation(ui->tableWidgetP3);
+    ui->tableWidgetP3->sortItems(4); //sortera på starttid
 }
 
 void MainWindow::checkout_function()

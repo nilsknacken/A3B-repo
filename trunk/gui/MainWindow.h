@@ -89,6 +89,10 @@ private slots:
     void on_pushButtonP5remove_and_undo_clicked();
     void on_pushButtonP5back_clicked();
 
+    void on_dateEditTo_dateChanged();
+
+    void on_timeEditTo_timeChanged();
+
 private:
     // Variabler
     bool pushbuttonP5change_clicked  = false;

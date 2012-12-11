@@ -150,6 +150,7 @@ void MainWindow::set_date_now()
         ui->timeEditTo->setMinimumTime(now.time().addSecs(3600 * min_rental));
     }
 
+    ui->timeEditTo->setMaximumTime(close);
 }
 
 
@@ -195,6 +196,9 @@ void MainWindow::on_dateEditFrom_dateChanged(const QDate &date)
     QTime time = ui->timeEditFrom->time();
     QTime open = settings->get_open_QTime();
     QTime close = settings->get_close_QTime();
+    QDate to_date = ui->dateEditTo->date();
+    QDate from_date = ui->dateEditFrom->date();
+
 
     if(time < open)
     {
@@ -213,18 +217,30 @@ void MainWindow::on_dateEditFrom_dateChanged(const QDate &date)
     now.setDate(ui->dateEditFrom->date());
 
     int min_rental = settings->get_min_rental();
-    QTime min_to = now.time().addSecs(3600 * min_rental);
+    QTime min_to = ui->timeEditFrom->time().addSecs(3600 * min_rental);
+    QTime to_time = ui->timeEditTo->time();
+
 
     if (open <= min_to && min_to <= close)
     {
         ui->dateEditTo->setMinimumDate(now.date());
-        ui->timeEditTo->setMinimumTime(min_to);
+        if (from_date == to_date)
+            ui->timeEditTo->setMinimumTime(min_to);
+        else
+            ui->timeEditTo->setMinimumTime(open);
     }
     else
     {
-        ui->dateEditTo->setMinimumDate(now.date().addDays(1));
-        ui->timeEditTo->setMinimumTime(open);
-
+        if (to_time >= min_to)
+        {
+            ui->dateEditTo->setMinimumDate(now.date());
+            ui->timeEditTo->setMinimumTime(min_to);
+        }
+        else
+        {
+            ui->dateEditTo->setMinimumDate(now.date().addDays(1));
+            ui->timeEditTo->setMinimumTime(open);
+        }
     }
 
     please_press_search();
@@ -236,6 +252,8 @@ void MainWindow::on_timeEditFrom_timeChanged(const QTime &time)
     now.setTime(time);
     QTime open = settings->get_open_QTime();
     QTime close = settings->get_close_QTime();
+    QDate from_date = ui->dateEditFrom->date();
+    QDate to_date = ui->dateEditTo->date();
 
     if(time < open)
     {
@@ -254,19 +272,56 @@ void MainWindow::on_timeEditFrom_timeChanged(const QTime &time)
     now.setDate(ui->dateEditFrom->date());
 
     int min_rental = settings->get_min_rental();
-    QTime min_to = now.time().addSecs(3600 * min_rental);
+    QTime min_to = ui->timeEditFrom->time().addSecs(3600 * min_rental);
+    QTime to_time = ui->timeEditTo->time();
+
 
     if (open <= min_to && min_to <= close)
     {
         ui->dateEditTo->setMinimumDate(now.date());
-        ui->timeEditTo->setMinimumTime(min_to);
+        if (from_date == to_date)
+            ui->timeEditTo->setMinimumTime(min_to);
+        else
+            ui->timeEditTo->setMinimumTime(open);
     }
     else
     {
-        ui->dateEditTo->setMinimumDate(now.date().addDays(1));
-        ui->timeEditTo->setMinimumTime(open);
-
+        if (to_time >= min_to)
+        {
+            ui->dateEditTo->setMinimumDate(now.date());
+            ui->timeEditTo->setMinimumTime(min_to);
+        }
+        else
+        {
+            ui->dateEditTo->setMinimumDate(now.date().addDays(1));
+            ui->timeEditTo->setMinimumTime(open);
+        }
     }
+
+
+       ui->timeEditTo->setMaximumTime(close);
+
+    please_press_search();
+}
+
+
+void MainWindow::on_dateEditTo_dateChanged()
+{
+    please_press_search();
+}
+
+void MainWindow::on_timeEditTo_timeChanged()
+{
+    QTime from_time = ui->timeEditFrom->time();
+    QTime to_time = ui->timeEditTo->time();
+
+    int min_rental = settings->get_min_rental();
+
+    QTime min_to = from_time.addSecs(3600 * min_rental);
+
+    if (to_time >= min_to)
+        ui->dateEditTo->setMinimumDate(ui->dateEditFrom->date());
+
 
     please_press_search();
 }
