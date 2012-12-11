@@ -307,6 +307,13 @@ void MainWindow::on_timeEditFrom_timeChanged(const QTime &time)
 
 void MainWindow::on_dateEditTo_dateChanged()
 {
+    QDate from_date = ui->dateEditFrom->date();
+    QDate to_date = ui->dateEditTo->date();
+    QTime open = settings->get_open_QTime();
+
+    if(to_date > from_date)
+        ui->timeEditTo->setMinimumTime(open);
+
     please_press_search();
 }
 
