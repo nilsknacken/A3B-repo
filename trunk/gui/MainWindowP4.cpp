@@ -34,7 +34,6 @@
 void MainWindow::on_pushButtonP4next_clicked()
 {
     int index = ui->stackedWidgetP4->currentIndex();
-    int new_mileage = 0;
 
     if(index == 0) // "Nästa >" 1 klickad
     {
@@ -73,7 +72,7 @@ void MainWindow::on_pushButtonP4next_clicked()
     {
         // kolla mätarställning
         int difference = ui->lineEditP4mileage->text().toInt() - current_vehicleP4->get_mileage();
-        new_mileage = ui->lineEditP4mileage->text().toInt();
+        int new_mileage = ui->lineEditP4mileage->text().toInt();
         if (new_mileage >= current_vehicleP4->get_mileage())
         {
             current_vehicleP4->set_mileage(new_mileage);
