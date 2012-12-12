@@ -48,6 +48,8 @@
 *           setup_tableWidgetP1S_Truck
 *           setup_tableWidgetP1L_Truck
 *
+* Conny:    on_pushButtonP1next_clicked
+*
 */
 
 #include "MainWindow.h"
@@ -58,6 +60,8 @@
 /////////////////////////////////////////////////////////////////////
 //  MainWindow Tab 1 / Bokning
 /////////////////////////////////////////////////////////////////////
+
+// Help function to when next is clicked on the front page
 void MainWindow::when_next_clicked(Search_vehicle& search_vehicle,
                                    QTableWidget* tableWidget,
                                    int tab_index)
@@ -72,6 +76,7 @@ void MainWindow::when_next_clicked(Search_vehicle& search_vehicle,
     ui->pushButtonP1back->setDisabled(false);
 }
 
+// Creates a new reservation from data given in GUI
 void MainWindow::new_reservation()
 {
     QString reg_nr = current_vehicleP1->get_reg_nr();
@@ -103,6 +108,8 @@ void MainWindow::new_reservation()
                                          city);
 }
 
+
+// Setup to start change of customer info
 void MainWindow::change_customer_info()
 {
     ui->tabWidgetMainTab->setCurrentIndex(0);
@@ -125,6 +132,9 @@ void MainWindow::change_customer_info()
     change_reservation = true;
 }
 
+
+// Sets FROM date and from time of P1 front page to current and
+// TO date and time to the minimum allowed
 void MainWindow::set_date_now()
 {
     QDateTime now = QDateTime::currentDateTime();
@@ -142,6 +152,9 @@ void MainWindow::set_date_now()
     ui->timeEditTo->setTime(ui->timeEditTo->minimumTime());
 }
 
+
+// Corrects date and time on front page to obey under open hours
+// and minimum rental time.
 void MainWindow::correct_date_time()
 {
     // Set minumin from to now
@@ -150,12 +163,13 @@ void MainWindow::correct_date_time()
     time.setHMS(time.hour(), 0,0);
     now.setTime(time);
 
-    ui->dateEditFrom->setMinimumDate(now.date());
-
     QTime open = settings->get_open_QTime();
     QTime close = settings->get_close_QTime();
     QDate to_date = ui->dateEditTo->date();
     QDate from_date = ui->dateEditFrom->date();
+
+    ui->dateEditFrom->setMinimumDate(now.date());
+    ui->timeEditFrom->setMinimumTime(open);
 
     // Set max time to closing time
     ui->timeEditFrom->setMaximumTime(close);
@@ -195,6 +209,8 @@ void MainWindow::correct_date_time()
 
 }
 
+
+// Shows a helptext in all tables
 void MainWindow::please_press_search()
 {
     please_press_search_helpfunc(ui->tableWidgetP1S_Car);
@@ -205,7 +221,6 @@ void MainWindow::please_press_search()
 
     ui->pushButtonP1next->setDisabled(true);
 }
-
 
 void MainWindow::please_press_search_helpfunc(QTableWidget* tableWidget)
 {
@@ -244,7 +259,6 @@ void MainWindow::on_timeEditFrom_timeChanged()
     please_press_search();
 }
 
-
 void MainWindow::on_dateEditTo_dateChanged()
 {
     correct_date_time();
@@ -260,12 +274,14 @@ void MainWindow::on_timeEditTo_timeChanged()
 /////////////////////////////////////////////////////////////////////
 //  MainWindow Tab 1 - Slots - Knappar
 /////////////////////////////////////////////////////////////////////
+
+// Handles clicks on "Nästa"
 void MainWindow::on_pushButtonP1next_clicked()
 {
     int tab_index = ui->stackedWidgetP1Main->currentIndex();
     int stacked_index = ui->stackedWidgetP1->currentIndex();
 
-    if(tab_index == 0) // från sök till kundupgifter
+    if(tab_index == 0) // From search to customer info
     {
         if(stacked_index == 0)
             when_next_clicked(search_vehicleP1S_Car, ui->tableWidgetP1S_Car, tab_index);
@@ -293,18 +309,18 @@ void MainWindow::on_pushButtonP1next_clicked()
         to->setDate(ui->dateEditTo->date());
         to->setTime(ui->timeEditTo->time());
 
-        // sätt datumlabel i kunduppgifter
+        // set time and date label in customer info
         ui->labelP1selected_from_var->setText(from->toString(date_time_format));
         ui->labelP1selected_to_var->setText(to->toString(date_time_format));
 
-        //nollställ kunduppgifter
+        // reset labels in customer info
         ui->lineEditP1name_var->clear();
         ui->lineEditP1phone_nr_var->clear();
         ui->lineEditP1address_var->clear();
         ui->lineEditP1postal_nr_var->clear();
         ui->lineEditP1city_var->clear();
 
-        //disabla andra tabbar
+        // disable other tabs
         ui->tabWidgetMainTab->setTabEnabled(1, false);
         ui->tabWidgetMainTab->setTabEnabled(2, false);
         ui->tabWidgetMainTab->setTabEnabled(3, false);
@@ -316,14 +332,14 @@ void MainWindow::on_pushButtonP1next_clicked()
         to = nullptr;
     }
 
-    else if(tab_index == 1) // från kund till bekräftelse
+    else if(tab_index == 1) // from customer to confirmation
     {
         QString confirm;
         if (change_reservation)
         {
             try
             {
-                // Reg nr, start, end ändras ej
+                // Reg nr, start, end doesn't change
                 current_resP1->set_name(ui->lineEditP1name_var->text());
                 current_resP1->set_tel(ui->lineEditP1phone_nr_var->text());
                 current_resP1->set_adress(ui->lineEditP1address_var->text());
@@ -412,7 +428,7 @@ void MainWindow::on_pushButtonP1next_clicked()
         ui->pushButtonP1next->setText(QString::fromUtf8("Bekräfta"));
     }
 
-    else if(tab_index == 2) // bekfräfta
+    else if(tab_index == 2) // confirm
     {
         QString confirm_head_msg;
         QString confirm_msg;
@@ -465,11 +481,12 @@ void MainWindow::on_pushButtonP1next_clicked()
     }
 }
 
+// Handles clicks on "Bakåt"
 void MainWindow::on_pushButtonP1back_clicked()
 {
     int index = ui->stackedWidgetP1Main->currentIndex();
 
-    if(index == 1) // Personuppgifter
+    if(index == 1) // Customer info
     {
         if (change_reservation)
         {
@@ -497,13 +514,14 @@ void MainWindow::on_pushButtonP1back_clicked()
         }
     }
 
-    else if(index == 2) // Bekfräfta
+    else if(index == 2) // Confirmation
     {
         ui->stackedWidgetP1Main->setCurrentIndex(--index);
         ui->pushButtonP1next->setText(QString::fromUtf8("Nästa >"));
     }
 }
 
+// Handles clicks on "Sök"
 void MainWindow::on_pushButtonP1search_clicked()
 {
     P1_table_is_clicked[0] = false;
