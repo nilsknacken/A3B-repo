@@ -5,7 +5,7 @@
 *              Andreas Bolin    Y3a andbo467@student.liu.se
 *              Martin Andersson Y3a maran703@student.liu.se
 *              Adam Andersson   Y3a adaan690@student.liu.se
-* DATE:        2012-10-18
+* DATE:        2012-12-12
 *
 * DESCRIPTION
 * 
@@ -18,10 +18,8 @@
 * Martin: minor bug fix
 */
 
+#include <QChar>
 #include <stdlib.h>
-#include <QString>
-#include <vector>
-#include "VehicleQ.h"
 #include "Search_vehicleQ.h"
 
 using namespace std;
@@ -139,7 +137,7 @@ get_current_result() const
 
 // Helpfunction to create object from QString vectors, 
 // send by the database, throw if wrong indata.
-void 
+void
 Search_vehicle::
 create_result(vector<vector<QString>>& str_vector)
 {

@@ -5,7 +5,7 @@
 *              Andreas Bolin    Y3a andbo467@student.liu.se
 *              Martin Andersson Y3a maran703@student.liu.se
 *              Adam Andersson   Y3a adaan690@student.liu.se
-* DATE:        2012-10-18
+* DATE:        2012-12-12
 *
 * DESCRIPTION
 * 
@@ -13,9 +13,10 @@
 *
 * Created by:
 * Conny: All
+* Martin:
+*   exists
 */
 
-#include <QString>
 #include "VehicleQ.h"
 
 using namespace std;
@@ -56,6 +57,13 @@ remove()
    return Database::remove_vehicle(reg_nr_);
 }
 
+// Return true if vehicle exists in the database.
+bool
+Vehicle::
+exists()
+{
+    return Database::exists_vehicle(reg_nr_);
+}
 
 // Apply changes of the parameters.
 void 
@@ -165,13 +173,6 @@ get_damage() const
     return damage_;
 }
 
-bool
-Vehicle::
-exists()
-{
-    return Database::exists_vehicle(reg_nr_);
-}
-
 // Correct indata?
 void
 Vehicle::
@@ -204,11 +205,11 @@ void
 Vehicle::
 correct_type(const QString& type)
 {
-    if((type != "Liten bil")       &&
-            (type != "Mellanbil") &&
-            (type != "Stor bil") &&
-            (type != "Liten lastbil") &&
-            (type != "Stor lastbil"))
+    if((type != "Liten bil")     &&
+       (type != "Mellanbil")     &&
+       (type != "Stor bil")      &&
+       (type != "Liten lastbil") &&
+       (type != "Stor lastbil"))
         throw vehicle_error("Typ får endast vara: Liten bil, Mellanbil, "
                             "Stor_bil, Liten lastbil, Stor lastbil.");
 }

@@ -5,7 +5,7 @@
 *              Andreas Bolin    Y3a andbo467@student.liu.se
 *              Martin Andersson Y3a maran703@student.liu.se
 *              Adam Andersson   Y3a adaan690@student.liu.se
-* DATE:        2012-10-18
+* DATE:        2012-12-12
 *
 * DESCRIPTION
 * 
@@ -36,6 +36,7 @@ public:
 
     void save();
     bool remove();
+    bool exists();
 
     void set_mileage(const int);
     void set_reg_nr(const QString&);
@@ -52,8 +53,6 @@ public:
     QString get_brand()   const;
     QString get_model()   const;
     QString get_damage()  const;
-
-    bool exists()         ;
 
 private:
     Vehicle(const Vehicle&)            = delete;
