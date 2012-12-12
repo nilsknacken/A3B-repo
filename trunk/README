@@ -42,6 +42,10 @@ Fordon
 Här kan fordon sökas, ändras samt tas bort och info om valt fordon visas.
 
 
+OBSERVERA att funktionen filld_db() som ligger i fill_db.cc och körs i konstruktorn för databasen
+endast är till för att skapa några poster i databasen till att börja med. Så att det finns lite att testa på.
+Denna ska tas bort innan man lanserar programmet hos kund.
+
 2. KOMPILERINGSKRAV:
 Följande är krav för att kunna kompilera detta program
   C/C++11 kompilator (testat med gcc/g++ 4.7.2 samt Apple clang 4.0)
