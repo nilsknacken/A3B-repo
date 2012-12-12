@@ -38,10 +38,10 @@ SOURCES += main.cc \
            backend/ReservationQ.cc \
            gui/MainWindowP1.cc \
            gui/MainWindowP2.cc \
-           gui/MainWindowP3.cpp \
+           gui/MainWindowP3.cc \
            gui/MainWindowP4.cpp \
            gui/MainWindowP5.cpp \
-           database/fill_db.cpp
+           database/fill_db.cpp \
 
 HEADERS  += gui/MainWindow.h \
             gui/Dialog_Settings.h \

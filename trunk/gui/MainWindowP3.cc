@@ -12,16 +12,15 @@
 * Here are the functions for Tab3 "Lämna ut" defined.
 *
 * Created by:
-* Conny:
-*  on_pushButtonP3checkout_clicked
-*  checkout_function
+* Conny:    on_pushButtonP3checkout_clicked
+*           on_pushButtonP3remove_reservation_clicked
+*           checkout_function
 *
-* Martin:
-*  on_pushButtonP3remove_reservation_clicked
-*  setup_tableWidgetP3
+* Martin:   on_pushButtonP3remove_reservation_clicked
+*           setup_tableWidgetP3
 *
-* Andreas:
-*  on_tableWidgetP3_itemSelectionChanged
+* Andreas:  code structure / code skeleton / signal & slots
+*           on_tableWidgetP3_itemSelectionChanged
 *
 *
 */
@@ -29,6 +28,47 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
+
+/////////////////////////////////////////////////////////////////////
+//  MainWindow Tab 2 / Sök Tab
+/////////////////////////////////////////////////////////////////////
+void MainWindow::checkout_function()
+{
+    //Bekräftelse
+
+    QString aktiv = "aktiv";
+    QString uthyrd = "uthyrd";
+    current_resP3->set_status(aktiv);
+    current_vehicleP3->set_status(uthyrd);
+
+    current_resP3->save();
+    current_vehicleP3->save();
+
+    QString check_out_done = QString::fromUtf8("Följande bokning har lämnats ut\n\n"
+                                   "Reservations nummer: %1\n"
+                                   "Namn: %2\n"
+                                   "Från: %3\n"
+                                   "Till: %4\n"
+                                   "Registreringsnummer: %5\n"
+                                   "Fabrikat: %6\n"
+                                   "Modell: %7\n").arg(QString::number(current_resP3->get_res_nr()),
+                                                       current_resP3->get_name(),
+                                                       current_resP3->get_start(),
+                                                       current_resP3->get_end(),
+                                                       current_vehicleP3->get_reg_nr(),
+                                                       current_vehicleP3->get_brand(),
+                                                       current_vehicleP3->get_model());
+    QMessageBox::information(this,
+                             QString::fromUtf8("Utlämning genomförd!"),
+                             check_out_done,
+                             QMessageBox::Ok);
+}
+
+
+
+/////////////////////////////////////////////////////////////////////
+//  MainWindow Tab 3 - Slots - Knappar
+/////////////////////////////////////////////////////////////////////
 void MainWindow::on_pushButtonP3remove_reservation_clicked()
 {
     int currentRow = get_row_reservation(ui->tableWidgetP3);
@@ -135,48 +175,24 @@ void MainWindow::on_pushButtonP3checkout_clicked()
     }
 }
 
-void MainWindow::setup_tableWidgetP3() const
-{
-    setup_tableWidget_reservation(ui->tableWidgetP3);
-    ui->tableWidgetP3->sortItems(4); //sortera på starttid
-}
-
-void MainWindow::checkout_function()
-{
-    //Bekräftelse
-
-    QString aktiv = "aktiv";
-    QString uthyrd = "uthyrd";
-    current_resP3->set_status(aktiv);
-    current_vehicleP3->set_status(uthyrd);
-
-    current_resP3->save();
-    current_vehicleP3->save();
-
-    QString check_out_done = QString::fromUtf8("Följande bokning har lämnats ut\n\n"
-                                   "Reservations nummer: %1\n"
-                                   "Namn: %2\n"
-                                   "Från: %3\n"
-                                   "Till: %4\n"
-                                   "Registreringsnummer: %5\n"
-                                   "Fabrikat: %6\n"
-                                   "Modell: %7\n").arg(QString::number(current_resP3->get_res_nr()),
-                                                       current_resP3->get_name(),
-                                                       current_resP3->get_start(),
-                                                       current_resP3->get_end(),
-                                                       current_vehicleP3->get_reg_nr(),
-                                                       current_vehicleP3->get_brand(),
-                                                       current_vehicleP3->get_model());
-    QMessageBox::information(this,
-                             QString::fromUtf8("Utlämning genomförd!"),
-                             check_out_done,
-                             QMessageBox::Ok);
-}
 
 
+/////////////////////////////////////////////////////////////////////
+//  MainWindow Tab 1 - Slots - tableWidget
+/////////////////////////////////////////////////////////////////////
 void MainWindow::on_tableWidgetP3_itemSelectionChanged()
 {
     ui->pushButtonP3checkout->setEnabled(true);
     ui->pushButtonP3remove_reservation->setEnabled(true);
 }
 
+
+
+/////////////////////////////////////////////////////////////////////
+//  MainWindow Tab 1 - Setup tableWidgets
+/////////////////////////////////////////////////////////////////////
+void MainWindow::setup_tableWidgetP3() const
+{
+    setup_tableWidget_reservation(ui->tableWidgetP3);
+    ui->tableWidgetP3->sortItems(4); //sortera på starttid
+}
