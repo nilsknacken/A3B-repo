@@ -5,7 +5,7 @@
 *              Andreas Bolin    Y3a andbo467@student.liu.se
 *              Martin Andersson Y3a maran703@student.liu.se
 *              Adam Andersson   Y3a adaan690@student.liu.se
-* DATE:        2012-12-05
+* DATE:        2012-12-12
 *
 * DESCRIPTION
 *
@@ -18,6 +18,11 @@
 *
 * Martin:
 *  on_pushButtonP3remove_reservation_clicked
+*  setup_tableWidgetP3
+*
+* Andreas:
+*  on_tableWidgetP3_itemSelectionChanged
+*
 *
 */
 
