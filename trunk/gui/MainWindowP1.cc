@@ -150,12 +150,13 @@ void MainWindow::correct_date_time()
     time.setHMS(time.hour(), 0,0);
     now.setTime(time);
 
-    ui->dateEditFrom->setMinimumDate(now.date());
-
     QTime open = settings->get_open_QTime();
     QTime close = settings->get_close_QTime();
     QDate to_date = ui->dateEditTo->date();
     QDate from_date = ui->dateEditFrom->date();
+
+    ui->dateEditFrom->setMinimumDate(now.date());
+    ui->timeEditFrom->setMinimumTime(open);
 
     // Set max time to closing time
     ui->timeEditFrom->setMaximumTime(close);

@@ -14,8 +14,9 @@
 *Created by:
 *Adam: 		on_pushButtonP5search_clicked
 *	    	on_tableWidgetP5_cellClicked
-*		on_pushButtonP5change_and_save_clicked
-*		on_pushButtonP5add_clicked
+*			on_pushButtonP5change_and_save_clicked
+*			on_pushButtonP5add_clicked
+*			on_pushButtonP5remove_and_undo_clicked
 */
 
 #include "MainWindow.h"
@@ -27,11 +28,14 @@
 using namespace std;
 
 
-////// Tab 5 - Search car
+/////////////////////////////////////////////////////////////////////
+//  MainWindow Tab 5 - Slots - Knappar
+/////////////////////////////////////////////////////////////////////
 void MainWindow::on_lineEditP5search_returnPressed()
 {
     on_pushButtonP5search_clicked();
 }
+
 
 void MainWindow::on_pushButtonP5search_clicked()
 {
@@ -57,40 +61,6 @@ void MainWindow::on_pushButtonP5search_clicked()
     }
 
     on_tableWidgetP5_cellClicked(-1, -1);
-}
-
-
-void MainWindow::on_tableWidgetP5_cellClicked(int row, int column)
-{
-    (void)column;
-    row = get_row_vehicle(ui->tableWidgetP5);
-
-    if (row >= 0) // visa info om bilen
-    {
-        ui->pushButtonP5change_and_save->setEnabled(true);
-        ui->pushButtonP5remove_and_undo->setEnabled(true);
-
-        current_vehicleP5 = search_vehicleP5.get_current_result()[row];
-        ui->labelP5regnr_var->setText(current_vehicleP5->get_reg_nr());
-        ui->labelP5fabric_var->setText(current_vehicleP5->get_brand());
-        ui->labelP5model_var->setText(current_vehicleP5->get_model());
-        ui->labelP5type_var->setText(current_vehicleP5->get_type());
-        ui->labelP5status_var->setText(current_vehicleP5->get_status());
-        ui->lineEditP5mileage_var->setText(QString::number (current_vehicleP5->get_mileage()));
-        ui->plainTextEditP5damages_var->setPlainText(current_vehicleP5->get_damage());
-    }
-    else // cleara info om bilen och disabla knappar
-    {
-        ui->pushButtonP5change_and_save->setDisabled(true);
-        ui->pushButtonP5remove_and_undo->setDisabled(true);
-        ui->labelP5regnr_var->clear();
-        ui->labelP5fabric_var->clear();
-        ui->labelP5model_var->clear();
-        ui->labelP5type_var->clear();
-        ui->labelP5status_var->clear();
-        ui->lineEditP5mileage_var->clear();
-        ui->plainTextEditP5damages_var->clear();
-    }
 }
 
 
@@ -178,7 +148,6 @@ void MainWindow::on_pushButtonP5add_clicked()
         }
     }
 }
-
 
 
 void MainWindow::on_pushButtonP5back_clicked()
@@ -282,6 +251,45 @@ void MainWindow::on_pushButtonP5remove_and_undo_clicked()
 }
 
 
+
+/////////////////////////////////////////////////////////////////////
+//  MainWindow Tab 5 - Slots - Övriga
+/////////////////////////////////////////////////////////////////////
+
+void MainWindow::on_tableWidgetP5_cellClicked(int row, int column)
+{
+    (void)column;
+    row = get_row_vehicle(ui->tableWidgetP5);
+
+    if (row >= 0) // visa info om bilen
+    {
+        ui->pushButtonP5change_and_save->setEnabled(true);
+        ui->pushButtonP5remove_and_undo->setEnabled(true);
+
+        current_vehicleP5 = search_vehicleP5.get_current_result()[row];
+        ui->labelP5regnr_var->setText(current_vehicleP5->get_reg_nr());
+        ui->labelP5fabric_var->setText(current_vehicleP5->get_brand());
+        ui->labelP5model_var->setText(current_vehicleP5->get_model());
+        ui->labelP5type_var->setText(current_vehicleP5->get_type());
+        ui->labelP5status_var->setText(current_vehicleP5->get_status());
+        ui->lineEditP5mileage_var->setText(QString::number (current_vehicleP5->get_mileage()));
+        ui->plainTextEditP5damages_var->setPlainText(current_vehicleP5->get_damage());
+    }
+    else // cleara info om bilen och disabla knappar
+    {
+        ui->pushButtonP5change_and_save->setDisabled(true);
+        ui->pushButtonP5remove_and_undo->setDisabled(true);
+        ui->labelP5regnr_var->clear();
+        ui->labelP5fabric_var->clear();
+        ui->labelP5model_var->clear();
+        ui->labelP5type_var->clear();
+        ui->labelP5status_var->clear();
+        ui->lineEditP5mileage_var->clear();
+        ui->plainTextEditP5damages_var->clear();
+    }
+}
+
+
 void MainWindow::setup_tableWidgetP5() const
 {
     setup_tableWidget_vehicle(ui->tableWidgetP5);
@@ -291,6 +299,7 @@ void MainWindow::setup_tableWidgetP5() const
     ui->comboBoxP5add_type->addItem("Liten lastbil");
     ui->comboBoxP5add_type->addItem("Stor lastbil");
 }
+
 
 void MainWindow::P5_change_appearance(bool state) const
 {
