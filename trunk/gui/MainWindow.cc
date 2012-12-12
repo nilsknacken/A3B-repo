@@ -106,7 +106,6 @@ void MainWindow::set_stylesheet(const QString& stylesheet, QPushButton*& p) cons
 
 void MainWindow::custom_setup()
 {
-    //QMessageBox::Ok->setText();                                     // Andeas ska kolla!!!
     on_pushButtonP1S_Car_clicked();
     on_pushButtonP2bok_nr_clicked();
     ui->stackedWidgetP1Main->setCurrentIndex(0);
@@ -330,7 +329,7 @@ void MainWindow::setup_tableWidget_reservation(QTableWidget* tableWidget) const
 
 void MainWindow::setup_stylesheet() const
 {
-    // Övergripande stylesheet finns i den separata stylesheetfilen
+    // Övergripande stylesheet finns i den separata stylesheetfilen ss_default.qss
     // Här sätt objektspecifik stylesheet
     ui->lineP1_1->setStyleSheet("color: rgb(0, 170, 255);");
     ui->lineP1_2->setStyleSheet("color: rgb(0, 170, 255);");

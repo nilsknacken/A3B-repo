@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
+<ui version="4.0">
+ <author>
 * FILENAMN:    Dialog_Settings.ui
 * PROJECT:     A3B
 * PROGRAMMER:  Conny Andersson  Y3a conan414@student.liu.se
@@ -15,8 +16,7 @@
 * Created by:
 * Andreas:  allt
 *
--->
-<ui version="4.0">
+</author>
  <class>Dialog_Settings</class>
  <widget class="QDialog" name="Dialog_Settings">
   <property name="geometry">

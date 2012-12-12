@@ -75,8 +75,11 @@ Där finnes även databasfilen.
 
 Valfri databasfil kompatibel med SQLite kan öppnas/skapas genom
 att ange filnamnet efter programnamnet enligt nedan:
-  $ A3B-Carpark filename
+  $ A3B-Carpark -d filename
 Anges inget filnamn öppnas/skapas databasen i filen "default_db.sqlite".
+
+För hjälp skriv
+  $ A3B-Carpark --help
 
 5. GITHUB
 Källkoden kan också ses på github:

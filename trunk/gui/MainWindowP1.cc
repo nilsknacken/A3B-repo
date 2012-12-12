@@ -173,12 +173,14 @@ void MainWindow::correct_date_time()
         {
             ui->timeEditTo->setMinimumTime(min_to);
         }
+
         else
         {
             ui->timeEditTo->setMinimumTime(open);
             ui->dateEditTo->setMinimumDate(from_date.addDays(1));
         }
     }
+
     else
     {
         ui->timeEditTo->setMinimumTime(open);
@@ -187,6 +189,7 @@ void MainWindow::correct_date_time()
         {
             ui->dateEditTo->setMinimumDate(from_date);
         }
+
         else
         {
             ui->dateEditTo->setMinimumDate(from_date.addDays(1));
@@ -213,8 +216,6 @@ void MainWindow::please_press_search_helpfunc(QTableWidget* tableWidget)
     QTableWidgetItem* type = new QTableWidgetItem();
     QTableWidgetItem* brand = new QTableWidgetItem();
     QTableWidgetItem* model = new QTableWidgetItem();
-
-
 
     reg->setText(QString::fromUtf8("Välj datum och"));
     type->setText(QString::fromUtf8(" tryck  sök  för"));

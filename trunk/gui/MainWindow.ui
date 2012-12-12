@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author>Andreas Bolin</author>
+ <author>
+* FILENAMN:    MainWindow.ui
+* PROJECT:     A3B
+* PROGRAMMER:  Conny Andersson  Y3a conan414@student.liu.se
+*              Andreas Bolin    Y3a andbo467@student.liu.se
+*              Martin Andersson Y3a maran703@student.liu.se
+*              Adam Andersson   Y3a adaan690@student.liu.se
+* DATE:        2012-12-12
+*
+* DESCRIPTION
+*
+* Här ligger all gui design till MainWindow fönstret.
+*
+* Created by:
+* Andreas:  allt
+*
+</author>
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
@@ -488,7 +504,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabReservate">
        <property name="styleSheet">
@@ -513,7 +529,7 @@
            <string notr="true"/>
           </property>
           <property name="currentIndex">
-           <number>2</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="stackedWidgetP1Page1">
            <layout class="QGridLayout" name="gridLayout_9">
@@ -1524,7 +1540,7 @@
                    </font>
                   </property>
                   <property name="text">
-                   <string/>
+                   <string>2012-12-12 19:31</string>
                   </property>
                  </widget>
                 </item>

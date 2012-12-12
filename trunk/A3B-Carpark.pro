@@ -10,9 +10,9 @@
 # DESCRIPTION
 #
 # QT Projectfile. Make a makefile with:
-# $ qmake -makefile A3B-Carpark.pro
+#  $ qmake -makefile A3B-Carpark.pro
 # Then compile with
-# $ make
+#  $ make
 #
 # Created by:
 # Andreas:  allt
