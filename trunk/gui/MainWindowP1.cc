@@ -5,7 +5,7 @@
 *              Andreas Bolin    Y3a andbo467@student.liu.se
 *              Martin Andersson Y3a maran703@student.liu.se
 *              Adam Andersson   Y3a adaan690@student.liu.se
-* DATE:        2012-12-08
+* DATE:        2012-12-12
 *
 * DESCRIPTION:
 *
@@ -33,14 +33,21 @@
 *           on_pushButtonP1search_clicked
 *           when_next_clicked
 *           new_reservation
+*           change_customer_info
+*           set_date_now
+*           correct_date_time
+*           please_press_search
+*           please_press_search_helpfunc
+*           on_dateEditFrom_dateChanged
+*           on_dateEditTo_dateChanged
+*           on_timeEditFrom_timeChanged
+*           on_timeEditTo_timeChanged
 *           setup_tableWidgetP1S_Car
 *           setup_tableWidgetP1M_Car
 *           setup_tableWidgetP1L_Car
 *           setup_tableWidgetP1S_Truck
 *           setup_tableWidgetP1L_Truck
-*           change_customer_info
-*           on_dateEditFrom_dateChanged
-*           on_timeEditFrom_timeChanged
+*
 */
 
 #include "MainWindow.h"

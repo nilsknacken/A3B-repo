@@ -5,7 +5,7 @@
 *              Andreas Bolin    Y3a andbo467@student.liu.se
 *              Martin Andersson Y3a maran703@student.liu.se
 *              Adam Andersson   Y3a adaan690@student.liu.se
-* DATE:        2012-10-12
+* DATE:        2012-12-12
 *
 * DESCRIPTION:
 * Implementation of tab nr 4 = Återlämna.
@@ -15,8 +15,9 @@
 * Andreas:  code structure
 *           on_pushButtonP4back_clicked
 *           on_checkBoxP4damages_yes_toggled
-* Martin:   on_pushButtonP4next_clicked
-*           setup_tableWidgetP4
+*
+* Martin:   setup_tableWidgetP4
+*
 * Adam:     on_pushButtonP4next_clicked
 *
 */

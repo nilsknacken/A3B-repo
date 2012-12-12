@@ -26,6 +26,11 @@ using namespace std;
 
 
 ////// Tab 5 - Search car
+void MainWindow::on_lineEditP5search_returnPressed()
+{
+    on_pushButtonP5search_clicked();
+}
+
 void MainWindow::on_pushButtonP5search_clicked()
 {
     QString given_reg_nr = ui->lineEditP5search->text();
