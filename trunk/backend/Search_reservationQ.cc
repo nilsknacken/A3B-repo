@@ -21,6 +21,7 @@
 #include <cctype>
 #include <stdlib.h>
 #include <QString>
+#include <QChar>
 #include <vector>
 #include "ReservationQ.h"
 #include "Search_reservationQ.h"
@@ -221,17 +222,17 @@ correct_reg_nr(const QString& reg_nr)
 
     for(int i = 0; i < reg_nr.size(); i++)
     {
-        char c = reg_nr.toStdString()[i];
+        QChar qc = reg_nr[i];
 
         if(i < 3)
         {
-            if(! isalpha(c))
+            if(! qc.isLetter())
                 throw search_reservation_error("Reg nr. får endast innehålla tre bokstäver"
                                         " följt av tre siffror");
         }
         if(i >= 3)
         {
-            if(! isdigit(c))
+            if(! qc.isDigit())
                 throw search_reservation_error("Reg nr. får endast innehålla tre bokstäver "
                                         "följt av tre siffror");
         }
@@ -244,18 +245,9 @@ correct_name(const QString& name)
 {
     for(int i = 0; i < name.size(); i++)
     {
-        char c = name.toStdString()[i];
-        QString qstr;
-        qstr += name.toStdString()[i];
+        QChar qc = name[i];
 
-        if(! isalpha(c)                       &&
-           c != ' '                           &&
-           qstr != QString::fromUtf8("å")     &&
-           qstr != QString::fromUtf8("ä")     &&
-           qstr != QString::fromUtf8("ö")     &&
-           qstr != QString::fromUtf8("Å")     &&
-           qstr != QString::fromUtf8("Ä")     &&
-           qstr != QString::fromUtf8("Ö"))
+        if(! qc.isLetter() && qc != ' ')
             throw search_reservation_error("Namn får endast innehålla bokstäver.");
     }
 }
@@ -266,9 +258,9 @@ correct_tel(const QString& tel)
 {
     for(int i = 0; i < tel.size(); i++)
     {
-        char c = tel.toStdString()[i];
+        QChar qc = tel[i];
 
-        if(! isdigit(c) && ! (c == ' '))
+        if(! qc.isDigit() && qc != ' ')
             throw search_reservation_error("Felaktigt telefonnummer, "
                                     "ska bara innehålla siffror.");
     }

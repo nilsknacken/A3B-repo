@@ -201,17 +201,17 @@ correct_reg_nr(const QString& reg_nr)
 
     for(int i = 0; i < reg_nr.size(); i++)
     {
-        char c = reg_nr.toStdString()[i];
+        QChar qc = reg_nr[i];
 
         if(i < 3)
         {
-            if(! isalpha(c))
+            if(! qc.isLetter())
                 throw search_vehicle_error("Reg nr. får endast innehålla tre bokstäver"
                                         " följt av tre siffror");
         }
         if(i >= 3)
         {
-            if(! isdigit(c))
+            if(! qc.isDigit())
                 throw search_vehicle_error("Reg nr. får endast innehålla tre bokstäver "
                                         "följt av tre siffror");
         }

@@ -71,7 +71,6 @@ private:
     void correct_status(const QString&);
     void correct_name(const QString&);
     void correct_tel(const QString&);
-    void correct_adress(const QString&);
     void correct_postal_nr(const QString&);
     void correct_city(const QString&);
 

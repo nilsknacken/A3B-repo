@@ -17,6 +17,7 @@
 
 #include <cctype>
 #include <cstdlib>
+#include <QChar>
 
 #include "ReservationQ.h"
 
@@ -40,7 +41,6 @@ Reservation(int res_nr, QString& reg_nr, QString& start, QString& end,
     correct_status(status);
     correct_name(name);
     correct_tel(tel);
-    correct_adress(adress);
     correct_postal_nr(postal_nr);
     correct_city(city);
 }
@@ -101,8 +101,6 @@ void
 Reservation::
 set_adress(const QString& adress)
 {
-    correct_adress(adress);
-
     adress_ = adress;
 }
 
@@ -229,17 +227,17 @@ correct_reg_nr(const QString& reg_nr)
 
     for(int i = 0; i < reg_nr.size(); i++)
     {
-        char c = reg_nr.toStdString()[i];
+        QChar qc = reg_nr[i];
 
         if(i < 3)
         {
-            if(! isalpha(c))
+            if(! qc.isLetter())
                 throw reservation_error("Reg nr. får ändast innehålla tre bokstäver"
                                         " följt av tre siffror");
         }
         if(i >= 3)
         {
-            if(! isdigit(c))
+            if(! qc.isDigit())
                 throw reservation_error("Reg nr. får ändast innehålla tre bokstäver "
                                         "följt av tre siffror");
         }
@@ -266,22 +264,16 @@ correct_name(const QString& name)
 
     for(int i = 0; i < name.size(); i++)
     {
-        char c = name.toStdString()[i];
+        QChar qc = name[i];
 
         if((i == name.size() - 1) && ! count_space)
             throw reservation_error("Namn får endast innehålla bokstäver, "
                                     "och för- och efternamn ska ingå.");
 
-        if(c == ' ' && count_alpha)
+        if(qc == ' ' && count_alpha)
             count_space++;
 
-        else if(isalpha(c) ||
-                c == 'å'   ||
-                c == 'ä'   ||
-                c == 'ö'   ||
-                c == 'Å'   ||
-                c == 'Ä'   ||
-                c == 'Ö')
+        else if(qc.isLetter())
             count_alpha++;
 
         else
@@ -299,20 +291,12 @@ correct_tel(const QString& tel)
 {
     for(int i = 0; i < tel.size(); i++)
     {
-        char c = tel.toStdString()[i];
+        QChar qc = tel[i];
 
-        if(! isdigit(c) && ! (c == ' '))
+        if(! qc.isDigit() && qc != ' ')
             throw reservation_error("Felaktigt telefonnummer, "
                                     "ska bara innehålla siffror.");
     }
-}
-
-void 
-Reservation::
-correct_adress(const QString& adress)
-{
-    (void) adress;
-    // Kan implementeras vid behov.
 }
 
 void
@@ -324,18 +308,17 @@ correct_postal_nr(const QString& postal_nr)
 
     for(int i = 0; i < postal_nr.size(); i++)
     {
-        char c = postal_nr.toStdString()[i];
+        QChar qc = postal_nr[i];
 
-        if(isdigit(c))
+        if(qc.isDigit())
             count_digit++;
-        else if(c == ' ')
+        else if(qc == ' ')
             count_space++;
         else
             throw reservation_error("Postnummer får endast innehålla "
                                     "siffror och ha längden 5.");
     }
-    if((count_digit != 5) ||
-            (count_space > 1))
+    if((count_digit != 5) || (count_space > 1))
         throw reservation_error("Postnummer får endast innehålla "
                                 "siffror och ha längden 5.");
 
@@ -347,15 +330,9 @@ correct_city(const QString& city)
 {
     for(int i = 0; i < city.size(); i++)
     {
-        char c = city.toStdString()[i];
+        QChar qc = city[i];
 
-        if(! isalpha(c) &&
-           c != 'å'     &&
-           c != 'ä'     &&
-           c != 'ö'     &&
-           c != 'Å'     &&
-           c != 'Ä'     &&
-           c != 'Ö')
+        if(! qc.isLetter())
             throw reservation_error("Felaktigt stad, "
                                     "ska bara innehålla bokstäver.");
     }
