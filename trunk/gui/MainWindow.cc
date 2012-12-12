@@ -46,7 +46,6 @@
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow),
-      about(new QMessageBox(this)),
       settings(new Settings()),
       gui_settings(new Dialog_Settings(this, settings))
 {
@@ -59,10 +58,8 @@ MainWindow::~MainWindow()
 {
     std::cerr << "~MainWindow()" << std::endl;                                                         //REMOVE
     delete ui;
-    delete about;
     delete settings;
     delete gui_settings;
-
     delete new_reservationP1;
     delete new_vehicleP5;
 }
@@ -112,7 +109,7 @@ void MainWindow::set_stylesheet(const QString& stylesheet, QPushButton*& p) cons
 
 void MainWindow::custom_setup()
 {
-    //QMessageBox::Ok->setText();
+    //QMessageBox::Ok->setText();                                     // Andeas ska kolla!!!
     on_pushButtonP1S_Car_clicked();
     on_pushButtonP2bok_nr_clicked();
     ui->stackedWidgetP1Main->setCurrentIndex(0);

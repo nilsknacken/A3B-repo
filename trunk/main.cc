@@ -30,38 +30,37 @@ int main(int argc, char *argv[])
     try
     {
         QApplication app(argc, argv);
+
         QFile file(":/ss_default.qss");
         file.open(QFile::ReadOnly);
         QString styleSheet = QLatin1String(file.readAll());
         qApp->setStyleSheet(styleSheet);
 
-        try
+        if (argc >= 2)
         {
-            if (argc >= 2)
-            {
-                Database::open(argv[1]);
-            }
-            else
-            {
-                Database::open("default_db.sqlite");
-            }
+            Database::open(argv[1]);
         }
-        catch(database_error& e)
+
+        else
         {
-            QMessageBox::warning(nullptr,
-                                 QString::fromUtf8("Databasfel"),
-                                 QString::fromUtf8("Följande databasfel har påträffats:\n\n\"")
-                                 + e.what()
-                                 + QString::fromUtf8("\"\n\nProgrammet kommer att avslutas."));
-            std::cerr << e.what() << std::endl;
-            return EXIT_FAILURE;
+            Database::open("default_db.sqlite");
         }
 
         MainWindow main_window;
         main_window.show();
         exit_code = app.exec();
     }
-    catch(std::exception& e)
+    catch(database_error& e) // Om databasen inte kan öppnas
+    {
+        QMessageBox::warning(nullptr,
+                             QString::fromUtf8("Databasfel"),
+                             QString::fromUtf8("Följande databasfel har påträffats:\n\n\"")
+                             + e.what()
+                             + QString::fromUtf8("\"\n\nProgrammet kommer att avslutas."));
+        std::cerr << e.what() << std::endl;
+        return EXIT_FAILURE;
+    }
+    catch(std::exception& e) // Övriga oförutsedda fel
     {
         QMessageBox::warning(nullptr,
                              QString::fromUtf8("Fel"),

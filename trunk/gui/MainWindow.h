@@ -1,3 +1,23 @@
+/*
+* FILENAMN:    MainWindow.h
+* PROJECT:     A3B
+* PROGRAMMER:  Conny Andersson  Y3a conan414@student.liu.se
+*              Andreas Bolin    Y3a andbo467@student.liu.se
+*              Martin Andersson Y3a maran703@student.liu.se
+*              Adam Andersson   Y3a adaan690@student.liu.se
+* DATE:        2012-12-12
+*
+* DESCRIPTION
+* Här deklareras MainWindows funktioner samt
+* GUI_error undantagsklass
+*
+* Created by:
+* Andreas:  code structure / code skeleton / signal & slots
+*
+* Alla: allt som hör till respektive funktion
+*
+*/
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -27,6 +47,7 @@ public:
     ~MainWindow();
 
 private slots:
+    // MainTab
     void on_tabWidgetMainTab_currentChanged(int);
 
     // Menu-Bar
@@ -53,7 +74,6 @@ private slots:
     void on_pushButtonP1S_Truck_clicked();
     void on_pushButtonP1L_Truck_clicked();
 
-
     // Tab 2 - Search
     void on_pushButtonP2search_clicked();
     void on_pushButtonP2delete_clicked();
@@ -61,7 +81,6 @@ private slots:
     void on_pushButtonP2show_clicked();
     void on_dateEditP2from_dateChanged(const QDate&);
     void on_lineEditSearch_returnPressed();
-
 
     void on_pushButtonP2bok_nr_clicked();
     void on_pushButtonP2reg_nr_clicked();
@@ -122,22 +141,21 @@ private:
 
     // Objektpekare
     Ui::MainWindow*  ui;
-    QMessageBox*     about;
     Settings*        settings;
     Dialog_Settings* gui_settings;
 
     Reservation*     new_reservationP1 = new Reservation();
     Vehicle*         new_vehicleP5     = new Vehicle();
 
-    Reservation*     current_resP1; //    = new Reservation(); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    Reservation*     current_resP2;//     = new Reservation();
-    Reservation*     current_resP3;//     = new Reservation();
-    Reservation*     current_resP4;//     = new Reservation();
+    Reservation*     current_resP1;
+    Reservation*     current_resP2;
+    Reservation*     current_resP3;
+    Reservation*     current_resP4;
 
-    Vehicle*         current_vehicleP1;// = new Vehicle();
-    Vehicle*         current_vehicleP3;// = new Vehicle();
-    Vehicle*         current_vehicleP4;// = new Vehicle();
-    Vehicle*         current_vehicleP5;// = new Vehicle();
+    Vehicle*         current_vehicleP1;
+    Vehicle*         current_vehicleP3;
+    Vehicle*         current_vehicleP4;
+    Vehicle*         current_vehicleP5;
 
     // Objekt
     Search_vehicle     search_vehicleP1S_Car;
