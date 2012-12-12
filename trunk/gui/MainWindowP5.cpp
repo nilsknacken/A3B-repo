@@ -1,11 +1,11 @@
 /*
-* Filename:    MainWindowP4.cpp
+* Filename:    MainWindowP5.cpp
 * PROJECT:     A3B
 * PROGRAMMER:  Conny Andersson  Y3a conan414@student.liu.se
 *              Andreas Bolin    Y3a andbo467@student.liu.se
 *              Martin Andersson Y3a maran703@student.liu.se
 *              Adam Andersson   Y3a adaan690@student.liu.se
-* DATE:        2012-10-12
+* DATE:        2012-12-12
 *
 * DESCRIPTION:
 * Implementation of tab nr 5 = Fordon.
@@ -18,7 +18,6 @@
 
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
-#include <iostream>                                                              //REMOVE
 #include <QTableWidgetItem>
 #include <QTableWidget>
 
@@ -261,12 +260,8 @@ void MainWindow::on_pushButtonP5remove_and_undo_clicked()
                                          .arg(current_vehicleP5->get_reg_nr()),
                                          QMessageBox::Ok);
             }
-
-      //      delete current_vehicleP5;
-       //     current_vehicleP5 = new Vehicle();
-
             on_pushButtonP5search_clicked();
-  }
+        }
     }
 
     else if(pushbuttonP5change_clicked) //undo pressed
