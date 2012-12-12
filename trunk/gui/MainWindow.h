@@ -22,7 +22,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QMessageBox>
+//#include <QMessageBox>
 #include <QPushButton>
 #include <QTableWidget>
 #include "Dialog_Settings.h"

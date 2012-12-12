@@ -13,13 +13,15 @@
 *
 * Created by:
 * Andreas: main
+*
+* Adam & Andreas: MainWindow.ui
 */
 
 #include <QApplication>
+#include <QMessageBox>
 #include <QFile>
 #include <iostream>
 #include <exception>
-#include <QMessageBox>
 #include "MainWindow.h"
 #include "DatabaseQ.h"
 

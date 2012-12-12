@@ -38,8 +38,6 @@
 #include <QMessageBox>
 
 
-#include <iostream>  //cout, cerr osv                                               //REMOVE
-
 /////////////////////////////////////////////////////////////////////
 // Constructor, Destructor:
 /////////////////////////////////////////////////////////////////////
@@ -56,7 +54,6 @@ MainWindow::MainWindow(QWidget* parent)
 
 MainWindow::~MainWindow()
 {
-    std::cerr << "~MainWindow()" << std::endl;                                                         //REMOVE
     delete ui;
     delete settings;
     delete gui_settings;
