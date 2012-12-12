@@ -32,6 +32,11 @@
 
 
 ////// Tab 2 - Search
+void MainWindow::on_lineEditSearch_returnPressed()
+{
+    on_pushButtonP2search_clicked();
+}
+
 void MainWindow::on_pushButtonP2search_clicked()
 {
     int search_index = ui->stackedWidgetP2->currentIndex();

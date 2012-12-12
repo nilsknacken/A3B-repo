@@ -37,6 +37,8 @@ private slots:
     // Tab 1 - Reservate
     void on_dateEditFrom_dateChanged();
     void on_timeEditFrom_timeChanged();
+    void on_dateEditTo_dateChanged();
+    void on_timeEditTo_timeChanged();
     void on_tableWidgetP1S_Car_itemSelectionChanged();
     void on_tableWidgetP1M_Car_itemSelectionChanged();
     void on_tableWidgetP1L_Car_itemSelectionChanged();
@@ -51,12 +53,15 @@ private slots:
     void on_pushButtonP1S_Truck_clicked();
     void on_pushButtonP1L_Truck_clicked();
 
+
     // Tab 2 - Search
     void on_pushButtonP2search_clicked();
     void on_pushButtonP2delete_clicked();
     void on_pushButtonP2change_clicked();
     void on_pushButtonP2show_clicked();
     void on_dateEditP2from_dateChanged(const QDate&);
+    void on_lineEditSearch_returnPressed();
+
 
     void on_pushButtonP2bok_nr_clicked();
     void on_pushButtonP2reg_nr_clicked();
@@ -88,10 +93,8 @@ private slots:
     void on_pushButtonP5change_and_save_clicked();
     void on_pushButtonP5remove_and_undo_clicked();
     void on_pushButtonP5back_clicked();
+    void on_lineEditP5search_returnPressed();
 
-    void on_dateEditTo_dateChanged();
-
-    void on_timeEditTo_timeChanged();
 
 private:
     // Variabler
