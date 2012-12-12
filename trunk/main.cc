@@ -25,7 +25,7 @@
 
 int main(int argc, char *argv[])
 {
-    int exit_code;
+    int exit_code = 59;
 
     try
     {

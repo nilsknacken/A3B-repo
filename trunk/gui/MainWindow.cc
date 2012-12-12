@@ -74,20 +74,16 @@ MainWindow::~MainWindow()
 /////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionAbout_triggered()
 {
-    about->about(this, QString::fromUtf8("Om A3B bilpark"),
+    QMessageBox::about(this, QString::fromUtf8("Om A3B bilpark"),
                        QString::fromUtf8("<b>A3B bilpark</b><br>"
                                          "Version 1.0<br><br>"
-
-
                                          "A3B bilpark är en programvara utvecklad av den nystartade gruppen A3B "
                                          "som består utav 4 stycken independent-utvecklare. "
                                          "Programvaran är gjord så att aktörer inom biluthyrning, stora som små, "
                                          "ska kunna sköta sina uthyrningar på ett smidigt sätt.<br><br>"
-
                                          "För teknisk support, konsultera README-filen eller kontakta oss på någon utav följande mailadresser:<br>"
                                          "maran703@student.liu.se, conan414@student.liu.se,<br>"
                                          "andbo467@student.liu.se, adaan690@student.liu.se <br><br>"
-
                                          "Mvh A3B <br> \"Because we do more than take you from A 2 B\" <br><br>"
                                          "&copy;2012 A3B"));
 }
