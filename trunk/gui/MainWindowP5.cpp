@@ -12,8 +12,10 @@
 * Hanterar fordonsdatabasen.
 *
 *Created by:
-*Adam:      on_pushButtonP5search_clicked
-*
+*Adam: 		on_pushButtonP5search_clicked
+*	    	on_tableWidgetP5_cellClicked
+*		on_pushButtonP5change_and_save_clicked
+*		on_pushButtonP5add_clicked
 */
 
 #include "MainWindow.h"
