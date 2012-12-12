@@ -1,5 +1,5 @@
 /*
-* Filename:    MainWindowP4.cpp
+* Filename:    MainWindowP4.cc
 * PROJECT:     A3B
 * PROGRAMMER:  Conny Andersson  Y3a conan414@student.liu.se
 *              Andreas Bolin    Y3a andbo467@student.liu.se
@@ -13,8 +13,10 @@
 *
 *Created by:
 * Andreas:  code structure
+*           on_pushButtonP4next_clicked
 *           on_pushButtonP4back_clicked
 *           on_checkBoxP4damages_yes_toggled
+*           on_tableWidgetP4_itemSelectionChanged
 *
 * Martin:   setup_tableWidgetP4
 *
@@ -29,8 +31,15 @@
 
 
 
+/////////////////////////////////////////////////////////////////////
+//  MainWindow Tab 4 / Återlämna Tab
+/////////////////////////////////////////////////////////////////////
 
-////// Tab 4 - Checkin
+
+
+/////////////////////////////////////////////////////////////////////
+//  MainWindow Tab 4 - Slots - Knappar
+/////////////////////////////////////////////////////////////////////
 void MainWindow::on_pushButtonP4next_clicked()
 {
     int index = ui->stackedWidgetP4->currentIndex();
@@ -79,7 +88,6 @@ void MainWindow::on_pushButtonP4next_clicked()
 
             if (ui->checkBoxP4damages_yes)
                 current_vehicleP4->set_damage(ui->plainTextEditP4damages->toPlainText());
-
 
             // Setup confirmation page
             ui->stackedWidgetP4->setCurrentIndex(++index);
@@ -146,7 +154,6 @@ void MainWindow::on_pushButtonP4next_clicked()
                                  check_in_done,
                                  QMessageBox::Ok);
 
-
         ui->pushButtonP4next->setText(QString::fromUtf8("Nästa >"));
         QString aktiv = "aktiv";
         generate_reservation_list(search_resP4.status(aktiv), ui->tableWidgetP4);
@@ -181,11 +188,26 @@ void MainWindow::on_pushButtonP4back_clicked()
     }
 }
 
+
+
+/////////////////////////////////////////////////////////////////////
+//  MainWindow Tab 4 - Slots - Övriga
+/////////////////////////////////////////////////////////////////////
 void MainWindow::on_checkBoxP4damages_yes_toggled(bool checked)
 {
     ui->plainTextEditP4damages->setDisabled(! checked);
 }
 
+void MainWindow::on_tableWidgetP4_itemSelectionChanged()
+{
+    ui->pushButtonP4next->setEnabled(true);
+}
+
+
+
+/////////////////////////////////////////////////////////////////////
+//  MainWindow Tab 4 - Setup tableWidgets
+/////////////////////////////////////////////////////////////////////
 void MainWindow::setup_tableWidgetP4() const
 {
     setup_tableWidget_reservation(ui->tableWidgetP4);
@@ -194,7 +216,3 @@ void MainWindow::setup_tableWidgetP4() const
     ui->textEditP4_conf->setReadOnly(true); // tillåt ej edit av bekräftnings rutan
 }
 
-void MainWindow::on_tableWidgetP4_itemSelectionChanged()
-{
-    ui->pushButtonP4next->setEnabled(true);
-}

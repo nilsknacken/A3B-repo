@@ -39,7 +39,7 @@ SOURCES += main.cc \
            gui/MainWindowP1.cc \
            gui/MainWindowP2.cc \
            gui/MainWindowP3.cc \
-           gui/MainWindowP4.cpp \
+           gui/MainWindowP4.cc \
            gui/MainWindowP5.cpp \
            database/fill_db.cpp \
 
