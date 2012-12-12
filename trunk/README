@@ -55,11 +55,19 @@ För att kompilera programmet kör följande
   $ qmake -makefile A3B-Carpark.pro
   $ make
 
+Under Mac OS X har följande testats
+  $ qmake A3B-Carpark.pro -r -spec unsupported/macx-clang CONFIG+=x86_64
+  $ make
+
+
 
 4. KÖRBARA FILER
 Körbara filer efter kompilering, för att starta programmet
   $ A3B-Carpark     (linux/unix/mac)
   $ A3B-Carpark.exe (windows)
+
+Observera att A3B-Carpark ligger under Mac OS X i /A3B-Carpark.app/Contents/MacOS
+Där finnes även databasfilen.
 
 Valfri databasfil kompatibel med SQLite kan öppnas/skapas genom
 att ange filnamnet efter programnamnet enligt nedan:
