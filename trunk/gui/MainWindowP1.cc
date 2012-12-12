@@ -56,7 +56,7 @@
 #include <iostream>  //REMVOVE
 
 /////////////////////////////////////////////////////////////////////
-//  MainWindow Tab 1 / Bokning
+//  MainWindow Tab 1 / Bokning Tab
 /////////////////////////////////////////////////////////////////////
 void MainWindow::when_next_clicked(Search_vehicle& search_vehicle,
                                    QTableWidget* tableWidget,
