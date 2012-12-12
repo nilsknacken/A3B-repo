@@ -154,10 +154,14 @@ void Database::settings_update(
 
 // Performs a search in the Reservations table
 vector<vector<QString> >
-Database::reservation_search(const QString& what, const QString& value)
+Database::reservation_search(const QString& what, const QString& input)
 {
     sqlite3_stmt* statement;
     vector<vector<QString> > result;
+
+    QString value = input;
+    value.push_front('%');
+    value.push_back('%');
 
     if (what == "all")
     {
@@ -166,22 +170,22 @@ Database::reservation_search(const QString& what, const QString& value)
     }
     else if (what == "reg_nr")
     {
-        const char* query = "SELECT * FROM Reservations WHERE reg_nr = ?1";
+        const char* query = "SELECT * FROM Reservations WHERE reg_nr LIKE ?1";
         statement = bind_QString(query, value);
     }
     else if (what == "status")
     {
-        const char* query = "SELECT * FROM Reservations WHERE status = ?1";
+        const char* query = "SELECT * FROM Reservations WHERE status LIKE ?1";
         statement = bind_QString(query, value);
     }
     else if (what == "name")
     {
-        const char* query = "SELECT * FROM Reservations WHERE name = ?1";
+        const char* query = "SELECT * FROM Reservations WHERE name LIKE ?1";
         statement = bind_QString(query, value);
     }
     else if (what == "tel")
     {
-        const char* query = "SELECT * FROM Reservations WHERE tel = ?1";
+        const char* query = "SELECT * FROM Reservations WHERE tel LIKE ?1";
         statement = bind_QString(query, value);
     }
     else

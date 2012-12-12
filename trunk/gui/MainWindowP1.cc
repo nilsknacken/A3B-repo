@@ -195,6 +195,8 @@ void MainWindow::please_press_search()
     please_press_search_helpfunc(ui->tableWidgetP1L_Car);
     please_press_search_helpfunc(ui->tableWidgetP1S_Truck);
     please_press_search_helpfunc(ui->tableWidgetP1L_Truck);
+
+    ui->pushButtonP1next->setDisabled(true);
 }
 
 
