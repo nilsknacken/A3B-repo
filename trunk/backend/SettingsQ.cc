@@ -5,7 +5,7 @@
 *              Andreas Bolin    Y3a andbo467@student.liu.se
 *              Martin Andersson Y3a maran703@student.liu.se
 *              Adam Andersson   Y3a adaan690@student.liu.se
-* DATE:        2012-10-18
+* DATE:        2012-12-12
 *
 * DESCRIPTION
 * 
@@ -13,6 +13,9 @@
 *
 * Created by:
 * Conny: All
+* Martin:
+*  get_open_QTime
+*  get_close_QTime
 */
 
 #include "SettingsQ.h"
@@ -43,26 +46,31 @@ update()
 
     if(open_hour.isEmpty())
         open_hour_ = 0;
+
     else
         open_hour_ = open_hour.toInt();
 
     if(open_min.isEmpty())
         set_open_min(0);
+
     else
         set_open_min(open_min.toInt());
 
     if(close_hour.isEmpty())
         set_close_hour(0);
+
     else
         set_close_hour(close_hour.toInt());
 
     if(close_min.isEmpty())
         set_close_min(0);
+
     else
         set_close_min(close_min.toInt());
 
     if(min_rental.isEmpty())
         set_min_rental(0);
+
     else
         set_min_rental(min_rental.toInt());
 }

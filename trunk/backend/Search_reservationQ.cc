@@ -5,7 +5,7 @@
 *              Andreas Bolin    Y3a andbo467@student.liu.se
 *              Martin Andersson Y3a maran703@student.liu.se
 *              Adam Andersson   Y3a adaan690@student.liu.se
-* DATE:        2012-10-18
+* DATE:        2012-12-12
 *
 * DESCRIPTION
 *
@@ -18,12 +18,8 @@
 * Martin: minor bug fix
 */
 
-#include <cctype>
-#include <stdlib.h>
-#include <QString>
 #include <QChar>
-#include <vector>
-#include "ReservationQ.h"
+#include <stdlib.h>
 #include "Search_reservationQ.h"
 
 using namespace std;

@@ -5,7 +5,7 @@
 *              Andreas Bolin    Y3a andbo467@student.liu.se
 *              Martin Andersson Y3a maran703@student.liu.se
 *              Adam Andersson   Y3a adaan690@student.liu.se
-* DATE:        2012-10-18
+* DATE:        2012-12-12
 *
 * DESCRIPTION
 * 
@@ -15,10 +15,8 @@
 * Conny: All
 */
 
-#include <cctype>
 #include <cstdlib>
 #include <QChar>
-
 #include "ReservationQ.h"
 
 using namespace std;
@@ -248,10 +246,10 @@ void
 Reservation::
 correct_status(const QString& status)
 {
-    if((status != "aktiv")       &&
-            (status != "kommande") &&
-            (status != "avslutad"))
-        throw reservation_error("Status får ändast vara: aktiv, kommande, "
+    if((status != "aktiv")    &&
+       (status != "kommande") &&
+       (status != "avslutad"))
+            throw reservation_error("Status får ändast vara: aktiv, kommande, "
                                 "avslutad.");
 }
 
@@ -341,7 +339,6 @@ correct_city(const QString& city)
 /////////////////////////////////////////////////////////////////////
 // Help functions:
 /////////////////////////////////////////////////////////////////////
-
 Reservation* 
 make_reservation(QString& reg_nr,    QString& start, QString& end, 
                  QString& name,      QString& tel,   QString& adress,
