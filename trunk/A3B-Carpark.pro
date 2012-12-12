@@ -40,8 +40,8 @@ SOURCES += main.cc \
            gui/MainWindowP2.cc \
            gui/MainWindowP3.cc \
            gui/MainWindowP4.cc \
-           gui/MainWindowP5.cpp \
-           database/fill_db.cpp \
+           gui/MainWindowP5.cc \
+           database/fill_db.cc
 
 HEADERS  += gui/MainWindow.h \
             gui/Dialog_Settings.h \

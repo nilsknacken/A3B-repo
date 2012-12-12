@@ -53,7 +53,7 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
-#include <iostream>  //REMVOVE
+
 
 /////////////////////////////////////////////////////////////////////
 //  MainWindow Tab 1 / Bokning Tab

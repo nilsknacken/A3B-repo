@@ -12,11 +12,20 @@
 * Hanterar fordonsdatabasen.
 *
 *Created by:
-*Adam: 		on_pushButtonP5search_clicked
+* Adam:     on_pushButtonP5search_clicked
 *	    	on_tableWidgetP5_cellClicked
 *			on_pushButtonP5change_and_save_clicked
 *			on_pushButtonP5add_clicked
 *			on_pushButtonP5remove_and_undo_clicked
+*           setup_tableWidgetP5
+*
+* Andreas:  code structure / code skeleton / signal & slots
+*           P5_change_appearance
+*           on_pushButtonP5add_clicked
+*           on_pushButtonP5back_clicked
+*           on_tableWidgetP5_cellClicked
+*
+* Conny:    on_lineEditP5search_returnPressed
 */
 
 #include "MainWindow.h"
@@ -24,18 +33,51 @@
 #include <QTableWidgetItem>
 #include <QTableWidget>
 
-
 using namespace std;
+
+
+/////////////////////////////////////////////////////////////////////
+//  MainWindow Tab 5 / Fordon Tab
+/////////////////////////////////////////////////////////////////////
+void MainWindow::P5_change_appearance(bool state) const
+{
+    if(state)
+    {
+        ui->tabWidgetMainTab->setTabEnabled(0, false);
+        ui->tabWidgetMainTab->setTabEnabled(1, false);
+        ui->tabWidgetMainTab->setTabEnabled(2, false);
+        ui->tabWidgetMainTab->setTabEnabled(3, false);
+        ui->pushButtonP5add->setDisabled(true);
+        ui->pushButtonP5search->setDisabled(true);
+        ui->tableWidgetP5->setDisabled(true);
+        ui->lineEditP5search->setDisabled(true);
+        ui->lineEditP5mileage_var->setReadOnly(false);
+        ui->plainTextEditP5damages_var->setReadOnly(false);
+        ui->pushButtonP5change_and_save->setText(QString::fromUtf8("Spara"));
+        ui->pushButtonP5remove_and_undo->setText(QString::fromUtf8("Ångra"));
+    }
+
+    else if(! state)
+    {
+        ui->tabWidgetMainTab->setTabEnabled(0, true);
+        ui->tabWidgetMainTab->setTabEnabled(1, true);
+        ui->tabWidgetMainTab->setTabEnabled(2, true);
+        ui->tabWidgetMainTab->setTabEnabled(3, true);
+        ui->pushButtonP5add->setEnabled(true);
+        ui->pushButtonP5search->setEnabled(true);
+        ui->tableWidgetP5->setEnabled(true);
+        ui->lineEditP5search->setEnabled(true);
+        ui->lineEditP5mileage_var->setReadOnly(true);
+        ui->plainTextEditP5damages_var->setReadOnly(true);
+        ui->pushButtonP5change_and_save->setText(QString::fromUtf8("Ändra"));
+        ui->pushButtonP5remove_and_undo->setText(QString::fromUtf8("Ta Bort"));
+    }
+}
 
 
 /////////////////////////////////////////////////////////////////////
 //  MainWindow Tab 5 - Slots - Knappar
 /////////////////////////////////////////////////////////////////////
-void MainWindow::on_lineEditP5search_returnPressed()
-{
-    on_pushButtonP5search_clicked();
-}
-
 
 void MainWindow::on_pushButtonP5search_clicked()
 {
@@ -62,7 +104,6 @@ void MainWindow::on_pushButtonP5search_clicked()
 
     on_tableWidgetP5_cellClicked(-1, -1);
 }
-
 
 void MainWindow::on_pushButtonP5add_clicked()
 {
@@ -149,7 +190,6 @@ void MainWindow::on_pushButtonP5add_clicked()
     }
 }
 
-
 void MainWindow::on_pushButtonP5back_clicked()
 {
     if(ui->tableWidgetP5->currentRow() != -1)
@@ -166,7 +206,6 @@ void MainWindow::on_pushButtonP5back_clicked()
     ui->tabWidgetMainTab->setTabEnabled(2, true);
     ui->tabWidgetMainTab->setTabEnabled(3, true);
 }
-
 
 void MainWindow::on_pushButtonP5change_and_save_clicked()
 {
@@ -201,7 +240,6 @@ void MainWindow::on_pushButtonP5change_and_save_clicked()
         }
     }
 }
-
 
 void MainWindow::on_pushButtonP5remove_and_undo_clicked()
 {
@@ -255,6 +293,10 @@ void MainWindow::on_pushButtonP5remove_and_undo_clicked()
 /////////////////////////////////////////////////////////////////////
 //  MainWindow Tab 5 - Slots - Övriga
 /////////////////////////////////////////////////////////////////////
+void MainWindow::on_lineEditP5search_returnPressed()
+{
+    on_pushButtonP5search_clicked();
+}
 
 void MainWindow::on_tableWidgetP5_cellClicked(int row, int column)
 {
@@ -290,6 +332,10 @@ void MainWindow::on_tableWidgetP5_cellClicked(int row, int column)
 }
 
 
+
+/////////////////////////////////////////////////////////////////////
+//  MainWindow Tab 5 - Setup tableWidgets
+/////////////////////////////////////////////////////////////////////
 void MainWindow::setup_tableWidgetP5() const
 {
     setup_tableWidget_vehicle(ui->tableWidgetP5);
@@ -300,38 +346,3 @@ void MainWindow::setup_tableWidgetP5() const
     ui->comboBoxP5add_type->addItem("Stor lastbil");
 }
 
-
-void MainWindow::P5_change_appearance(bool state) const
-{
-    if(state)
-    {
-        ui->tabWidgetMainTab->setTabEnabled(0, false);
-        ui->tabWidgetMainTab->setTabEnabled(1, false);
-        ui->tabWidgetMainTab->setTabEnabled(2, false);
-        ui->tabWidgetMainTab->setTabEnabled(3, false);
-        ui->pushButtonP5add->setDisabled(true);
-        ui->pushButtonP5search->setDisabled(true);
-        ui->tableWidgetP5->setDisabled(true);
-        ui->lineEditP5search->setDisabled(true);
-        ui->lineEditP5mileage_var->setReadOnly(false);
-        ui->plainTextEditP5damages_var->setReadOnly(false);
-        ui->pushButtonP5change_and_save->setText(QString::fromUtf8("Spara"));
-        ui->pushButtonP5remove_and_undo->setText(QString::fromUtf8("Ångra"));
-    }
-
-    else if(! state)
-    {
-        ui->tabWidgetMainTab->setTabEnabled(0, true);
-        ui->tabWidgetMainTab->setTabEnabled(1, true);
-        ui->tabWidgetMainTab->setTabEnabled(2, true);
-        ui->tabWidgetMainTab->setTabEnabled(3, true);
-        ui->pushButtonP5add->setEnabled(true);
-        ui->pushButtonP5search->setEnabled(true);
-        ui->tableWidgetP5->setEnabled(true);
-        ui->lineEditP5search->setEnabled(true);
-        ui->lineEditP5mileage_var->setReadOnly(true);
-        ui->plainTextEditP5damages_var->setReadOnly(true);
-        ui->pushButtonP5change_and_save->setText(QString::fromUtf8("Ändra"));
-        ui->pushButtonP5remove_and_undo->setText(QString::fromUtf8("Ta Bort"));
-    }
-}

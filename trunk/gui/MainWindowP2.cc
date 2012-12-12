@@ -1,5 +1,5 @@
 /*
-* FILENAMN:    MainWindowP2.cpp
+* FILENAMN:    MainWindowP2.cc
 * PROJECT:     A3B
 * PROGRAMMER:  Conny Andersson  Y3a conan414@student.liu.se
 *              Andreas Bolin    Y3a andbo467@student.liu.se
@@ -407,7 +407,7 @@ void MainWindow::on_pushButtonP2show_clicked()
 
 
 /////////////////////////////////////////////////////////////////////
-//  MainWindow Tab 1 - Slots - Sidomeny
+//  MainWindow Tab 2 - Slots - Sidomeny
 /////////////////////////////////////////////////////////////////////
 void MainWindow::on_pushButtonP2bok_nr_clicked()
 {
@@ -455,7 +455,7 @@ void MainWindow::on_pushButtonP2date_clicked()
 
 
 /////////////////////////////////////////////////////////////////////
-//  MainWindow Tab 1 - Slots - tableWidget
+//  MainWindow Tab 2 - Slots - tableWidget
 /////////////////////////////////////////////////////////////////////
 void MainWindow::on_tableWidgetP2bok_nr_cellClicked(int row, int column)
 {
@@ -545,7 +545,7 @@ void MainWindow::on_dateEditP2from_dateChanged(const QDate &date)
 
 
 /////////////////////////////////////////////////////////////////////
-//  MainWindow Tab 1 - Setup tableWidgets
+//  MainWindow Tab 2 - Setup tableWidgets
 /////////////////////////////////////////////////////////////////////
 void MainWindow::setup_tableWidgetP2bok_nr() const
 {

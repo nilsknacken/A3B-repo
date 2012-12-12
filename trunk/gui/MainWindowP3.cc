@@ -1,5 +1,5 @@
 /*
-* FILENAMN:    MainWindowP3.cpp
+* FILENAMN:    MainWindowP3.cc
 * PROJECT:     A3B
 * PROGRAMMER:  Conny Andersson  Y3a conan414@student.liu.se
 *              Andreas Bolin    Y3a andbo467@student.liu.se
@@ -29,8 +29,9 @@
 #include "ui_MainWindow.h"
 
 
+
 /////////////////////////////////////////////////////////////////////
-//  MainWindow Tab 2 / Sök Tab
+//  MainWindow Tab 3 / Lämna ut Tab
 /////////////////////////////////////////////////////////////////////
 void MainWindow::checkout_function()
 {
@@ -178,7 +179,7 @@ void MainWindow::on_pushButtonP3checkout_clicked()
 
 
 /////////////////////////////////////////////////////////////////////
-//  MainWindow Tab 1 - Slots - tableWidget
+//  MainWindow Tab 3 - Slots - tableWidget
 /////////////////////////////////////////////////////////////////////
 void MainWindow::on_tableWidgetP3_itemSelectionChanged()
 {
@@ -189,7 +190,7 @@ void MainWindow::on_tableWidgetP3_itemSelectionChanged()
 
 
 /////////////////////////////////////////////////////////////////////
-//  MainWindow Tab 1 - Setup tableWidgets
+//  MainWindow Tab 3 - Setup tableWidgets
 /////////////////////////////////////////////////////////////////////
 void MainWindow::setup_tableWidgetP3() const
 {

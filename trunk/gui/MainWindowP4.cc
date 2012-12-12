@@ -12,7 +12,7 @@
 * Hanterar vad som händer när man gör något under återlämningsfliken.
 *
 *Created by:
-* Andreas:  code structure
+* Andreas:  code structure / code skeleton / signal & slots
 *           on_pushButtonP4next_clicked
 *           on_pushButtonP4back_clicked
 *           on_checkBoxP4damages_yes_toggled
@@ -23,7 +23,6 @@
 * Adam:     on_pushButtonP4next_clicked
 *
 */
-
 
 #include "MainWindow.h"
 #include "ui_MainWindow.h"

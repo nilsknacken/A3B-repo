@@ -1,3 +1,22 @@
+/*
+* Filename:    ss_default.ss
+* PROJECT:     A3B
+* PROGRAMMER:  Conny Andersson  Y3a conan414@student.liu.se
+*              Andreas Bolin    Y3a andbo467@student.liu.se
+*              Martin Andersson Y3a maran703@student.liu.se
+*              Adam Andersson   Y3a adaan690@student.liu.se
+* DATE:        2012-12-12
+*
+* DESCRIPTION:
+* Här finns övergripande stylesheet fil som ändrar utseendet från
+* default utseende till mer grafiskt tilltalande. exempelvis knappar
+*
+*Created by:
+* Andreas:  allt
+*
+*/
+
+
 QMainWindow{
 background-image: url(:/Linen_Patterns_4.jpg); }
 
