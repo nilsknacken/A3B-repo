@@ -5,7 +5,7 @@
 *              Andreas Bolin    Y3a andbo467@student.liu.se
 *              Martin Andersson Y3a maran703@student.liu.se
 *              Adam Andersson   Y3a adaan690@student.liu.se
-* DATE:        2012-12-08
+* DATE:        2012-12-12
 *
 * DESCRIPTION
 *
@@ -25,13 +25,14 @@
 *
 */
 
+#include <QDialog>
 #include "Dialog_Settings.h"
 #include "ui_Dialog_Settings.h"
-#include <QDialog>
-#include <iostream>                                                //REMOVE
 
-using namespace std;
-
+/////////////////////////////////////////////////////////////////////
+// Dialog_Settings:
+/////////////////////////////////////////////////////////////////////
+// parameterized constructor
 Dialog_Settings::Dialog_Settings(QWidget* parent, Settings* settings)
     : QDialog(parent),
       ui(new Ui::Dialog_Settings),
@@ -42,15 +43,15 @@ Dialog_Settings::Dialog_Settings(QWidget* parent, Settings* settings)
     update_qtimeedit(settings_);
 }
 
+// Destructor
 Dialog_Settings::~Dialog_Settings()
 {
-    std::cerr << "~Dialog_Settings()" << endl;
     delete ui;
 }
 
+// Save the settings
 void Dialog_Settings::on_buttonBox_accepted()
 {
-    //Spara inställningarna
     QTime open       = ui->timeEditOpen  ->time();
     QTime close      = ui->timeEditClose ->time();
     QTime min_rental = ui->timeEditRental->time();
@@ -65,16 +66,16 @@ void Dialog_Settings::on_buttonBox_accepted()
     restore_appearance();
 }
 
+// Restores the old settings
 void Dialog_Settings::on_buttonBox_rejected()
 {
-    //Skriv över ändringarna
     update_qtimeedit(settings_);
     restore_appearance();
 }
 
+// Clean database
 void Dialog_Settings::on_pushButtonCleanDB_clicked()
 {
-    //Rensa databas
     switch(QMessageBox::warning(this,
                                 QString::fromUtf8("Rensa databas"),
                                 QString::fromUtf8("Du är påväg att rensa databasen.\nVill du verkligen göra det?"),
@@ -94,7 +95,7 @@ void Dialog_Settings::on_pushButtonCleanDB_clicked()
     }
 }
 
-
+// Load qtimeedit with stored data from the database
 void Dialog_Settings::update_qtimeedit(Settings* settings)
 {
     ui->timeEditOpen  ->setTime(QTime(settings->get_open_hour(), settings->get_open_min()));
@@ -106,4 +107,40 @@ void Dialog_Settings::restore_appearance()
 {
     ui->pushButtonCleanDB->setDisabled(false);
     ui->pushButtonCleanDB->setText(QString::fromUtf8("Rensa databas"));
+}
+
+// Make sure open < close
+void Dialog_Settings::on_timeEditClose_timeChanged(const QTime& close)
+{
+    QTime open = ui->timeEditOpen->time();
+
+    if(open == close)
+    {
+        QMessageBox::information(this,
+                                 QString::fromUtf8("Felaktig inmatning"),
+                                 QString::fromUtf8("Felaktig inmatning: "
+                                                   "Du kan inte stänga "
+                                                   "innan du har öppnat."),
+                                 QMessageBox::Ok);
+
+        ui->timeEditClose->setTime(close.addSecs(3600));
+    }
+}
+
+void Dialog_Settings::on_timeEditOpen_timeChanged(const QTime& open)
+{
+    QTime close = ui->timeEditClose->time();
+
+    if(open == close)
+    {
+        QMessageBox::information(this,
+                                 QString::fromUtf8("Felaktig inmatning"),
+                                 QString::fromUtf8("Felaktig inmatning: "
+                                                   "Du kan inte stänga "
+                                                   "innan du har öppnat."),
+                                 QMessageBox::Ok);
+
+        ui->timeEditOpen->setTime(open.addSecs(-3600));
+
+    }
 }

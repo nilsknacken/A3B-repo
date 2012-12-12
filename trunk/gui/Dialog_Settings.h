@@ -5,7 +5,7 @@
 *              Andreas Bolin    Y3a andbo467@student.liu.se
 *              Martin Andersson Y3a maran703@student.liu.se
 *              Adam Andersson   Y3a adaan690@student.liu.se
-* DATE:        2012-12-05
+* DATE:        2012-12-12
 *
 * DESCRIPTION
 *
@@ -27,6 +27,9 @@ namespace Ui
     class Dialog_Settings;
 }
 
+/////////////////////////////////////////////////////////////////////
+// Dialog_Settings:
+/////////////////////////////////////////////////////////////////////
 class Dialog_Settings : public QDialog
 {
     Q_OBJECT
@@ -39,6 +42,8 @@ private slots:
     void on_pushButtonCleanDB_clicked();
     void on_buttonBox_accepted();
     void on_buttonBox_rejected();
+    void on_timeEditClose_timeChanged(const QTime&);
+    void on_timeEditOpen_timeChanged(const QTime&);
 
 private:
     Ui::Dialog_Settings* ui;

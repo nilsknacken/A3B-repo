@@ -330,7 +330,7 @@ correct_city(const QString& city)
     {
         QChar qc = city[i];
 
-        if(! qc.isLetter())
+        if(! qc.isLetter() && qc != ' ')
             throw reservation_error("Felaktigt stad, "
                                     "ska bara innehålla bokstäver.");
     }
