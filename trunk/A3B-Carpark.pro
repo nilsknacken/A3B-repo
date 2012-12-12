@@ -37,7 +37,7 @@ SOURCES += main.cc \
            backend/Search_reservationQ.cc \
            backend/ReservationQ.cc \
            gui/MainWindowP1.cc \
-           gui/MainWindowP2.cpp \
+           gui/MainWindowP2.cc \
            gui/MainWindowP3.cpp \
            gui/MainWindowP4.cpp \
            gui/MainWindowP5.cpp \
