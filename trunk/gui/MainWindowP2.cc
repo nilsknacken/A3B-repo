@@ -480,7 +480,7 @@ void MainWindow::on_tableWidgetP2reg_nr_cellClicked(int row, int column)
         P2_change_button_enabled[1] = true;
 
     else
-        P2_change_button_enabled[1] = true;
+        P2_change_button_enabled[1] = false;
 
         P2_change_button_appearance(1);
 }
